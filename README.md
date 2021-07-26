@@ -61,6 +61,10 @@ Plug 'yaegassy/coc-volar', {'do': 'yarn install --frozen-lockfile'}
 
 The rest of the settings are the same as for VSCode's volar extension.
 
+## Commands
+
+- `volar.action.restartServer`: Restart Vue server
+
 ## License
 
 MIT
