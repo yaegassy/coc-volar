@@ -2,6 +2,8 @@
 
 > fork from a [@volar/vscode-client](https://github.com/johnsoncodehk/volar/tree/master/packages/vscode-client)
 
+<img width="780" alt="coc-volar-demo" src="https://user-images.githubusercontent.com/188642/126975753-8d3f1157-c73a-4100-95db-412329151b2a.gif">
+
 [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (Fast Vue Language Support) extension for [coc.nvim](https://github.com/neoclide/coc.nvim)
 
 ## Sorry
