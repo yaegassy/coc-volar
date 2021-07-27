@@ -35,7 +35,7 @@ import * as restart from './features/restart';
 // import * as tagNameCase from './features/tagNameCase';
 // import * as tsPlugin from './features/tsPlugin';
 // import * as tsVersion from './features/tsVersion';
-// import * as verifyAll from './features/verifyAll';
+import * as verifyAll from './features/verifyAll';
 // import * as virtualFiles from './features/virtualFiles';
 // import * as removeRefSugars from './features/removeRefSugars';
 
@@ -76,7 +76,8 @@ export async function activate(context: ExtensionContext): Promise<void> {
   // documentContent.activate(context, apiClient);
   // documentContent.activate(context, docClient);
   // activeSelection.activate(context, apiClient);
-  // verifyAll.activate(context, docClient);
+  // @ts-ignore
+  verifyAll.activate(context, docClient);
   // virtualFiles.activate(context, docClient);
   // semanticTokens.activate(context, docClient);
   // tagClosing.activate(context, htmlClient, apiClient);

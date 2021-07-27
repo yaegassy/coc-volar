@@ -67,6 +67,7 @@ The rest of the settings are the same as for VSCode's volar extension.
 ## Commands
 
 - `volar.action.restartServer`: Restart Vue server
+- `volar.action.verifyAllScripts`: Verify All Scripts
 
 ## License
 
