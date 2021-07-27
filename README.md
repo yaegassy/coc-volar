@@ -21,7 +21,7 @@ The screenshot looks like it is working to some extent, but unfortunately there 
 
 ---
 
-- "Diagnostics" are now working properly [DEMO](https://github.com/yaegassy/coc-volar/pull/1)
+- "Diagnostics" are now working properly. | [DEMO](https://github.com/yaegassy/coc-volar/pull/1)
 
 ---
 
