@@ -1,5 +1,5 @@
 {
-  "name": "coc-volar",
+  "name": "coc-volar-experimental",
   "version": "0.0.1",
   "volarVersion": "0.26.9",
   "description": "Volar (Fast Vue Language Support) extension for coc.nvim",

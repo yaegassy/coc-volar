@@ -1,4 +1,4 @@
-# [Experimental] coc-volar
+# [Experimental] coc-volar-experimental
 
 > fork from a [@volar/vscode-client](https://github.com/johnsoncodehk/volar/tree/master/packages/vscode-client)
 
@@ -33,7 +33,7 @@ Help wanted!
 **vim-plug**:
 
 ```vim
-Plug 'yaegassy/coc-volar', {'do': 'yarn install --frozen-lockfile'}
+Plug 'yaegassy/coc-volar-experimental', {'do': 'yarn install --frozen-lockfile'}
 ```
 
 **CocInstall**:
