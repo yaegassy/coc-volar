@@ -15,7 +15,6 @@ The screenshot looks like it is working to some extent, but unfortunately there 
 - Requires a Visual Studio Code application.
 - Requires installation of Visual Studio Code's volar extension.
   - The situation may change once [@volar/vscode-server](https://github.com/johnsoncodehk/volar/tree/master/packages/vscode-server) is published to the npm registry.
-- Using the "Rename" feature will break the text.
 - and more...
 
 ---
