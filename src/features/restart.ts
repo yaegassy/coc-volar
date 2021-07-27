@@ -1,5 +1,6 @@
-import { ExtensionContext, LanguageClient, commands } from 'coc.nvim';
+import { ExtensionContext, commands } from 'coc.nvim';
 import * as shared from '@volar/shared';
+import type { LanguageClient } from 'vscode-languageclient/node';
 
 export async function activate(context: ExtensionContext, languageClients: LanguageClient[]) {
   for (const languageClient of languageClients) {

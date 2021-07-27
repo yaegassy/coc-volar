@@ -79,6 +79,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
   // virtualFiles.activate(context, docClient);
   // semanticTokens.activate(context, docClient);
   // tagClosing.activate(context, htmlClient, apiClient);
+  // @ts-ignore
   restart.activate(context, [apiClient, docClient]);
   // tsPlugin.activate(context);
   // tsVersion.activate(context, [apiClient, docClient]);
