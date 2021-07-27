@@ -25,7 +25,7 @@ import type * as shared from '@volar/shared';
 // import * as callGraph from './features/callGraph';
 // import * as createWorkspaceSnippets from './features/createWorkspaceSnippets';
 import * as documentVersion from './features/documentVersion';
-// import * as documentContent from './features/documentContent';
+import * as documentContent from './features/documentContent';
 // import * as preview from './features/preview';
 import * as restart from './features/restart';
 // import * as semanticTokens from './features/semanticTokens';
@@ -75,8 +75,10 @@ export async function activate(context: ExtensionContext): Promise<void> {
   showReferences.activate(context, apiClient);
   // @ts-ignore
   documentVersion.activate(context, docClient);
-  // documentContent.activate(context, apiClient);
-  // documentContent.activate(context, docClient);
+  // @ts-ignore
+  documentContent.activate(context, apiClient);
+  // @ts-ignore
+  documentContent.activate(context, docClient);
   // activeSelection.activate(context, apiClient);
   // @ts-ignore
   verifyAll.activate(context, docClient);
