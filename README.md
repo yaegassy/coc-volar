@@ -17,8 +17,11 @@ The screenshot looks like it is working to some extent, but unfortunately there 
   - The situation may change once [@volar/vscode-server](https://github.com/johnsoncodehk/volar/tree/master/packages/vscode-server) is published to the npm registry.
 - Various completions such as HTML tags do not work in template tags.
 - Using the "Rename" feature will break the text.
-- "Diagnostic" results do not refresh.
 - and more...
+
+---
+
+- "Diagnostics" are now working properly [DEMO](https://github.com/yaegassy/coc-volar/pull/1)
 
 ---
 
