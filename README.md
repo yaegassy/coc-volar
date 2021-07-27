@@ -15,7 +15,6 @@ The screenshot looks like it is working to some extent, but unfortunately there 
 - Requires a Visual Studio Code application.
 - Requires installation of Visual Studio Code's volar extension.
   - The situation may change once [@volar/vscode-server](https://github.com/johnsoncodehk/volar/tree/master/packages/vscode-server) is published to the npm registry.
-- Various completions such as HTML tags do not work in template tags.
 - Using the "Rename" feature will break the text.
 - and more...
 
@@ -47,13 +46,32 @@ Plug 'yaegassy/coc-volar', {'do': 'yarn install --frozen-lockfile'}
 
 - Install Visual Studio Code.
 - Install the [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volarextension) in Visual Studio Code
+- Install `coc-html` for HTML tag completion in `<template>`
+  - `:CocInstall coc-html`
 
 **Setting (coc-settings.json)**:
 
-- Set `volar.appRoot.path` to the path of your "Visual Studio Code" application
+- (coc-volar): Set `volar.appRoot.path` to the path of your "Visual Studio Code" application
   - e.g: `/Applications/Visual Studio Code.app/Contents/Resources/app`
-- Set `volar.server.path` to the path of your volar extension server module path
+- (coc-volar): Set `volar.server.path` to the path of your volar extension server module path
   - e.g: `/path/to/.vscode/extensions/johnsoncodehk.volar-0.26.9/node_modules/@volar/vscode-server/out/server.js`
+- (coc-html): Add `vue` to the `html.filetypes` setting.
+
+```jsonc
+{
+  // ...snip
+  "volar.appRoot.path": "/Applications/Visual Studio Code.app/Contents/Resources/app",
+  "volar.server.path": "/path/to/.vscode/extensions/johnsoncodehk.volar-0.26.9/node_modules/@volar/vscode-server/out/server.js",
+  "html.filetypes": [
+    "html",
+    "handlebars",
+    "htmldjango",
+    "blade",
+    "vue"
+  ],
+  // ...snip
+}
+```
 
 ## Configuration options
 
