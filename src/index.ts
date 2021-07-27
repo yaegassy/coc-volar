@@ -37,7 +37,7 @@ import * as restart from './features/restart';
 // import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
 // import * as virtualFiles from './features/virtualFiles';
-// import * as removeRefSugars from './features/removeRefSugars';
+import * as removeRefSugars from './features/removeRefSugars';
 
 let apiClient: LanguageClient;
 let docClient: LanguageClient;
@@ -69,7 +69,8 @@ export async function activate(context: ExtensionContext): Promise<void> {
   // tagNameCase.activate(context, apiClient);
   // attrNameCase.activate(context, apiClient);
   // callGraph.activate(context, apiClient);
-  // removeRefSugars.activate(context, apiClient);
+  // @ts-ignore
+  removeRefSugars.activate(context, apiClient);
   // showReferences.activate(context, apiClient);
   // @ts-ignore
   documentVersion.activate(context, docClient);

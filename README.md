@@ -68,6 +68,7 @@ The rest of the settings are the same as for VSCode's volar extension.
 
 - `volar.action.restartServer`: Restart Vue server
 - `volar.action.verifyAllScripts`: Verify All Scripts
+- `volar.action.removeRefSugars`: Remove All Ref Sugar in Project
 
 ## License
 
