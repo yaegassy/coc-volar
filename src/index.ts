@@ -36,7 +36,7 @@ import * as showReferences from './features/showReferences';
 // import * as tsPlugin from './features/tsPlugin';
 // import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
-// import * as virtualFiles from './features/virtualFiles';
+import * as virtualFiles from './features/virtualFiles';
 import * as removeRefSugars from './features/removeRefSugars';
 
 let apiClient: LanguageClient;
@@ -71,6 +71,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
   // callGraph.activate(context, apiClient);
   // @ts-ignore
   removeRefSugars.activate(context, apiClient);
+  // @ts-ignore
   showReferences.activate(context, apiClient);
   // @ts-ignore
   documentVersion.activate(context, docClient);
@@ -79,7 +80,8 @@ export async function activate(context: ExtensionContext): Promise<void> {
   // activeSelection.activate(context, apiClient);
   // @ts-ignore
   verifyAll.activate(context, docClient);
-  // virtualFiles.activate(context, docClient);
+  // @ts-ignore
+  virtualFiles.activate(context, docClient);
   // semanticTokens.activate(context, docClient);
   // tagClosing.activate(context, htmlClient, apiClient);
   // @ts-ignore
