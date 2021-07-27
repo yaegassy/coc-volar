@@ -24,7 +24,7 @@ import type * as shared from '@volar/shared';
 // import * as attrNameCase from './features/attrNameCase';
 // import * as callGraph from './features/callGraph';
 // import * as createWorkspaceSnippets from './features/createWorkspaceSnippets';
-// import * as documentVersion from './features/documentVersion';
+import * as documentVersion from './features/documentVersion';
 // import * as documentContent from './features/documentContent';
 // import * as preview from './features/preview';
 import * as restart from './features/restart';
@@ -71,7 +71,8 @@ export async function activate(context: ExtensionContext): Promise<void> {
   // callGraph.activate(context, apiClient);
   // removeRefSugars.activate(context, apiClient);
   // showReferences.activate(context, apiClient);
-  // documentVersion.activate(context, docClient);
+  // @ts-ignore
+  documentVersion.activate(context, docClient);
   // documentContent.activate(context, apiClient);
   // documentContent.activate(context, docClient);
   // activeSelection.activate(context, apiClient);
