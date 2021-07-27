@@ -23,7 +23,7 @@ import type * as shared from '@volar/shared';
 // import * as activeSelection from './features/activeSelection';
 // import * as attrNameCase from './features/attrNameCase';
 // import * as callGraph from './features/callGraph';
-// import * as createWorkspaceSnippets from './features/createWorkspaceSnippets';
+import * as createWorkspaceSnippets from './features/createWorkspaceSnippets';
 import * as documentVersion from './features/documentVersion';
 import * as documentContent from './features/documentContent';
 // import * as preview from './features/preview';
@@ -65,7 +65,8 @@ export async function activate(context: ExtensionContext): Promise<void> {
 
   // splitEditors.activate(context);
   // preview.activate(context);
-  // createWorkspaceSnippets.activate(context);
+  // @ts-ignore
+  createWorkspaceSnippets.activate(context);
   // tagNameCase.activate(context, apiClient);
   // attrNameCase.activate(context, apiClient);
   // callGraph.activate(context, apiClient);
