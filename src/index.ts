@@ -29,7 +29,7 @@ import * as documentVersion from './features/documentVersion';
 // import * as preview from './features/preview';
 import * as restart from './features/restart';
 // import * as semanticTokens from './features/semanticTokens';
-// import * as showReferences from './features/showReferences';
+import * as showReferences from './features/showReferences';
 // import * as splitEditors from './features/splitEditors';
 // import * as tagClosing from './features/tagClosing';
 // import * as tagNameCase from './features/tagNameCase';
@@ -71,7 +71,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
   // callGraph.activate(context, apiClient);
   // @ts-ignore
   removeRefSugars.activate(context, apiClient);
-  // showReferences.activate(context, apiClient);
+  showReferences.activate(context, apiClient);
   // @ts-ignore
   documentVersion.activate(context, docClient);
   // documentContent.activate(context, apiClient);
@@ -154,6 +154,7 @@ function createLanguageService(
 }
 
 // TODO:
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function startEmbeddedLanguageServices() {
   const ts = extensions.all.find((e) => e.id === TS_LANGUAGE_FEATURES_EXTENSION);
   if (ts) {
