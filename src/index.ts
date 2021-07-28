@@ -23,7 +23,7 @@ import type * as shared from '@volar/shared';
 //  TODO  //
 ////////////
 
-// import * as activeSelection from './features/activeSelection';
+import * as activeSelection from './features/activeSelection';
 // import * as attrNameCase from './features/attrNameCase';
 /** MEMO: Cannot be ported due to use of webview */
 // import * as callGraph from './features/callGraph';
@@ -86,7 +86,8 @@ export async function activate(context: ExtensionContext): Promise<void> {
   documentContent.activate(context, apiClient);
   // @ts-ignore
   documentContent.activate(context, docClient);
-  // activeSelection.activate(context, apiClient);
+  // @ts-ignore
+  activeSelection.activate(context, apiClient);
   // @ts-ignore
   verifyAll.activate(context, docClient);
   // @ts-ignore
