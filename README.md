@@ -90,6 +90,10 @@ The rest of the settings are the same as for VSCode's volar extension.
 - `volar.action.writeScriptLsVirtualFiles`: Write Script LS Virtual Files
 - `volar.action.createWorkspaceSnippets`: Create Workspace Snippets
 
+## Thanks
+
+- [volar](https://github.com/johnsoncodehk/volar)
+
 ## License
 
 MIT
