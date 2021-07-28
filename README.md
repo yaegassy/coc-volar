@@ -44,7 +44,7 @@ Plug 'yaegassy/coc-volar-experimental', {'do': 'yarn install --frozen-lockfile'}
 **Preparation**:
 
 - Install Visual Studio Code.
-- Install the [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volarextension) in Visual Studio Code
+- Install the [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) extension in Visual Studio Code
 - Install `coc-html` for HTML tag completion in `<template>`
   - `:CocInstall coc-html`
 
