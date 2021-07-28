@@ -92,7 +92,7 @@ The rest of the settings are the same as for VSCode's volar extension.
 
 ## Thanks
 
-- [volar](https://github.com/johnsoncodehk/volar)
+- [johnsoncodehk/volar](https://github.com/johnsoncodehk/volar)
 
 ## License
 
