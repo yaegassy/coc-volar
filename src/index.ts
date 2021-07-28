@@ -19,16 +19,20 @@ import {
 import type * as shared from '@volar/shared';
 //import * as path from 'upath';
 
-/** TODO: */
+////////////
+//  TODO  //
+////////////
+
 // import * as activeSelection from './features/activeSelection';
 // import * as attrNameCase from './features/attrNameCase';
+/** MEMO: Cannot be ported due to use of webview */
 // import * as callGraph from './features/callGraph';
 import * as createWorkspaceSnippets from './features/createWorkspaceSnippets';
 import * as documentVersion from './features/documentVersion';
 import * as documentContent from './features/documentContent';
+/** MEMO: Cannot be ported due to use of webview */
 // import * as preview from './features/preview';
 import * as restart from './features/restart';
-// import * as semanticTokens from './features/semanticTokens';
 import * as showReferences from './features/showReferences';
 // import * as splitEditors from './features/splitEditors';
 // import * as tagClosing from './features/tagClosing';
@@ -64,11 +68,13 @@ export async function activate(context: ExtensionContext): Promise<void> {
   htmlClient = createLanguageService(context, 'html', 'volar-html', 'Volar - HTML', 6011, false);
 
   // splitEditors.activate(context);
+  /** MEMO: Cannot be ported due to use of webview */
   // preview.activate(context);
   // @ts-ignore
   createWorkspaceSnippets.activate(context);
   // tagNameCase.activate(context, apiClient);
   // attrNameCase.activate(context, apiClient);
+  /** MEMO: Cannot be ported due to use of webview */
   // callGraph.activate(context, apiClient);
   // @ts-ignore
   removeRefSugars.activate(context, apiClient);
@@ -85,7 +91,6 @@ export async function activate(context: ExtensionContext): Promise<void> {
   verifyAll.activate(context, docClient);
   // @ts-ignore
   virtualFiles.activate(context, docClient);
-  // semanticTokens.activate(context, docClient);
   // tagClosing.activate(context, htmlClient, apiClient);
   // @ts-ignore
   restart.activate(context, [apiClient, docClient]);
