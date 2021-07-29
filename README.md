@@ -38,8 +38,6 @@ Plug 'yaegassy/coc-volar-experimental', {'do': 'yarn install --frozen-lockfile'}
 
 - Install Visual Studio Code.
 - Install the [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) extension in Visual Studio Code
-- Install `coc-html` for HTML tag completion in `<template>`
-  - `:CocInstall coc-html`
 
 **Setting (coc-settings.json)**:
 
@@ -47,20 +45,12 @@ Plug 'yaegassy/coc-volar-experimental', {'do': 'yarn install --frozen-lockfile'}
   - e.g: `/Applications/Visual Studio Code.app/Contents/Resources/app`
 - (coc-volar): Set `volar.server.path` to the path of your volar extension server module path
   - e.g: `/path/to/.vscode/extensions/johnsoncodehk.volar-0.26.9/node_modules/@volar/vscode-server/out/server.js`
-- (coc-html): Add `vue` to the `html.filetypes` setting.
 
 ```jsonc
 {
   // ...snip
   "volar.appRoot.path": "/Applications/Visual Studio Code.app/Contents/Resources/app",
   "volar.server.path": "/path/to/.vscode/extensions/johnsoncodehk.volar-0.26.9/node_modules/@volar/vscode-server/out/server.js",
-  "html.filetypes": [
-    "html",
-    "handlebars",
-    "htmldjango",
-    "blade",
-    "vue"
-  ],
   // ...snip
 }
 ```
