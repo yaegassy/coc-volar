@@ -10,22 +10,15 @@
 
 This repository is for **experimental** purposes only.
 
-The screenshot looks like it is working to some extent, but unfortunately there are various problems.
+**Requires**:
 
 - Requires a Visual Studio Code application.
 - Requires installation of Visual Studio Code's volar extension.
   - The situation may change once [@volar/vscode-server](https://github.com/johnsoncodehk/volar/tree/master/packages/vscode-server) is published to the npm registry.
-- and more...
 
----
-
-- "Diagnostics" are now working properly. | [DEMO](https://github.com/yaegassy/coc-volar/pull/1)
-
----
+## Help wanted!
 
 Various may work if you port the [@volar/vscode-client features](https://github.com/johnsoncodehk/volar/tree/master/packages/vscode-client/src/features) correctly.
-
-Help wanted!
 
 ## Install
 
