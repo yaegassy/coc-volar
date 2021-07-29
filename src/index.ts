@@ -24,7 +24,7 @@ import type * as shared from '@volar/shared';
 ////////////
 
 import * as activeSelection from './features/activeSelection';
-// import * as attrNameCase from './features/attrNameCase';
+import * as attrNameCase from './features/attrNameCase';
 /** MEMO: Cannot be ported due to use of webview */
 // import * as callGraph from './features/callGraph';
 import * as createWorkspaceSnippets from './features/createWorkspaceSnippets';
@@ -36,7 +36,7 @@ import * as restart from './features/restart';
 import * as showReferences from './features/showReferences';
 // import * as splitEditors from './features/splitEditors';
 // import * as tagClosing from './features/tagClosing';
-// import * as tagNameCase from './features/tagNameCase';
+import * as tagNameCase from './features/tagNameCase';
 // import * as tsPlugin from './features/tsPlugin';
 // import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
@@ -72,8 +72,10 @@ export async function activate(context: ExtensionContext): Promise<void> {
   // preview.activate(context);
   // @ts-ignore
   createWorkspaceSnippets.activate(context);
-  // tagNameCase.activate(context, apiClient);
-  // attrNameCase.activate(context, apiClient);
+  // @ts-ignore
+  tagNameCase.activate(context, apiClient);
+  // @ts-ignore
+  attrNameCase.activate(context, apiClient);
   /** MEMO: Cannot be ported due to use of webview */
   // callGraph.activate(context, apiClient);
   // @ts-ignore
