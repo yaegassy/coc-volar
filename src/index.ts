@@ -1,5 +1,5 @@
 import {
-  extensions,
+  //extensions,
   ExtensionContext,
   LanguageClient,
   LanguageClientOptions,
@@ -10,11 +10,11 @@ import {
   window,
 } from 'coc.nvim';
 
-import {
-  TS_LANGUAGE_FEATURES_EXTENSION,
-  CSS_LANGUAGE_FEATURES_EXTENSION,
-  HTML_LANGUAGE_FEATURES_EXTENSION,
-} from './const';
+//import {
+//  TS_LANGUAGE_FEATURES_EXTENSION,
+//  CSS_LANGUAGE_FEATURES_EXTENSION,
+//  HTML_LANGUAGE_FEATURES_EXTENSION,
+//} from './const';
 
 import type * as shared from '@volar/shared';
 //import * as path from 'upath';
@@ -168,19 +168,19 @@ function createLanguageService(
 
 // TODO:
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-async function startEmbeddedLanguageServices() {
-  const ts = extensions.all.find((e) => e.id === TS_LANGUAGE_FEATURES_EXTENSION);
-  if (ts) {
-    await ts.activate();
-  }
-
-  const css = extensions.all.find((e) => e.id === CSS_LANGUAGE_FEATURES_EXTENSION);
-  if (css) {
-    await css.activate();
-  }
-
-  const html = extensions.all.find((e) => e.id === HTML_LANGUAGE_FEATURES_EXTENSION);
-  if (html) {
-    await html.activate();
-  }
-}
+//async function startEmbeddedLanguageServices() {
+//  const ts = extensions.all.find((e) => e.id === TS_LANGUAGE_FEATURES_EXTENSION);
+//  if (ts) {
+//    await ts.activate();
+//  }
+//
+//  const css = extensions.all.find((e) => e.id === CSS_LANGUAGE_FEATURES_EXTENSION);
+//  if (css) {
+//    await css.activate();
+//  }
+//
+//  const html = extensions.all.find((e) => e.id === HTML_LANGUAGE_FEATURES_EXTENSION);
+//  if (html) {
+//    await html.activate();
+//  }
+//}
