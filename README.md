@@ -24,7 +24,7 @@ Plug 'yaegassy/coc-volar', {'do': 'yarn install --frozen-lockfile'}
 
 ## Configuration options
 
-The rest of the settings are the same as for VSCode's volar extension.
+Check the "configuration" section of [package.json](/package.json)
 
 ## Commands
 
