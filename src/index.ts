@@ -29,7 +29,6 @@ import * as showReferences from './features/showReferences';
 import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
 import * as virtualFiles from './features/virtualFiles';
-import * as removeRefSugars from './features/removeRefSugars';
 
 let apiClient: LanguageClient;
 let docClient: LanguageClient;
@@ -52,8 +51,6 @@ export async function activate(context: ExtensionContext): Promise<void> {
   // preview.activate(context);
   /** MEMO: Cannot be ported due to use of webview */
   // callGraph.activate(context, apiClient);
-  // @ts-ignore
-  removeRefSugars.activate(context, apiClient);
   // @ts-ignore
   showReferences.activate(context, apiClient);
   // @ts-ignore
