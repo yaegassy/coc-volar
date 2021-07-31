@@ -153,16 +153,6 @@
         "command": "volar.action.verifyAllScripts",
         "title": "Verify All Scripts",
         "category": "Volar"
-      },
-      {
-        "command": "volar.action.writeTemplateLsVirtualFiles",
-        "title": "Write Template LS Virtual Files",
-        "category": "Volar (Debug)"
-      },
-      {
-        "command": "volar.action.writeScriptLsVirtualFiles",
-        "title": "Write Script LS Virtual Files",
-        "category": "Volar (Debug)"
       }
     ]
   },

@@ -22,7 +22,6 @@ import * as showReferences from './features/showReferences';
 // import * as tagClosing from './features/tagClosing';
 import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
-import * as virtualFiles from './features/virtualFiles';
 
 let apiClient: LanguageClient;
 let docClient: LanguageClient;
@@ -53,8 +52,6 @@ export async function activate(context: ExtensionContext): Promise<void> {
   activeSelection.activate(context, apiClient);
   // @ts-ignore
   verifyAll.activate(context, docClient);
-  // @ts-ignore
-  virtualFiles.activate(context, docClient);
   // tagClosing.activate(context, htmlClient, apiClient);
   // @ts-ignore
   restart.activate(context, [apiClient, docClient]);
