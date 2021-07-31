@@ -39,22 +39,11 @@ export async function activate(context: ExtensionContext): Promise<void> {
   htmlClient = createLanguageService(context, 'html', 'volar-html', 'Volar - HTML', 6011, undefined);
 
 
-  // @ts-ignore
   showReferences.activate(context, apiClient);
-  // @ts-ignore
   documentVersion.activate(context, docClient);
-  // @ts-ignore
-  documentContent.activate(context, apiClient);
-  // @ts-ignore
-  documentContent.activate(context, docClient);
-  // @ts-ignore
-  activeSelection.activate(context, apiClient);
-  // @ts-ignore
   verifyAll.activate(context, docClient);
   // tagClosing.activate(context, htmlClient, apiClient);
-  // @ts-ignore
   restart.activate(context, [apiClient, docClient]);
-  // @ts-ignore
   tsVersion.activate(context, [apiClient, docClient]);
 }
 

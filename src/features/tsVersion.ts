@@ -3,8 +3,7 @@
  * TODO: Clean up...
  */
 
-import { ExtensionContext, workspace } from 'coc.nvim';
-import { LanguageClient } from 'vscode-languageclient/node';
+import { ExtensionContext, workspace, LanguageClient } from 'coc.nvim';
 import * as shared from '@volar/shared';
 // import { userPick } from './splitEditors';
 import path from 'path';

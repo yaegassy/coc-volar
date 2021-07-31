@@ -1,6 +1,5 @@
-import { ExtensionContext, commands } from 'coc.nvim';
-import * as shared from '@volar/shared';
-import type { LanguageClient } from 'vscode-languageclient/node';
+import { ExtensionContext, commands, LanguageClient } from 'coc.nvim';
+import { RestartServerNotificationType } from '../requestTypes';
 
 export async function activate(context: ExtensionContext, languageClients: LanguageClient[]) {
   for (const languageClient of languageClients) {
@@ -10,7 +9,7 @@ export async function activate(context: ExtensionContext, languageClients: Langu
   context.subscriptions.push(
     commands.registerCommand('volar.action.restartServer', () => {
       for (const languageClient of languageClients) {
-        languageClient.sendNotification(shared.RestartServerNotification.type, undefined);
+        languageClient.sendNotification(RestartServerNotificationType, undefined);
       }
     })
   );
