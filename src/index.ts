@@ -10,7 +10,6 @@ import {
 
 import * as shared from '@volar/shared';
 import * as path from 'upath';
-import fs from 'fs';
 
 ////////////
 //  TODO  //
@@ -142,19 +141,6 @@ function createLanguageService(
   context.subscriptions.push(client.start());
 
   return client;
-}
-
-// MEMO: Ported from tsPlugin.ts for coc.nvim
-export function isTsPluginEnabled(context: ExtensionContext) {
-  const packageJson = path.join(context.extensionPath, 'package.json');
-  try {
-    const packageText = fs.readFileSync(packageJson, 'utf8');
-    if (packageText.indexOf(`"typescriptServerPlugins"`) >= 0) {
-      return true;
-    }
-  } catch {}
-
-  return false;
 }
 
 function getConfigTagNameCase() {
