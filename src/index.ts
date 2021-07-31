@@ -20,7 +20,6 @@ import fs from 'fs';
 // import * as callGraph from './features/callGraph';
 import * as createWorkspaceSnippets from './features/createWorkspaceSnippets';
 import * as documentVersion from './features/documentVersion';
-import * as documentContent from './features/documentContent';
 /** MEMO: Cannot be ported due to use of webview */
 // import * as preview from './features/preview';
 import * as restart from './features/restart';
@@ -138,7 +137,7 @@ function createLanguageService(
               defaultTagNameCase: getConfigTagNameCase(),
               defaultAttrNameCase: getConfigAttrNameCase(),
             },
-            schemaRequestService: { getDocumentContentRequest: true },
+            schemaRequestService: true,
           }
         : mode === 'doc'
         ? {
@@ -150,7 +149,7 @@ function createLanguageService(
             semanticTokens: true,
             codeAction: true,
             diagnostics: { getDocumentVersionRequest: true },
-            schemaRequestService: { getDocumentContentRequest: true },
+            schemaRequestService: true,
           }
         : undefined,
     htmlFeatures:
