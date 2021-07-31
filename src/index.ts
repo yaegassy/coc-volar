@@ -9,7 +9,7 @@ import {
 } from 'coc.nvim';
 
 import * as shared from '@volar/shared';
-import * as path from 'upath';
+import * as path from 'path';
 
 ////////////
 //  TODO  //
