@@ -16,16 +16,10 @@ import fs from 'fs';
 //  TODO  //
 ////////////
 
-/** MEMO: Cannot be ported due to use of webview */
-// import * as callGraph from './features/callGraph';
 import * as documentVersion from './features/documentVersion';
-/** MEMO: Cannot be ported due to use of webview */
-// import * as preview from './features/preview';
 import * as restart from './features/restart';
 import * as showReferences from './features/showReferences';
-// import * as splitEditors from './features/splitEditors';
 // import * as tagClosing from './features/tagClosing';
-// import * as tsPlugin from './features/tsPlugin';
 import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
 import * as virtualFiles from './features/virtualFiles';
@@ -46,11 +40,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
   docClient = createLanguageService(context, 'doc', 'volar-document', 'Volar - Document', 6010, 'file');
   htmlClient = createLanguageService(context, 'html', 'volar-html', 'Volar - HTML', 6011, undefined);
 
-  // splitEditors.activate(context);
-  /** MEMO: Cannot be ported due to use of webview */
-  // preview.activate(context);
-  /** MEMO: Cannot be ported due to use of webview */
-  // callGraph.activate(context, apiClient);
+
   // @ts-ignore
   showReferences.activate(context, apiClient);
   // @ts-ignore
@@ -68,7 +58,6 @@ export async function activate(context: ExtensionContext): Promise<void> {
   // tagClosing.activate(context, htmlClient, apiClient);
   // @ts-ignore
   restart.activate(context, [apiClient, docClient]);
-  // tsPlugin.activate(context);
   // @ts-ignore
   tsVersion.activate(context, [apiClient, docClient]);
 

@@ -60,37 +60,6 @@
           "default": true,
           "description": "Enable coc-volar extension"
         },
-        "volar.server.path": {
-          "type": "string",
-          "default": "",
-          "description": "Volar server path"
-        },
-        "volar.appRoot.path": {
-          "type": "string",
-          "default": "",
-          "description": "Visual Studio Code application path"
-        },
-        "volar.display.language": {
-          "type": "string",
-          "enum": [
-            "en",
-            "zh-CN",
-            "zh-TW",
-            "fr",
-            "de",
-            "it",
-            "es",
-            "ja",
-            "ko",
-            "ru",
-            "bg",
-            "hu",
-            "pt-br",
-            "tr"
-          ],
-          "default": "en",
-          "description": "Display Language (locale), See: https://code.visualstudio.com/docs/getstarted/locales"
-        },
         "volar.useWorkspaceTsdk": {
           "type": "boolean",
           "default": false,
@@ -139,50 +108,10 @@
           "default": true,
           "description": "[pug ☐] code lens."
         },
-        "volar.icon.splitEditors": {
-          "type": "boolean",
-          "default": true,
-          "description": "Show split editor icon in title area of editor."
-        },
-        "volar.icon.preview": {
-          "type": "boolean",
-          "default": false,
-          "description": "(Experimental) Show preview component icon in title area of editor."
-        },
-        "volar.icon.finder": {
-          "type": "boolean",
-          "default": false,
-          "description": "(Experimental) Show code finder icon in title area of editor."
-        },
         "volar.codeLens.scriptSetupTools": {
           "type": "boolean",
           "default": true,
           "description": "[ref sugar ☐] code lens."
-        },
-        "volar.autoCompleteRefs": {
-          "type": "boolean",
-          "default": true,
-          "description": "Auto-complete Ref value with `.value`."
-        },
-        "volar.tsPlugin": {
-          "type": "boolean",
-          "enum": [
-            null,
-            true,
-            false
-          ],
-          "enumDescriptions": [
-            "Don't care (Don't reload VSCode)",
-            "Enable TS Plugin",
-            "Disable TS Plugin"
-          ],
-          "default": null,
-          "description": "Enable Vue TS Server Plugin.\nSince TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases, this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), then you need to enable this setting."
-        },
-        "volar.tsPluginStatus": {
-          "type": "boolean",
-          "default": true,
-          "description": "Display TS Server Plugin status bar item."
         },
         "volar.tagNameCase": {
           "type": "string",
@@ -211,21 +140,6 @@
           ],
           "default": "kebab",
           "description": "Attr name case."
-        },
-        "volar.preview.port": {
-          "type": "number",
-          "default": 3333,
-          "description": "Default port for component preview server."
-        },
-        "volar.preview.backgroundColor": {
-          "type": "string",
-          "default": "#fff",
-          "description": "Component preview background color."
-        },
-        "volar.preview.transparentGrid": {
-          "type": "boolean",
-          "default": true,
-          "description": "Component preview background style."
         }
       }
     },
@@ -249,64 +163,6 @@
         "command": "volar.action.writeScriptLsVirtualFiles",
         "title": "Write Script LS Virtual Files",
         "category": "Volar (Debug)"
-      },
-      {
-        "command": "volar.action.showCallGraph",
-        "title": "Show Call Graph",
-        "category": "Volar (Experimental)"
-      },
-      {
-        "command": "volar.action.splitEditors",
-        "title": "Split <script>, <template>, <style> Editors",
-        "category": "Volar",
-        "icon": "images/split-editors.png"
-      },
-      {
-        "command": "volar.action.splitEditors2",
-        "title": "Start Split Editing Mode",
-        "category": "Volar (Experimental)"
-      },
-      {
-        "command": "volar.action.preview",
-        "title": "Open WebView / Preview",
-        "category": "Volar (Experimental)",
-        "icon": "$(open-preview)"
-      },
-      {
-        "command": "volar.action.toggleTsPlugin",
-        "title": "Switch TS Plugin on / off",
-        "category": "Volar"
-      },
-      {
-        "command": "volar.action.tagNameCase",
-        "title": "Change Tag Name Case",
-        "category": "Volar"
-      },
-      {
-        "command": "volar.action.tagNameCase.convertToKebabCase",
-        "title": "Convert Tag Name Case to kebab-case",
-        "category": "Volar"
-      },
-      {
-        "command": "volar.action.tagNameCase.convertToPascalCase",
-        "title": "Convert Tag Name Case to PascalCase",
-        "category": "Volar"
-      },
-      {
-        "command": "volar.action.attrNameCase",
-        "title": "Change Attr Name Case",
-        "category": "Volar"
-      },
-      {
-        "command": "volar.action.selectElement",
-        "title": "Select Element",
-        "category": "Volar",
-        "icon": "$(search)"
-      },
-      {
-        "command": "volar.selectTypeScriptVersion",
-        "title": "Select TypeScript Version...",
-        "category": "Volar"
       }
     ]
   },
