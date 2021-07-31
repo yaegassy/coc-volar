@@ -88,11 +88,10 @@ function createLanguageService(
     features:
       mode === 'api'
         ? {
-            //references: { enabledInTsScript: !tsPlugin.isTsPluginEnabled() },
-            references: { enabledInTsScript: !isTsPluginEnabled(context) },
+            references: true,
             definition: true,
             typeDefinition: true,
-            callHierarchy: { enabledInTsScript: true /** TODO: wait for ts plugin support call hierarchy */ },
+            callHierarchy: true,
             hover: true,
             rename: true,
             renameFileRefactoring: true,
