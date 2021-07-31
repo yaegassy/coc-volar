@@ -1,4 +1,4 @@
-# [Experimental] coc-volar-experimental
+# [Experimental] coc-volar
 
 > fork from a [@volar/client](https://github.com/johnsoncodehk/volar/tree/master/packages/client)
 
@@ -15,7 +15,7 @@ This repository is for **experimental** purposes only.
 **vim-plug**:
 
 ```vim
-Plug 'yaegassy/coc-volar-experimental', {'do': 'yarn install --frozen-lockfile'}
+Plug 'yaegassy/coc-volar', {'do': 'yarn install --frozen-lockfile'}
 ```
 
 **CocInstall**:
