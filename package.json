@@ -184,39 +184,33 @@
           "default": true,
           "description": "Display TS Server Plugin status bar item."
         },
-        "volar.preferredTagNameCase": {
+        "volar.tagNameCase": {
           "type": "string",
           "enum": [
-            "auto",
             "both",
             "kebab",
             "pascal"
           ],
           "enumDescriptions": [
-            "Auto Detect from Content",
             "<kebab-case> and <PascalCase>",
             "<kebab-case>",
             "<PascalCase>"
           ],
-          "default": "auto",
-          "description": "Preferred tag name case."
+          "default": "both",
+          "description": "Tag name case."
         },
-        "volar.preferredAttrNameCase": {
+        "volar.attrNameCase": {
           "type": "string",
           "enum": [
-            "auto-kebab",
-            "auto-pascal",
             "kebab",
             "pascal"
           ],
           "enumDescriptions": [
-            "Auto Detect from Content (Preference kebab-case)",
-            "Auto Detect from Content (Preference pascalCase)",
             "kebab-case",
             "pascalCase"
           ],
-          "default": "auto-kebab",
-          "description": "Preferred attr name case."
+          "default": "kebab",
+          "description": "Attr name case."
         },
         "volar.preview.port": {
           "type": "number",

@@ -16,8 +16,6 @@ import fs from 'fs';
 //  TODO  //
 ////////////
 
-import * as activeSelection from './features/activeSelection';
-import * as attrNameCase from './features/attrNameCase';
 /** MEMO: Cannot be ported due to use of webview */
 // import * as callGraph from './features/callGraph';
 import * as createWorkspaceSnippets from './features/createWorkspaceSnippets';
@@ -29,7 +27,6 @@ import * as restart from './features/restart';
 import * as showReferences from './features/showReferences';
 // import * as splitEditors from './features/splitEditors';
 // import * as tagClosing from './features/tagClosing';
-import * as tagNameCase from './features/tagNameCase';
 // import * as tsPlugin from './features/tsPlugin';
 import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
@@ -138,10 +135,8 @@ function createLanguageService(
             selectionRange: true,
             signatureHelp: true,
             completion: {
-              defaultTagNameCase: 'both',
-              defaultAttrNameCase: 'kebabCase',
-              getDocumentNameCasesRequest: true,
-              getDocumentSelectionRequest: true,
+              defaultTagNameCase: getConfigTagNameCase(),
+              defaultAttrNameCase: getConfigAttrNameCase(),
             },
             schemaRequestService: { getDocumentContentRequest: true },
           }
@@ -197,4 +192,23 @@ export function isTsPluginEnabled(context: ExtensionContext) {
   } catch {}
 
   return false;
+}
+
+function getConfigTagNameCase() {
+  const tagNameCase = workspace.getConfiguration('volar').get<'both' | 'kebab' | 'pascal'>('tagNameCase');
+  switch (tagNameCase) {
+    case 'both': return 'both' as const;
+    case 'kebab': return 'kebabCase' as const;
+    case 'pascal': return 'pascalCase' as const;
+  }
+  return 'both' as const;
+}
+
+function getConfigAttrNameCase() {
+  const tagNameCase = workspace.getConfiguration('volar').get<'kebab' | 'pascal'>('attrNameCase');
+  switch (tagNameCase) {
+    case 'kebab': return 'kebabCase' as const;
+    case 'pascal': return 'pascalCase' as const;
+  }
+  return 'kebabCase' as const;
 }
