@@ -57,21 +57,6 @@ export async function activate(context: ExtensionContext): Promise<void> {
   restart.activate(context, [apiClient, docClient]);
   // @ts-ignore
   tsVersion.activate(context, [apiClient, docClient]);
-
-  (async () => {
-    // @ts-ignore
-    const getTagNameCase = await tagNameCase.activate(context, apiClient);
-    // @ts-ignore
-    const getAttrNameCase = await attrNameCase.activate(context, apiClient);
-
-    // @ts-ignore
-    apiClient.onRequest(shared.GetDocumentNameCasesRequest.type, async (handler) => ({
-      // @ts-ignore
-      tagNameCase: getTagNameCase(handler.uri),
-      // @ts-ignore
-      attrNameCase: getAttrNameCase(handler.uri),
-    }));
-  })();
 }
 
 export function deactivate(): Thenable<void> | undefined {
