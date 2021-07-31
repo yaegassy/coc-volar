@@ -10,7 +10,7 @@ import path from 'path';
 
 const defaultTsdk = 'node_modules/typescript/lib';
 
-export async function activate(context: ExtensionContext, clients: LanguageClient[]) {
+export async function activate(context: ExtensionContext, client: LanguageClient) {
   ////const statusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right);
   ////statusBar.command = 'volar.selectTypeScriptVersion';
   // const subscription = commands.registerCommand('volar.selectTypeScriptVersion', async () => {

@@ -38,13 +38,17 @@ export async function activate(context: ExtensionContext): Promise<void> {
   docClient = createLanguageService(context, 'doc', 'volar-document', 'Volar - Document', 6010, 'file');
   htmlClient = createLanguageService(context, 'html', 'volar-html', 'Volar - HTML', 6011, undefined);
 
+  for (const client of [apiClient, docClient, htmlClient]) {
+    showReferences.activate(context, client);
+    documentVersion.activate(context, client);
+  }
 
-  showReferences.activate(context, apiClient);
-  documentVersion.activate(context, docClient);
   verifyAll.activate(context, docClient);
-  // tagClosing.activate(context, htmlClient, apiClient);
-  restart.activate(context, [apiClient, docClient]);
-  tsVersion.activate(context, [apiClient, docClient]);
+  // tagClosing.activate(context, htmlClient);
+  restart.activate(context, apiClient);
+  restart.activate(context, docClient);
+  tsVersion.activate(context, apiClient);
+  tsVersion.activate(context, docClient);
 }
 
 export function deactivate(): Thenable<void> | undefined {
