@@ -7,7 +7,7 @@ export async function activate(context: ExtensionContext, languageClient: Langua
   const schemaDocuments: { [uri: string]: boolean } = {};
 
   context.subscriptions.push(
-    languageClient.onRequest(shared.VSCodeContentRequest.type, (uriPath: string) => {
+    languageClient.onRequest(shared.GetDocumentContentRequest.type, (uriPath) => {
       const uri = Uri.parse(uriPath);
       if (uri.scheme === 'untitled') {
         return Promise.reject('untitled.schema ' + 'Unable to load {0} ' + uri.toString());

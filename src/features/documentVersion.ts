@@ -6,8 +6,7 @@ export async function activate(context: ExtensionContext, languageClient: Langua
   await languageClient.onReady();
 
   context.subscriptions.push(
-    languageClient.onRequest(shared.DocumentVersionRequest.type, (handler) => {
-      // @ts-ignore
+    languageClient.onRequest(shared.GetDocumentVersionRequest.type, (handler) => {
       const doc = workspace.textDocuments.find((doc) => doc.uri.toString() === handler.uri);
       return doc?.version;
     })
