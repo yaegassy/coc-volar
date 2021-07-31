@@ -18,5 +18,5 @@ export async function activate(context: ExtensionContext, languageClient: Langua
         )
       )
     );
-  })
+  });
 }

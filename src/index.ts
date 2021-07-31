@@ -11,10 +11,6 @@ import {
 import * as shared from '@volar/shared';
 import * as path from 'path';
 
-////////////
-//  TODO  //
-////////////
-
 import * as documentVersion from './features/documentVersion';
 import * as restart from './features/restart';
 import * as showReferences from './features/showReferences';
@@ -139,9 +135,12 @@ function createLanguageService(
 function getConfigTagNameCase() {
   const tagNameCase = workspace.getConfiguration('volar').get<'both' | 'kebab' | 'pascal'>('tagNameCase');
   switch (tagNameCase) {
-    case 'both': return 'both' as const;
-    case 'kebab': return 'kebabCase' as const;
-    case 'pascal': return 'pascalCase' as const;
+    case 'both':
+      return 'both' as const;
+    case 'kebab':
+      return 'kebabCase' as const;
+    case 'pascal':
+      return 'pascalCase' as const;
   }
   return 'both' as const;
 }
@@ -149,8 +148,10 @@ function getConfigTagNameCase() {
 function getConfigAttrNameCase() {
   const tagNameCase = workspace.getConfiguration('volar').get<'kebab' | 'pascal'>('attrNameCase');
   switch (tagNameCase) {
-    case 'kebab': return 'kebabCase' as const;
-    case 'pascal': return 'pascalCase' as const;
+    case 'kebab':
+      return 'kebabCase' as const;
+    case 'pascal':
+      return 'pascalCase' as const;
   }
   return 'kebabCase' as const;
 }
