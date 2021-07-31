@@ -99,7 +99,7 @@ export function getCurrentTsPaths(context: ExtensionContext) {
     // MEMO: To use from coc.nvim, specify even the module name 'typescript.js'
     //serverPath: path.join(context.extensionPath, 'node_modules', 'typescript', 'lib'),
     serverPath: path.join(context.extensionPath, 'node_modules', 'typescript', 'lib', 'typescript.js'),
-    localizedPath: '',
+    localizedPath: undefined,
   };
 
   //return { ...getVscodeTsPaths(), isWorkspacePath: false };
