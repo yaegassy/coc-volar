@@ -303,11 +303,6 @@
         "category": "Volar"
       },
       {
-        "command": "volar.action.createWorkspaceSnippets",
-        "title": "Create Workspace Snippets",
-        "category": "Volar"
-      },
-      {
         "command": "volar.action.selectElement",
         "title": "Select Element",
         "category": "Volar",

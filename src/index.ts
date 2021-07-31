@@ -18,7 +18,6 @@ import fs from 'fs';
 
 /** MEMO: Cannot be ported due to use of webview */
 // import * as callGraph from './features/callGraph';
-import * as createWorkspaceSnippets from './features/createWorkspaceSnippets';
 import * as documentVersion from './features/documentVersion';
 /** MEMO: Cannot be ported due to use of webview */
 // import * as preview from './features/preview';
@@ -51,8 +50,6 @@ export async function activate(context: ExtensionContext): Promise<void> {
   // splitEditors.activate(context);
   /** MEMO: Cannot be ported due to use of webview */
   // preview.activate(context);
-  // @ts-ignore
-  createWorkspaceSnippets.activate(context);
   /** MEMO: Cannot be ported due to use of webview */
   // callGraph.activate(context, apiClient);
   // @ts-ignore

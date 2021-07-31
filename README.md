@@ -33,7 +33,6 @@ The rest of the settings are the same as for VSCode's volar extension.
 - `volar.action.removeRefSugars`: Remove All Ref Sugar in Project
 - `volar.action.writeTemplateLsVirtualFiles`: Write Template LS Virtual Files
 - `volar.action.writeScriptLsVirtualFiles`: Write Script LS Virtual Files
-- `volar.action.createWorkspaceSnippets`: Create Workspace Snippets
 
 ## Help wanted!
 
