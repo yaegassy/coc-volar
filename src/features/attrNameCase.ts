@@ -1,3 +1,7 @@
+/**
+ * MEMO: Minimum porting for "completion" to work.
+ */
+
 import { ExtensionContext, workspace } from 'coc.nvim';
 import { LanguageClient } from 'vscode-languageclient/node';
 import * as shared from '@volar/shared';
@@ -9,12 +13,6 @@ export async function activate(context: ExtensionContext, languageClient: Langua
     await shared.sleep(100);
   }
 
-  languageClient.onRequest(shared.GetClientAttrNameCaseRequest.type, async (handler) => {
-    // @ts-ignore
-    const attrCase = attrCases.get(handler.uri);
-    return attrCase ?? 'kebabCase';
-  });
-
   const attrCases = new shared.UriMap<'kebabCase' | 'pascalCase'>();
 
   context.subscriptions.push(
@@ -22,4 +20,9 @@ export async function activate(context: ExtensionContext, languageClient: Langua
       attrCases.delete(doc.uri.toString());
     })
   );
+
+  return (uri: string) => {
+    const attrCase = attrCases.get(uri);
+    return attrCase ?? 'kebabCase';
+  };
 }

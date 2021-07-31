@@ -1,5 +1,4 @@
 import {
-  //extensions,
   ExtensionContext,
   LanguageClient,
   LanguageClientOptions,
@@ -7,17 +6,11 @@ import {
   Thenable,
   TransportKind,
   workspace,
-  window,
 } from 'coc.nvim';
 
-//import {
-//  TS_LANGUAGE_FEATURES_EXTENSION,
-//  CSS_LANGUAGE_FEATURES_EXTENSION,
-//  HTML_LANGUAGE_FEATURES_EXTENSION,
-//} from './const';
-
-import type * as shared from '@volar/shared';
-//import * as path from 'upath';
+import * as shared from '@volar/shared';
+import * as path from 'upath';
+import fs from 'fs';
 
 ////////////
 //  TODO  //
@@ -38,7 +31,7 @@ import * as showReferences from './features/showReferences';
 // import * as tagClosing from './features/tagClosing';
 import * as tagNameCase from './features/tagNameCase';
 // import * as tsPlugin from './features/tsPlugin';
-// import * as tsVersion from './features/tsVersion';
+import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
 import * as virtualFiles from './features/virtualFiles';
 import * as removeRefSugars from './features/removeRefSugars';
@@ -55,27 +48,15 @@ export async function activate(context: ExtensionContext): Promise<void> {
     return;
   }
 
-  const serverModule = extensionConfig.get<string>('server.path', '');
-  const appRootPath = extensionConfig.get<string>('appRoot.path', '');
-
-  if (!serverModule || !appRootPath) {
-    window.showWarningMessage(`Require: set "volar.server.path" and "volar.appRoot.path" in coc-settings.json!`);
-    return;
-  }
-
-  apiClient = createLanguageService(context, 'api', 'volar-api', 'Volar - API', 6009, true);
-  docClient = createLanguageService(context, 'doc', 'volar-document', 'Volar - Document', 6010, true);
-  htmlClient = createLanguageService(context, 'html', 'volar-html', 'Volar - HTML', 6011, false);
+  apiClient = createLanguageService(context, 'api', 'volar-api', 'Volar - API', 6009, 'file');
+  docClient = createLanguageService(context, 'doc', 'volar-document', 'Volar - Document', 6010, 'file');
+  htmlClient = createLanguageService(context, 'html', 'volar-html', 'Volar - HTML', 6011, undefined);
 
   // splitEditors.activate(context);
   /** MEMO: Cannot be ported due to use of webview */
   // preview.activate(context);
   // @ts-ignore
   createWorkspaceSnippets.activate(context);
-  // @ts-ignore
-  tagNameCase.activate(context, apiClient);
-  // @ts-ignore
-  attrNameCase.activate(context, apiClient);
   /** MEMO: Cannot be ported due to use of webview */
   // callGraph.activate(context, apiClient);
   // @ts-ignore
@@ -98,9 +79,23 @@ export async function activate(context: ExtensionContext): Promise<void> {
   // @ts-ignore
   restart.activate(context, [apiClient, docClient]);
   // tsPlugin.activate(context);
-  // tsVersion.activate(context, [apiClient, docClient]);
+  // @ts-ignore
+  tsVersion.activate(context, [apiClient, docClient]);
 
-  //startEmbeddedLanguageServices();
+  (async () => {
+    // @ts-ignore
+    const getTagNameCase = await tagNameCase.activate(context, apiClient);
+    // @ts-ignore
+    const getAttrNameCase = await attrNameCase.activate(context, apiClient);
+
+    // @ts-ignore
+    apiClient.onRequest(shared.GetDocumentNameCasesRequest.type, async (handler) => ({
+      // @ts-ignore
+      tagNameCase: getTagNameCase(handler.uri),
+      // @ts-ignore
+      attrNameCase: getAttrNameCase(handler.uri),
+    }));
+  })();
 }
 
 export function deactivate(): Thenable<void> | undefined {
@@ -113,14 +108,9 @@ function createLanguageService(
   id: string,
   name: string,
   port: number,
-  fileOnly: boolean
+  scheme: string | undefined
 ) {
-  const extensionConfig = workspace.getConfiguration('volar');
-
-  const serverModule = extensionConfig.get<string>('server.path', '');
-  const appRootPath = extensionConfig.get<string>('appRoot.path', '');
-  // REF: https://code.visualstudio.com/docs/getstarted/locales
-  const displayLanguage = extensionConfig.get<string>('display.language', 'en');
+  const serverModule = context.asAbsolutePath(path.join('node_modules', '@volar', 'server', 'out', 'index.js'));
 
   const debugOptions = { execArgv: ['--nolazy', '--inspect=' + port] };
   const serverOptions: ServerOptions = {
@@ -133,54 +123,78 @@ function createLanguageService(
   };
 
   const serverInitOptions: shared.ServerInitializationOptions = {
-    mode: mode,
-    appRoot: appRootPath,
-    language: displayLanguage,
-    tsPlugin: true,
-    tsdk: workspace.getConfiguration('tsserver').get<string>('tsdk') ?? undefined,
-    useWorkspaceTsdk: false,
+    typescript: tsVersion.getCurrentTsPaths(context),
+    features:
+      mode === 'api'
+        ? {
+            //references: { enabledInTsScript: !tsPlugin.isTsPluginEnabled() },
+            references: { enabledInTsScript: isTsPluginEnabled(context) },
+            definition: true,
+            typeDefinition: true,
+            callHierarchy: { enabledInTsScript: true /** TODO: wait for ts plugin support call hierarchy */ },
+            hover: true,
+            rename: true,
+            renameFileRefactoring: true,
+            selectionRange: true,
+            signatureHelp: true,
+            completion: {
+              defaultTagNameCase: 'both',
+              defaultAttrNameCase: 'kebabCase',
+              getDocumentNameCasesRequest: true,
+              getDocumentSelectionRequest: true,
+            },
+            schemaRequestService: { getDocumentContentRequest: true },
+          }
+        : mode === 'doc'
+        ? {
+            documentHighlight: true,
+            documentSymbol: true,
+            documentLink: true,
+            documentColor: true,
+            codeLens: { showReferencesNotification: true },
+            semanticTokens: true,
+            codeAction: true,
+            diagnostics: { getDocumentVersionRequest: true },
+            schemaRequestService: { getDocumentContentRequest: true },
+          }
+        : undefined,
+    htmlFeatures:
+      mode === 'html'
+        ? {
+            foldingRange: true,
+            linkedEditingRange: true,
+            documentFormatting: true,
+          }
+        : undefined,
   };
 
   const clientOptions: LanguageClientOptions = {
-    documentSelector: fileOnly
-      ? [
-          { scheme: 'file', language: 'vue' },
-          { scheme: 'file', language: 'javascript' },
-          { scheme: 'file', language: 'typescript' },
-          { scheme: 'file', language: 'javascriptreact' },
-          { scheme: 'file', language: 'typescriptreact' },
-        ]
-      : [
-          { language: 'vue' },
-          { language: 'javascript' },
-          { language: 'typescript' },
-          { language: 'javascriptreact' },
-          { language: 'typescriptreact' },
-        ],
+    documentSelector: [
+      { scheme, language: 'vue' },
+      { scheme, language: 'javascript' },
+      { scheme, language: 'typescript' },
+      { scheme, language: 'javascriptreact' },
+      { scheme, language: 'typescriptreact' },
+    ],
     initializationOptions: serverInitOptions,
   };
 
   const client = new LanguageClient(id, name, serverOptions, clientOptions);
+
   context.subscriptions.push(client.start());
 
   return client;
 }
 
-// TODO:
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-//async function startEmbeddedLanguageServices() {
-//  const ts = extensions.all.find((e) => e.id === TS_LANGUAGE_FEATURES_EXTENSION);
-//  if (ts) {
-//    await ts.activate();
-//  }
-//
-//  const css = extensions.all.find((e) => e.id === CSS_LANGUAGE_FEATURES_EXTENSION);
-//  if (css) {
-//    await css.activate();
-//  }
-//
-//  const html = extensions.all.find((e) => e.id === HTML_LANGUAGE_FEATURES_EXTENSION);
-//  if (html) {
-//    await html.activate();
-//  }
-//}
+// MEMO: Ported from tsPlugin.ts for coc.nvim
+export function isTsPluginEnabled(context: ExtensionContext) {
+  const packageJson = path.join(context.extensionPath, 'package.json');
+  try {
+    const packageText = fs.readFileSync(packageJson, 'utf8');
+    if (packageText.indexOf(`"typescriptServerPlugins"`) >= 0) {
+      return true;
+    }
+  } catch {}
+
+  return false;
+}

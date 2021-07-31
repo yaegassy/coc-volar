@@ -5,7 +5,7 @@ import type { LanguageClient } from 'vscode-languageclient/node';
 export async function activate(context: ExtensionContext, languageClient: LanguageClient) {
   await languageClient.onReady();
   context.subscriptions.push(
-    languageClient.onRequest(shared.ActiveSelectionRequest.type, async () => {
+    languageClient.onRequest(shared.GetDocumentSelectionRequest.type, async () => {
       const { position } = await workspace.getCurrentState();
       const document = await workspace.document;
       let range: Range | null = null;

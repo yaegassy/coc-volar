@@ -91,6 +91,11 @@
           "default": "en",
           "description": "Display Language (locale), See: https://code.visualstudio.com/docs/getstarted/locales"
         },
+        "volar.useWorkspaceTsdk": {
+          "type": "boolean",
+          "default": false,
+          "description": ""
+        },
         "volar-api.trace.server": {
           "scope": "window",
           "type": "string",
@@ -322,7 +327,8 @@
     ]
   },
   "dependencies": {
-    "@volar/shared": "^0.26.9",
+    "@volar/server": "0.26.10",
+    "@volar/shared": "0.26.10",
     "@vue/compiler-sfc": "^3.2.0-beta.5",
     "@vue/reactivity": "^3.2.0-beta.5",
     "upath": "^2.0.1",
