@@ -3,15 +3,14 @@
  * TODO: Clean up...
  */
 
-import { ExtensionContext, workspace } from 'coc.nvim';
-import { LanguageClient } from 'vscode-languageclient/node';
+import { ExtensionContext, workspace, LanguageClient } from 'coc.nvim';
 import * as shared from '@volar/shared';
 // import { userPick } from './splitEditors';
 import path from 'path';
 
 const defaultTsdk = 'node_modules/typescript/lib';
 
-export async function activate(context: ExtensionContext, clients: LanguageClient[]) {
+export async function activate(context: ExtensionContext, client: LanguageClient) {
   ////const statusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right);
   ////statusBar.command = 'volar.selectTypeScriptVersion';
   // const subscription = commands.registerCommand('volar.selectTypeScriptVersion', async () => {
@@ -99,7 +98,7 @@ export function getCurrentTsPaths(context: ExtensionContext) {
     // MEMO: To use from coc.nvim, specify even the module name 'typescript.js'
     //serverPath: path.join(context.extensionPath, 'node_modules', 'typescript', 'lib'),
     serverPath: path.join(context.extensionPath, 'node_modules', 'typescript', 'lib', 'typescript.js'),
-    localizedPath: '',
+    localizedPath: undefined,
   };
 
   //return { ...getVscodeTsPaths(), isWorkspacePath: false };

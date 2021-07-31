@@ -9,32 +9,18 @@ import {
 } from 'coc.nvim';
 
 import * as shared from '@volar/shared';
-import * as path from 'upath';
-import fs from 'fs';
+import * as path from 'path';
 
 ////////////
 //  TODO  //
 ////////////
 
-import * as activeSelection from './features/activeSelection';
-import * as attrNameCase from './features/attrNameCase';
-/** MEMO: Cannot be ported due to use of webview */
-// import * as callGraph from './features/callGraph';
-import * as createWorkspaceSnippets from './features/createWorkspaceSnippets';
 import * as documentVersion from './features/documentVersion';
-import * as documentContent from './features/documentContent';
-/** MEMO: Cannot be ported due to use of webview */
-// import * as preview from './features/preview';
 import * as restart from './features/restart';
 import * as showReferences from './features/showReferences';
-// import * as splitEditors from './features/splitEditors';
 // import * as tagClosing from './features/tagClosing';
-import * as tagNameCase from './features/tagNameCase';
-// import * as tsPlugin from './features/tsPlugin';
 import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
-import * as virtualFiles from './features/virtualFiles';
-import * as removeRefSugars from './features/removeRefSugars';
 
 let apiClient: LanguageClient;
 let docClient: LanguageClient;
@@ -52,50 +38,17 @@ export async function activate(context: ExtensionContext): Promise<void> {
   docClient = createLanguageService(context, 'doc', 'volar-document', 'Volar - Document', 6010, 'file');
   htmlClient = createLanguageService(context, 'html', 'volar-html', 'Volar - HTML', 6011, undefined);
 
-  // splitEditors.activate(context);
-  /** MEMO: Cannot be ported due to use of webview */
-  // preview.activate(context);
-  // @ts-ignore
-  createWorkspaceSnippets.activate(context);
-  /** MEMO: Cannot be ported due to use of webview */
-  // callGraph.activate(context, apiClient);
-  // @ts-ignore
-  removeRefSugars.activate(context, apiClient);
-  // @ts-ignore
-  showReferences.activate(context, apiClient);
-  // @ts-ignore
-  documentVersion.activate(context, docClient);
-  // @ts-ignore
-  documentContent.activate(context, apiClient);
-  // @ts-ignore
-  documentContent.activate(context, docClient);
-  // @ts-ignore
-  activeSelection.activate(context, apiClient);
-  // @ts-ignore
+  for (const client of [apiClient, docClient, htmlClient]) {
+    showReferences.activate(context, client);
+    documentVersion.activate(context, client);
+  }
+
   verifyAll.activate(context, docClient);
-  // @ts-ignore
-  virtualFiles.activate(context, docClient);
-  // tagClosing.activate(context, htmlClient, apiClient);
-  // @ts-ignore
-  restart.activate(context, [apiClient, docClient]);
-  // tsPlugin.activate(context);
-  // @ts-ignore
-  tsVersion.activate(context, [apiClient, docClient]);
-
-  (async () => {
-    // @ts-ignore
-    const getTagNameCase = await tagNameCase.activate(context, apiClient);
-    // @ts-ignore
-    const getAttrNameCase = await attrNameCase.activate(context, apiClient);
-
-    // @ts-ignore
-    apiClient.onRequest(shared.GetDocumentNameCasesRequest.type, async (handler) => ({
-      // @ts-ignore
-      tagNameCase: getTagNameCase(handler.uri),
-      // @ts-ignore
-      attrNameCase: getAttrNameCase(handler.uri),
-    }));
-  })();
+  // tagClosing.activate(context, htmlClient);
+  restart.activate(context, apiClient);
+  restart.activate(context, docClient);
+  tsVersion.activate(context, apiClient);
+  tsVersion.activate(context, docClient);
 }
 
 export function deactivate(): Thenable<void> | undefined {
@@ -127,23 +80,20 @@ function createLanguageService(
     features:
       mode === 'api'
         ? {
-            //references: { enabledInTsScript: !tsPlugin.isTsPluginEnabled() },
-            references: { enabledInTsScript: isTsPluginEnabled(context) },
+            references: true,
             definition: true,
             typeDefinition: true,
-            callHierarchy: { enabledInTsScript: true /** TODO: wait for ts plugin support call hierarchy */ },
+            callHierarchy: true,
             hover: true,
             rename: true,
             renameFileRefactoring: true,
             selectionRange: true,
             signatureHelp: true,
             completion: {
-              defaultTagNameCase: 'both',
-              defaultAttrNameCase: 'kebabCase',
-              getDocumentNameCasesRequest: true,
-              getDocumentSelectionRequest: true,
+              defaultTagNameCase: getConfigTagNameCase(),
+              defaultAttrNameCase: getConfigAttrNameCase(),
             },
-            schemaRequestService: { getDocumentContentRequest: true },
+            schemaRequestService: true,
           }
         : mode === 'doc'
         ? {
@@ -155,7 +105,7 @@ function createLanguageService(
             semanticTokens: true,
             codeAction: true,
             diagnostics: { getDocumentVersionRequest: true },
-            schemaRequestService: { getDocumentContentRequest: true },
+            schemaRequestService: true,
           }
         : undefined,
     htmlFeatures:
@@ -186,15 +136,21 @@ function createLanguageService(
   return client;
 }
 
-// MEMO: Ported from tsPlugin.ts for coc.nvim
-export function isTsPluginEnabled(context: ExtensionContext) {
-  const packageJson = path.join(context.extensionPath, 'package.json');
-  try {
-    const packageText = fs.readFileSync(packageJson, 'utf8');
-    if (packageText.indexOf(`"typescriptServerPlugins"`) >= 0) {
-      return true;
-    }
-  } catch {}
+function getConfigTagNameCase() {
+  const tagNameCase = workspace.getConfiguration('volar').get<'both' | 'kebab' | 'pascal'>('tagNameCase');
+  switch (tagNameCase) {
+    case 'both': return 'both' as const;
+    case 'kebab': return 'kebabCase' as const;
+    case 'pascal': return 'pascalCase' as const;
+  }
+  return 'both' as const;
+}
 
-  return false;
+function getConfigAttrNameCase() {
+  const tagNameCase = workspace.getConfiguration('volar').get<'kebab' | 'pascal'>('attrNameCase');
+  switch (tagNameCase) {
+    case 'kebab': return 'kebabCase' as const;
+    case 'pascal': return 'pascalCase' as const;
+  }
+  return 'kebabCase' as const;
 }
