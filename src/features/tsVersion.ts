@@ -1,20 +1,11 @@
-/**
- * TODO: Project-level typyscript module detection for coc.nvim
- * TODO: Clean up...
- */
-
-import { ExtensionContext, workspace, LanguageClient } from 'coc.nvim';
-import * as shared from '@volar/shared';
+import { ExtensionContext, Uri, workspace, WorkspaceFolder } from 'coc.nvim';
 import path from 'path';
+import fs from 'fs';
 
 const defaultTsdk = 'node_modules/typescript/lib';
 
-export async function activate(context: ExtensionContext, client: LanguageClient) {
-  // TODO
-}
-
 export function getCurrentTsPaths(context: ExtensionContext) {
-  if (isUseWorkspaceTsdk(context)) {
+  if (isUseWorkspaceTsdk()) {
     const workspaceTsPaths = getWorkspaceTsPaths(true);
     if (workspaceTsPaths) {
       return { ...workspaceTsPaths, isWorkspacePath: true };
@@ -22,8 +13,6 @@ export function getCurrentTsPaths(context: ExtensionContext) {
   }
 
   const builtinTsPaths = {
-    // MEMO: To use from coc.nvim, specify even the module name 'typescript.js'
-    //serverPath: path.join(context.extensionPath, 'node_modules', 'typescript', 'lib'),
     serverPath: path.join(context.extensionPath, 'node_modules', 'typescript', 'lib', 'typescript.js'),
     localizedPath: undefined,
   };
@@ -37,27 +26,67 @@ function getWorkspaceTsPaths(useDefault = false) {
     tsdk = defaultTsdk;
   }
   if (tsdk) {
-    const tsPath = shared.getWorkspaceTypescriptPath(tsdk, workspace.workspaceFolders);
+    const tsPath = getWorkspaceTypescriptPath(tsdk, workspace.workspaceFolders);
     if (tsPath) {
       return {
         serverPath: tsPath,
-        localizedPath: shared.getWorkspaceTypescriptLocalizedPath(
-          tsdk,
-          'en', // vscode.env.language,
-          workspace.workspaceFolders
-        ),
+        localizedPath: undefined,
       };
     }
   }
 }
 
 function getTsdk() {
-  const tsConfigs = workspace.getConfiguration('typescript');
+  // MEMO: tsserver.tsdk for coc-tsserver
+  const tsConfigs = workspace.getConfiguration('tsserver');
   const tsdk = tsConfigs.get<string>('tsdk');
   return tsdk;
 }
 
-function isUseWorkspaceTsdk(context: ExtensionContext) {
+function isUseWorkspaceTsdk() {
+  // MEMO: volar.useWorkspaceTsdk for coc-volar
   const volarExtensionConfig = workspace.getConfiguration('volar');
   return volarExtensionConfig.get<boolean>('useWorkspaceTsdk', false);
+}
+
+/**
+ * Ported from volar/packages/shared/src/ts.ts for coc.nvim
+ */
+function getWorkspaceTypescriptPath(tsdk: string, workspaceFolderFsPaths: readonly WorkspaceFolder[]) {
+  if (path.isAbsolute(tsdk)) {
+    const tsPath = findTypescriptModulePathInLib(tsdk);
+    if (tsPath) {
+      return tsPath;
+    }
+  } else {
+    for (const folder of workspaceFolderFsPaths) {
+      /**
+       * MEMO: WorkspaceFolder[].folder -> folder.uri for coc.nvim
+       * MEMO: file schema path to real path for coc.nvim
+       */
+      const tsPath = findTypescriptModulePathInLib(path.join(Uri.parse(folder.uri).fsPath, tsdk));
+      if (tsPath) {
+        return tsPath;
+      }
+    }
+  }
+}
+
+/**
+ * Ported from volar/packages/shared/src/ts.ts for coc.nvim
+ */
+function findTypescriptModulePathInLib(lib: string) {
+  const tsserverlibrary = path.join(lib, 'tsserverlibrary.js');
+  const typescript = path.join(lib, 'typescript.js');
+  const tsserver = path.join(lib, 'tsserver.js');
+
+  if (fs.existsSync(tsserverlibrary)) {
+    return tsserverlibrary;
+  }
+  if (fs.existsSync(typescript)) {
+    return typescript;
+  }
+  if (fs.existsSync(tsserver)) {
+    return tsserver;
+  }
 }

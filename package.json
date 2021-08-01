@@ -57,12 +57,12 @@
         "volar.enable": {
           "type": "boolean",
           "default": true,
-          "description": "Enable coc-volar extension"
+          "description": "Enable coc-volar extension."
         },
         "volar.useWorkspaceTsdk": {
           "type": "boolean",
           "default": false,
-          "description": ""
+          "description": "Use workspace (project) detected tsLibs in volar. if false, use coc-volar's built-in tsLibs."
         },
         "volar-api.trace.server": {
           "scope": "window",

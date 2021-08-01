@@ -43,8 +43,6 @@ export async function activate(context: ExtensionContext): Promise<void> {
   // tagClosing.activate(context, htmlClient);
   restart.activate(context, apiClient);
   restart.activate(context, docClient);
-  tsVersion.activate(context, apiClient);
-  tsVersion.activate(context, docClient);
 }
 
 export function deactivate(): Thenable<void> | undefined {
