@@ -1,5 +1,5 @@
 {
-  "name": "coc-volar",
+  "name": "@yaegassy/coc-volar",
   "version": "0.0.1",
   "volarReferenceVersion": "0.26.10",
   "description": "Volar (Fast Vue Language Support) extension for coc.nvim",
@@ -21,6 +21,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/yaegassy/coc-volar"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "lint": "eslint src --ext ts",
