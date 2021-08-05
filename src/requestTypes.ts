@@ -23,8 +23,6 @@ export const RestartServerNotificationType = new coc.NotificationType<
   NonNullable<typeof shared.RestartServerNotification.type._>[0]
 >(shared.RestartServerNotification.type.method);
 
-export const VerifyAllScriptsRequestType = new coc.RequestType<
-  NonNullable<typeof shared.VerifyAllScriptsRequest.type._>[0],
-  NonNullable<typeof shared.VerifyAllScriptsRequest.type._>[1],
-  NonNullable<typeof shared.VerifyAllScriptsRequest.type._>[3]
->(shared.VerifyAllScriptsRequest.type.method);
+export const VerifyAllScriptsNotificationType = new coc.NotificationType<
+  NonNullable<typeof shared.VerifyAllScriptsNotification.type._>[0]
+>(shared.VerifyAllScriptsNotification.type.method);
