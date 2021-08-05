@@ -115,6 +115,11 @@
           "default": true,
           "description": "[ref sugar ☐] code lens."
         },
+        "volar.formatting.printWidth": {
+          "type": "number",
+          "default": 100,
+          "description": "HTML formatting print width."
+        },
         "volar.tagNameCase": {
           "type": "string",
           "enum": [
@@ -159,8 +164,8 @@
     ]
   },
   "dependencies": {
-    "@volar/server": "0.26.10",
-    "@volar/shared": "0.26.10",
+    "@volar/server": "0.26.11",
+    "@volar/shared": "0.26.11",
     "typescript": "^4.1.2"
   }
 }

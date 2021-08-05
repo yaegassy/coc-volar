@@ -12,6 +12,7 @@ import * as shared from '@volar/shared';
 import * as path from 'path';
 
 import * as documentVersion from './features/documentVersion';
+import * as documentPrintWidth from './features/documentPrintWidth';
 import * as restart from './features/restart';
 import * as showReferences from './features/showReferences';
 // import * as tagClosing from './features/tagClosing';
@@ -37,6 +38,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
   for (const client of [apiClient, docClient, htmlClient]) {
     showReferences.activate(context, client);
     documentVersion.activate(context, client);
+    documentPrintWidth.activate(context, client);
   }
 
   verifyAll.activate(context, docClient);
@@ -107,7 +109,10 @@ function createLanguageService(
         ? {
             foldingRange: true,
             linkedEditingRange: true,
-            documentFormatting: true,
+            documentFormatting: {
+              defaultPrintWidth: 100,
+              getDocumentPrintWidthRequest: true,
+            },
           }
         : undefined,
   };
