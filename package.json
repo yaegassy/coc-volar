@@ -115,6 +115,11 @@
           "default": true,
           "description": "[ref sugar ☐] code lens."
         },
+        "volar.formatting.printWidth": {
+          "type": "number",
+          "default": 100,
+          "description": "HTML formatting print width."
+        },
         "volar.tagNameCase": {
           "type": "string",
           "enum": [
