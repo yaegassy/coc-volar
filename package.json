@@ -115,6 +115,11 @@
           "default": true,
           "description": "[ref sugar ☐] code lens."
         },
+        "volar.formatting.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable the Volar document formatter."
+        },
         "volar.formatting.printWidth": {
           "type": "number",
           "default": 100,
