@@ -5,7 +5,7 @@ export async function activate(context: ExtensionContext, languageClient: Langua
   await languageClient.onReady();
   context.subscriptions.push(
     commands.registerCommand('volar.action.verifyAllScripts', () => {
-      languageClient.sendNotification(VerifyAllScriptsNotificationType, undefined);
+      languageClient.sendNotification(VerifyAllScriptsNotificationType);
     })
   );
 }
