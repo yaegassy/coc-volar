@@ -109,10 +109,7 @@ function createLanguageService(
         ? {
             foldingRange: true,
             linkedEditingRange: true,
-            documentFormatting: {
-              defaultPrintWidth: 100,
-              getDocumentPrintWidthRequest: true,
-            },
+            documentFormatting: getConfigDocumentFormatting(),
           }
         : undefined,
   };
@@ -157,4 +154,22 @@ function getConfigAttrNameCase() {
       return 'pascalCase' as const;
   }
   return 'kebabCase' as const;
+}
+
+type DocumentFormattingType = {
+  defaultPrintWidth: number;
+  getDocumentPrintWidthRequest: boolean;
+};
+
+function getConfigDocumentFormatting(): DocumentFormattingType | undefined {
+  const isFormattingEnable = workspace.getConfiguration('volar').get<boolean>('formatting.enable', true);
+
+  if (isFormattingEnable) {
+    return {
+      defaultPrintWidth: 100,
+      getDocumentPrintWidthRequest: true,
+    };
+  } else {
+    return undefined;
+  }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@yaegassy/coc-volar",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "volarReferenceVersion": "0.26.12",
   "description": "Volar (Fast Vue Language Support) extension for coc.nvim",
   "author": "yaegassy <yosstools@gmail.com>",
@@ -114,6 +114,11 @@
           "type": "boolean",
           "default": true,
           "description": "[ref sugar ☐] code lens."
+        },
+        "volar.formatting.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable the Volar document formatter."
         },
         "volar.formatting.printWidth": {
           "type": "number",
