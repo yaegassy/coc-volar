@@ -6,19 +6,19 @@ import * as shared from '@volar/shared';
  */
 
 export const ShowReferencesNotificationType = new coc.NotificationType<
-  NonNullable<typeof shared.ShowReferencesNotification.type._>[0]
+  shared.ShowReferencesNotification.ParamsType
 >(shared.ShowReferencesNotification.type.method);
 
 export const GetDocumentVersionRequestType = new coc.RequestType<
-  NonNullable<typeof shared.GetDocumentVersionRequest.type._>[0],
-  NonNullable<typeof shared.GetDocumentVersionRequest.type._>[1],
-  NonNullable<typeof shared.GetDocumentVersionRequest.type._>[3]
+  shared.GetDocumentVersionRequest.ParamsType,
+  shared.GetDocumentVersionRequest.ResponseType,
+  shared.GetDocumentVersionRequest.ErrorType
 >(shared.GetDocumentVersionRequest.type.method);
 
 export const GetDocumentPrintWidthRequestType = new coc.RequestType<
-  NonNullable<typeof shared.GetDocumentPrintWidthRequest.type._>[0],
-  NonNullable<typeof shared.GetDocumentPrintWidthRequest.type._>[1],
-  NonNullable<typeof shared.GetDocumentPrintWidthRequest.type._>[3]
+  shared.GetDocumentPrintWidthRequest.ParamsType,
+  shared.GetDocumentPrintWidthRequest.ResponseType,
+  shared.GetDocumentPrintWidthRequest.ErrorType
 >(shared.GetDocumentPrintWidthRequest.type.method);
 
 /**
@@ -26,9 +26,7 @@ export const GetDocumentPrintWidthRequestType = new coc.RequestType<
  */
 
 export const RestartServerNotificationType = new coc.NotificationType<
-  NonNullable<typeof shared.RestartServerNotification.type._>[0]
+  shared.RestartServerNotification.ParamsType
 >(shared.RestartServerNotification.type.method);
 
-export const VerifyAllScriptsNotificationType = new coc.NotificationType<
-  NonNullable<typeof shared.VerifyAllScriptsNotification.type._>[0]
->(shared.VerifyAllScriptsNotification.type.method);
+export const VerifyAllScriptsNotificationType = new coc.NotificationType0(shared.VerifyAllScriptsNotification.type.method);

@@ -4,7 +4,7 @@ import { ShowReferencesNotificationType } from '../requestTypes';
 export async function activate(context: ExtensionContext, languageClient: LanguageClient) {
   await languageClient.onReady();
   languageClient.onNotification(ShowReferencesNotificationType, (handler) => {
-    const uri = handler.uri;
+    const uri = handler.textDocument.uri;
     const pos = handler.position;
     const refs = handler.references;
     commands.executeCommand(
