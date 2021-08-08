@@ -1,4 +1,4 @@
-import { ExtensionContext, workspace } from 'coc.nvim';
+import { ExtensionContext, Uri, workspace } from 'coc.nvim';
 import path from 'path';
 import * as shared from '@volar/shared';
 
@@ -26,7 +26,10 @@ function getWorkspaceTsPaths(useDefault = false) {
     tsdk = defaultTsdk;
   }
   if (tsdk) {
-    const tsPath = shared.getWorkspaceTypescriptPath(tsdk, workspace.workspaceFolders.map(folder => folder.uri));
+    const tsPath = shared.getWorkspaceTypescriptPath(
+      tsdk,
+      workspace.workspaceFolders.map((folder) => Uri.parse(folder.uri).fsPath)
+    );
     if (tsPath) {
       return {
         serverPath: tsPath,
