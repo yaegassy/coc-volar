@@ -1,7 +1,9 @@
 import {
+  DocumentSelector,
   ExtensionContext,
   LanguageClient,
   LanguageClientOptions,
+  languages,
   ServerOptions,
   Thenable,
   TransportKind,
@@ -18,6 +20,8 @@ import * as restart from './features/restart';
 import * as showReferences from './features/showReferences';
 import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
+
+import { VolarCodeActionProvider } from './action';
 
 let apiClient: LanguageClient;
 let docClient: LanguageClient;
@@ -55,6 +59,11 @@ export async function activate(context: ExtensionContext): Promise<void> {
   verifyAll.activate(context, docClient);
   restart.activate(context, apiClient);
   restart.activate(context, docClient);
+
+  // MEMO: coc-volar code action feature
+  const languageSelector: DocumentSelector = [{ language: 'vue', scheme: 'file' }];
+  const codeActionProvider = new VolarCodeActionProvider();
+  context.subscriptions.push(languages.registerCodeActionProvider(languageSelector, codeActionProvider, 'volar'));
 }
 
 export function deactivate(): Thenable<void> | undefined {

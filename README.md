@@ -31,6 +31,24 @@ Check the "configuration" section of [package.json](/package.json)
 - `volar.action.restartServer`: Restart Vue server
 - `volar.action.verifyAllScripts`: Verify All Scripts
 
+## Code Actions (Expelmental)
+
+**Example key mapping (Code Action related)**:
+
+```vim
+nmap <silent> ga <Plug>(coc-codeaction-line)
+```
+
+**or Run from CocAction, CocActionAsync**:
+
+```vim
+:call CocActionAsync('codeAction', 'line')
+```
+
+**Action Lists**:
+
+- `Add @ts-ignore for this line`
+
 ## Thanks
 
 - [johnsoncodehk/volar](https://github.com/johnsoncodehk/volar)
