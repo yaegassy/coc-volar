@@ -5,6 +5,7 @@ import {
   ServerOptions,
   Thenable,
   TransportKind,
+  window,
   workspace,
 } from 'coc.nvim';
 
@@ -23,6 +24,15 @@ let apiClient: LanguageClient;
 let docClient: LanguageClient;
 let htmlClient: LanguageClient;
 
+// MEMO: client logging
+const outputChannel = window.createOutputChannel('volar-client');
+
+let resolveCurrentTsPaths: {
+  serverPath: string;
+  localizedPath: undefined;
+  isWorkspacePath: boolean;
+};
+
 export async function activate(context: ExtensionContext): Promise<void> {
   const extensionConfig = workspace.getConfiguration('volar');
 
@@ -30,6 +40,8 @@ export async function activate(context: ExtensionContext): Promise<void> {
   if (!isEnable) {
     return;
   }
+
+  outputChannel.appendLine(`${'#'.repeat(10)} volar-client\n`);
 
   apiClient = createLanguageService(context, 'api', 'volar-api', 'Volar - API', 6009, 'file');
   docClient = createLanguageService(context, 'doc', 'volar-document', 'Volar - Document', 6010, 'file');
@@ -71,8 +83,14 @@ function createLanguageService(
     },
   };
 
+  if (!resolveCurrentTsPaths) {
+    resolveCurrentTsPaths = tsVersion.getCurrentTsPaths(context);
+    outputChannel.appendLine(`currentTsPath: ${resolveCurrentTsPaths.serverPath}`);
+    outputChannel.appendLine(`isWorkspacePath: ${resolveCurrentTsPaths.isWorkspacePath}`);
+  }
+
   const serverInitOptions: shared.ServerInitializationOptions = {
-    typescript: tsVersion.getCurrentTsPaths(context),
+    typescript: resolveCurrentTsPaths,
     features:
       mode === 'api'
         ? {
