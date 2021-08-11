@@ -31,7 +31,7 @@ Check the "configuration" section of [package.json](/package.json)
 - `volar.action.restartServer`: Restart Vue server
 - `volar.action.verifyAllScripts`: Verify All Scripts
 
-## Code Actions (Expelmental)
+## Code Actions (Experimental)
 
 **Example key mapping (Code Action related)**:
 
