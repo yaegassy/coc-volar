@@ -13,6 +13,7 @@ import {
 
 import * as shared from '@volar/shared';
 import * as path from 'path';
+import { existsSync } from 'fs';
 
 import * as documentVersion from './features/documentVersion';
 import * as documentPrintWidth from './features/documentPrintWidth';
@@ -26,6 +27,8 @@ import { VolarCodeActionProvider } from './action';
 let apiClient: LanguageClient;
 let docClient: LanguageClient;
 let htmlClient: LanguageClient;
+
+let serverModule: string;
 
 // MEMO: client logging
 const outputChannel = window.createOutputChannel('volar-client');
@@ -45,6 +48,13 @@ export async function activate(context: ExtensionContext): Promise<void> {
   }
 
   outputChannel.appendLine(`${'#'.repeat(10)} volar-client\n`);
+
+  const devVolarServerPath = extensionConfig.get<string>('dev.serverPath', '');
+  if (devVolarServerPath && devVolarServerPath !== '' && existsSync(devVolarServerPath)) {
+    serverModule = devVolarServerPath;
+  } else {
+    serverModule = context.asAbsolutePath(path.join('node_modules', '@volar', 'server', 'out', 'index.js'));
+  }
 
   apiClient = createLanguageService(context, 'api', 'volar-api', 'Volar - API', 6009, 'file');
   docClient = createLanguageService(context, 'doc', 'volar-document', 'Volar - Document', 6010, 'file');
@@ -78,8 +88,6 @@ function createLanguageService(
   port: number,
   scheme: string | undefined
 ) {
-  const serverModule = context.asAbsolutePath(path.join('node_modules', '@volar', 'server', 'out', 'index.js'));
-
   const debugOptions = { execArgv: ['--nolazy', '--inspect=' + port] };
   const serverOptions: ServerOptions = {
     run: { module: serverModule, transport: TransportKind.ipc },

@@ -62,6 +62,11 @@
           "default": true,
           "description": "Enable coc-volar extension."
         },
+        "volar.dev.serverPath": {
+          "type": "string",
+          "default": "",
+          "description": "Absolute path to volar server module (For develop and check)"
+        },
         "volar.useWorkspaceTsdk": {
           "type": "boolean",
           "default": false,
