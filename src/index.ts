@@ -16,7 +16,6 @@ import * as documentVersion from './features/documentVersion';
 import * as documentPrintWidth from './features/documentPrintWidth';
 import * as restart from './features/restart';
 import * as showReferences from './features/showReferences';
-// import * as tagClosing from './features/tagClosing';
 import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
 
@@ -54,7 +53,6 @@ export async function activate(context: ExtensionContext): Promise<void> {
   }
 
   verifyAll.activate(context, docClient);
-  // tagClosing.activate(context, htmlClient);
   restart.activate(context, apiClient);
   restart.activate(context, docClient);
 }
