@@ -25,10 +25,6 @@ export const GetDocumentPrintWidthRequestType = new coc.RequestType<
  * Server Requests
  */
 
-export const RestartServerNotificationType = new coc.NotificationType<shared.RestartServerNotification.ParamsType>(
-  shared.RestartServerNotification.type.method
-);
-
 export const VerifyAllScriptsNotificationType = new coc.NotificationType0(
   shared.VerifyAllScriptsNotification.type.method
 );
