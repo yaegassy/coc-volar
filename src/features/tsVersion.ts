@@ -14,7 +14,7 @@ export function getCurrentTsPaths(context: ExtensionContext) {
   }
 
   const tsLocale = getTsLocale();
-  const tsLocalJsonPath = path.join(
+  const tsLocaleJsonPath = path.join(
     context.extensionPath,
     'node_modules',
     'typescript',
@@ -23,7 +23,7 @@ export function getCurrentTsPaths(context: ExtensionContext) {
     'diagnosticMessages.generated.json'
   );
 
-  const localizedPath = fs.existsSync(tsLocalJsonPath) ? tsLocalJsonPath : undefined;
+  const localizedPath = fs.existsSync(tsLocaleJsonPath) ? tsLocaleJsonPath : undefined;
 
   const builtinTsPaths = {
     serverPath: path.join(context.extensionPath, 'node_modules', 'typescript', 'lib', 'typescript.js'),
