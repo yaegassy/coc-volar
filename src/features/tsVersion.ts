@@ -1,6 +1,7 @@
 import { ExtensionContext, Uri, workspace } from 'coc.nvim';
-import path from 'path';
 import * as shared from '@volar/shared';
+import path from 'path';
+import fs from 'fs';
 
 const defaultTsdk = 'node_modules/typescript/lib';
 
@@ -12,9 +13,21 @@ export function getCurrentTsPaths(context: ExtensionContext) {
     }
   }
 
+  const tsLocale = getTsLocale();
+  const tsLocalJsonPath = path.join(
+    context.extensionPath,
+    'node_modules',
+    'typescript',
+    'lib',
+    tsLocale,
+    'diagnosticMessages.generated.json'
+  );
+
+  const localizedPath = fs.existsSync(tsLocalJsonPath) ? tsLocalJsonPath : undefined;
+
   const builtinTsPaths = {
     serverPath: path.join(context.extensionPath, 'node_modules', 'typescript', 'lib', 'typescript.js'),
-    localizedPath: undefined,
+    localizedPath,
   };
 
   return { ...builtinTsPaths, isWorkspacePath: false };
@@ -31,9 +44,13 @@ function getWorkspaceTsPaths(useDefault = false) {
       workspace.workspaceFolders.map((folder) => Uri.parse(folder.uri).fsPath)
     );
     if (tsPath) {
+      const tsLocale = getTsLocale();
+      const tsLocaleJsonPath = path.join(path.dirname(tsPath), tsLocale, 'diagnosticMessages.generated.json');
+      const localizedPath = fs.existsSync(tsLocaleJsonPath) ? tsLocaleJsonPath : undefined;
+
       return {
         serverPath: tsPath,
-        localizedPath: undefined,
+        localizedPath,
       };
     }
   }
@@ -48,6 +65,10 @@ function getTsdk() {
 
 function isUseWorkspaceTsdk() {
   // MEMO: volar.useWorkspaceTsdk for coc-volar
-  const volarExtensionConfig = workspace.getConfiguration('volar');
-  return volarExtensionConfig.get<boolean>('useWorkspaceTsdk', false);
+  return workspace.getConfiguration('volar').get<boolean>('useWorkspaceTsdk', false);
+}
+
+function getTsLocale() {
+  // MEMO: volar.diagnostics.tsLocale for coc-volar
+  return workspace.getConfiguration('volar').get<string>('diagnostics.tsLocale', 'en');
 }
