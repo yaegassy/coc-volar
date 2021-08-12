@@ -21,6 +21,7 @@ import * as restart from './features/restart';
 import * as showReferences from './features/showReferences';
 import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
+import * as removeRefSugars from './features/removeRefSugars';
 
 import { VolarCodeActionProvider } from './action';
 
@@ -66,6 +67,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
     documentPrintWidth.activate(context, client);
   }
 
+  removeRefSugars.activate(context, apiClient);
   verifyAll.activate(context, docClient);
   restart.activate(context, apiClient);
   restart.activate(context, docClient);

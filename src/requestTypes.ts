@@ -5,9 +5,9 @@ import * as shared from '@volar/shared';
  * Client Requests
  */
 
-export const ShowReferencesNotificationType = new coc.NotificationType<
-  shared.ShowReferencesNotification.ParamsType
->(shared.ShowReferencesNotification.type.method);
+export const ShowReferencesNotificationType = new coc.NotificationType<shared.ShowReferencesNotification.ParamsType>(
+  shared.ShowReferencesNotification.type.method
+);
 
 export const GetDocumentVersionRequestType = new coc.RequestType<
   shared.GetDocumentVersionRequest.ParamsType,
@@ -25,8 +25,12 @@ export const GetDocumentPrintWidthRequestType = new coc.RequestType<
  * Server Requests
  */
 
-export const RestartServerNotificationType = new coc.NotificationType<
-  shared.RestartServerNotification.ParamsType
->(shared.RestartServerNotification.type.method);
+export const RestartServerNotificationType = new coc.NotificationType<shared.RestartServerNotification.ParamsType>(
+  shared.RestartServerNotification.type.method
+);
 
-export const VerifyAllScriptsNotificationType = new coc.NotificationType0(shared.VerifyAllScriptsNotification.type.method);
+export const VerifyAllScriptsNotificationType = new coc.NotificationType0(
+  shared.VerifyAllScriptsNotification.type.method
+);
+
+export const RemoveAllRefSugarsNotificationType = new coc.NotificationType0(shared.RemoveAllRefSugars.type.method);
