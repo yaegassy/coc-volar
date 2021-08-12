@@ -1,4 +1,5 @@
 import {
+  commands,
   DocumentSelector,
   ExtensionContext,
   LanguageClient,
@@ -17,7 +18,6 @@ import { existsSync } from 'fs';
 
 import * as documentVersion from './features/documentVersion';
 import * as documentPrintWidth from './features/documentPrintWidth';
-import * as restart from './features/restart';
 import * as showReferences from './features/showReferences';
 import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
@@ -44,9 +44,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
   const extensionConfig = workspace.getConfiguration('volar');
 
   const isEnable = extensionConfig.get<boolean>('enable', true);
-  if (!isEnable) {
-    return;
-  }
+  if (!isEnable) return;
 
   outputChannel.appendLine(`${'#'.repeat(10)} volar-client\n`);
 
@@ -61,18 +59,35 @@ export async function activate(context: ExtensionContext): Promise<void> {
   docClient = createLanguageService(context, 'doc', 'volar-document', 'Volar - Document', 6010, 'file');
   htmlClient = createLanguageService(context, 'html', 'volar-html', 'Volar - HTML', 6011, undefined);
 
-  for (const client of [apiClient, docClient, htmlClient]) {
-    showReferences.activate(context, client);
-    documentVersion.activate(context, client);
-    documentPrintWidth.activate(context, client);
-  }
+  const clients = [apiClient, docClient, htmlClient];
+
+  registarRestartRequest();
+  registarClientRequests();
 
   removeRefSugars.activate(context, apiClient);
   verifyAll.activate(context, docClient);
-  restart.activate(context, apiClient);
-  restart.activate(context, docClient);
 
-  // MEMO: coc-volar code action feature
+  async function registarRestartRequest() {
+    await Promise.all(clients.map((client) => client.onReady()));
+
+    context.subscriptions.push(
+      commands.registerCommand('volar.action.restartServer', async () => {
+        await Promise.all(clients.map((client) => client.stop()));
+        await Promise.all(clients.map((client) => client.start()));
+        registarClientRequests();
+      })
+    );
+  }
+
+  function registarClientRequests() {
+    for (const client of [apiClient, docClient, htmlClient]) {
+      showReferences.activate(context, client);
+      documentVersion.activate(context, client);
+      documentPrintWidth.activate(context, client);
+    }
+  }
+
+  /** MEMO: coc-volar code action feature */
   const languageSelector: DocumentSelector = [{ language: 'vue', scheme: 'file' }];
   const codeActionProvider = new VolarCodeActionProvider();
   context.subscriptions.push(languages.registerCodeActionProvider(languageSelector, codeActionProvider, 'volar'));
@@ -109,7 +124,7 @@ function createLanguageService(
 
   const serverInitOptions: shared.ServerInitializationOptions = {
     typescript: resolveCurrentTsPaths,
-    features:
+    languageFeatures:
       mode === 'api'
         ? {
             references: true,
@@ -119,32 +134,34 @@ function createLanguageService(
             hover: true,
             rename: true,
             renameFileRefactoring: true,
-            selectionRange: true,
             signatureHelp: true,
+            codeAction: true,
             completion: {
               defaultTagNameCase: getConfigTagNameCase(),
               defaultAttrNameCase: getConfigAttrNameCase(),
+              getDocumentNameCasesRequest: false /** MEMO: Set to false for coc-volar */,
+              getDocumentSelectionRequest: false /** MEMO: Set to false for coc-volar */,
             },
             schemaRequestService: true,
           }
         : mode === 'doc'
         ? {
             documentHighlight: true,
-            documentSymbol: true,
             documentLink: true,
-            documentColor: true,
             codeLens: { showReferencesNotification: true },
             semanticTokens: true,
-            codeAction: true,
             diagnostics: { getDocumentVersionRequest: true },
             schemaRequestService: true,
           }
         : undefined,
-    htmlFeatures:
+    documentFeatures:
       mode === 'html'
         ? {
+            selectionRange: true,
             foldingRange: true,
             linkedEditingRange: true,
+            documentSymbol: true,
+            documentColor: true,
             documentFormatting: getConfigDocumentFormatting(),
           }
         : undefined,
