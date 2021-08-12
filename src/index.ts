@@ -36,7 +36,7 @@ const outputChannel = window.createOutputChannel('volar-client');
 
 let resolveCurrentTsPaths: {
   serverPath: string;
-  localizedPath: undefined;
+  localizedPath: string | undefined;
   isWorkspacePath: boolean;
 };
 
@@ -103,6 +103,7 @@ function createLanguageService(
   if (!resolveCurrentTsPaths) {
     resolveCurrentTsPaths = tsVersion.getCurrentTsPaths(context);
     outputChannel.appendLine(`currentTsPath: ${resolveCurrentTsPaths.serverPath}`);
+    outputChannel.appendLine(`localizePath: ${resolveCurrentTsPaths.localizedPath}`);
     outputChannel.appendLine(`isWorkspacePath: ${resolveCurrentTsPaths.isWorkspacePath}`);
   }
 
