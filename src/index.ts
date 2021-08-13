@@ -80,7 +80,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
   }
 
   function registarClientRequests() {
-    for (const client of [apiClient, docClient, htmlClient]) {
+    for (const client of clients) {
       showReferences.activate(context, client);
       documentVersion.activate(context, client);
       documentPrintWidth.activate(context, client);
