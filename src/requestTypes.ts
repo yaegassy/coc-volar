@@ -28,5 +28,3 @@ export const GetDocumentPrintWidthRequestType = new coc.RequestType<
 export const VerifyAllScriptsNotificationType = new coc.NotificationType0(
   shared.VerifyAllScriptsNotification.type.method
 );
-
-export const RemoveAllRefSugarsNotificationType = new coc.NotificationType0(shared.RemoveAllRefSugars.type.method);
