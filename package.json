@@ -146,6 +146,11 @@
           "default": true,
           "description": "[ref sugar ☐] code lens."
         },
+        "volar.autoCompleteRefs": {
+          "type": "boolean",
+          "default": false,
+          "description": "Auto-complete Ref value with '.value'."
+        },
         "volar.formatting.enable": {
           "type": "boolean",
           "default": true,
