@@ -104,11 +104,6 @@
           "default": "off",
           "description": "Traces the communication between VS Code and the language server."
         },
-        "volar.autoClosingTags": {
-          "type": "boolean",
-          "default": false,
-          "description": "Enable/disable autoClosing of HTML tags."
-        },
         "volar-document.trace.server": {
           "scope": "window",
           "type": "string",
@@ -145,6 +140,11 @@
           "type": "boolean",
           "default": true,
           "description": "[ref sugar ☐] code lens."
+        },
+        "volar.autoClosingTags": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable/disable autoClosing of HTML tags."
         },
         "volar.autoCompleteRefs": {
           "type": "boolean",
