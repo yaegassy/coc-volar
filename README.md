@@ -24,7 +24,22 @@ Plug 'yaegassy/coc-volar', {'do': 'yarn install --frozen-lockfile'}
 
 ## Configuration options
 
-Check the "configuration" section of [package.json](/package.json)
+- `volar.enable`: Enable coc-volar extension, default: `true`
+- `volar.dev.serverPath`: Absolute path to volar server module (For develop and check), default: `""`
+- `volar.useWorkspaceTsdk`: Use workspace (project) detected tsLibs in volar. if false, use coc-volar's built-in tsLibs, default: `false`
+- `volar.diagnostics.tsLocale`: Locale of diagnostics messages from typescript, valid option: `["cs", "de", "es", "fr", "it", "ja", "ko", "en", "pl", "pt-br", "ru", "tr", "zh-cn", "zh-tw"]`, default: `"en"`
+- `volar-api.trace.server`: Traces the communication between VS Code and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
+- `volar-document.trace.server`: Traces the communication between VS Code and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
+- `volar-html.trace.server`: Traces the communication between VS Code and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
+- `volar.codeLens.references`: [references] code lens, default: `true`
+- `volar.codeLens.pugTools`: [pug ☐] code lens, default: `true`
+- `volar.codeLens.scriptSetupTools`: [ref sugar ☐] code lens, default: `true`
+- `volar.autoClosingTags`: Enable/disable autoClosing of HTML tags, default: `false`
+- `volar.autoCompleteRefs`: Auto-complete Ref value with '.value', default: `false`
+- `volar.formatting.enable`: Enable/disable the Volar document formatter, default: `true`
+- `volar.formatting.printWidth`: HTML formatting print width, default: `100`
+- `volar.tagNameCase`: Tag name case, valid options: `["both", "kebab", "pascal"]`, default: `"both"`
+- `volar.attrNameCase`: Attr name case, valid options: `["kebab", "pascal"]`, default: `"kebab"`
 
 ## Commands
 
