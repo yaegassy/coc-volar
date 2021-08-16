@@ -45,6 +45,7 @@ Plug 'yaegassy/coc-volar', {'do': 'yarn install --frozen-lockfile'}
 
 - `volar.action.restartServer`: Restart Vue server
 - `volar.action.verifyAllScripts`: Verify All Scripts
+- `volar.action.splitEditors`: Split `<script>`, `<template>`, `<style>` Editors
 
 ## Code Actions
 

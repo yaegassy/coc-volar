@@ -21,6 +21,7 @@ import * as documentPrintWidth from './features/documentPrintWidth';
 import * as showReferences from './features/showReferences';
 import * as tagClosing from './features/tagClosing';
 import * as refComplete from './features/refComplete';
+import * as splitEditors from './features/splitEditors';
 import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
 
@@ -65,6 +66,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
   registarRestartRequest();
   registarClientRequests();
 
+  splitEditors.activate(context);
   verifyAll.activate(context, docClient);
   tagClosing.activate(context, htmlClient);
   refComplete.activate(context, apiClient);

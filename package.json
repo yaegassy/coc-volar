@@ -201,6 +201,11 @@
         "command": "volar.action.verifyAllScripts",
         "title": "Verify All Scripts",
         "category": "Volar"
+      },
+      {
+        "command": "volar.action.splitEditors",
+        "title": "Split <script>, <template>, <style> Editors",
+        "category": "Volar"
       }
     ]
   },
