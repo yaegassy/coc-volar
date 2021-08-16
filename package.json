@@ -201,11 +201,6 @@
         "command": "volar.action.verifyAllScripts",
         "title": "Verify All Scripts",
         "category": "Volar"
-      },
-      {
-        "command": "volar.action.removeRefSugars",
-        "title": "Remove All Ref Sugars in Project",
-        "category": "Volar"
       }
     ]
   },
