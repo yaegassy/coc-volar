@@ -7,7 +7,7 @@ async function start(watch) {
     minify: process.env.NODE_ENV === 'production',
     sourcemap: process.env.NODE_ENV === 'development',
     mainFields: ['module', 'main'],
-    external: ['coc.nvim'],
+    external: ['coc.nvim', 'consolidate'],
     platform: 'node',
     target: 'node10.12',
     outfile: 'lib/index.js',
