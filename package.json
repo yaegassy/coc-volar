@@ -188,6 +188,11 @@
           ],
           "default": "kebab",
           "description": "Attr name case."
+        },
+        "vetur.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable coc-vetur extension."
         }
       }
     },
