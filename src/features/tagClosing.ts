@@ -7,6 +7,7 @@ import {
   TextDocumentContentChangeEvent,
   Range,
 } from 'vscode-languageserver-protocol';
+import { GetTagCloseEditsRequestType } from '../requestTypes';
 
 export async function activate(context: coc.ExtensionContext, htmlClient: coc.LanguageClient) {
   await htmlClient.onReady();
@@ -18,7 +19,7 @@ export async function activate(context: coc.ExtensionContext, htmlClient: coc.La
           textDocument: { uri: document.uri },
           position,
         };
-        return htmlClient.sendRequest<string>('html/tag', param);
+        return htmlClient.sendRequest<string>(GetTagCloseEditsRequestType.method, param);
       },
       { vue: true },
       /** coc-volar */

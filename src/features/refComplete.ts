@@ -7,6 +7,7 @@ import {
   TextDocumentContentChangeEvent,
   Range,
 } from 'vscode-languageserver-protocol';
+import { GetRefCompleteEditsRequestType } from '../requestTypes';
 
 export async function activate(context: coc.ExtensionContext, tsClient: coc.LanguageClient) {
   await tsClient.onReady();
@@ -18,7 +19,7 @@ export async function activate(context: coc.ExtensionContext, tsClient: coc.Lang
           textDocument: { uri: document.uri },
           position,
         };
-        return tsClient.sendRequest<string>('volar/ref', param);
+        return tsClient.sendRequest<string>(GetRefCompleteEditsRequestType.method, param);
       },
       {
         vue: true,
