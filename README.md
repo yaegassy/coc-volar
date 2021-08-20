@@ -22,6 +22,17 @@
 Plug 'yaegassy/coc-volar', {'do': 'yarn install --frozen-lockfile'}
 ```
 
+## Using & Note
+
+> tsconfig.json / jsconfig.json is required for now.
+>
+> Also required "strict": true and "moduleResolution": "node".
+
+**See**:
+
+- <https://github.com/johnsoncodehk/volar#using>
+- <https://github.com/johnsoncodehk/volar#note>
+
 ## Configuration options
 
 - `volar.enable`: Enable coc-volar extension, default: `true`
@@ -77,6 +88,11 @@ Various code actions provided by the volar (languageservice)
 
 - `Add @ts-ignore for this line`
 
+## More features
+
+Other major LSP feature are of course supported as well.
+
+> completion, definition, typeDefinition, diagnostics, hover, signatureHelp, references, codeLens, formatting, rename and more...
 
 ## Thanks
 
