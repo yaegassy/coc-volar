@@ -1,6 +1,6 @@
 {
   "name": "@yaegassy/coc-volar",
-  "version": "0.5.7",
+  "version": "0.5.8",
   "volarReferenceVersion": "0.27.5",
   "description": "Volar (Fast Vue Language Support) extension for coc.nvim",
   "author": "yaegassy <yosstools@gmail.com>",
