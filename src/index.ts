@@ -203,12 +203,12 @@ function getConfigTagNameCase() {
 }
 
 function getConfigAttrNameCase() {
-  const tagNameCase = workspace.getConfiguration('volar').get<'kebab' | 'pascal'>('attrNameCase');
+  const tagNameCase = workspace.getConfiguration('volar').get<'kebab' | 'camel'>('attrNameCase');
   switch (tagNameCase) {
     case 'kebab':
       return 'kebabCase' as const;
-    case 'pascal':
-      return 'pascalCase' as const;
+    case 'camel':
+      return 'camelCase' as const;
   }
   return 'kebabCase' as const;
 }
