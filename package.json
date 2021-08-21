@@ -180,7 +180,7 @@
           "type": "string",
           "enum": [
             "kebab",
-            "pascal"
+            "camel"
           ],
           "enumDescriptions": [
             "kebab-case",

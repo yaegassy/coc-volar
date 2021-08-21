@@ -50,7 +50,7 @@ Plug 'yaegassy/coc-volar', {'do': 'yarn install --frozen-lockfile'}
 - `volar.formatting.enable`: Enable/disable the Volar document formatter, default: `true`
 - `volar.formatting.printWidth`: HTML formatting print width, default: `100`
 - `volar.tagNameCase`: Tag name case, valid options: `["both", "kebab", "pascal"]`, default: `"both"`
-- `volar.attrNameCase`: Attr name case, valid options: `["kebab", "pascal"]`, default: `"kebab"`
+- `volar.attrNameCase`: Attr name case, valid options: `["kebab", "camel"]`, default: `"kebab"`
 
 ## Commands
 
