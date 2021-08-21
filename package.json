@@ -217,8 +217,8 @@
   "dependencies": {
     "@volar/server": "0.27.4",
     "@volar/shared": "0.27.4",
-    "@vue/compiler-sfc": "^3.2.2",
-    "@vue/reactivity": "^3.2.2",
+    "@vue/compiler-sfc": "^3.2.4",
+    "@vue/reactivity": "^3.2.4",
     "typescript": "^4.1.2",
     "vscode-languageclient": "^8.0.0-next.1"
   }
