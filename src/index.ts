@@ -24,6 +24,7 @@ import * as refComplete from './features/refComplete';
 import * as splitEditors from './features/splitEditors';
 import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
+import * as vueTscVersion from './features/vueTscVersion';
 
 import { VolarCodeActionProvider } from './action';
 
@@ -70,6 +71,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
   verifyAll.activate(context, docClient);
   tagClosing.activate(context, htmlClient);
   refComplete.activate(context, apiClient);
+  vueTscVersion.activate(context, outputChannel);
 
   async function registarRestartRequest() {
     await Promise.all(clients.map((client) => client.onReady()));
