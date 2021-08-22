@@ -24,14 +24,18 @@ Plug 'yaegassy/coc-volar', {'do': 'yarn install --frozen-lockfile'}
 
 ## Using & Note
 
-> tsconfig.json / jsconfig.json is required for now.
->
-> Also required "strict": true and "moduleResolution": "node".
-
 **See**:
 
 - <https://github.com/johnsoncodehk/volar#using>
 - <https://github.com/johnsoncodehk/volar#note>
+
+**Warning**:
+
+If the workspace's vue-tsc dependency is different from the Extension version, the result of the type check may not match.
+
+Please update vue-tsc by referring to this.
+
+- <https://github.com/johnsoncodehk/volar/discussions/402>
 
 ## Configuration options
 
