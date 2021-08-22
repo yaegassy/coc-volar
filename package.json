@@ -151,6 +151,11 @@
           "default": false,
           "description": "Auto-complete Ref value with '.value'."
         },
+        "volar.checkVueTscVersion": {
+          "type": "boolean",
+          "default": false,
+          "description": "Check node_modules/vscode-vue-languageservice version when start extension."
+        },
         "volar.formatting.enable": {
           "type": "boolean",
           "default": true,

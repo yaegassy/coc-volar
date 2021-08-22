@@ -47,6 +47,7 @@ Plug 'yaegassy/coc-volar', {'do': 'yarn install --frozen-lockfile'}
 - `volar.codeLens.scriptSetupTools`: [ref sugar ☐] code lens, default: `true`
 - `volar.autoClosingTags`: Enable/disable autoClosing of HTML tags, default: `false`
 - `volar.autoCompleteRefs`: Auto-complete Ref value with '.value', default: `false`
+- `volar.checkVueTscVersion`: Check node_modules/vscode-vue-languageservice version when start extension, default: `false`
 - `volar.formatting.enable`: Enable/disable the Volar document formatter, default: `true`
 - `volar.formatting.printWidth`: HTML formatting print width, default: `100`
 - `volar.tagNameCase`: Tag name case, valid options: `["both", "kebab", "pascal"]`, default: `"both"`
