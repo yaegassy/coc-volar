@@ -59,6 +59,7 @@ Please update vue-tsc by referring to this.
 
 ## Commands
 
+- `volar.version`: Show Volar (client/server) version
 - `volar.action.restartServer`: Restart Vue server
 - `volar.action.verifyAllScripts`: Verify All Scripts
 - `volar.action.splitEditors`: Split `<script>`, `<template>`, `<style>` Editors

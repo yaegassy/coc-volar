@@ -14,7 +14,7 @@ import {
 
 import * as shared from '@volar/shared';
 import * as path from 'path';
-import { existsSync } from 'fs';
+import * as fs from 'fs';
 
 import * as documentVersion from './features/documentVersion';
 import * as documentPrintWidth from './features/documentPrintWidth';
@@ -52,7 +52,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
   outputChannel.appendLine(`${'#'.repeat(10)} volar-client\n`);
 
   const devVolarServerPath = extensionConfig.get<string>('dev.serverPath', '');
-  if (devVolarServerPath && devVolarServerPath !== '' && existsSync(devVolarServerPath)) {
+  if (devVolarServerPath && devVolarServerPath !== '' && fs.existsSync(devVolarServerPath)) {
     serverModule = devVolarServerPath;
   } else {
     serverModule = context.asAbsolutePath(path.join('node_modules', '@volar', 'server', 'out', 'index.js'));
@@ -93,7 +93,20 @@ export async function activate(context: ExtensionContext): Promise<void> {
     }
   }
 
-  /** MEMO: coc-volar code action feature */
+  /** MEMO: for coc-volar */
+  context.subscriptions.push(
+    commands.registerCommand('volar.version', () => {
+      const volarJSON = path.join(context.extensionPath, 'node_modules', '@volar', 'server', 'package.json');
+      const volarPackageText = JSON.parse(fs.readFileSync(volarJSON, 'utf8'));
+      const cocVolarJSON = path.join(context.extensionPath, 'package.json');
+      const cocVolarPackageText = JSON.parse(fs.readFileSync(cocVolarJSON, 'utf8'));
+      window.showMessage(
+        `coc-volar(client) v${cocVolarPackageText.version} with volar(server) v${volarPackageText.version}`
+      );
+    })
+  );
+
+  /** MEMO: for coc-volar */
   const languageSelector: DocumentSelector = [{ language: 'vue', scheme: 'file' }];
   const codeActionProvider = new VolarCodeActionProvider();
   context.subscriptions.push(languages.registerCodeActionProvider(languageSelector, codeActionProvider, 'volar'));
