@@ -203,6 +203,11 @@
     },
     "commands": [
       {
+        "command": "volar.version",
+        "title": "Show Volar (client/server) version",
+        "category": "Volar"
+      },
+      {
         "command": "volar.action.restartServer",
         "title": "Restart Vue server",
         "category": "Volar"
