@@ -40,7 +40,6 @@ Please update vue-tsc by referring to this.
 ## Configuration options
 
 - `volar.enable`: Enable coc-volar extension, default: `true`
-- `volar.dev.serverPath`: Absolute path to volar server module (For develop and check), default: `""`
 - `volar.useWorkspaceTsdk`: Use workspace (project) detected tsLibs in volar. if false, use coc-volar's built-in tsLibs, default: `false`
 - `volar.diagnostics.tsLocale`: Locale of diagnostics messages from typescript, valid option: `["cs", "de", "es", "fr", "it", "ja", "ko", "en", "pl", "pt-br", "ru", "tr", "zh-cn", "zh-tw"]`, default: `"en"`
 - `volar-api.trace.server`: Traces the communication between VS Code and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
