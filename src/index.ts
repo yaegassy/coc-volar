@@ -228,11 +228,7 @@ function getConfigAttrNameCase() {
   return 'kebabCase' as const;
 }
 
-type DocumentDiagnosticsType = {
-  getDocumentVersionRequest: boolean;
-};
-
-function getConfigDiagnostics(): DocumentDiagnosticsType | undefined {
+function getConfigDiagnostics(): NonNullable<shared.ServerInitializationOptions['languageFeatures']>['diagnostics'] {
   const isDiagnosticsEnable = workspace.getConfiguration('volar').get<boolean>('diagnostics.enable', true);
 
   if (isDiagnosticsEnable) {
