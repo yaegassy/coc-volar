@@ -169,7 +169,7 @@ function createLanguageService(
             documentLink: true,
             codeLens: { showReferencesNotification: true },
             semanticTokens: true,
-            diagnostics: { getDocumentVersionRequest: true },
+            diagnostics: getConfigDiagnostics(),
             schemaRequestService: true,
           }
         : undefined,
@@ -226,6 +226,16 @@ function getConfigAttrNameCase() {
       return 'camelCase' as const;
   }
   return 'kebabCase' as const;
+}
+
+function getConfigDiagnostics(): NonNullable<shared.ServerInitializationOptions['languageFeatures']>['diagnostics'] {
+  const isDiagnosticsEnable = workspace.getConfiguration('volar').get<boolean>('diagnostics.enable', true);
+
+  if (isDiagnosticsEnable) {
+    return { getDocumentVersionRequest: true };
+  } else {
+    return undefined;
+  }
 }
 
 type DocumentFormattingType = {
