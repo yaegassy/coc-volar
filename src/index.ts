@@ -236,12 +236,9 @@ function getConfigDiagnostics(): NonNullable<shared.ServerInitializationOptions[
   }
 }
 
-type DocumentFormattingType = {
-  defaultPrintWidth: number;
-  getDocumentPrintWidthRequest: boolean;
-};
-
-function getConfigDocumentFormatting(): DocumentFormattingType | undefined {
+function getConfigDocumentFormatting(): NonNullable<
+  shared.ServerInitializationOptions['documentFeatures']
+>['documentFormatting'] {
   const isFormattingEnable = workspace.getConfiguration('volar').get<boolean>('formatting.enable', true);
 
   if (isFormattingEnable) {
