@@ -96,13 +96,11 @@ export async function activate(context: ExtensionContext): Promise<void> {
   /** MEMO: for coc-volar */
   context.subscriptions.push(
     commands.registerCommand('volar.version', () => {
-      const volarJSON = path.join(context.extensionPath, 'node_modules', '@volar', 'server', 'package.json');
-      const volarPackageText = JSON.parse(fs.readFileSync(volarJSON, 'utf8'));
-      const cocVolarJSON = path.join(context.extensionPath, 'package.json');
-      const cocVolarPackageText = JSON.parse(fs.readFileSync(cocVolarJSON, 'utf8'));
-      window.showMessage(
-        `coc-volar(client) v${cocVolarPackageText.version} with volar(server) v${volarPackageText.version}`
-      );
+      const clientJSON = path.join(context.extensionPath, 'package.json');
+      const clientPackage = JSON.parse(fs.readFileSync(clientJSON, 'utf8'));
+      const serverJSON = path.join(context.extensionPath, 'node_modules', '@volar', 'server', 'package.json');
+      const serverPackage = JSON.parse(fs.readFileSync(serverJSON, 'utf8'));
+      window.showMessage(`coc-volar(client) v${clientPackage.version} with volar(server) v${serverPackage.version}`);
     })
   );
 
