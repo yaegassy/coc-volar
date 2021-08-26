@@ -33,8 +33,8 @@ export async function activate(context: ExtensionContext, outputChannel: OutputC
           const extVueTscVersion = extVueTscPackageJson.version;
 
           // MEMO: logging for coc-volar (volar-client)
-          outputChannel.appendLine(`VueTsc(dep) Version | Path: ${depVersion} | ${packageJson}`);
-          outputChannel.appendLine(`VueTsc(ext) Version | Path: ${extVueTscVersion} | ${extVueTscPackageJson}`);
+          outputChannel.appendLine(`VueTsc(dep) Version | Path: ${depVersion} | ${depPath}`);
+          outputChannel.appendLine(`VueTsc(ext) Version | Path: ${extVueTscVersion} | ${extVueTscPackageJsonPath}`);
 
           if (depVersion && depVersion !== extVueTscVersion) {
             const message = `Your vue-tsc dependency is not same with Extension version (${depVersion} ~ ${extVueTscVersion}). It may cause inconsistent type check results between cli and IDE.`;
