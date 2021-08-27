@@ -199,6 +199,11 @@
           "default": "kebab",
           "description": "Attr name case."
         },
+        "volar.fix.completion": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable fix patch for `css` completion issue"
+        },
         "vetur.enable": {
           "type": "boolean",
           "default": true,
