@@ -1,10 +1,16 @@
 import {
   commands,
+  CancellationToken,
+  CompletionContext,
+  CompletionItem,
+  CompletionList,
   DocumentSelector,
   ExtensionContext,
   LanguageClient,
   LanguageClientOptions,
   languages,
+  Position,
+  ProvideCompletionItemsSignature,
   ServerOptions,
   Thenable,
   TransportKind,
@@ -193,6 +199,41 @@ function createLanguageService(
       { scheme, language: 'typescriptreact' },
     ],
     initializationOptions: serverInitOptions,
+    middleware: getConfigFixCompletion()
+      ? {
+          provideCompletionItem:
+            mode === 'api'
+              ? async (
+                  document,
+                  position: Position,
+                  context: CompletionContext,
+                  token: CancellationToken,
+                  next: ProvideCompletionItemsSignature
+                ) => {
+                  const res = await Promise.resolve(next(document, position, context, token));
+                  const doc = workspace.getDocument(document.uri);
+                  if (!doc || !res) return [];
+
+                  const items: CompletionItem[] = res.hasOwnProperty('isIncomplete')
+                    ? (res as CompletionList).items
+                    : (res as CompletionItem[]);
+
+                  // **MEMO**
+                  // If further fine-tuning of the completion items is needed, this is the place to do it.
+                  // ----
+                  // data.mode: 'ts' | 'html' | 'css'
+                  // ----
+                  // items.forEach((e) => {
+                  //   if (e.data?.mode === 'css') {
+                  //     //
+                  //   }
+                  // });
+
+                  return items;
+                }
+              : undefined,
+        }
+      : undefined,
   };
 
   const client = new LanguageClient(id, name, serverOptions, clientOptions);
@@ -249,4 +290,8 @@ function getConfigDocumentFormatting(): NonNullable<
   } else {
     return undefined;
   }
+}
+
+function getConfigFixCompletion() {
+  return workspace.getConfiguration('volar').get<boolean>('fix.completion', true);
 }
