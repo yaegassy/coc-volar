@@ -35,8 +35,9 @@ import * as vueTscVersion from './features/vueTscVersion';
 import { VolarCodeActionProvider } from './action';
 
 let apiClient: LanguageClient;
-let docClient: LanguageClient;
+let docClient: LanguageClient | undefined;
 let htmlClient: LanguageClient;
+let lowPowerMode = false;
 
 let serverModule: string;
 
@@ -64,17 +65,21 @@ export async function activate(context: ExtensionContext): Promise<void> {
     serverModule = context.asAbsolutePath(path.join('node_modules', '@volar', 'server', 'out', 'index.js'));
   }
 
+  lowPowerMode = isLowPowerMode();
+
   apiClient = createLanguageService(context, 'api', 'volar-api', 'Volar - API', 6009, 'file');
-  docClient = createLanguageService(context, 'doc', 'volar-document', 'Volar - Document', 6010, 'file');
+  docClient = !lowPowerMode
+    ? createLanguageService(context, 'doc', 'volar-document', 'Volar - Document', 6010, 'file')
+    : undefined;
   htmlClient = createLanguageService(context, 'html', 'volar-html', 'Volar - HTML', 6011, undefined);
 
-  const clients = [apiClient, docClient, htmlClient];
+  const clients = [apiClient, docClient, htmlClient].filter(shared.notEmpty);
 
   registarRestartRequest();
   registarClientRequests();
 
   splitEditors.activate(context);
-  verifyAll.activate(context, docClient);
+  verifyAll.activate(context, docClient ?? apiClient);
   tagClosing.activate(context, htmlClient);
   refComplete.activate(context, apiClient);
   vueTscVersion.activate(context, outputChannel);
@@ -116,8 +121,8 @@ export async function activate(context: ExtensionContext): Promise<void> {
   context.subscriptions.push(languages.registerCodeActionProvider(languageSelector, codeActionProvider, 'volar'));
 }
 
-export function deactivate(): Thenable<void> | undefined {
-  return apiClient?.stop() && docClient?.stop() && htmlClient?.stop();
+export function deactivate(): Thenable<any> | undefined {
+  return Promise.all([apiClient?.stop(), docClient?.stop(), htmlClient?.stop()].filter(shared.notEmpty));
 }
 
 function createLanguageService(
@@ -148,33 +153,38 @@ function createLanguageService(
   const serverInitOptions: shared.ServerInitializationOptions = {
     typescript: resolveCurrentTsPaths,
     languageFeatures:
-      mode === 'api'
+      mode === 'api' || mode === 'doc'
         ? {
-            references: true,
-            definition: true,
-            typeDefinition: true,
-            callHierarchy: true,
-            hover: true,
-            rename: true,
-            renameFileRefactoring: true,
-            signatureHelp: true,
-            codeAction: true,
-            completion: {
-              defaultTagNameCase: getConfigTagNameCase(),
-              defaultAttrNameCase: getConfigAttrNameCase(),
-              getDocumentNameCasesRequest: false /** MEMO: Set to false for coc-volar */,
-              getDocumentSelectionRequest: false /** MEMO: Set to false for coc-volar */,
-            },
-            schemaRequestService: true,
-          }
-        : mode === 'doc'
-        ? {
-            documentHighlight: true,
-            documentLink: true,
-            codeLens: { showReferencesNotification: true },
-            semanticTokens: true,
-            diagnostics: getConfigDiagnostics(),
-            schemaRequestService: true,
+            ...(mode === 'api'
+              ? {
+                  references: true,
+                  definition: true,
+                  typeDefinition: true,
+                  callHierarchy: true,
+                  hover: true,
+                  rename: true,
+                  renameFileRefactoring: true,
+                  signatureHelp: true,
+                  codeAction: true,
+                  completion: {
+                    defaultTagNameCase: getConfigTagNameCase(),
+                    defaultAttrNameCase: getConfigAttrNameCase(),
+                    getDocumentNameCasesRequest: false /** MEMO: Set to false for coc-volar */,
+                    getDocumentSelectionRequest: false /** MEMO: Set to false for coc-volar */,
+                  },
+                  schemaRequestService: true,
+                }
+              : {}),
+            ...(mode === 'doc' || (mode === 'api' && lowPowerMode)
+              ? {
+                  documentHighlight: true,
+                  documentLink: true,
+                  codeLens: { showReferencesNotification: true },
+                  semanticTokens: true,
+                  diagnostics: getConfigDiagnostics(),
+                  schemaRequestService: true,
+                }
+              : {}),
           }
         : undefined,
     documentFeatures:
@@ -241,6 +251,10 @@ function createLanguageService(
   context.subscriptions.push(client.start());
 
   return client;
+}
+
+function isLowPowerMode() {
+  return !!workspace.getConfiguration('volar').get<boolean>('lowPowerMode');
 }
 
 function getConfigTagNameCase() {

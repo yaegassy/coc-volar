@@ -46,6 +46,7 @@ Please update vue-tsc by referring to this.
 - `volar-api.trace.server`: Traces the communication between VS Code and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
 - `volar-document.trace.server`: Traces the communication between VS Code and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
 - `volar-html.trace.server`: Traces the communication between VS Code and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
+- `volar.lowPowerMode`: Using one language server to do the work of two language serves can reduce system resource usage, but features such as auto-complete will be much slower, default: `false`
 - `volar.codeLens.references`: [references] code lens, default: `true`
 - `volar.codeLens.pugTools`: [pug ☐] code lens, default: `true`
 - `volar.codeLens.scriptSetupTools`: [ref sugar ☐] code lens, default: `true`
