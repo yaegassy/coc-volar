@@ -144,8 +144,7 @@ function useDocDescriptor() {
 
 async function foldingSFCBlock(blockRanges: CocVolarSFCBlock[]) {
   for (const v of blockRanges) {
-    ////await workspace.nvim.command(`${v.start},${v.end}fold`);
-    await workspace.nvim.command(`${v.start},${v.end + 1}fold`);
+    await workspace.nvim.command(`${v.start + 1},${v.end + 1}fold`);
   }
 }
 
