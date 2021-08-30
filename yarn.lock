@@ -447,7 +447,7 @@
     "@vue/compiler-core" "3.2.6"
     "@vue/shared" "3.2.6"
 
-"@vue/reactivity@3.2.6", "@vue/reactivity@^3.2.6":
+"@vue/reactivity@^3.2.6":
   version "3.2.6"
   resolved "https://registry.yarnpkg.com/@vue/reactivity/-/reactivity-3.2.6.tgz#b8993fa6f48545178e588e25a9c9431a1c1b7d50"
   integrity sha512-8vIDD2wpCnYisNNZjmcIj+Rixn0uhZNY3G1vzlgdVdLygeRSuFjkmnZk6WwvGzUWpKfnG0e/NUySM3mVi59hAA==
