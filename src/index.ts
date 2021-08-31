@@ -67,11 +67,21 @@ export async function activate(context: ExtensionContext): Promise<void> {
 
   lowPowerMode = isLowPowerMode();
 
-  apiClient = createLanguageService(context, 'api', 'volar-api', 'Volar - API', 6009, 'file');
+  const apiDocumentSelector: DocumentSelector = [
+    { scheme: 'file', language: 'vue' },
+    { scheme: 'file', language: 'javascript' },
+    { scheme: 'file', language: 'typescript' },
+    { scheme: 'file', language: 'javascriptreact' },
+    { scheme: 'file', language: 'typescriptreact' },
+    { scheme: 'file', language: 'json' },
+  ];
+  const htmlDocumentSelector: DocumentSelector = [{ language: 'vue' }];
+
+  apiClient = createLanguageService(context, 'api', 'volar-api', 'Volar - API', 6009, apiDocumentSelector);
   docClient = !lowPowerMode
-    ? createLanguageService(context, 'doc', 'volar-document', 'Volar - Document', 6010, 'file')
+    ? createLanguageService(context, 'doc', 'volar-document', 'Volar - Document', 6010, apiDocumentSelector)
     : undefined;
-  htmlClient = createLanguageService(context, 'html', 'volar-html', 'Volar - HTML', 6011, undefined);
+  htmlClient = createLanguageService(context, 'html', 'volar-html', 'Volar - HTML', 6011, htmlDocumentSelector);
 
   const clients = [apiClient, docClient, htmlClient].filter(shared.notEmpty);
 
@@ -131,7 +141,7 @@ function createLanguageService(
   id: string,
   name: string,
   port: number,
-  scheme: string | undefined
+  documentSelector: DocumentSelector
 ) {
   const debugOptions = { execArgv: ['--nolazy', '--inspect=' + port] };
   const serverOptions: ServerOptions = {
@@ -150,7 +160,7 @@ function createLanguageService(
     outputChannel.appendLine(`isWorkspacePath: ${resolveCurrentTsPaths.isWorkspacePath}`);
   }
 
-  const serverInitOptions: shared.ServerInitializationOptions = {
+  const initializationOptions: shared.ServerInitializationOptions = {
     typescript: resolveCurrentTsPaths,
     languageFeatures:
       mode === 'api' || mode === 'doc'
@@ -201,14 +211,8 @@ function createLanguageService(
   };
 
   const clientOptions: LanguageClientOptions = {
-    documentSelector: [
-      { scheme, language: 'vue' },
-      { scheme, language: 'javascript' },
-      { scheme, language: 'typescript' },
-      { scheme, language: 'javascriptreact' },
-      { scheme, language: 'typescriptreact' },
-    ],
-    initializationOptions: serverInitOptions,
+    documentSelector,
+    initializationOptions,
     middleware: getConfigFixCompletion()
       ? {
           provideCompletionItem:
