@@ -37,7 +37,7 @@ export async function activate(context: ExtensionContext, outputChannel: OutputC
           outputChannel.appendLine(`VueTsc(ext) Version | Path: ${extVueTscVersion} | ${extVueTscPackageJsonPath}`);
 
           if (depVersion && depVersion !== extVueTscVersion) {
-            const message = `Your vue-tsc dependency is not same with Extension version (${depVersion} ~ ${extVueTscVersion}). It may cause inconsistent type check results between cli and IDE.`;
+            const message = `vue-tsc dependency version (${depVersion}) is different to Extension version (${extVueTscVersion}). Type-checking behavior maybe different.`;
             const howTo = 'How To Update?';
             const disable = 'Disable Version Checking';
 
