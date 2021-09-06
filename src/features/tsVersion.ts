@@ -26,7 +26,7 @@ export function getCurrentTsPaths(context: ExtensionContext) {
   const localizedPath = fs.existsSync(tsLocaleJsonPath) ? tsLocaleJsonPath : undefined;
 
   const builtinTsPaths = {
-    serverPath: path.join(context.extensionPath, 'node_modules', 'typescript', 'lib', 'typescript.js'),
+    serverPath: path.join(context.extensionPath, 'node_modules', 'typescript', 'lib', 'tsserverlibrary.js'),
     localizedPath,
   };
 
