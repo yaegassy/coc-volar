@@ -33,7 +33,7 @@ import * as verifyAll from './features/verifyAll';
 import * as vueTscVersion from './features/vueTscVersion';
 
 import { VolarCodeActionProvider } from './client/actions';
-import { versionCommand } from './client/commands';
+import { doctorCommand, versionCommand } from './client/commands';
 
 let apiClient: LanguageClient;
 let docClient: LanguageClient | undefined;
@@ -58,6 +58,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
   if (!isEnable) return;
 
   outputChannel.appendLine(`${'#'.repeat(10)} volar-client\n`);
+  initializeWorkspaceState(context);
 
   const devVolarServerPath = extensionConfig.get<string>('dev.serverPath', '');
   if (devVolarServerPath && devVolarServerPath !== '' && fs.existsSync(devVolarServerPath)) {
@@ -117,6 +118,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
 
   /** MEMO: for coc-volar */
   context.subscriptions.push(commands.registerCommand('volar.version', () => versionCommand(context)));
+  context.subscriptions.push(commands.registerCommand('volar.doctor', doctorCommand(context)));
 
   /** MEMO: for coc-volar */
   const languageSelector: DocumentSelector = [{ language: 'vue', scheme: 'file' }];
@@ -148,6 +150,7 @@ function createLanguageService(
 
   if (!resolveCurrentTsPaths) {
     resolveCurrentTsPaths = tsVersion.getCurrentTsPaths(context);
+    context.workspaceState.update('coc-volar-ts-server-path', resolveCurrentTsPaths.serverPath);
     outputChannel.appendLine(`currentTsPath: ${resolveCurrentTsPaths.serverPath}`);
     outputChannel.appendLine(`localizePath: ${resolveCurrentTsPaths.localizedPath}`);
     outputChannel.appendLine(`isWorkspacePath: ${resolveCurrentTsPaths.isWorkspacePath}`);
@@ -305,4 +308,8 @@ function getConfigDocumentFormatting(): NonNullable<
 
 function getConfigFixCompletion() {
   return workspace.getConfiguration('volar').get<boolean>('fix.completion', true);
+}
+
+function initializeWorkspaceState(context: ExtensionContext) {
+  context.workspaceState.update('coc-volar-ts-server-path', undefined);
 }

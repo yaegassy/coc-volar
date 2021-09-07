@@ -223,6 +223,11 @@
         "category": "Volar"
       },
       {
+        "command": "volar.doctor",
+        "title": "Show Doctor info",
+        "category": "Volar"
+      },
+      {
         "command": "volar.action.restartServer",
         "title": "Restart Vue server",
         "category": "Volar"
