@@ -92,6 +92,7 @@ export function doctorCommand(context: ExtensionContext) {
       vueTscExtVersion: vueTscExtVersion,
       tsVersion,
       tsServerPath,
+      settings: workspace.getConfiguration('volar'),
     };
 
     const outputText = JSON.stringify(doctorData, null, 2);
