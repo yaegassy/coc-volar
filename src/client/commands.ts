@@ -13,9 +13,9 @@ export function versionCommand(context: ExtensionContext) {
 export function doctorCommand(context: ExtensionContext) {
   return async () => {
     const { document } = await workspace.getCurrentState();
-    const fileName = path.basename(document.uri);
+    const filePath = Uri.parse(document.uri).fsPath;
 
-    if (!fileName.endsWith('.vue')) {
+    if (!filePath.endsWith('.vue')) {
       return window.showInformationMessage('Failed to doctor. Make sure the current file is a .vue file.');
     }
 
@@ -83,7 +83,8 @@ export function doctorCommand(context: ExtensionContext) {
     }
 
     const doctorData = {
-      title: '---- Volar doctor ----',
+      name: 'Volar doctor info',
+      filePath,
       clientVersion: clientPackage.version,
       serverVersion: serverPackage.version,
       vueVersion: vueVersion === undefined ? 'none' : vueVersion,
