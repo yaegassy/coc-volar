@@ -33,7 +33,7 @@ import * as verifyAll from './features/verifyAll';
 import * as vueTscVersion from './features/vueTscVersion';
 
 import { VolarCodeActionProvider } from './client/actions';
-import { doctorCommand, versionCommand } from './client/commands';
+import { doctorCommand } from './client/commands';
 
 let apiClient: LanguageClient;
 let docClient: LanguageClient | undefined;
@@ -125,7 +125,6 @@ export async function activate(context: ExtensionContext): Promise<void> {
   }
 
   /** MEMO: for coc-volar */
-  context.subscriptions.push(commands.registerCommand('volar.version', () => versionCommand(context)));
   context.subscriptions.push(commands.registerCommand('volar.doctor', doctorCommand(context)));
 
   /** MEMO: for coc-volar */

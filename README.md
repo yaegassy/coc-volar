@@ -60,8 +60,9 @@ Please update vue-tsc by referring to this.
 
 ## Commands
 
-- `volar.version`: Show Volar (client/server) version
 - `volar.doctor`: Show Doctor info
+  - You can check the versions and settings of various packages
+    - client, server, vue, @vue/runtime-dom, vue-tsc related, typescript related, coc-volar's configuration, and more...
 - `volar.action.restartServer`: Restart Vue server
 - `volar.action.verifyAllScripts`: Verify All Scripts
 - `volar.action.splitEditors`: Split `<script>`, `<template>`, `<style>` Editors
