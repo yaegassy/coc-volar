@@ -69,21 +69,29 @@ export async function activate(context: ExtensionContext): Promise<void> {
 
   lowPowerMode = lowPowerModeEnabled();
 
-  const apiDocumentSelector: DocumentSelector = [
-    { scheme: 'file', language: 'vue' },
-    { scheme: 'file', language: 'javascript' },
-    { scheme: 'file', language: 'typescript' },
-    { scheme: 'file', language: 'javascriptreact' },
-    { scheme: 'file', language: 'typescriptreact' },
-    { scheme: 'file', language: 'json' },
-  ];
-  const htmlDocumentSelector: DocumentSelector = [{ language: 'vue' }];
+  // Since coc-volar does not support volar's tsPlugin related features, set only for vue.
+  const languageFeaturesDocumentSelector: DocumentSelector = [{ scheme: 'file', language: 'vue' }];
+  const documentFeaturesDocumentSelector: DocumentSelector = [{ language: 'vue' }];
 
-  apiClient = createLanguageService(context, 'api', 'volar-api', 'Volar - API', 6009, apiDocumentSelector);
+  apiClient = createLanguageService(context, 'api', 'volar-api', 'Volar - API', 6009, languageFeaturesDocumentSelector);
   docClient = !lowPowerMode
-    ? createLanguageService(context, 'doc', 'volar-document', 'Volar - Document', 6010, apiDocumentSelector)
+    ? createLanguageService(
+        context,
+        'doc',
+        'volar-document',
+        'Volar - Document',
+        6010,
+        languageFeaturesDocumentSelector
+      )
     : undefined;
-  htmlClient = createLanguageService(context, 'html', 'volar-html', 'Volar - HTML', 6011, htmlDocumentSelector);
+  htmlClient = createLanguageService(
+    context,
+    'html',
+    'volar-html',
+    'Volar - HTML',
+    6011,
+    documentFeaturesDocumentSelector
+  );
 
   const clients = [apiClient, docClient, htmlClient].filter(shared.notEmpty);
 
