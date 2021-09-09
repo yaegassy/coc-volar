@@ -102,7 +102,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
   verifyAll.activate(context, docClient ?? apiClient);
   tagClosing.activate(context, htmlClient);
   refComplete.activate(context, apiClient);
-  vueTscVersion.activate(context, outputChannel);
+  vueTscVersion.activate(context);
 
   async function registarRestartRequest() {
     await Promise.all(clients.map((client) => client.onReady()));

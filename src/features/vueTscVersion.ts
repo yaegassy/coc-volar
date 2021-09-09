@@ -1,8 +1,8 @@
-import { commands, ExtensionContext, OutputChannel, Uri, window, workspace } from 'coc.nvim';
+import { commands, ExtensionContext, Uri, window, workspace } from 'coc.nvim';
 import * as path from 'path';
 import * as fs from 'fs';
 
-export async function activate(context: ExtensionContext, outputChannel: OutputChannel) {
+export async function activate(context: ExtensionContext) {
   if (!workspace.getConfiguration('volar').get<boolean>('checkVueTscVersion')) return;
 
   if (workspace.workspaceFolders) {
@@ -15,29 +15,25 @@ export async function activate(context: ExtensionContext, outputChannel: OutputC
         'package.json'
       );
 
-      const extVueTscPackageJsonPath = path.join(
+      const extVueTscDepPackageJsonPath = path.join(
         context.extensionPath,
         'node_modules',
         'vscode-vue-languageservice',
         'package.json'
       );
 
-      if (fs.existsSync(depPath) && fs.existsSync(extVueTscPackageJsonPath)) {
+      if (fs.existsSync(depPath) && fs.existsSync(extVueTscDepPackageJsonPath)) {
         try {
           const packageJsonText = fs.readFileSync(depPath, 'utf8');
           const packageJson = JSON.parse(packageJsonText);
           const depVersion = packageJson.version;
 
-          const extVueTscPackageJsonText = fs.readFileSync(extVueTscPackageJsonPath, 'utf8');
-          const extVueTscPackageJson = JSON.parse(extVueTscPackageJsonText);
-          const extVueTscVersion = extVueTscPackageJson.version;
+          const extVueTscDepPackageJsonText = fs.readFileSync(extVueTscDepPackageJsonPath, 'utf8');
+          const extVueTscDepPackageJson = JSON.parse(extVueTscDepPackageJsonText);
+          const extVueTscDepVersion = extVueTscDepPackageJson.version;
 
-          // MEMO: logging for coc-volar (volar-client)
-          outputChannel.appendLine(`VueTsc(dep) Version | Path: ${depVersion} | ${depPath}`);
-          outputChannel.appendLine(`VueTsc(ext) Version | Path: ${extVueTscVersion} | ${extVueTscPackageJsonPath}`);
-
-          if (depVersion && depVersion !== extVueTscVersion) {
-            const message = `vue-tsc dependency version (${depVersion}) is different to Extension version (${extVueTscVersion}). Type-checking behavior maybe different.`;
+          if (depVersion && depVersion !== extVueTscDepVersion) {
+            const message = `vue-tsc dependency version (${depVersion}) is different to Extension version (${extVueTscDepVersion}). Type-checking behavior maybe different.`;
             const howTo = 'How To Update?';
             const disable = 'Disable Version Checking';
 
