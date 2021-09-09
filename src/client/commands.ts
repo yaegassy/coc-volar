@@ -26,8 +26,9 @@ export function doctorCommand(context: ExtensionContext) {
 
     let vueVersion: string | undefined;
     let vueRuntimeDomVersion: string | undefined;
-    let vueTscDepVersion: string | undefined;
-    let vueTscExtVersion: string | undefined;
+    let vueTscVersion: string | undefined;
+    let vueTscWorkspaceDepVersion: string | undefined;
+    let vueTscExtensionDepVersion: string | undefined;
 
     if (workspace.workspaceFolders) {
       for (const folder of workspace.workspaceFolders) {
@@ -41,14 +42,21 @@ export function doctorCommand(context: ExtensionContext) {
           'package.json'
         );
 
-        const vueTscDepPackageJsonPath = path.join(
+        const vueTscVersionPackageJsonPath = path.join(
+          Uri.parse(folder.uri).fsPath,
+          'node_modules',
+          'vue-tsc',
+          'package.json'
+        );
+
+        const vueTscWorkspaceDepPackageJsonPath = path.join(
           Uri.parse(folder.uri).fsPath,
           'node_modules',
           'vscode-vue-languageservice',
           'package.json'
         );
 
-        const vueTscExtPackageJsonPath = path.join(
+        const vueTscExtensionDepPackageJsonPath = path.join(
           context.extensionPath,
           'node_modules',
           'vscode-vue-languageservice',
@@ -63,12 +71,16 @@ export function doctorCommand(context: ExtensionContext) {
           vueRuntimeDomVersion = getPackageVersion(vueRuntimeDomPackageJsonPath);
         }
 
-        if (fs.existsSync(vueTscDepPackageJsonPath)) {
-          vueTscDepVersion = getPackageVersion(vueTscDepPackageJsonPath);
+        if (fs.existsSync(vueTscVersionPackageJsonPath)) {
+          vueTscVersion = getPackageVersion(vueTscVersionPackageJsonPath);
         }
 
-        if (fs.existsSync(vueTscExtPackageJsonPath)) {
-          vueTscExtVersion = getPackageVersion(vueTscExtPackageJsonPath);
+        if (fs.existsSync(vueTscWorkspaceDepPackageJsonPath)) {
+          vueTscWorkspaceDepVersion = getPackageVersion(vueTscWorkspaceDepPackageJsonPath);
+        }
+
+        if (fs.existsSync(vueTscExtensionDepPackageJsonPath)) {
+          vueTscExtensionDepVersion = getPackageVersion(vueTscExtensionDepPackageJsonPath);
         }
       }
     }
@@ -89,8 +101,9 @@ export function doctorCommand(context: ExtensionContext) {
       serverVersion: serverPackage.version,
       vueVersion: vueVersion === undefined ? 'none' : vueVersion,
       vueRuntimeDomVersion: vueRuntimeDomVersion === undefined ? 'none' : vueRuntimeDomVersion,
-      vueTscDepVersion: vueTscDepVersion === undefined ? 'none' : vueTscDepVersion,
-      vueTscExtVersion: vueTscExtVersion,
+      vueTscVersion: vueTscVersion === undefined ? 'none' : vueTscVersion,
+      vueTscWorkspaceDepVersion: vueTscWorkspaceDepVersion === undefined ? 'none' : vueTscWorkspaceDepVersion,
+      vueTscExtensionDepVersion,
       tsVersion,
       tsServerPath,
       settings: workspace.getConfiguration('volar'),
