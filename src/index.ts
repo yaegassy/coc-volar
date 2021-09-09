@@ -67,7 +67,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
     serverModule = context.asAbsolutePath(path.join('node_modules', '@volar', 'server', 'out', 'index.js'));
   }
 
-  lowPowerMode = isLowPowerMode();
+  lowPowerMode = lowPowerModeEnabled();
 
   const apiDocumentSelector: DocumentSelector = [
     { scheme: 'file', language: 'vue' },
@@ -253,7 +253,7 @@ function createLanguageService(
   return client;
 }
 
-function isLowPowerMode() {
+function lowPowerModeEnabled() {
   return !!workspace.getConfiguration('volar').get<boolean>('lowPowerMode');
 }
 
