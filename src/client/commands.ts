@@ -19,8 +19,8 @@ export function doctorCommand(context: ExtensionContext) {
     let vueVersion: string | undefined;
     let vueRuntimeDomVersion: string | undefined;
     let vueTscVersion: string | undefined;
-    let vueTscWorkspaceDepVersion: string | undefined;
-    let vueTscExtensionDepVersion: string | undefined;
+    let vueTscVueLsWorkspaceVersion: string | undefined;
+    let vueTscVueLsExtensionVersion: string | undefined;
 
     if (workspace.workspaceFolders) {
       for (const folder of workspace.workspaceFolders) {
@@ -41,14 +41,14 @@ export function doctorCommand(context: ExtensionContext) {
           'package.json'
         );
 
-        const vueTscWorkspaceDepPackageJsonPath = path.join(
+        const vueTscVueLsWorkspacePackageJsonPath = path.join(
           Uri.parse(folder.uri).fsPath,
           'node_modules',
           'vscode-vue-languageservice',
           'package.json'
         );
 
-        const vueTscExtensionDepPackageJsonPath = path.join(
+        const vueTscVueLsExtensionPackageJsonPath = path.join(
           context.extensionPath,
           'node_modules',
           'vscode-vue-languageservice',
@@ -67,12 +67,12 @@ export function doctorCommand(context: ExtensionContext) {
           vueTscVersion = getPackageVersion(vueTscVersionPackageJsonPath);
         }
 
-        if (fs.existsSync(vueTscWorkspaceDepPackageJsonPath)) {
-          vueTscWorkspaceDepVersion = getPackageVersion(vueTscWorkspaceDepPackageJsonPath);
+        if (fs.existsSync(vueTscVueLsWorkspacePackageJsonPath)) {
+          vueTscVueLsWorkspaceVersion = getPackageVersion(vueTscVueLsWorkspacePackageJsonPath);
         }
 
-        if (fs.existsSync(vueTscExtensionDepPackageJsonPath)) {
-          vueTscExtensionDepVersion = getPackageVersion(vueTscExtensionDepPackageJsonPath);
+        if (fs.existsSync(vueTscVueLsExtensionPackageJsonPath)) {
+          vueTscVueLsExtensionVersion = getPackageVersion(vueTscVueLsExtensionPackageJsonPath);
         }
       }
     }
@@ -94,8 +94,8 @@ export function doctorCommand(context: ExtensionContext) {
       vueVersion: vueVersion === undefined ? 'none' : vueVersion,
       vueRuntimeDomVersion: vueRuntimeDomVersion === undefined ? 'none' : vueRuntimeDomVersion,
       vueTscVersion: vueTscVersion === undefined ? 'none' : vueTscVersion,
-      vueTscWorkspaceDepVersion: vueTscWorkspaceDepVersion === undefined ? 'none' : vueTscWorkspaceDepVersion,
-      vueTscExtensionDepVersion,
+      vueTscVueLsWorkspaceVersion: vueTscVueLsWorkspaceVersion === undefined ? 'none' : vueTscVueLsWorkspaceVersion,
+      vueTscVueLsExtensionVersion,
       tsVersion,
       tsServerPath,
       settings: workspace.getConfiguration('volar'),
