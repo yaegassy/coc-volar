@@ -1,7 +1,7 @@
 {
   "name": "@yaegassy/coc-volar",
   "version": "0.5.33",
-  "volarReferenceVersion": "0.27.23",
+  "volarReferenceVersion": "0.27.24",
   "description": "Volar (Fast Vue Language Support) extension for coc.nvim",
   "author": "yaegassy <yosstools@gmail.com>",
   "license": "MIT",
@@ -245,9 +245,9 @@
     ]
   },
   "dependencies": {
-    "@volar/server": "0.27.23",
-    "@volar/shared": "0.27.22",
-    "@vue/reactivity": "3.2.6",
+    "@volar/server": "0.27.24",
+    "@volar/shared": "0.27.24",
+    "@vue/reactivity": "3.2.14",
     "typescript": "4.4.2",
     "vscode-html-languageservice": "^4.0.7",
     "vscode-languageclient": "^8.0.0-next.2",
