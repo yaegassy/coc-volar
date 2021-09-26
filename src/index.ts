@@ -216,6 +216,9 @@ function createLanguageService(
   const clientOptions: LanguageClientOptions = {
     documentSelector,
     initializationOptions,
+    synchronize: {
+      fileEvents: workspace.createFileSystemWatcher('{**/*.vue,**/*.js,**/*.jsx,**/*.ts,**/*.tsx,**/*.json}'),
+    },
     middleware: getConfigFixCompletion()
       ? {
           provideCompletionItem:
