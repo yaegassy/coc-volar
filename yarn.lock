@@ -437,24 +437,12 @@
     "@vue/compiler-core" "3.2.19"
     "@vue/shared" "3.2.19"
 
-"@vue/reactivity@3.2.14":
-  version "3.2.14"
-  resolved "https://registry.yarnpkg.com/@vue/reactivity/-/reactivity-3.2.14.tgz#5cb15209ee9313cb50ed9b20fdd108ea2a904f77"
-  integrity sha512-dBUeNJTY5xmyY6fxoS3Zo82hFMo2xSCh9KoTz9PRWtgZzcCS556ZidmbsZpRcRw/bgWFFsfEUI+KeYSOCtasAA==
-  dependencies:
-    "@vue/shared" "3.2.14"
-
-"@vue/reactivity@^3.2.19":
+"@vue/reactivity@3.2.19", "@vue/reactivity@^3.2.19":
   version "3.2.19"
   resolved "https://registry.yarnpkg.com/@vue/reactivity/-/reactivity-3.2.19.tgz#fc6e0f0106f295226835cfed5ff5f84d927bea65"
   integrity sha512-FtachoYs2SnyrWup5UikP54xDX6ZJ1s5VgHcJp4rkGoutU3Ry61jhs+nCX7J64zjX992Mh9gGUC0LqTs8q9vCA==
   dependencies:
     "@vue/shared" "3.2.19"
-
-"@vue/shared@3.2.14":
-  version "3.2.14"
-  resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.2.14.tgz#9b882098a004b995124b7577b357135a66d922ef"
-  integrity sha512-Yndg5Q99hbP76oU0UXQ9V4O0oQ/xjIToJJjmv1BHPUoaebv40vt0YGahNCb6v9WRRXZIMJOQ+4DmqsGhXRi70w==
 
 "@vue/shared@3.2.19", "@vue/shared@^3.2.19":
   version "3.2.19"
