@@ -24,6 +24,10 @@ export function doctorCommand(context: ExtensionContext) {
 
     if (workspace.workspaceFolders) {
       for (const folder of workspace.workspaceFolders) {
+        const pnpmPackagesDirNames = getDirectoryItemNames(
+          path.join(Uri.parse(folder.uri).fsPath, 'node_modules', '.pnpm')
+        );
+
         const vuePackageJsonPath = path.join(Uri.parse(folder.uri).fsPath, 'node_modules', 'vue', 'package.json');
 
         const vueRuntimeDomPackageJsonPath = path.join(
@@ -56,23 +60,36 @@ export function doctorCommand(context: ExtensionContext) {
         );
 
         if (fs.existsSync(vuePackageJsonPath)) {
-          vueVersion = getPackageVersion(vuePackageJsonPath);
+          vueVersion = getPackageVersionFromJson(vuePackageJsonPath);
         }
 
+        // npm, yarn
         if (fs.existsSync(vueRuntimeDomPackageJsonPath)) {
-          vueRuntimeDomVersion = getPackageVersion(vueRuntimeDomPackageJsonPath);
+          vueRuntimeDomVersion = getPackageVersionFromJson(vueRuntimeDomPackageJsonPath);
+        }
+        // pnpm
+        if (!vueRuntimeDomVersion) {
+          vueRuntimeDomVersion = getPackageVersionFromDirectoryName(pnpmPackagesDirNames, /^@vue\+runtime-dom@.*$/);
         }
 
         if (fs.existsSync(vueTscVersionPackageJsonPath)) {
-          vueTscVersion = getPackageVersion(vueTscVersionPackageJsonPath);
+          vueTscVersion = getPackageVersionFromJson(vueTscVersionPackageJsonPath);
         }
 
+        // npm, yarn
         if (fs.existsSync(vueTscVueLsWorkspacePackageJsonPath)) {
-          vueTscVueLsWorkspaceVersion = getPackageVersion(vueTscVueLsWorkspacePackageJsonPath);
+          vueTscVueLsWorkspaceVersion = getPackageVersionFromJson(vueTscVueLsWorkspacePackageJsonPath);
+        }
+        // pnpm
+        if (!vueTscVueLsWorkspaceVersion) {
+          vueTscVueLsWorkspaceVersion = getPackageVersionFromDirectoryName(
+            pnpmPackagesDirNames,
+            /^vscode-vue-languageservice@.*$/
+          );
         }
 
         if (fs.existsSync(vueTscVueLsExtensionPackageJsonPath)) {
-          vueTscVueLsExtensionVersion = getPackageVersion(vueTscVueLsExtensionPackageJsonPath);
+          vueTscVueLsExtensionVersion = getPackageVersionFromJson(vueTscVueLsExtensionPackageJsonPath);
         }
       }
     }
@@ -82,7 +99,7 @@ export function doctorCommand(context: ExtensionContext) {
     if (tsServerPath) {
       const typescriptPackageJsonPath = path.join(path.resolve(path.dirname(tsServerPath), '..'), 'package.json');
       if (fs.existsSync(typescriptPackageJsonPath)) {
-        tsVersion = getPackageVersion(typescriptPackageJsonPath);
+        tsVersion = getPackageVersionFromJson(typescriptPackageJsonPath);
       }
     }
 
@@ -112,7 +129,7 @@ export function doctorCommand(context: ExtensionContext) {
   };
 }
 
-function getPackageVersion(packageJsonPath: string): string | undefined {
+function getPackageVersionFromJson(packageJsonPath: string): string | undefined {
   let version: string | undefined;
   try {
     const packageJsonText = fs.readFileSync(packageJsonPath, 'utf8');
@@ -120,4 +137,28 @@ function getPackageVersion(packageJsonPath: string): string | undefined {
     version = packageJson.version;
   } catch {}
   return version;
+}
+
+function getDirectoryItemNames(dirPath: string): string[] | undefined {
+  let a: string[] | undefined = [];
+  try {
+    a = fs.readdirSync(dirPath);
+  } catch {
+    return undefined;
+  }
+  return a;
+}
+
+function getPackageVersionFromDirectoryName(items: string[] | undefined, regex: RegExp) {
+  let r: string | undefined;
+  if (items) {
+    items.forEach((v) => {
+      const m = v.match(regex);
+      if (m) {
+        v = v.replace(/^@/, '');
+        r = v.split('@')[1];
+      }
+    });
+  }
+  return r;
 }
