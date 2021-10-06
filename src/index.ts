@@ -155,6 +155,17 @@ function createLanguageService(
     },
   };
 
+  const memory = Math.floor(Number(getConfigMaxMemory()));
+  if (memory && memory >= 256) {
+    const maxOldSpaceSize = '--max-old-space-size=' + memory.toString();
+    serverOptions.run.options = { execArgv: [maxOldSpaceSize] };
+    if (serverOptions.debug.options) {
+      if (serverOptions.debug.options.execArgv) {
+        serverOptions.debug.options.execArgv.push(maxOldSpaceSize);
+      }
+    }
+  }
+
   if (!resolveCurrentTsPaths) {
     resolveCurrentTsPaths = tsVersion.getCurrentTsPaths(context);
     context.workspaceState.update('coc-volar-ts-server-path', resolveCurrentTsPaths.serverPath);
@@ -314,6 +325,10 @@ function getConfigDocumentFormatting(): NonNullable<
   } else {
     return undefined;
   }
+}
+
+function getConfigMaxMemory() {
+  return workspace.getConfiguration('volar').get<number | null>('maxMemory');
 }
 
 function getConfigFixCompletion() {
