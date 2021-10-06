@@ -97,6 +97,10 @@
           "default": "en",
           "description": "Locale of diagnostics messages from typescript."
         },
+        "volar.maxMemory": {
+          "type": "number",
+          "description": "Maximum memory (in MB) that the server should use. On some systems this may only have effect when runtime has been set. Minimum 256."
+        },
         "volar-api.trace.server": {
           "scope": "window",
           "type": "string",
