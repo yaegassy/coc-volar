@@ -68,10 +68,27 @@ export async function activate(context: ExtensionContext): Promise<void> {
   }
 
   lowPowerMode = lowPowerModeEnabled();
+  const takeOverMode = takeOverModeEnabled();
 
-  // Since coc-volar does not support volar's tsPlugin related features, set only for vue.
-  const languageFeaturesDocumentSelector: DocumentSelector = [{ scheme: 'file', language: 'vue' }];
-  const documentFeaturesDocumentSelector: DocumentSelector = [{ language: 'vue' }];
+  const languageFeaturesDocumentSelector: DocumentSelector = takeOverMode
+    ? [
+        { scheme: 'file', language: 'vue' },
+        { scheme: 'file', language: 'javascript' },
+        { scheme: 'file', language: 'typescript' },
+        { scheme: 'file', language: 'javascriptreact' },
+        { scheme: 'file', language: 'typescriptreact' },
+        { scheme: 'file', language: 'json' },
+      ]
+    : [{ scheme: 'file', language: 'vue' }];
+  const documentFeaturesDocumentSelector: DocumentSelector = takeOverMode
+    ? [
+        { language: 'vue' },
+        { language: 'javascript' },
+        { language: 'typescript' },
+        { language: 'javascriptreact' },
+        { language: 'typescriptreact' },
+      ]
+    : [{ language: 'vue' }];
 
   apiClient = createLanguageService(context, 'api', 'volar-api', 'Volar - API', 6009, languageFeaturesDocumentSelector);
   docClient = !lowPowerMode
@@ -276,6 +293,10 @@ function createLanguageService(
 
 function lowPowerModeEnabled() {
   return !!workspace.getConfiguration('volar').get<boolean>('lowPowerMode');
+}
+
+export function takeOverModeEnabled() {
+  return !!workspace.getConfiguration('volar').get<boolean>('takeOverBuiltinTsExtension');
 }
 
 function getConfigTagNameCase() {
