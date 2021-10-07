@@ -164,6 +164,11 @@
           "default": false,
           "description": "Auto-complete Ref value with '.value'."
         },
+        "volar.takeOverBuiltinTsExtension": {
+          "type": "boolean",
+          "default": true,
+          "description": "If built-in VSCode TypeScript Extension disabled, take over language support for *.ts."
+        },
         "volar.checkVueTscVersion": {
           "type": "boolean",
           "default": false,
