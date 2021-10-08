@@ -56,7 +56,7 @@ Plug 'yaegassy/coc-volar', {'do': 'yarn install --frozen-lockfile'}
 
 - `volar.doctor`: Show Doctor info
   - You can check the versions and settings of various packages
-    - client, server, vue, @vue/runtime-dom, vue-tsc related, typescript related, coc-volar's configuration, and more...
+    - client, server, vue, @vue/runtime-dom, vue-tsc, typescript related, coc-volar's configuration, and more...
 - `volar.action.restartServer`: Restart Vue server
 - `volar.action.verifyAllScripts`: Verify All Scripts
 - `volar.action.splitEditors`: Split `<script>`, `<template>`, `<style>` Editors
