@@ -61,11 +61,6 @@
           "default": true,
           "description": "Enable coc-volar extension."
         },
-        "volar.dev.serverPath": {
-          "type": "string",
-          "default": "",
-          "description": "Absolute path to volar server module (For develop and check)"
-        },
         "volar.useWorkspaceTsdk": {
           "type": "boolean",
           "default": false,
@@ -206,6 +201,11 @@
           ],
           "default": "kebab",
           "description": "Attr name case."
+        },
+        "volar.dev.serverPath": {
+          "type": "string",
+          "default": "",
+          "description": "(For develop and check) Custom path to volar server module, ~ and $HOME, etc. can also be used. If there is no setting, the built-in module will be used "
         },
         "volar.fix.completion": {
           "type": "boolean",

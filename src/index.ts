@@ -59,9 +59,12 @@ export async function activate(context: ExtensionContext): Promise<void> {
   outputChannel.appendLine(`${'#'.repeat(10)} volar-client\n`);
   initializeWorkspaceState(context);
 
-  const devVolarServerPath = extensionConfig.get<string>('dev.serverPath', '');
-  if (devVolarServerPath && devVolarServerPath !== '' && fs.existsSync(devVolarServerPath)) {
-    serverModule = devVolarServerPath;
+  let devVolarServerPath = extensionConfig.get<string>('dev.serverPath', '');
+  if (devVolarServerPath) {
+    devVolarServerPath = workspace.expand(devVolarServerPath);
+    if (fs.existsSync(devVolarServerPath)) {
+      serverModule = devVolarServerPath;
+    }
   } else {
     serverModule = context.asAbsolutePath(path.join('node_modules', '@volar', 'server', 'out', 'index.js'));
   }
