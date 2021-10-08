@@ -26,16 +26,8 @@ Plug 'yaegassy/coc-volar', {'do': 'yarn install --frozen-lockfile'}
 
 **See**:
 
-- <https://github.com/johnsoncodehk/volar#using>
-- <https://github.com/johnsoncodehk/volar#note>
-
-**Warning**:
-
-If the workspace's vue-tsc dependency is different from the Extension version, the result of the type check may not match.
-
-Please update vue-tsc by referring to this.
-
-- <https://github.com/johnsoncodehk/volar/discussions/402>
+- <https://github.com/johnsoncodehk/volar/tree/master/extensions/vscode-vue-language-features#using>
+- <https://github.com/johnsoncodehk/volar/tree/master/extensions/vscode-vue-language-features#note>
 
 ## Configuration options
 
