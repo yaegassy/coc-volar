@@ -19,8 +19,6 @@ export function doctorCommand(context: ExtensionContext) {
     let vueVersion: string | undefined;
     let vueRuntimeDomVersion: string | undefined;
     let vueTscVersion: string | undefined;
-    let vueTscVueLsWorkspaceVersion: string | undefined;
-    let vueTscVueLsExtensionVersion: string | undefined;
 
     if (workspace.workspaceFolders) {
       for (const folder of workspace.workspaceFolders) {
@@ -45,20 +43,6 @@ export function doctorCommand(context: ExtensionContext) {
           'package.json'
         );
 
-        const vueTscVueLsWorkspacePackageJsonPath = path.join(
-          Uri.parse(folder.uri).fsPath,
-          'node_modules',
-          'vscode-vue-languageservice',
-          'package.json'
-        );
-
-        const vueTscVueLsExtensionPackageJsonPath = path.join(
-          context.extensionPath,
-          'node_modules',
-          'vscode-vue-languageservice',
-          'package.json'
-        );
-
         if (fs.existsSync(vuePackageJsonPath)) {
           vueVersion = getPackageVersionFromJson(vuePackageJsonPath);
         }
@@ -74,22 +58,6 @@ export function doctorCommand(context: ExtensionContext) {
 
         if (fs.existsSync(vueTscVersionPackageJsonPath)) {
           vueTscVersion = getPackageVersionFromJson(vueTscVersionPackageJsonPath);
-        }
-
-        // npm, yarn
-        if (fs.existsSync(vueTscVueLsWorkspacePackageJsonPath)) {
-          vueTscVueLsWorkspaceVersion = getPackageVersionFromJson(vueTscVueLsWorkspacePackageJsonPath);
-        }
-        // pnpm
-        if (!vueTscVueLsWorkspaceVersion) {
-          vueTscVueLsWorkspaceVersion = getPackageVersionFromDirectoryName(
-            pnpmPackagesDirNames,
-            /^vscode-vue-languageservice@.*$/
-          );
-        }
-
-        if (fs.existsSync(vueTscVueLsExtensionPackageJsonPath)) {
-          vueTscVueLsExtensionVersion = getPackageVersionFromJson(vueTscVueLsExtensionPackageJsonPath);
         }
       }
     }
@@ -111,8 +79,6 @@ export function doctorCommand(context: ExtensionContext) {
       vueVersion: vueVersion === undefined ? 'none' : vueVersion,
       vueRuntimeDomVersion: vueRuntimeDomVersion === undefined ? 'none' : vueRuntimeDomVersion,
       vueTscVersion: vueTscVersion === undefined ? 'none' : vueTscVersion,
-      vueTscVueLsWorkspaceVersion: vueTscVueLsWorkspaceVersion === undefined ? 'none' : vueTscVueLsWorkspaceVersion,
-      vueTscVueLsExtensionVersion,
       tsVersion,
       tsServerPath,
       settings: workspace.getConfiguration('volar'),
