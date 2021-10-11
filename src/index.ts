@@ -297,7 +297,7 @@ function lowPowerModeEnabled() {
 }
 
 export function takeOverModeEnabled() {
-  return !!workspace.getConfiguration('volar').get<boolean>('enabledTakeOverMode');
+  return !!workspace.getConfiguration('volar').get<boolean>('takeOverMode.enabled');
 }
 
 function getConfigTagNameCase() {

@@ -159,7 +159,7 @@
           "default": false,
           "description": "Auto-complete Ref value with '.value'."
         },
-        "volar.enabledTakeOverMode": {
+        "volar.takeOverMode.enabled": {
           "type": "boolean",
           "default": false,
           "description": "Take over language support for *.ts."
