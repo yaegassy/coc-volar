@@ -159,7 +159,7 @@
           "default": false,
           "description": "Auto-complete Ref value with '.value'."
         },
-        "volar.enabledTakeOverMode": {
+        "volar.takeOverMode.enabled": {
           "type": "boolean",
           "default": false,
           "description": "Take over language support for *.ts."
@@ -201,6 +201,11 @@
           ],
           "default": "kebab",
           "description": "Attr name case."
+        },
+        "volar.completion.autoImportComponent": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enabled auto-import for component with tag completion."
         },
         "volar.dev.serverPath": {
           "type": "string",
@@ -248,8 +253,8 @@
     ]
   },
   "dependencies": {
-    "@volar/server": "0.28.2",
-    "@volar/shared": "0.28.2",
+    "@volar/server": "0.28.3",
+    "@volar/shared": "0.28.3",
     "@vue/reactivity": "3.2.20",
     "typescript": "4.4.3",
     "vscode-html-languageservice": "^4.1.0",
