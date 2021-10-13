@@ -22,6 +22,10 @@
 Plug 'yaegassy/coc-volar', {'do': 'yarn install --frozen-lockfile'}
 ```
 
+## Requires "watchman" installed
+
+`coc-volar` uses the `fileEvents` option to watch files in the project, so [watchman](https://facebook.github.io/watchman/) needs to be installed
+
 ## Using & Note
 
 **See**:
