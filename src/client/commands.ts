@@ -95,6 +95,24 @@ export function doctorCommand(context: ExtensionContext) {
   };
 }
 
+export function initializeTakeOverModeCommand() {
+  return async () => {
+    const enableTakeOverMode = await window.showPrompt('Enable TakeOverMode?');
+    const config = workspace.getConfiguration('volar');
+    const tsserverConfig = workspace.getConfiguration('tsserver');
+
+    if (enableTakeOverMode) {
+      config.update('takeOverMode.enabled', true);
+      tsserverConfig.update('enable', false);
+    } else {
+      config.update('takeOverMode.enabled', false);
+      tsserverConfig.update('enable', true);
+    }
+
+    workspace.nvim.command(`CocRestart`, true);
+  };
+}
+
 function getPackageVersionFromJson(packageJsonPath: string): string | undefined {
   let version: string | undefined;
   try {

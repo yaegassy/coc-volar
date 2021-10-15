@@ -32,7 +32,7 @@ import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
 
 import { VolarCodeActionProvider } from './client/actions';
-import { doctorCommand } from './client/commands';
+import { doctorCommand, initializeTakeOverModeCommand } from './client/commands';
 
 let apiClient: LanguageClient;
 let docClient: LanguageClient | undefined;
@@ -68,6 +68,9 @@ export async function activate(context: ExtensionContext): Promise<void> {
   } else {
     serverModule = context.asAbsolutePath(path.join('node_modules', '@volar', 'server', 'out', 'index.js'));
   }
+
+  /** MEMO: Custom commands for coc-volar */
+  context.subscriptions.push(commands.registerCommand('volar.initializeTakeOverMode', initializeTakeOverModeCommand()));
 
   lowPowerMode = lowPowerModeEnabled();
   const takeOverMode = takeOverModeEnabled();
@@ -142,10 +145,10 @@ export async function activate(context: ExtensionContext): Promise<void> {
     }
   }
 
-  /** MEMO: for coc-volar */
+  /** MEMO: Custom commands for coc-volar */
   context.subscriptions.push(commands.registerCommand('volar.doctor', doctorCommand(context)));
 
-  /** MEMO: for coc-volar */
+  /** MEMO: Custom action for coc-volar */
   const languageSelector: DocumentSelector = [{ language: 'vue', scheme: 'file' }];
   const codeActionProvider = new VolarCodeActionProvider();
   context.subscriptions.push(languages.registerCodeActionProvider(languageSelector, codeActionProvider, 'volar'));
