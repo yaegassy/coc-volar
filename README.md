@@ -35,6 +35,25 @@ Plug 'yaegassy/coc-volar', {'do': 'yarn install --frozen-lockfile'}
 - <https://github.com/johnsoncodehk/volar/tree/master/extensions/vscode-vue-language-features#using>
 - <https://github.com/johnsoncodehk/volar/tree/master/extensions/vscode-vue-language-features#note>
 
+## How to enable "TakeOverMode" in coc-volar
+
+### If you are using "TakeOverMode" for the first time in your project
+
+1. [Must] To begin, open the `*.vue` file. (Do not open the `*.ts` file first!)
+1. Then run `:CocCommand volar.initializeTakeOverMode`.
+1. When prompted by `Enable TakeOverMode? (y/n)?`, enter `y`
+1. The `.vim/coc-settings.json` file will be created in the "project root".
+   - The `"volar.takeOverMode.enabled": true` and `"tsserver.enable": false` settings will be added.
+1. `coc.nvim` will be restarted and the settings will be reflected.
+
+### If the project already has "TakeOverMode" enabled
+
+1. [Must] To begin, open the `*.vue` file. (Do not open the `*.ts` file first!)
+
+### If you want to disable TakeOverMode for a project
+
+Delete the `.vim/coc-settings.json` file in the "project root", and start Vim again.
+
 ## Configuration options
 
 - `volar.enable`: Enable coc-volar extension, default: `true`
@@ -64,6 +83,7 @@ Plug 'yaegassy/coc-volar', {'do': 'yarn install --frozen-lockfile'}
 - `volar.doctor`: Show Doctor info
   - You can check the versions and settings of various packages
     - client, server, vue, @vue/runtime-dom, vue-tsc, typescript related, coc-volar's configuration, and more...
+- `volar.initializeTakeOverMode`: Enable TakeOverMode in your project
 - `volar.action.restartServer`: Restart Vue server
 - `volar.action.verifyAllScripts`: Verify All Scripts
 - `volar.action.splitEditors`: Split `<script>`, `<template>`, `<style>` Editors

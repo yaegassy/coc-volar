@@ -49,7 +49,8 @@
     "rimraf": "^3.0.2"
   },
   "activationEvents": [
-    "onLanguage:vue"
+    "onLanguage:vue",
+    "onCommand:volar.initializeTakeOverMode"
   ],
   "contributes": {
     "configuration": {
@@ -233,6 +234,11 @@
       {
         "command": "volar.doctor",
         "title": "Show Doctor info",
+        "category": "Volar"
+      },
+      {
+        "command": "volar.initializeTakeOverMode",
+        "title": "Enable TakeOverMode in your project",
         "category": "Volar"
       },
       {
