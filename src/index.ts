@@ -211,6 +211,7 @@ function createLanguageService(
                   renameFileRefactoring: true,
                   signatureHelp: true,
                   codeAction: true,
+                  workspaceSymbol: true,
                   completion: {
                     defaultTagNameCase: getConfigTagNameCase(),
                     defaultAttrNameCase: getConfigAttrNameCase(),
