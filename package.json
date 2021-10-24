@@ -175,7 +175,7 @@
           "default": 100,
           "description": "HTML formatting print width."
         },
-        "volar.tagNameCase": {
+        "volar.completion.tagNameCase": {
           "type": "string",
           "enum": [
             "both",
@@ -190,7 +190,7 @@
           "default": "both",
           "description": "Tag name case."
         },
-        "volar.attrNameCase": {
+        "volar.completion.attrNameCase": {
           "type": "string",
           "enum": [
             "kebab",

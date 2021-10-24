@@ -305,7 +305,7 @@ export function takeOverModeEnabled() {
 }
 
 function getConfigTagNameCase() {
-  const tagNameCase = workspace.getConfiguration('volar').get<'both' | 'kebab' | 'pascal'>('tagNameCase');
+  const tagNameCase = workspace.getConfiguration('volar').get<'both' | 'kebab' | 'pascal'>('completion.tagNameCase');
   switch (tagNameCase) {
     case 'both':
       return 'both' as const;
@@ -318,7 +318,7 @@ function getConfigTagNameCase() {
 }
 
 function getConfigAttrNameCase() {
-  const tagNameCase = workspace.getConfiguration('volar').get<'kebab' | 'camel'>('attrNameCase');
+  const tagNameCase = workspace.getConfiguration('volar').get<'kebab' | 'camel'>('completion.attrNameCase');
   switch (tagNameCase) {
     case 'kebab':
       return 'kebabCase' as const;
