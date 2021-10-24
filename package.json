@@ -175,7 +175,7 @@
           "default": 100,
           "description": "HTML formatting print width."
         },
-        "volar.tagNameCase": {
+        "volar.completion.tagNameCase": {
           "type": "string",
           "enum": [
             "both",
@@ -190,7 +190,7 @@
           "default": "both",
           "description": "Tag name case."
         },
-        "volar.attrNameCase": {
+        "volar.completion.attrNameCase": {
           "type": "string",
           "enum": [
             "kebab",
@@ -259,8 +259,8 @@
     ]
   },
   "dependencies": {
-    "@volar/server": "0.28.7",
-    "@volar/shared": "0.28.7",
+    "@volar/server": "0.28.8",
+    "@volar/shared": "0.28.8",
     "@vue/reactivity": "3.2.20",
     "typescript": "4.4.3",
     "vscode-html-languageservice": "^4.1.0",
