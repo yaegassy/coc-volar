@@ -95,7 +95,15 @@ export async function activate(context: ExtensionContext): Promise<void> {
       ]
     : [{ language: 'vue' }];
 
-  apiClient = createLanguageService(context, 'api', 'volar-api', 'Volar - API', 6009, languageFeaturesDocumentSelector);
+  apiClient = createLanguageService(
+    context,
+    'api',
+    'volar-api',
+    'Volar - API',
+    6009,
+    languageFeaturesDocumentSelector,
+    undefined // In coc-volar, "initializationMessage" is set to undefined
+  );
   docClient = !lowPowerMode
     ? createLanguageService(
         context,
@@ -103,7 +111,8 @@ export async function activate(context: ExtensionContext): Promise<void> {
         'volar-document',
         'Volar - Document',
         6010,
-        languageFeaturesDocumentSelector
+        languageFeaturesDocumentSelector,
+        undefined // In coc-volar, "initializationMessage" is set to undefined
       )
     : undefined;
   htmlClient = createLanguageService(
@@ -112,7 +121,8 @@ export async function activate(context: ExtensionContext): Promise<void> {
     'volar-html',
     'Volar - HTML',
     6011,
-    documentFeaturesDocumentSelector
+    documentFeaturesDocumentSelector,
+    undefined
   );
 
   const clients = [apiClient, docClient, htmlClient].filter(shared.notEmpty);
@@ -164,7 +174,8 @@ function createLanguageService(
   id: string,
   name: string,
   port: number,
-  documentSelector: DocumentSelector
+  documentSelector: DocumentSelector,
+  initMessage: string | undefined
 ) {
   const debugOptions = { execArgv: ['--nolazy', '--inspect=' + port] };
   const serverOptions: ServerOptions = {
@@ -244,6 +255,7 @@ function createLanguageService(
             documentFormatting: getConfigDocumentFormatting(),
           }
         : undefined,
+    initializationMessage: initMessage,
   };
 
   const clientOptions: LanguageClientOptions = {
