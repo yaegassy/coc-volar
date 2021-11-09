@@ -259,8 +259,8 @@
     ]
   },
   "dependencies": {
-    "@volar/server": "0.29.0",
-    "@volar/shared": "0.29.0",
+    "@volar/server": "0.29.1",
+    "@volar/shared": "0.29.1",
     "@vue/reactivity": "3.2.21",
     "typescript": "4.4.3",
     "vscode-html-languageservice": "^4.1.0",
