@@ -22,11 +22,18 @@
 Plug 'yaegassy/coc-volar', {'do': 'yarn install --frozen-lockfile'}
 ```
 
-## Requires "watchman" installed
+## Recommended additional installation: "watchman"
 
-`coc-volar` uses the `fileEvents` option to watch files in the project, so [watchman](https://facebook.github.io/watchman/) needs to be installed.
+`coc-volar` uses the `fileEvents` option to watch files in the project, it is recommended to install [watchman](https://facebook.github.io/watchman/).
 
 - See: <https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions>
+
+If you have difficulty installing watchman, you can use coc-volar without watchman, but you may not be able to immediately use volar's IntelliSense with the newly added files.
+
+In this case, please execute the command to restart the language server.
+
+- `:CocCommand volar.action.restartServer`
+- `:CocRestart`
 
 ## Using & Note
 
