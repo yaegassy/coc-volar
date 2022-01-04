@@ -95,36 +95,6 @@ Delete the `.vim/coc-settings.json` file in the "project root", and start Vim ag
 - `volar.action.verifyAllScripts`: Verify All Scripts
 - `volar.action.splitEditors`: Split `<script>`, `<template>`, `<style>` Editors
 
-## Code Actions
-
-**Example key mappings (Code Action related)**:
-
-```vim
-nmap <silent> <leader>a <Plug>(coc-codeaction-cursor)
-nmap <silent> ga <Plug>(coc-codeaction-line)
-nmap <silent> gA <Plug>(coc-codeaction)
-```
-
-See `:h coc-codeaction`
-
-**or Run from CocAction, CocActionAsync**:
-
-```vim
-:call CocActionAsync('codeAction', 'cursor')
-
-:call CocActionAsync('codeAction', 'line')
-
-:call CocActionAsync('codeAction', '')
-```
-
-**Action Lists (Server side)**:
-
-Various code actions provided by the volar (languageservice)
-
-**Action Lists (Client side) [Experimental]**:
-
-- `Add @ts-ignore for this line`
-
 ## More features
 
 Other major LSP feature are of course supported as well.
