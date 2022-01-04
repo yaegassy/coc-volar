@@ -11,7 +11,6 @@ import * as splitEditors from './features/splitEditors';
 import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
 
-import { VolarCodeActionProvider } from './client/actions';
 import { doctorCommand, initializeTakeOverModeCommand } from './client/commands';
 
 let apiClient: LanguageClient;
@@ -119,11 +118,6 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
 
   /** MEMO: Custom commands for coc-volar */
   context.subscriptions.push(commands.registerCommand('volar.doctor', doctorCommand(context)));
-
-  /** MEMO: Custom action for coc-volar */
-  const languageSelector: DocumentSelector = [{ language: 'vue', scheme: 'file' }];
-  const codeActionProvider = new VolarCodeActionProvider();
-  context.subscriptions.push(languages.registerCodeActionProvider(languageSelector, codeActionProvider, 'volar'));
 }
 
 function getInitializationOptions(
