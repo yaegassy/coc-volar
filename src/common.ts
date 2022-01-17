@@ -1,4 +1,4 @@
-import { commands, DocumentSelector, ExtensionContext, LanguageClient, languages, Thenable, workspace } from 'coc.nvim';
+import { commands, DocumentSelector, ExtensionContext, LanguageClient, Thenable, workspace } from 'coc.nvim';
 
 import * as shared from '@volar/shared';
 
