@@ -25,6 +25,7 @@
     "access": "public"
   },
   "scripts": {
+    "schema": "curl -o schemas/vue-tsconfig.schema.json https://raw.githubusercontent.com/johnsoncodehk/volar/master/extensions/vscode-vue-language-features/schemas/vue-tsconfig.schema.json",
     "lint": "eslint src --ext ts",
     "clean": "rimraf lib",
     "watch": "node esbuild.js --watch",
@@ -53,6 +54,16 @@
     "onCommand:volar.initializeTakeOverMode"
   ],
   "contributes": {
+    "jsonValidation": [
+      {
+        "fileMatch": "tsconfig.json",
+        "url": "./schemas/vue-tsconfig.schema.json"
+      },
+      {
+        "fileMatch": "jsconfig.json",
+        "url": "./schemas/vue-tsconfig.schema.json"
+      }
+    ],
     "configuration": {
       "type": "object",
       "title": "coc-volar configuration",
