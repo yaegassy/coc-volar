@@ -97,7 +97,7 @@ export function doctorCommand(context: ExtensionContext) {
 
 export function initializeTakeOverModeCommand() {
   return async () => {
-    const enableTakeOverMode = await window.showPrompt('Enable TakeOverMode?');
+    const enableTakeOverMode = await window.showPrompt('Enable Take Over Mode?');
     const config = workspace.getConfiguration('volar');
     const tsserverConfig = workspace.getConfiguration('tsserver');
 
