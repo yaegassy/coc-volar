@@ -46,7 +46,7 @@ In this case, please execute the command to restart the language server.
 
 ### If you are using "Take Over Mode" for the first time in your project
 
-1. [Must] To begin, open the `*.vue` file. (Do not open the `*.ts` file first!)
+1. [Must] To begin, open the `*.vue` file. (Do not open the `*.ts`, `*.js`, `*.tsx`, `*.jsx` file first!)
 1. Then run `:CocCommand volar.initializeTakeOverMode`.
 1. When prompted by `Enable Take Over Mode? (y/n)?`, enter `y`
 1. The `.vim/coc-settings.json` file will be created in the "project root".
@@ -55,7 +55,7 @@ In this case, please execute the command to restart the language server.
 
 ### If the project already has "Take Over Mode" enabled
 
-1. [Must] To begin, open the `*.vue` file. (Do not open the `*.ts` file first!)
+1. [Must] To begin, open the `*.vue` file. (Do not open the `*.ts`, `*.js`, `*.tsx`, `*.jsx` file first!)
 
 ### If you want to disable Take Over Mode for a project
 
