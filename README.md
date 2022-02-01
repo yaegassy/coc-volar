@@ -42,22 +42,18 @@ In this case, please execute the command to restart the language server.
 - <https://github.com/johnsoncodehk/volar/tree/master/extensions/vscode-vue-language-features#using>
 - <https://github.com/johnsoncodehk/volar/tree/master/extensions/vscode-vue-language-features#note>
 
-## How to enable "TakeOverMode" in coc-volar
+## How to enable "Take Over Mode" in coc-volar
 
-### If you are using "TakeOverMode" for the first time in your project
+### If you are using "Take Over Mode" for the first time in your project
 
-1. [Must] To begin, open the `*.vue` file. (Do not open the `*.ts` file first!)
+1. To begin, open the `*.vue`, `*.ts`, `*.js`, `*.tsx`, `*.jsx` file.
 1. Then run `:CocCommand volar.initializeTakeOverMode`.
-1. When prompted by `Enable TakeOverMode? (y/n)?`, enter `y`
+1. When prompted by `Enable Take Over Mode? (y/n)?`, enter `y`
 1. The `.vim/coc-settings.json` file will be created in the "project root".
    - The `"volar.takeOverMode.enabled": true` and `"tsserver.enable": false` settings will be added.
 1. `coc.nvim` will be restarted and the settings will be reflected.
 
-### If the project already has "TakeOverMode" enabled
-
-1. [Must] To begin, open the `*.vue` file. (Do not open the `*.ts` file first!)
-
-### If you want to disable TakeOverMode for a project
+### If you want to disable Take Over Mode for a project
 
 Delete the `.vim/coc-settings.json` file in the "project root", and start Vim again.
 
