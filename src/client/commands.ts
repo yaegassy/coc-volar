@@ -7,8 +7,11 @@ export function doctorCommand(context: ExtensionContext) {
     const { document } = await workspace.getCurrentState();
     const filePath = Uri.parse(document.uri).fsPath;
 
-    if (!filePath.endsWith('.vue')) {
-      return window.showInformationMessage('Failed to doctor. Make sure the current file is a .vue file.');
+    const supportlanguages = ['vue', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact'];
+    if (!supportlanguages.includes(document.languageId)) {
+      return window.showInformationMessage(
+        'volar.doctor has failed. The current languageId does not support the volar.doctor command.'
+      );
     }
 
     const clientJSON = path.join(context.extensionPath, 'package.json');
@@ -97,7 +100,7 @@ export function doctorCommand(context: ExtensionContext) {
 
 export function initializeTakeOverModeCommand() {
   return async () => {
-    const enableTakeOverMode = await window.showPrompt('Enable TakeOverMode?');
+    const enableTakeOverMode = await window.showPrompt('Enable Take Over Mode?');
     const config = workspace.getConfiguration('volar');
     const tsserverConfig = workspace.getConfiguration('tsserver');
 
