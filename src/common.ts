@@ -31,11 +31,67 @@ type CreateLanguageClient = (
   port: number
 ) => LanguageClient;
 
-export async function activate(context: ExtensionContext, createLc: CreateLanguageClient): Promise<void> {
-  initializeWorkspaceState(context);
+let activated: boolean;
 
+export async function activate(context: ExtensionContext, createLc: CreateLanguageClient): Promise<void> {
   /** MEMO: Custom commands for coc-volar */
   context.subscriptions.push(commands.registerCommand('volar.initializeTakeOverMode', initializeTakeOverModeCommand()));
+
+  //
+  // For the first activation event
+  //
+
+  if (!activated) {
+    const { document } = await workspace.getCurrentState();
+    if (document.languageId === 'vue') {
+      doActivate(context, createLc);
+      activated = true;
+    }
+
+    if (
+      !activated &&
+      ['javascript', 'typescript', 'javascriptreact', 'typescriptreact'].includes(document.languageId)
+    ) {
+      const takeOverMode = takeOverModeEnabled();
+      if (takeOverMode) {
+        doActivate(context, createLc);
+        activated = true;
+      }
+    }
+  }
+
+  //
+  // If open another file after the activation event
+  //
+
+  workspace.onDidOpenTextDocument(
+    async () => {
+      if (activated) return;
+
+      const { document } = await workspace.getCurrentState();
+      if (document.languageId === 'vue') {
+        doActivate(context, createLc);
+        activated = true;
+      }
+
+      if (
+        !activated &&
+        ['javascript', 'typescript', 'javascriptreact', 'typescriptreact'].includes(document.languageId)
+      ) {
+        const takeOverMode = takeOverModeEnabled();
+        if (takeOverMode) {
+          doActivate(context, createLc);
+          activated = true;
+        }
+      }
+    },
+    null,
+    context.subscriptions
+  );
+}
+
+export async function doActivate(context: ExtensionContext, createLc: CreateLanguageClient): Promise<void> {
+  initializeWorkspaceState(context);
 
   const lowPowerMode = lowPowerModeEnabled();
   const takeOverMode = takeOverModeEnabled();
