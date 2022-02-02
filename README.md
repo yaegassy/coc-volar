@@ -32,8 +32,7 @@ If you have difficulty installing watchman, you can use coc-volar without watchm
 
 In this case, please execute the command to restart the language server.
 
-- `:CocCommand volar.action.restartServer`
-- `:CocRestart`
+- `:CocCommand volar.action.restartServer` or `:CocRestart`
 
 ## Using & Note
 
