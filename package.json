@@ -51,6 +51,10 @@
   },
   "activationEvents": [
     "onLanguage:vue",
+    "onLanguage:javascript",
+    "onLanguage:typescript",
+    "onLanguage:javascriptreact",
+    "onLanguage:typescriptreact",
     "onCommand:volar.initializeTakeOverMode"
   ],
   "contributes": {
