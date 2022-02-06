@@ -783,10 +783,10 @@ clone-response@^1.0.2:
   dependencies:
     mimic-response "^1.0.0"
 
-coc.nvim@^0.0.80:
-  version "0.0.80"
-  resolved "https://registry.yarnpkg.com/coc.nvim/-/coc.nvim-0.0.80.tgz#785145c382660db03f517f9b497900d95cbd0e4f"
-  integrity sha512-/3vTcnofoAYMrdENrlQmADTzfXX4+PZ0fiM10a39UA37dTR2dpIGi9O469kcIksuunLjToqWG8S45AGx/9wV7g==
+coc.nvim@^0.0.81-next.14:
+  version "0.0.81-next.14"
+  resolved "https://registry.yarnpkg.com/coc.nvim/-/coc.nvim-0.0.81-next.14.tgz#3e200650a6ccdee6ac097e2ebc9e43c9f4fce3e2"
+  integrity sha512-vq8M4rFTEFOLh/uIuqKnN684q/MGyPJ3UXJfovHtPj4H3i65/ob09yLHFI7W421P9JSAHNUw9Ic5cjmriEOcyg==
 
 collapse-white-space@^1.0.5:
   version "1.0.6"
