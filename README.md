@@ -86,6 +86,7 @@ Delete the `.vim/coc-settings.json` file in the "project root", and start Vim ag
   - You can check the versions and settings of various packages
     - client, server, vue, @vue/runtime-dom, vue-tsc, typescript related, coc-volar's configuration, and more...
 - `volar.initializeTakeOverMode`: Enable Take Over Mode in your project
+- `volar.usePrettier`: Disable volar formatter and enable prettier in your project
 - `volar.action.restartServer`: Restart Vue server
 - `volar.action.verifyAllScripts`: Verify All Scripts
 - `volar.action.splitEditors`: Split `<script>`, `<template>`, `<style>` Editors

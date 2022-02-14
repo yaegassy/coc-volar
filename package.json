@@ -257,6 +257,11 @@
         "category": "Volar"
       },
       {
+        "command": "volar.usePrettier",
+        "title": "Disable volar formatter and enable prettier in your project",
+        "category": "Volar"
+      },
+      {
         "command": "volar.action.restartServer",
         "title": "Restart Vue server",
         "category": "Volar"
