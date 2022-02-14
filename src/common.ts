@@ -11,7 +11,7 @@ import * as splitEditors from './features/splitEditors';
 import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
 
-import { doctorCommand, initializeTakeOverModeCommand } from './client/commands';
+import { doctorCommand, initializeTakeOverModeCommand, usePrettierCommand } from './client/commands';
 
 let apiClient: LanguageClient;
 let docClient: LanguageClient | undefined;
@@ -174,6 +174,8 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
 
   /** MEMO: Custom commands for coc-volar */
   context.subscriptions.push(commands.registerCommand('volar.doctor', doctorCommand(context)));
+  /** MEMO: Custom commands for coc-volar */
+  context.subscriptions.push(commands.registerCommand('volar.usePrettier', usePrettierCommand()));
 }
 
 function getInitializationOptions(

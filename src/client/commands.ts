@@ -1,4 +1,4 @@
-import { ExtensionContext, Uri, window, workspace } from 'coc.nvim';
+import { extensions, ExtensionContext, Uri, window, workspace } from 'coc.nvim';
 import path from 'path';
 import fs from 'fs';
 
@@ -110,6 +110,26 @@ export function initializeTakeOverModeCommand() {
     }
 
     workspace.nvim.command(`CocRestart`, true);
+  };
+}
+
+export function usePrettierCommand() {
+  return async () => {
+    const usePrettier = await window.showPrompt('Disable volar formatter and enable prettier in your project?');
+
+    let isCocPretteir = true;
+    if (!extensions.all.find((e) => e.id === 'coc-prettier')) {
+      isCocPretteir = false;
+      window.showWarningMessage(`coc-prettier is not installed`);
+    }
+
+    if (usePrettier && isCocPretteir) {
+      const config = workspace.getConfiguration('volar');
+      const prettierConfig = workspace.getConfiguration('prettier');
+      config.update('formatting.enable', false);
+      prettierConfig.update('disableLanguages', []);
+      workspace.nvim.command(`CocRestart`, true);
+    }
   };
 }
 
