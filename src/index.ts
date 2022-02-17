@@ -25,12 +25,9 @@ export async function activate(context: ExtensionContext): Promise<void> {
   if (!getConfigVolarEnable()) return;
 
   return commonActivate(context, (id, name, documentSelector, initOptions, port) => {
-    let devVolarServerPath = getConfigDevServerPath();
-    if (devVolarServerPath) {
-      devVolarServerPath = workspace.expand(devVolarServerPath);
-      if (fs.existsSync(devVolarServerPath)) {
-        serverModule = devVolarServerPath;
-      }
+    const devVolarServerPath = getConfigDevServerPath();
+    if (devVolarServerPath && fs.existsSync(devVolarServerPath)) {
+      serverModule = workspace.expand(devVolarServerPath);
     } else {
       serverModule = context.asAbsolutePath(path.join('node_modules', '@volar', 'server', 'out', 'index.js'));
     }
