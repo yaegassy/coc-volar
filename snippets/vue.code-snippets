@@ -1,0 +1,40 @@
+{
+  "vue": {
+    "prefix": "vue",
+    "body": [
+      "<script ${1:setup }${2:lang=\"${3|ts,js,tsx,jsx|}\"}>",
+      "$0",
+      "</script>",
+      "  ",
+      "<template>",
+      "  ",
+      "</template>",
+      "  ",
+      "<style scoped>",
+      "  ",
+      "</style>"
+    ],
+    "description": "default"
+  },
+  "vue-define-component": {
+    "prefix": "vuedc",
+    "body": [
+      "<script ${1:lang=\"${3|ts,js,tsx,jsx|}\"}>",
+      "import { defineComponent } from 'vue';",
+      "",
+      "export default defineComponent({",
+      "  $0",
+      "});",
+      "</script>",
+      "  ",
+      "<template>",
+      "  ",
+      "</template>",
+      "  ",
+      "<style scoped>",
+      "  ",
+      "</style>"
+    ],
+    "description": "defineComponent"
+  }
+}

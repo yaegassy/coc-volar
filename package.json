@@ -82,6 +82,11 @@
           "default": false,
           "description": "Use workspace (project) detected tsLibs in volar. if false, use coc-volar's built-in tsLibs."
         },
+        "volar.scaffoldSnippets.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable scaffold snippets completion. Typing `vue` or `vuedc` will output completion suggestions. This snippets completion feature will only work on the first line of the file."
+        },
         "volar.diagnostics.enable": {
           "type": "boolean",
           "default": true,

@@ -1,4 +1,4 @@
-import { commands, DocumentSelector, ExtensionContext, LanguageClient, Thenable, workspace } from 'coc.nvim';
+import { commands, DocumentSelector, ExtensionContext, languages, LanguageClient, Thenable, workspace } from 'coc.nvim';
 
 import * as shared from '@volar/shared';
 
@@ -12,6 +12,7 @@ import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
 
 import { doctorCommand, initializeTakeOverModeCommand, usePrettierCommand } from './client/commands';
+import { scaffoldSnippetsCompletionProvider } from './client/completions';
 
 let apiClient: LanguageClient;
 let docClient: LanguageClient | undefined;
@@ -176,6 +177,17 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
   context.subscriptions.push(commands.registerCommand('volar.doctor', doctorCommand(context)));
   /** MEMO: Custom commands for coc-volar */
   context.subscriptions.push(commands.registerCommand('volar.usePrettier', usePrettierCommand()));
+  /** MEMO: Custom snippets completion for coc-volar */
+  if (getConfigScaffoldSnippetsCompletion()) {
+    context.subscriptions.push(
+      languages.registerCompletionItemProvider(
+        'volar',
+        'volar',
+        ['vue'],
+        new scaffoldSnippetsCompletionProvider(context)
+      )
+    );
+  }
 }
 
 function getInitializationOptions(
@@ -303,6 +315,10 @@ function getConfigDocumentFormatting(): NonNullable<
   } else {
     return undefined;
   }
+}
+
+function getConfigScaffoldSnippetsCompletion() {
+  return workspace.getConfiguration('volar').get<boolean>('scaffoldSnippets.enable');
 }
 
 function initializeWorkspaceState(context: ExtensionContext) {
