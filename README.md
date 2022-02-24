@@ -56,6 +56,32 @@ In this case, please execute the command to restart the language server.
 
 Delete the `.vim/coc-settings.json` file in the "project root", and start Vim again.
 
+## Formatter
+
+If `coc-prettier` (v9.2.0 later) is installed, `prettier` will be run as the formatter.
+
+If you want to use the volar's built-in formatter, set `prettier.formatterPriority` to `-1` in `.vim/coc-settings.json`.
+
+```jsonc
+{
+  "prettier.formatterPriority": -1,
+}
+```
+
+Or set `prettier.disableLanguages` to `vue` in `.vim/coc-settings.json`.
+
+```jsonc
+{
+  "prettier.disableLanguages": [
+    "vue"
+  ]
+}
+```
+
+It can also be controlled by other `coc-prettier` settings and `.prettierignore` files.
+
+Check the README of `coc-prettier` for details. <https://github.com/neoclide/coc-prettier/blob/master/Readme.md>
+
 ## Configuration options
 
 - `volar.enable`: Enable coc-volar extension, default: `true`
@@ -87,7 +113,6 @@ Delete the `.vim/coc-settings.json` file in the "project root", and start Vim ag
   - You can check the versions and settings of various packages
     - client, server, vue, @vue/runtime-dom, vue-tsc, typescript related, coc-volar's configuration, and more...
 - `volar.initializeTakeOverMode`: Enable Take Over Mode in your project
-- `volar.usePrettier`: Disable volar formatter and enable prettier in your project
 - `volar.action.restartServer`: Restart Vue server
 - `volar.action.verifyAllScripts`: Verify All Scripts
 - `volar.action.splitEditors`: Split `<script>`, `<template>`, `<style>` Editors

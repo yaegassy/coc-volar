@@ -11,7 +11,7 @@ import * as splitEditors from './features/splitEditors';
 import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
 
-import { doctorCommand, initializeTakeOverModeCommand, usePrettierCommand } from './client/commands';
+import { doctorCommand, initializeTakeOverModeCommand } from './client/commands';
 import { scaffoldSnippetsCompletionProvider } from './client/completions';
 
 let apiClient: LanguageClient;
@@ -175,8 +175,6 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
 
   /** MEMO: Custom commands for coc-volar */
   context.subscriptions.push(commands.registerCommand('volar.doctor', doctorCommand(context)));
-  /** MEMO: Custom commands for coc-volar */
-  context.subscriptions.push(commands.registerCommand('volar.usePrettier', usePrettierCommand()));
   /** MEMO: Custom snippets completion for coc-volar */
   if (getConfigScaffoldSnippetsCompletion()) {
     context.subscriptions.push(
