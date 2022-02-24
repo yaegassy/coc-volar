@@ -113,26 +113,6 @@ export function initializeTakeOverModeCommand() {
   };
 }
 
-export function usePrettierCommand() {
-  return async () => {
-    const usePrettier = await window.showPrompt('Disable volar formatter and enable prettier in your project?');
-
-    let isCocPretteir = true;
-    if (!extensions.all.find((e) => e.id === 'coc-prettier')) {
-      isCocPretteir = false;
-      window.showWarningMessage(`coc-prettier is not installed`);
-    }
-
-    if (usePrettier && isCocPretteir) {
-      const config = workspace.getConfiguration('volar');
-      const prettierConfig = workspace.getConfiguration('prettier');
-      config.update('formatting.enable', false);
-      prettierConfig.update('disableLanguages', []);
-      workspace.nvim.command(`CocRestart`, true);
-    }
-  };
-}
-
 function getPackageVersionFromJson(packageJsonPath: string): string | undefined {
   let version: string | undefined;
   try {
