@@ -60,15 +60,7 @@ Delete the `.vim/coc-settings.json` file in the "project root", and start Vim ag
 
 If `coc-prettier` (v9.2.0 later) is installed, `prettier` will be run as the formatter.
 
-If you want to use the volar's built-in formatter, set `prettier.formatterPriority` to `-1` in `.vim/coc-settings.json`.
-
-```jsonc
-{
-  "prettier.formatterPriority": -1,
-}
-```
-
-Or set `prettier.disableLanguages` to `vue` in `.vim/coc-settings.json`.
+If you want to use the volar's built-in formatter, set `prettier.disableLanguages` to `vue` in `.vim/coc-settings.json`.
 
 ```jsonc
 {
