@@ -1,4 +1,4 @@
-import { extensions, ExtensionContext, Uri, window, workspace } from 'coc.nvim';
+import { ExtensionContext, Uri, window, workspace } from 'coc.nvim';
 import path from 'path';
 import fs from 'fs';
 
