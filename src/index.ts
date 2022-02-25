@@ -29,7 +29,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
     if (devVolarServerPath && fs.existsSync(devVolarServerPath)) {
       serverModule = workspace.expand(devVolarServerPath);
     } else {
-      serverModule = context.asAbsolutePath(path.join('node_modules', '@volar', 'server', 'out', 'index.js'));
+      serverModule = context.asAbsolutePath(path.join('node_modules', '@volar', 'server', 'out', 'node'));
     }
 
     const debugOptions = { execArgv: ['--nolazy', '--inspect=' + port] };
