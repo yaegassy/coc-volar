@@ -54,6 +54,13 @@ export function activate(context: ExtensionContext) {
               end: doc.textDocument.positionAt(v.end).line,
             });
             break;
+          case 'js':
+            scriptBlocks.push({
+              lang: v.lang,
+              start: doc.textDocument.positionAt(v.start).line,
+              end: doc.textDocument.positionAt(v.end).line,
+            });
+            break;
           case 'html':
             templateBlocks.push({
               lang: v.lang,
