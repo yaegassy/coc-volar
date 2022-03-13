@@ -1,6 +1,6 @@
 # coc-volar
 
-> fork from a [@volar/client](https://github.com/johnsoncodehk/volar/tree/master/packages/client)
+> fork from a [vscode-vue-language-features](https://github.com/johnsoncodehk/volar/tree/master/extensions/vscode-vue-language-features)
 
 [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (Fast Vue Language Support) extension for [coc.nvim](https://github.com/neoclide/coc.nvim)
 
@@ -90,6 +90,7 @@ Check the README of `coc-prettier` for details. <https://github.com/neoclide/coc
 - `volar.codeLens.references`: [references] code lens, default: `true`
 - `volar.codeLens.pugTools`: [pug ☐] code lens, default: `false`
 - `volar.codeLens.scriptSetupTools`: [ref sugar ☐] code lens, default: `false`
+- `volar.autoCreateQuotes`: Enable/disable auto creation of quotes for HTML attribute assignment, default: `false`
 - `volar.autoClosingTags`: Enable/disable autoClosing of HTML tags, default: `false`
 - `volar.autoCompleteRefs`: Auto-complete Ref value with '.value', default: `false`
 - `volar.formatting.enable`: Enable/disable the Volar document formatter, default: `true`

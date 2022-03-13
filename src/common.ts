@@ -5,8 +5,7 @@ import * as shared from '@volar/shared';
 import * as documentVersion from './features/documentVersion';
 import * as documentPrintWidth from './features/documentPrintWidth';
 import * as showReferences from './features/showReferences';
-import * as tagClosing from './features/tagClosing';
-import * as refComplete from './features/refComplete';
+import * as autoInsertion from './features/autoInsertion';
 import * as splitEditors from './features/splitEditors';
 import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
@@ -150,8 +149,14 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
 
   splitEditors.activate(context);
   verifyAll.activate(context, docClient ?? apiClient);
-  tagClosing.activate(context, htmlClient);
-  refComplete.activate(context, apiClient);
+
+  if (
+    workspace.getConfiguration('volar').get<boolean>('autoCreateQuotes') ||
+    workspace.getConfiguration('volar').get<boolean>('autoClosingTags') ||
+    workspace.getConfiguration('volar').get<boolean>('autoCompleteRefs')
+  ) {
+    autoInsertion.activate(context, htmlClient, apiClient);
+  }
 
   async function registarRestartRequest() {
     await Promise.all(clients.map((client) => client.onReady()));
@@ -207,6 +212,7 @@ function getInitializationOptions(
             ...(mode === 'api'
               ? {
                   references: true,
+                  implementation: true,
                   definition: true,
                   typeDefinition: true,
                   callHierarchy: true,

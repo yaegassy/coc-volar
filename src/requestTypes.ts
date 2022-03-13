@@ -25,17 +25,11 @@ export const GetDocumentPrintWidthRequestType = new coc.RequestType<
  * Server Requests
  */
 
-export const GetTagCloseEditsRequestType = new coc.RequestType<
-  shared.GetTagCloseEditsRequest.ParamsType,
-  shared.GetTagCloseEditsRequest.ResponseType,
-  shared.GetTagCloseEditsRequest.ErrorType
->(shared.GetTagCloseEditsRequest.type.method);
-
-export const GetRefCompleteEditsRequestType = new coc.RequestType<
-  shared.GetRefCompleteEditsRequest.ParamsType,
-  shared.GetRefCompleteEditsRequest.ResponseType,
-  shared.GetRefCompleteEditsRequest.ErrorType
->(shared.GetRefCompleteEditsRequest.type.method);
+export const AutoInsertRequestType = new coc.RequestType<
+  shared.AutoInsertRequest.ParamsType,
+  shared.AutoInsertRequest.ResponseType,
+  shared.AutoInsertRequest.ErrorType
+>(shared.AutoInsertRequest.type.method);
 
 export const VerifyAllScriptsNotificationType = new coc.NotificationType0(
   shared.VerifyAllScriptsNotification.type.method
