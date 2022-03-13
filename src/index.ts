@@ -29,7 +29,9 @@ export async function activate(context: ExtensionContext): Promise<void> {
     if (devVolarServerPath && fs.existsSync(devVolarServerPath)) {
       serverModule = devVolarServerPath;
     } else {
-      serverModule = context.asAbsolutePath(path.join('node_modules', '@volar', 'server', 'out', 'node'));
+      serverModule = context.asAbsolutePath(
+        path.join('node_modules', '@volar', 'vue-language-server', 'bin', 'vue-language-server.js')
+      );
     }
 
     const debugOptions = { execArgv: ['--nolazy', '--inspect=' + port] };
