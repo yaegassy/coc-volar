@@ -1,6 +1,6 @@
 # coc-volar
 
-> fork from a [@volar/client](https://github.com/johnsoncodehk/volar/tree/master/packages/client)
+> fork from a [vscode-vue-language-features](https://github.com/johnsoncodehk/volar/tree/master/extensions/vscode-vue-language-features)
 
 [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (Fast Vue Language Support) extension for [coc.nvim](https://github.com/neoclide/coc.nvim)
 
