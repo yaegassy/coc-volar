@@ -41,7 +41,7 @@
     "@types/node": "^16.11.26",
     "@typescript-eslint/eslint-plugin": "^5.14.0",
     "@typescript-eslint/parser": "^5.14.0",
-    "coc.nvim": "^0.0.81-next.14",
+    "coc.nvim": "^0.0.81-next.22",
     "esbuild": "^0.14.25",
     "eslint": "^8.8.0",
     "eslint-config-prettier": "^8.5.0",
