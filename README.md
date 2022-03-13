@@ -34,12 +34,12 @@ In this case, please execute the command to restart the language server.
 
 - `:CocCommand volar.action.restartServer` or `:CocRestart`
 
-## Using & Note
+## Usage & Notes
 
 **See**:
 
-- <https://github.com/johnsoncodehk/volar/tree/master/extensions/vscode-vue-language-features#using>
-- <https://github.com/johnsoncodehk/volar/tree/master/extensions/vscode-vue-language-features#note>
+- <https://github.com/johnsoncodehk/volar/tree/master/extensions/vscode-vue-language-features#usage>
+- <https://github.com/johnsoncodehk/volar/tree/master/extensions/vscode-vue-language-features#notes>
 
 ## How to enable "Take Over Mode" in coc-volar
 
