@@ -170,6 +170,11 @@
           "default": false,
           "description": "[ref sugar ☐] code lens."
         },
+        "volar.autoCreateQuotes": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable/disable auto creation of quotes for HTML attribute assignment."
+        },
         "volar.autoClosingTags": {
           "type": "boolean",
           "default": false,

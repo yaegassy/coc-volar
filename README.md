@@ -90,6 +90,7 @@ Check the README of `coc-prettier` for details. <https://github.com/neoclide/coc
 - `volar.codeLens.references`: [references] code lens, default: `true`
 - `volar.codeLens.pugTools`: [pug ☐] code lens, default: `false`
 - `volar.codeLens.scriptSetupTools`: [ref sugar ☐] code lens, default: `false`
+- `volar.autoCreateQuotes`: Enable/disable auto creation of quotes for HTML attribute assignment, default: `false`
 - `volar.autoClosingTags`: Enable/disable autoClosing of HTML tags, default: `false`
 - `volar.autoCompleteRefs`: Auto-complete Ref value with '.value', default: `false`
 - `volar.formatting.enable`: Enable/disable the Volar document formatter, default: `true`
