@@ -412,16 +412,6 @@
     vscode-languageserver-textdocument "^1.0.3"
     vscode-languageserver-types "^3.17.0-next.6"
 
-"@volar/shared@0.32.1":
-  version "0.32.1"
-  resolved "https://registry.yarnpkg.com/@volar/shared/-/shared-0.32.1.tgz#62457f5a8d5cb78c4c5985f939335c5bc7926498"
-  integrity sha512-WROOlXKjtUrnYtx0CXCh/MAKg+Fq0nx5GEKGIpmrFnB/NZku8noOV/e8vS92wTe3JypbJmspU5RwmARcMFRhMg==
-  dependencies:
-    upath "^2.0.1"
-    vscode-html-languageservice "^4.2.1"
-    vscode-jsonrpc "^8.0.0-next.5"
-    vscode-uri "^3.0.3"
-
 "@volar/shared@0.33.0":
   version "0.33.0"
   resolved "https://registry.yarnpkg.com/@volar/shared/-/shared-0.33.0.tgz#ce77a3586561f89a64abe1201d9bc7b7aeb534e3"
@@ -3594,15 +3584,10 @@ vscode-jsonrpc@8.0.0-next.2:
   resolved "https://registry.yarnpkg.com/vscode-jsonrpc/-/vscode-jsonrpc-8.0.0-next.2.tgz#285fc294be586e4768acd67e5a42efc738a5cac0"
   integrity sha512-gxUyTBAjmwGkiHW/UaRScre2s4i98P8M7gnc3VB4DrVQUm3vQ0idi2cN9nbkfcjATx+uEt8C22j+MLN/8UzsJA==
 
-vscode-jsonrpc@8.0.0-next.7:
+vscode-jsonrpc@8.0.0-next.7, vscode-jsonrpc@^8.0.0-next.5:
   version "8.0.0-next.7"
   resolved "https://registry.yarnpkg.com/vscode-jsonrpc/-/vscode-jsonrpc-8.0.0-next.7.tgz#6819ee92b3f43943b935f11b814d8e08bdabad35"
   integrity sha512-JX/F31LEsims0dAlOTKFE4E+AJMiJvdRSRViifFJSqSN7EzeYyWlfuDchF7g91oRNPZOIWfibTkDf3/UMsQGzQ==
-
-vscode-jsonrpc@^8.0.0-next.5:
-  version "8.0.0-next.6"
-  resolved "https://registry.yarnpkg.com/vscode-jsonrpc/-/vscode-jsonrpc-8.0.0-next.6.tgz#981f7c065ecc7e7e8595f9da6d073ac592b34114"
-  integrity sha512-6Ld3RYjygn5Ih7CkAtcAwiDQC+rakj2O+PnASfNyYv3sLmm44eJpEKzuPUN30Iy2UB09AZg8T6LBKWTJTEJDVw==
 
 vscode-languageclient@^8.0.0-next.2:
   version "8.0.0-next.2"
@@ -3635,9 +3620,9 @@ vscode-languageserver-textdocument@^1.0.1:
   integrity sha512-UIcJDjX7IFkck7cSkNNyzIz5FyvpQfY7sdzVy+wkKN/BLaD4DQ0ppXQrKePomCxTS7RrolK1I0pey0bG9eh8dA==
 
 vscode-languageserver-textdocument@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/vscode-languageserver-textdocument/-/vscode-languageserver-textdocument-1.0.3.tgz#879f2649bfa5a6e07bc8b392c23ede2dfbf43eff"
-  integrity sha512-ynEGytvgTb6HVSUwPJIAZgiHQmPCx8bZ8w5um5Lz+q5DjP0Zj8wTFhQpyg8xaMvefDytw2+HH5yzqS+FhsR28A==
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/vscode-languageserver-textdocument/-/vscode-languageserver-textdocument-1.0.4.tgz#3cd56dd14cec1d09e86c4bb04b09a246cb3df157"
+  integrity sha512-/xhqXP/2A2RSs+J8JNXpiiNVvvNM0oTosNVmQnunlKvq9o4mupHOBAnnzH0lwIPKazXKvAKsVp1kr+H/K4lgoQ==
 
 vscode-languageserver-types@3.17.0-next.3:
   version "3.17.0-next.3"
