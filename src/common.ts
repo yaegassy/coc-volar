@@ -212,6 +212,7 @@ function getInitializationOptions(
             ...(mode === 'api'
               ? {
                   references: true,
+                  implementation: true,
                   definition: true,
                   typeDefinition: true,
                   callHierarchy: true,
