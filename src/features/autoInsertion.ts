@@ -15,7 +15,7 @@ import { TextDocumentContentChangeEvent } from 'vscode-languageserver-protocol';
 import { AutoInsertRequestType } from '../requestTypes';
 
 export async function activate(context: ExtensionContext, htmlClient: LanguageClient, tsClient: LanguageClient) {
-  await Promise.all([htmlClient.onReady, tsClient.onReady]);
+  await Promise.all([htmlClient.onReady(), tsClient.onReady()]);
 
   const supportedLanguages: Record<string, boolean> = {
     vue: true,
