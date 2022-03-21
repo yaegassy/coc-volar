@@ -3,7 +3,6 @@
 > fork from a [vscode-vue-language-features](https://github.com/johnsoncodehk/volar/tree/master/extensions/vscode-vue-language-features)
 
 [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (Fast Vue Language Support) extension for [coc.nvim](https://github.com/neoclide/coc.nvim)
-
 <img width="780" alt="coc-volar-demo" src="https://user-images.githubusercontent.com/188642/130296846-72ff5989-5853-46fb-a053-a979f7041b99.gif">
 
 ## Install
@@ -20,6 +19,22 @@
 
 ```vim
 Plug 'yaegassy/coc-volar', {'do': 'yarn install --frozen-lockfile'}
+```
+
+## (Optional) Additional installation of coc-extension
+
+If you want to use `volar.action.splitEditors` and other feature, please install [coc-volar-tools](https://github.com/yaegassy/coc-volar-tools).
+
+```vim
+:CocInstall @yaegassy/coc-volar-tools
+```
+
+> scoped packages
+
+**vim-plug**:
+
+```vim
+Plug 'yaegassy/coc-volar-tools', {'do': 'yarn install --frozen-lockfile'}
 ```
 
 ## Recommended additional installation: "watchman"
@@ -109,6 +124,7 @@ Check the README of `coc-prettier` for details. <https://github.com/neoclide/coc
 - `volar.action.restartServer`: Restart Vue server
 - `volar.action.verifyAllScripts`: Verify All Scripts
 - `volar.action.splitEditors`: Split `<script>`, `<template>`, `<style>` Editors
+  - Please install [coc-volar-tools](https://github.com/yaegassy/coc-volar-tools) separately to use this command
 
 ## More features
 
