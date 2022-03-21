@@ -1,16 +1,17 @@
 import { commands, ExtensionContext, Position, workspace } from 'coc.nvim';
 import { ref, computed } from '@vue/reactivity';
-import * as html from 'vscode-html-languageservice';
-import { TextDocument } from 'vscode-languageserver-textdocument';
-import * as shared from '@volar/shared';
+import { parse, SFCBlock } from '@vue/compiler-sfc';
 
 interface CocVolarSFCBlock {
-  lang: string;
+  lang: string | undefined;
   start: number;
   end: number;
 }
 
-export const htmlLs = html.getLanguageService();
+// porting: https://github.com/johnsoncodehk/volar/blob/master/packages/shared/src/common.ts
+function notEmpty<T>(value: T | null | undefined): value is T {
+  return value !== null && value !== undefined;
+}
 
 export function activate(context: ExtensionContext) {
   context.subscriptions.push(commands.registerCommand('volar.action.splitEditors', onSplit));
@@ -23,8 +24,8 @@ export function activate(context: ExtensionContext) {
       return;
     }
 
-    const descriptor = getDocDescriptor(doc.textDocument.getText());
-    const blocksSet: shared.SfcBlock[][] = [];
+    const { descriptor } = getDocDescriptor(doc.textDocument.getText());
+    const blocksSet: SFCBlock[][] = [];
 
     const scriptBlocks: CocVolarSFCBlock[] = [];
     const templateBlocks: CocVolarSFCBlock[] = [];
@@ -32,7 +33,7 @@ export function activate(context: ExtensionContext) {
     const customBlocks: CocVolarSFCBlock[] = [];
 
     if (descriptor.scriptSetup || descriptor.script) {
-      blocksSet.push([descriptor.scriptSetup, descriptor.script].filter(shared.notEmpty));
+      blocksSet.push([descriptor.scriptSetup, descriptor.script].filter(notEmpty));
     }
     if (descriptor.template) {
       blocksSet.push([descriptor.template]);
@@ -46,41 +47,34 @@ export function activate(context: ExtensionContext) {
 
     for (let i = 0; i < blocksSet.length; i++) {
       for (const v of blocksSet[i]) {
-        switch (v.lang) {
-          case 'ts':
+        switch (v.type) {
+          case 'script':
             scriptBlocks.push({
               lang: v.lang,
-              start: doc.textDocument.positionAt(v.start).line,
-              end: doc.textDocument.positionAt(v.end).line,
+              start: v.loc.start.line,
+              end: v.loc.end.line,
             });
             break;
-          case 'js':
-            scriptBlocks.push({
-              lang: v.lang,
-              start: doc.textDocument.positionAt(v.start).line,
-              end: doc.textDocument.positionAt(v.end).line,
-            });
-            break;
-          case 'html':
+          case 'template':
             templateBlocks.push({
               lang: v.lang,
-              start: doc.textDocument.positionAt(v.start).line,
-              end: doc.textDocument.positionAt(v.end).line,
+              start: v.loc.start.line,
+              end: v.loc.end.line,
             });
             break;
-          case 'css':
+          case 'style':
             styleBlocks.push({
               lang: v.lang,
-              start: doc.textDocument.positionAt(v.start).line,
-              end: doc.textDocument.positionAt(v.end).line,
+              start: v.loc.start.line,
+              end: v.loc.end.line,
             });
             break;
 
           default:
             customBlocks.push({
               lang: v.lang,
-              start: doc.textDocument.positionAt(v.start).line,
-              end: doc.textDocument.positionAt(v.end).line,
+              start: v.loc.start.line,
+              end: v.loc.end.line,
             });
             break;
         }
@@ -137,9 +131,7 @@ export function activate(context: ExtensionContext) {
 
 function useDocDescriptor() {
   const splitDocText = ref('');
-  const splitDocDescriptor = computed(() =>
-    shared.parseSfc(splitDocText.value, htmlLs.parseHTMLDocument(TextDocument.create('', '', 0, splitDocText.value)))
-  );
+  const splitDocDescriptor = computed(() => parse(splitDocText.value, { sourceMap: false, ignoreEmpty: false }));
 
   return getDescriptor;
 
@@ -151,7 +143,7 @@ function useDocDescriptor() {
 
 async function foldingSFCBlock(blockRanges: CocVolarSFCBlock[]) {
   for (const v of blockRanges) {
-    await workspace.nvim.command(`${v.start + 1},${v.end + 1}fold`);
+    await workspace.nvim.command(`${v.start},${v.end}fold`);
   }
 }
 
