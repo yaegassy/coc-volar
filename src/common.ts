@@ -6,7 +6,6 @@ import * as documentVersion from './features/documentVersion';
 import * as documentPrintWidth from './features/documentPrintWidth';
 import * as showReferences from './features/showReferences';
 import * as autoInsertion from './features/autoInsertion';
-import * as splitEditors from './features/splitEditors';
 import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
 
@@ -147,7 +146,6 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
   registarRestartRequest();
   registarClientRequests();
 
-  splitEditors.activate(context);
   verifyAll.activate(context, docClient ?? apiClient);
 
   if (
