@@ -275,18 +275,12 @@
         "command": "volar.action.verifyAllScripts",
         "title": "Verify All Scripts",
         "category": "Volar"
-      },
-      {
-        "command": "volar.action.splitEditors",
-        "title": "Split <script>, <template>, <style> Editors",
-        "category": "Volar"
       }
     ]
   },
   "dependencies": {
     "@volar/shared": "0.33.5",
     "@volar/vue-language-server": "0.33.5",
-    "@vue/compiler-sfc": "^3.2.27",
     "@vue/reactivity": "^3.2.31",
     "typescript": "4.6.2"
   }
