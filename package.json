@@ -286,7 +286,7 @@
   "dependencies": {
     "@volar/shared": "0.33.5",
     "@volar/vue-language-server": "0.33.5",
-    "@vue/reactivity": "3.2.27",
+    "@vue/reactivity": "^3.2.31",
     "typescript": "4.6.2",
     "vscode-html-languageservice": "^4.2.1",
     "vscode-languageserver-textdocument": "^1.0.3"
