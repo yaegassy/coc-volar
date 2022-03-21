@@ -13,7 +13,13 @@ export function doctorCommand(context: ExtensionContext) {
 
     const clientJSON = path.join(context.extensionPath, 'package.json');
     const clientPackage = JSON.parse(fs.readFileSync(clientJSON, 'utf8'));
-    const serverJSON = path.join(context.extensionPath, 'node_modules', '@volar', 'server', 'package.json');
+    const serverJSON = path.join(
+      context.extensionPath,
+      'node_modules',
+      '@volar',
+      'vue-language-server',
+      'package.json'
+    );
     const serverPackage = JSON.parse(fs.readFileSync(serverJSON, 'utf8'));
 
     let vueVersion: string | undefined;
