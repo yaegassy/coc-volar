@@ -288,7 +288,6 @@
     "@volar/vue-language-server": "0.33.5",
     "@vue/compiler-sfc": "^3.2.27",
     "@vue/reactivity": "^3.2.31",
-    "typescript": "4.6.2",
-    "vscode-languageserver-textdocument": "^1.0.3"
+    "typescript": "4.6.2"
   }
 }
