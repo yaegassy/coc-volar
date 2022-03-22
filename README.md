@@ -25,6 +25,8 @@ Plug 'yaegassy/coc-volar', {'do': 'yarn install --frozen-lockfile'}
 
 If you want to use `volar.action.splitEditors` and other feature, please install [coc-volar-tools](https://github.com/yaegassy/coc-volar-tools).
 
+**CocInstall**:
+
 ```vim
 :CocInstall @yaegassy/coc-volar-tools
 ```
