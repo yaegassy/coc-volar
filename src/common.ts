@@ -92,7 +92,6 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
 export async function doActivate(context: ExtensionContext, createLc: CreateLanguageClient): Promise<void> {
   initializeWorkspaceState(context);
 
-  const lowPowerMode = lowPowerModeEnabled();
   const takeOverMode = takeOverModeEnabled();
 
   const languageFeaturesDocumentSelector: DocumentSelector = takeOverMode
@@ -115,29 +114,31 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
       ]
     : [{ language: 'vue' }];
 
+  const _useSecondServer = useSecondServer();
+
   apiClient = createLc(
-    'volar-api',
-    'Volar - API',
+    'volar-language-features',
+    'Volar - Language Features Server',
     languageFeaturesDocumentSelector,
-    getInitializationOptions(context, 'api', undefined, lowPowerMode),
+    getInitializationOptions(context, 'main-language-features', undefined, _useSecondServer),
     6009
   );
 
-  docClient = !lowPowerMode
+  docClient = _useSecondServer
     ? createLc(
-        'volar-document',
-        'Volar - Document',
+        'volar-language-features-2',
+        'Volar - Second Language Features Server',
         languageFeaturesDocumentSelector,
-        getInitializationOptions(context, 'doc', undefined, lowPowerMode),
+        getInitializationOptions(context, 'second-language-features', undefined, _useSecondServer),
         6010
       )
     : undefined;
 
   htmlClient = createLc(
-    'volar-html',
-    'Volar - HTML',
+    'volar-document-features',
+    'Volar - Document Features Server',
     documentFeaturesDocumentSelector,
-    getInitializationOptions(context, 'html', undefined, lowPowerMode),
+    getInitializationOptions(context, 'document-features', undefined, _useSecondServer),
     6011
   );
 
@@ -193,9 +194,9 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
 
 function getInitializationOptions(
   context: ExtensionContext,
-  mode: 'api' | 'doc' | 'html',
+  mode: 'main-language-features' | 'second-language-features' | 'document-features',
   initMessage: string | undefined,
-  lowPowerMode: boolean
+  useSecondServer: boolean
 ) {
   if (!resolveCurrentTsPaths) {
     resolveCurrentTsPaths = tsVersion.getCurrentTsPaths(context);
@@ -205,9 +206,9 @@ function getInitializationOptions(
   const initializationOptions: shared.ServerInitializationOptions = {
     typescript: resolveCurrentTsPaths,
     languageFeatures:
-      mode === 'api' || mode === 'doc'
+      mode === 'main-language-features' || mode === 'second-language-features'
         ? {
-            ...(mode === 'api'
+            ...(mode === 'main-language-features'
               ? {
                   references: true,
                   implementation: true,
@@ -229,7 +230,7 @@ function getInitializationOptions(
                   schemaRequestService: true,
                 }
               : {}),
-            ...(mode === 'doc' || (mode === 'api' && lowPowerMode)
+            ...(mode === 'second-language-features' || (mode === 'main-language-features' && useSecondServer)
               ? {
                   documentHighlight: true,
                   documentLink: true,
@@ -242,7 +243,7 @@ function getInitializationOptions(
           }
         : undefined,
     documentFeatures:
-      mode === 'html'
+      mode === 'document-features'
         ? {
             selectionRange: true,
             foldingRange: true,
@@ -266,8 +267,8 @@ export function takeOverModeEnabled() {
   return !!workspace.getConfiguration('volar').get<boolean>('takeOverMode.enabled');
 }
 
-function lowPowerModeEnabled() {
-  return !!workspace.getConfiguration('volar').get<boolean>('lowPowerMode');
+function useSecondServer() {
+  return !!workspace.getConfiguration('volar').get<boolean>('vueserver.useSecondServer');
 }
 
 function getConfigTagNameCase() {
