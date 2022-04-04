@@ -230,7 +230,7 @@ function getInitializationOptions(
                   schemaRequestService: true,
                 }
               : {}),
-            ...(mode === 'second-language-features' || (mode === 'main-language-features' && useSecondServer)
+            ...(mode === 'second-language-features' || (mode === 'main-language-features' && !useSecondServer)
               ? {
                   documentHighlight: true,
                   documentLink: true,
