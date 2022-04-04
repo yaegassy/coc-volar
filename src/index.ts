@@ -67,7 +67,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
       middleware: getConfigFixCompletion()
         ? {
             provideCompletionItem:
-              id === 'volar-api'
+              id === 'volar-language-features'
                 ? async (
                     document,
                     position: Position,
