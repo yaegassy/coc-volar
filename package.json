@@ -152,7 +152,7 @@
         },
         "volar.vueserver.useSecondServer": {
           "type": "boolean",
-          "default": false,
+          "default": true,
           "description": "Use second server to progress heavy diagnostic works, the main server workhorse computing intellisense, operations such as auto-complete can respond faster. Note that this will lead to more memory usage."
         },
         "volar.codeLens.references": {
