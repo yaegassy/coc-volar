@@ -5,7 +5,7 @@ import * as shared from '@volar/shared';
  * Client Requests
  */
 
-export const ShowReferencesNotificationType = new coc.NotificationType<shared.ShowReferencesNotification.ParamsType>(
+export const ShowReferencesNotificationType = new coc.NotificationType<shared.ShowReferencesNotification.ResponseType>(
   shared.ShowReferencesNotification.type.method
 );
 
