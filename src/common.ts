@@ -3,7 +3,6 @@ import { commands, DocumentSelector, ExtensionContext, languages, LanguageClient
 import * as shared from '@volar/shared';
 
 import * as documentVersion from './features/documentVersion';
-import * as documentPrintWidth from './features/documentPrintWidth';
 import * as showReferences from './features/showReferences';
 import * as autoInsertion from './features/autoInsertion';
 import * as tsVersion from './features/tsVersion';
@@ -173,7 +172,6 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
     for (const client of clients) {
       showReferences.activate(context, client);
       documentVersion.activate(context, client);
-      documentPrintWidth.activate(context, client);
     }
   }
 
@@ -311,10 +309,7 @@ function getConfigDocumentFormatting(): NonNullable<
   const isFormattingEnable = workspace.getConfiguration('volar').get<boolean>('formatting.enable', true);
 
   if (isFormattingEnable) {
-    return {
-      defaultPrintWidth: 100,
-      getDocumentPrintWidthRequest: true,
-    };
+    return true;
   } else {
     return undefined;
   }

@@ -195,11 +195,6 @@
           "default": true,
           "description": "Enable/disable the Volar document formatter."
         },
-        "volar.formatting.printWidth": {
-          "type": "number",
-          "default": 100,
-          "description": "HTML formatting print width."
-        },
         "volar.completion.tagNameCase": {
           "type": "string",
           "enum": [

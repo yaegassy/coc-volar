@@ -15,12 +15,6 @@ export const GetDocumentVersionRequestType = new coc.RequestType<
   shared.GetDocumentVersionRequest.ErrorType
 >(shared.GetDocumentVersionRequest.type.method);
 
-export const GetDocumentPrintWidthRequestType = new coc.RequestType<
-  shared.GetDocumentPrintWidthRequest.ParamsType,
-  shared.GetDocumentPrintWidthRequest.ResponseType,
-  shared.GetDocumentPrintWidthRequest.ErrorType
->(shared.GetDocumentPrintWidthRequest.type.method);
-
 /**
  * Server Requests
  */

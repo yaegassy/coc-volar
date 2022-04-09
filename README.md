@@ -111,7 +111,6 @@ Check the README of `coc-prettier` for details. <https://github.com/neoclide/coc
 - `volar.autoClosingTags`: Enable/disable autoClosing of HTML tags, default: `false`
 - `volar.autoCompleteRefs`: Auto-complete Ref value with '.value', default: `false`
 - `volar.formatting.enable`: Enable/disable the Volar document formatter, default: `true`
-- `volar.formatting.printWidth`: HTML formatting print width, default: `100`
 - `volar.completion.tagNameCase`: Tag name case, valid options: `["both", "kebab", "pascal"]`, default: `"both"`
 - `volar.completion.attrNameCase`: Attr name case, valid options: `["kebab", "camel"]`, default: `"kebab"`
 - `volar.completion.autoImportComponent`: Enabled auto-import for component with tag completion, default: `true`
