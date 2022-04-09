@@ -251,7 +251,6 @@ function getInitializationOptions(
             documentFormatting: getConfigDocumentFormatting(),
           }
         : undefined,
-    initializationMessage: initMessage,
   };
 
   return initializationOptions;
