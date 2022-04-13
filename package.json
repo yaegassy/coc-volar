@@ -274,8 +274,8 @@
     ]
   },
   "dependencies": {
-    "@volar/shared": "0.34.5",
-    "@volar/vue-language-server": "0.34.5",
+    "@volar/shared": "0.34.6",
+    "@volar/vue-language-server": "0.34.6",
     "@vue/reactivity": "^3.2.31",
     "typescript": "4.6.3"
   }
