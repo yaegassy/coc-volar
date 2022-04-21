@@ -7,6 +7,7 @@ import * as showReferences from './features/showReferences';
 import * as autoInsertion from './features/autoInsertion';
 import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
+import * as inlayHints from './features/inlayHints';
 
 import { doctorCommand, initializeTakeOverModeCommand } from './client/commands';
 import { scaffoldSnippetsCompletionProvider } from './client/completions';
@@ -147,6 +148,7 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
   registarClientRequests();
 
   verifyAll.activate(context, docClient ?? apiClient);
+  inlayHints.activate(context, docClient ?? apiClient);
 
   if (
     workspace.getConfiguration('volar').get<boolean>('autoCreateQuotes') ||
@@ -233,7 +235,7 @@ function getInitializationOptions(
                   documentLink: true,
                   codeLens: { showReferencesNotification: true },
                   semanticTokens: true,
-                  inlayHints: false,
+                  inlayHints: true,
                   diagnostics: getConfigDiagnostics(),
                   schemaRequestService: true,
                 }
