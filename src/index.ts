@@ -58,6 +58,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
     const clientOptions: LanguageClientOptions = {
       documentSelector,
       initializationOptions: initOptions,
+      progressOnInitialization: true,
       synchronize: {
         fileEvents: workspace.createFileSystemWatcher('{**/*.vue,**/*.js,**/*.jsx,**/*.ts,**/*.tsx,**/*.json}'),
       },
