@@ -233,6 +233,7 @@ function getInitializationOptions(
                   documentLink: true,
                   codeLens: { showReferencesNotification: true },
                   semanticTokens: true,
+                  inlayHints: false,
                   diagnostics: getConfigDiagnostics(),
                   schemaRequestService: true,
                 }
