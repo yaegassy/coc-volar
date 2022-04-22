@@ -201,6 +201,13 @@
   dependencies:
     "@volar/source-map" "0.34.9"
 
+"@volar/preview@0.34.9":
+  version "0.34.9"
+  resolved "https://registry.yarnpkg.com/@volar/preview/-/preview-0.34.9.tgz#488927e2e947b8479037de168f16c3bdd4bcb035"
+  integrity sha512-PVUnCENe3czwv8GcmY21+JXpFjeQDa4Dx+m4MmVWxhTntRvDpkAgMGSrUF/jNX6L6IjamsMCYFlYgimkv3r7og==
+  dependencies:
+    ws "^8.5.0"
+
 "@volar/pug-language-service@0.34.9":
   version "0.34.9"
   resolved "https://registry.yarnpkg.com/@volar/pug-language-service/-/pug-language-service-0.34.9.tgz#fbccc62a35b301a90dea1a543c95f578991fe4fa"
@@ -1773,6 +1780,11 @@ wrappy@1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
+
+ws@^8.5.0:
+  version "8.5.0"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-8.5.0.tgz#bfb4be96600757fe5382de12c670dab984a1ed4f"
+  integrity sha512-BWX0SWVgLPzYwF8lTzEy1egjhS4S4OEAHfsO8o65WOVsrnSRGaSiUaa9e0ggGlkMTtBlmOpEXiie9RUcBO86qg==
 
 yallist@^4.0.0:
   version "4.0.0"
