@@ -6,7 +6,7 @@ const supportLanguages = ['vue', 'javascript', 'typescript', 'javascriptreact', 
 export async function activate(context: ExtensionContext, languageClient: LanguageClient) {
   await languageClient.onReady();
 
-  await workspace.nvim.command('hi default link CocVueTypeHint CocHintSign');
+  await workspace.nvim.command('hi default link CocVolarTypeHint CocHintSign');
   const inlayHintsProvider = new VolarInlayHintsProvider(context, languageClient);
   inlayHintsProvider.activate();
   context.subscriptions.push(inlayHintsProvider);
@@ -90,7 +90,7 @@ export class VolarInlayHintsProvider implements Disposable {
 
     const chaining_hints = {};
     for (const item of hints) {
-      const chunks: [[string, string]] = [[item.label.toString(), 'CocHintSign']];
+      const chunks: [[string, string]] = [[item.label.toString(), 'CocVolarTypeHint']];
       if (chaining_hints[item.position.line] === undefined) {
         chaining_hints[item.position.line] = chunks;
       } else {
