@@ -170,10 +170,6 @@ export async function activate(context: coc.ExtensionContext) {
 
 	async function openPreview(fileName: string, mode: 'vite' | 'nuxt') {
 
-		const configFile = await getConfigFile(fileName, mode);
-		if (!configFile)
-			return;
-
 		let terminal = coc.window.terminals.find(terminal => terminal.name.startsWith('volar-preview:'));
 		let port: number;
 
@@ -181,6 +177,11 @@ export async function activate(context: coc.ExtensionContext) {
 			port = Number(terminal.name.split(':')[1]);
 		}
 		else {
+
+			const configFile = await getConfigFile(fileName, mode);
+			if (!configFile)
+				return;
+
 			const configDir = path.dirname(configFile);
 			const server = await startPreviewServer(configDir, mode);
 			terminal = server.terminal;
