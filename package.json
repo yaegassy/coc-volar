@@ -235,7 +235,7 @@
         },
         "volar.fix.completion": {
           "type": "boolean",
-          "default": true,
+          "default": false,
           "description": "Enable fix patch for `css` completion issue"
         },
         "vetur.enable": {
