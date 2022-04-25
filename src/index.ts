@@ -3,7 +3,9 @@ import {
   CompletionContext,
   CompletionItem,
   CompletionList,
+  Diagnostic,
   ExtensionContext,
+  HandleDiagnosticsSignature,
   LanguageClient,
   LanguageClientOptions,
   LinesTextDocument,
@@ -69,6 +71,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
             ? handleProvideCompletionItem
             : undefined
           : undefined,
+        handleDiagnostics: getConfigFixDiagnostics() ? handleDiagnostics : undefined,
       },
     };
 
@@ -95,8 +98,18 @@ function getConfigMaxMemory() {
   return workspace.getConfiguration('volar').get<number | null>('maxMemory');
 }
 
+function getConfigFixDiagnostics() {
+  return workspace.getConfiguration('volar').get<boolean>('fix.diagnostics', true);
+}
+
 function getConfigFixCompletion() {
   return workspace.getConfiguration('volar').get<boolean>('fix.completion', true);
+}
+
+function handleDiagnostics(uri: string, diagnostics: Diagnostic[], next: HandleDiagnosticsSignature) {
+  // TODO: remove duplicate diagnostics message in Take Over Mode.
+  // diagnostics.filter(...)
+  next(uri, diagnostics);
 }
 
 // issue: https://github.com/yaegassy/coc-volar/issues/38

@@ -238,6 +238,11 @@
           "default": false,
           "description": "Enable fix patch for `css` completion issue"
         },
+        "volar.fix.diagnostics": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable fix patch for diagnostics issue"
+        },
         "vetur.enable": {
           "type": "boolean",
           "default": true,
