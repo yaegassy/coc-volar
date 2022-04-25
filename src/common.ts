@@ -144,8 +144,8 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
 
   const clients = [apiClient, docClient, htmlClient].filter(shared.notEmpty);
 
-  registarRestartRequest();
-  registarClientRequests();
+  registerRestartRequest();
+  registerClientRequests();
 
   verifyAll.activate(context, docClient ?? apiClient);
   inlayHints.activate(context, docClient ?? apiClient);
@@ -158,19 +158,19 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
     autoInsertion.activate(context, htmlClient, apiClient);
   }
 
-  async function registarRestartRequest() {
+  async function registerRestartRequest() {
     await Promise.all(clients.map((client) => client.onReady()));
 
     context.subscriptions.push(
       commands.registerCommand('volar.action.restartServer', async () => {
         await Promise.all(clients.map((client) => client.stop()));
         await Promise.all(clients.map((client) => client.start()));
-        registarClientRequests();
+        registerClientRequests();
       })
     );
   }
 
-  function registarClientRequests() {
+  function registerClientRequests() {
     for (const client of clients) {
       showReferences.activate(context, client);
       documentVersion.activate(context, client);
