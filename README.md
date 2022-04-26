@@ -23,7 +23,7 @@ Plug 'yaegassy/coc-volar', {'do': 'yarn install --frozen-lockfile'}
 
 ## (Optional) Additional installation of coc-extension
 
-If you want to use `volar.action.splitEditors` and other feature, please install [coc-volar-tools](https://github.com/yaegassy/coc-volar-tools).
+If you want to use `volar.action.splitEditors`, `volar.action.vite`, `volar.action.nuxt` and other feature, please install [coc-volar-tools](https://github.com/yaegassy/coc-volar-tools).
 
 **CocInstall**:
 
@@ -125,6 +125,10 @@ Check the README of `coc-prettier` for details. <https://github.com/neoclide/coc
 - `volar.action.restartServer`: Restart Vue server
 - `volar.action.verifyAllScripts`: Verify All Scripts
 - `volar.action.splitEditors`: Split `<script>`, `<template>`, `<style>` Editors
+  - Please install [coc-volar-tools](https://github.com/yaegassy/coc-volar-tools) separately to use this command
+- `volar.action.vite`: Experimental Features for Vite
+  - Please install [coc-volar-tools](https://github.com/yaegassy/coc-volar-tools) separately to use this command
+- `volar.action.nuxt`: Experimental Features for Nuxt
   - Please install [coc-volar-tools](https://github.com/yaegassy/coc-volar-tools) separately to use this command
 
 ## More features
