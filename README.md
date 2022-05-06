@@ -73,6 +73,24 @@ In this case, please execute the command to restart the language server.
 
 Delete the `.vim/coc-settings.json` file in the "project root", and start Vim again.
 
+## workspaceFolders
+
+Depending on the project like mono repo or how Vim/Neovim is started, `workspaceFolders` may not be recognized correctly.
+
+If `workspaceFolders` are not recognized correctly, the language server may parse unnecessary project folders, etc., slowing down the operation.
+
+To make coc.nvim recognize `workspaceFolders` correctly, you can set `b:coc_root_patterns` in ".vimrc/init.vim"
+
+**Example**:
+
+```vim
+  au FileType vue let b:coc_root_patterns = ['.git', '.env', 'package.json', 'tsconfig.json', 'jsconfig.json', 'vite.config.ts', 'nuxt.config.ts']
+```
+
+For more information, check this coc.nvim's wiki.
+
+- <https://github.com/neoclide/coc.nvim/wiki/Using-workspaceFolders>
+
 ## Formatter
 
 If `coc-prettier` (v9.2.0 later) is installed, `prettier` will be run as the formatter.
