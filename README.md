@@ -97,6 +97,7 @@ Check the README of `coc-prettier` for details. <https://github.com/neoclide/coc
 - `volar.useWorkspaceTsdk`: Use workspace (project) detected tsLibs in volar. if false, use coc-volar's built-in tsLibs, default: `false`
 - `volar.scaffoldSnippets.enable`: Enable/disable scaffold snippets completion. Typing `vue` or `vuedc` will output completion suggestions. This snippets completion feature will only work on the first line of the file, default: `true`
 - `volar.diagnostics.enable`: Enable/disable the Volar diagnostics, default: `true`
+- `volar.inlayHints.enable`: Whether to show inlay hints. In order for inlayHints to work with volar, you will need to further configure `typescript.inlayHints.*` or `javascript.inlayHints.*` settings, default: `true`
 - `volar.diagnostics.tsLocale`: Locale of diagnostics messages from typescript, valid option: `["cs", "de", "es", "fr", "it", "ja", "ko", "en", "pl", "pt-br", "ru", "tr", "zh-cn", "zh-tw"]`, default: `"en"`
 - `volar.maxMemory`: Maximum memory (in MB) that the server should use. On some systems this may only have effect when runtime has been set. Minimum 256.
 - `volar-language-features.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
@@ -122,6 +123,7 @@ Check the README of `coc-prettier` for details. <https://github.com/neoclide/coc
   - You can check the versions and settings of various packages
     - client, server, vue, @vue/runtime-dom, vue-tsc, typescript related, coc-volar's configuration, and more...
 - `volar.initializeTakeOverMode`: Enable Take Over Mode in your project
+- `volar.toggleInlayHints`: Toggle inlay hints Enable/Disable
 - `volar.action.restartServer`: Restart Vue server
 - `volar.action.verifyAllScripts`: Verify All Scripts
 - `volar.action.splitEditors`: Split `<script>`, `<template>`, `<style>` Editors

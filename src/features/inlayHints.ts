@@ -1,4 +1,4 @@
-import { events, Disposable, ExtensionContext, LanguageClient, Range, workspace, Document } from 'coc.nvim';
+import { commands, Disposable, Document, events, ExtensionContext, LanguageClient, Range, workspace } from 'coc.nvim';
 import { InlayHint } from 'vscode-languageserver-types';
 
 const supportLanguages = ['vue', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact'];
@@ -10,11 +10,18 @@ export async function activate(context: ExtensionContext, languageClient: Langua
   const inlayHintsProvider = new VolarInlayHintsProvider(context, languageClient);
   inlayHintsProvider.activate();
   context.subscriptions.push(inlayHintsProvider);
+
+  context.subscriptions.push(
+    commands.registerCommand('volar.toggleInlayHints', async () => {
+      await inlayHintsProvider.toggle();
+    })
+  );
 }
 
 export class VolarInlayHintsProvider implements Disposable {
   private readonly disposables: Disposable[] = [];
   private inlayHintsNS = workspace.createNameSpace('volar-inlay-hint');
+  private inlayHintsEnabled: boolean;
   private _inlayHints: Map<string, InlayHint[]> = new Map();
   private _context: ExtensionContext;
   private _client: LanguageClient;
@@ -22,6 +29,7 @@ export class VolarInlayHintsProvider implements Disposable {
   constructor(context: ExtensionContext, client: LanguageClient) {
     this._context = context;
     this._client = client;
+    this.inlayHintsEnabled = !!workspace.getConfiguration('volar').get<boolean>('inlayHints.enable');
   }
 
   dispose() {
@@ -68,7 +76,22 @@ export class VolarInlayHintsProvider implements Disposable {
     }
   }
 
+  async toggle() {
+    if (this.inlayHintsEnabled) {
+      this.inlayHintsEnabled = false;
+
+      const doc = await workspace.document;
+      if (!doc) return;
+
+      doc.buffer.clearNamespace(this.inlayHintsNS);
+    } else {
+      this.inlayHintsEnabled = true;
+      await this.activate();
+    }
+  }
+
   private async syncAndRenderHints(doc: Document) {
+    if (!this.inlayHintsEnabled) return;
     if (doc && supportLanguages.includes(doc.languageId)) {
       this.fetchHints(doc).then(async (hints) => {
         if (!hints) return;

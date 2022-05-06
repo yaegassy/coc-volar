@@ -113,6 +113,11 @@
           "default": "en",
           "description": "Locale of diagnostics messages from typescript."
         },
+        "volar.inlayHints.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to show inlay hints. In order for inlay hints to work with volar, you will need to further configure `typescript.inlayHints.*` or `javascript.inlayHints.*` settings."
+        },
         "volar.maxMemory": {
           "type": "number",
           "description": "Maximum memory (in MB) that the server should use. On some systems this may only have effect when runtime has been set. Minimum 256."
@@ -259,6 +264,11 @@
       {
         "command": "volar.initializeTakeOverMode",
         "title": "Enable TakeOverMode in your project",
+        "category": "Volar"
+      },
+      {
+        "command": "volar.toggleInlayHints",
+        "title": "Toggle inlay hints Enable/Disable",
         "category": "Volar"
       },
       {
