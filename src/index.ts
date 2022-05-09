@@ -1,23 +1,14 @@
 import {
-  CancellationToken,
-  CompletionContext,
-  CompletionItem,
-  CompletionList,
   ExtensionContext,
   LanguageClient,
   LanguageClientOptions,
-  LinesTextDocument,
-  Position,
-  ProvideCompletionItemsSignature,
   ServerOptions,
   Thenable,
   TransportKind,
   workspace,
 } from 'coc.nvim';
-
-import * as path from 'path';
 import * as fs from 'fs';
-
+import * as path from 'path';
 import { activate as commonActivate, deactivate as commonDeactivate } from './common';
 
 let serverModule: string;
@@ -63,13 +54,6 @@ export async function activate(context: ExtensionContext): Promise<void> {
       synchronize: {
         fileEvents: workspace.createFileSystemWatcher('{**/*.vue,**/*.js,**/*.jsx,**/*.ts,**/*.tsx,**/*.json}'),
       },
-      middleware: {
-        provideCompletionItem: getConfigFixCompletion()
-          ? id === 'volar-language-features'
-            ? handleProvideCompletionItem
-            : undefined
-          : undefined,
-      },
     };
 
     const client = new LanguageClient(id, name, serverOptions, clientOptions);
@@ -93,38 +77,4 @@ function getConfigDevServerPath() {
 
 function getConfigMaxMemory() {
   return workspace.getConfiguration('volar').get<number | null>('maxMemory');
-}
-
-function getConfigFixCompletion() {
-  return workspace.getConfiguration('volar').get<boolean>('fix.completion', true);
-}
-
-// issue: https://github.com/yaegassy/coc-volar/issues/38
-// patch: https://github.com/yaegassy/coc-volar/pull/39
-// ----
-// **MEMO**: Currently seems unnecessary and will be removed.
-async function handleProvideCompletionItem(
-  document: LinesTextDocument,
-  position: Position,
-  context: CompletionContext,
-  token: CancellationToken,
-  next: ProvideCompletionItemsSignature
-) {
-  const res = await Promise.resolve(next(document, position, context, token));
-  const doc = workspace.getDocument(document.uri);
-  if (!doc || !res) return [];
-  const items: CompletionItem[] = res.hasOwnProperty('isIncomplete')
-    ? (res as CompletionList).items
-    : (res as CompletionItem[]);
-  // **MEMO**:
-  // If further fine-tuning of the completion items is needed, this is the place to do it.
-  // ----
-  // data.mode: 'ts' | 'html' | 'css'
-  // ----
-  // items.forEach((e) => {
-  //   if (e.data?.mode === 'css') {
-  //     //
-  //   }
-  // });
-  return items;
 }
