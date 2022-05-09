@@ -270,11 +270,6 @@
           "default": "",
           "description": "(For develop and check) Custom path to volar server module, ~ and $HOME, etc. can also be used. If there is no setting, the built-in module will be used "
         },
-        "volar.fix.completion": {
-          "type": "boolean",
-          "default": false,
-          "description": "Enable fix patch for `css` completion issue"
-        },
         "vetur.enable": {
           "type": "boolean",
           "default": true,
