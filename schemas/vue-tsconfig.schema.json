@@ -17,7 +17,11 @@
 					"markdownDescription": "https://github.com/johnsoncodehk/volar/pull/351"
 				},
 				"experimentalShamefullySupportOptionsApi": {
-					"type": "boolean",
+					"enum": [
+						true,
+						false,
+						"warning"
+					],
 					"markdownDescription": "Support intellisense components that export options without `Vue.extend` and `defineComponent`. This is essentially a hack and not recommended to use it."
 				},
 				"experimentalTemplateCompilerOptions": {
@@ -31,6 +35,10 @@
 				"experimentalDisableTemplateSupport": {
 					"type": "boolean",
 					"markdownDescription": "https://github.com/johnsoncodehk/volar/issues/577"
+				},
+				"experimentalAllowTypeNarrowingInInlineHandlers": {
+					"type": "boolean",
+					"markdownDescription": "https://github.com/johnsoncodehk/volar/issues/1249"
 				},
 				"experimentalResolveStyleCssClasses": {
 					"enum": [
