@@ -178,7 +178,7 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
   }
 
   /** MEMO: Custom commands for coc-volar */
-  context.subscriptions.push(commands.registerCommand('volar.doctor', doctorCommand(context)));
+  context.subscriptions.push(commands.registerCommand('volar.action.doctor', doctorCommand(context)));
   /** MEMO: Custom snippets completion for coc-volar */
   if (getConfigScaffoldSnippetsCompletion()) {
     context.subscriptions.push(
