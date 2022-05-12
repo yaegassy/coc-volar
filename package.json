@@ -284,11 +284,6 @@
         "category": "Volar"
       },
       {
-        "command": "volar.doctor",
-        "title": "Show Doctor info",
-        "category": "Volar"
-      },
-      {
         "command": "volar.initializeTakeOverMode",
         "title": "Enable TakeOverMode in your project",
         "category": "Volar"
@@ -296,6 +291,11 @@
       {
         "command": "volar.toggleInlayHints",
         "title": "Toggle inlay hints Enable/Disable",
+        "category": "Volar"
+      },
+      {
+        "command": "volar.action.doctor",
+        "title": "Show Doctor info",
         "category": "Volar"
       },
       {
@@ -311,8 +311,8 @@
     ]
   },
   "dependencies": {
-    "@volar/shared": "0.34.12",
-    "@volar/vue-language-server": "0.34.12",
+    "@volar/shared": "0.34.13",
+    "@volar/vue-language-server": "0.34.13",
     "@vue/reactivity": "^3.2.31",
     "typescript": "4.6.3",
     "vscode-languageserver-types": "^3.17.0-next.9"

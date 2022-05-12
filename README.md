@@ -137,11 +137,9 @@ Check the README of `coc-prettier` for details. <https://github.com/neoclide/coc
 
 ## Commands
 
-- `volar.doctor`: Show Doctor info
-  - You can check the versions and settings of various packages
-    - client, server, vue, @vue/runtime-dom, vue-tsc, typescript related, coc-volar's configuration, and more...
 - `volar.initializeTakeOverMode`: Enable Take Over Mode in your project
 - `volar.toggleInlayHints`: Toggle inlay hints Enable/Disable
+- `volar.action.doctor`: Show Doctor info
 - `volar.action.restartServer`: Restart Vue server
 - `volar.action.verifyAllScripts`: Verify All Scripts
 - `volar.action.splitEditors`: Split `<script>`, `<template>`, `<style>` Editors
