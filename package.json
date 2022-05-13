@@ -150,10 +150,6 @@
           "default": true,
           "description": "Whether to show inlay hints. In order for inlay hints to work with volar, you will need to further configure `typescript.inlayHints.*` or `javascript.inlayHints.*` settings."
         },
-        "volar.maxMemory": {
-          "type": "number",
-          "description": "Maximum memory (in MB) that the server should use. On some systems this may only have effect when runtime has been set. Minimum 256."
-        },
         "volar-language-features.trace.server": {
           "scope": "window",
           "type": "string",
@@ -191,6 +187,14 @@
           "type": "boolean",
           "default": true,
           "description": "Use second server to progress heavy diagnostic works, the main server workhorse computing intellisense, operations such as auto-complete can respond faster. Note that this will lead to more memory usage."
+        },
+        "volar.vueserver.maxOldSpaceSize": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "default": null,
+          "description": "Set `--max-old-space-size` option on server process. Maximum memory (in MB) that the server should use. On some systems this may only have effect when runtime has been set. Minimum 256"
         },
         "volar.codeLens.references": {
           "type": "boolean",

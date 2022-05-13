@@ -36,9 +36,9 @@ export async function activate(context: ExtensionContext): Promise<void> {
       },
     };
 
-    const memory = Math.floor(Number(getConfigMaxMemory()));
-    if (memory && memory >= 256) {
-      const maxOldSpaceSize = '--max-old-space-size=' + memory.toString();
+    const memorySize = Math.floor(Number(getConfigServerMaxOldSpaceSize()));
+    if (memorySize && memorySize >= 256) {
+      const maxOldSpaceSize = '--max-old-space-size=' + memorySize.toString();
       serverOptions.run.options = { execArgv: [maxOldSpaceSize] };
       if (serverOptions.debug.options) {
         if (serverOptions.debug.options.execArgv) {
@@ -75,6 +75,6 @@ function getConfigDevServerPath() {
   return workspace.getConfiguration('volar').get<string>('dev.serverPath', '');
 }
 
-function getConfigMaxMemory() {
-  return workspace.getConfiguration('volar').get<number | null>('maxMemory');
+function getConfigServerMaxOldSpaceSize() {
+  return workspace.getConfiguration('volar').get<number | null>('vueserver.maxOldSpaceSize');
 }
