@@ -117,11 +117,11 @@ Check the README of `coc-prettier` for details. <https://github.com/neoclide/coc
 - `volar.diagnostics.enable`: Enable/disable the Volar diagnostics, default: `true`
 - `volar.inlayHints.enable`: Whether to show inlay hints. In order for inlayHints to work with volar, you will need to further configure `typescript.inlayHints.*` or `javascript.inlayHints.*` settings, default: `true`
 - `volar.diagnostics.tsLocale`: Locale of diagnostics messages from typescript, valid option: `["cs", "de", "es", "fr", "it", "ja", "ko", "en", "pl", "pt-br", "ru", "tr", "zh-cn", "zh-tw"]`, default: `"en"`
-- `volar.maxMemory`: Maximum memory (in MB) that the server should use. On some systems this may only have effect when runtime has been set. Minimum 256.
 - `volar-language-features.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
 - `volar-language-features-2.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
 - `volar-document-features.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
 - `volar.vueserver.useSecondServer`: Use second server to progress heavy diagnostic works, the main server workhorse computing intellisense, operations such as auto-complete can respond faster. Note that this will lead to more memory usage, default: `true`
+- `volar.vueserver.maxOldSpaceSize`: Set `--max-old-space-size` option on server process. Maximum memory (in MB) that the server should use. On some systems this may only have effect when runtime has been set. Minimum 256.
 - `volar.takeOverMode.enabled`: Take over language support for *.ts, default: `false`
 - `volar.codeLens.references`: [references] code lens, default: `true`
 - `volar.codeLens.pugTools`: [pug ☐] code lens, default: `false`
