@@ -1,8 +1,12 @@
-import { ExtensionContext, Uri, window, workspace } from 'coc.nvim';
-import path from 'path';
+import { commands, ExtensionContext, Uri, window, workspace } from 'coc.nvim';
 import fs from 'fs';
+import path from 'path';
 
-export function doctorCommand(context: ExtensionContext) {
+export async function activate(context: ExtensionContext) {
+  context.subscriptions.push(commands.registerCommand('volar.action.doctor', doctorCommand(context)));
+}
+
+function doctorCommand(context: ExtensionContext) {
   return async () => {
     const { document } = await workspace.getCurrentState();
     const filePath = Uri.parse(document.uri).fsPath;
@@ -98,24 +102,6 @@ export function doctorCommand(context: ExtensionContext) {
         const buf = await workspace.nvim.buffer;
         buf.setLines(outputText.split('\n'), { start: 0, end: -1 });
       });
-  };
-}
-
-export function initializeTakeOverModeCommand() {
-  return async () => {
-    const enableTakeOverMode = await window.showPrompt('Enable Take Over Mode?');
-    const config = workspace.getConfiguration('volar');
-    const tsserverConfig = workspace.getConfiguration('tsserver');
-
-    if (enableTakeOverMode) {
-      config.update('takeOverMode.enabled', true);
-      tsserverConfig.update('enable', false);
-    } else {
-      config.update('takeOverMode.enabled', false);
-      tsserverConfig.update('enable', true);
-    }
-
-    workspace.nvim.command(`CocRestart`, true);
   };
 }
 

@@ -1,4 +1,5 @@
 import {
+  languages,
   CancellationToken,
   CompletionContext,
   CompletionItem,
@@ -15,6 +16,19 @@ import {
 import path from 'path';
 import fs from 'fs';
 
+export async function activate(context: ExtensionContext) {
+  if (workspace.getConfiguration('volar').get<boolean>('scaffoldSnippets.enable')) {
+    context.subscriptions.push(
+      languages.registerCompletionItemProvider(
+        'volar',
+        'volar',
+        ['vue'],
+        new scaffoldSnippetsCompletionProvider(context)
+      )
+    );
+  }
+}
+
 type SnippetsJsonType = {
   [key: string]: {
     description: string;
@@ -23,7 +37,7 @@ type SnippetsJsonType = {
   };
 };
 
-export class scaffoldSnippetsCompletionProvider implements CompletionItemProvider {
+class scaffoldSnippetsCompletionProvider implements CompletionItemProvider {
   private _context: ExtensionContext;
   private snippetsFilePaths: string[];
 
