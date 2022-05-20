@@ -8,6 +8,7 @@ import * as autoInsertion from './features/autoInsertion';
 import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
 import * as inlayHints from './features/inlayHints';
+import * as statusBar from './client/statusBar';
 
 import { doctorCommand, initializeTakeOverModeCommand } from './client/commands';
 import { scaffoldSnippetsCompletionProvider } from './client/completions';
@@ -177,6 +178,8 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
     }
   }
 
+  /** MEMO: Custom status-bar for coc-volar */
+  statusBar.activate(context, docClient ?? apiClient);
   /** MEMO: Custom commands for coc-volar */
   context.subscriptions.push(commands.registerCommand('volar.action.doctor', doctorCommand(context)));
   /** MEMO: Custom snippets completion for coc-volar */
