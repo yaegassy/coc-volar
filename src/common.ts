@@ -1,4 +1,4 @@
-import { commands, DocumentSelector, ExtensionContext, languages, LanguageClient, Thenable, workspace } from 'coc.nvim';
+import { commands, DocumentSelector, ExtensionContext, LanguageClient, Thenable, workspace } from 'coc.nvim';
 
 import * as shared from '@volar/shared';
 
@@ -8,10 +8,11 @@ import * as autoInsertion from './features/autoInsertion';
 import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
 import * as inlayHints from './features/inlayHints';
-import * as statusBar from './client/statusBar';
 
-import { doctorCommand, initializeTakeOverModeCommand } from './client/commands';
-import { scaffoldSnippetsCompletionProvider } from './client/completions';
+import * as initializeTakeOverMode from './client/commands/initializeTakeOverMode';
+import * as doctor from './client/commands/doctor';
+import * as scaffoldSnippets from './client/completions/scaffoldSnippets';
+import * as statusBar from './client/statusBar';
 
 let apiClient: LanguageClient;
 let docClient: LanguageClient | undefined;
@@ -35,7 +36,7 @@ let activated: boolean;
 
 export async function activate(context: ExtensionContext, createLc: CreateLanguageClient): Promise<void> {
   /** MEMO: Custom commands for coc-volar */
-  context.subscriptions.push(commands.registerCommand('volar.initializeTakeOverMode', initializeTakeOverModeCommand()));
+  initializeTakeOverMode.activate(context);
 
   //
   // For the first activation event
@@ -178,21 +179,12 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
     }
   }
 
+  /** MEMO: Custom commands for coc-volar */
+  doctor.activate(context);
+  /** MEMO: Custom snippets completion for coc-volar */
+  scaffoldSnippets.activate(context);
   /** MEMO: Custom status-bar for coc-volar */
   statusBar.activate(context, docClient ?? apiClient);
-  /** MEMO: Custom commands for coc-volar */
-  context.subscriptions.push(commands.registerCommand('volar.action.doctor', doctorCommand(context)));
-  /** MEMO: Custom snippets completion for coc-volar */
-  if (getConfigScaffoldSnippetsCompletion()) {
-    context.subscriptions.push(
-      languages.registerCompletionItemProvider(
-        'volar',
-        'volar',
-        ['vue'],
-        new scaffoldSnippetsCompletionProvider(context)
-      )
-    );
-  }
 }
 
 function getInitializationOptions(
@@ -317,10 +309,6 @@ function getConfigDocumentFormatting(): NonNullable<
   } else {
     return undefined;
   }
-}
-
-function getConfigScaffoldSnippetsCompletion() {
-  return workspace.getConfiguration('volar').get<boolean>('scaffoldSnippets.enable');
 }
 
 function initializeWorkspaceState(context: ExtensionContext) {
