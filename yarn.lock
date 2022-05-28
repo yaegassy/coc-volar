@@ -194,81 +194,81 @@
     "@typescript-eslint/types" "5.25.0"
     eslint-visitor-keys "^3.3.0"
 
-"@volar/code-gen@0.34.17":
-  version "0.34.17"
-  resolved "https://registry.yarnpkg.com/@volar/code-gen/-/code-gen-0.34.17.tgz#fd46e369454e6bd9599b511500b4c43acb9730bd"
-  integrity sha512-rHR7BA71BJ/4S7xUOPMPiB7uk6iU9oTWpEMZxFi5VGC9iJmDncE82WzU5iYpcbOBCVHsOjMh0+5CGMgdO6SaPA==
+"@volar/code-gen@0.35.0":
+  version "0.35.0"
+  resolved "https://registry.yarnpkg.com/@volar/code-gen/-/code-gen-0.35.0.tgz#6b59b0b0b5117f4055cd98c9d83a752de935c791"
+  integrity sha512-MUKPjE6VL97R2Dg3MwUexjKsdHRhX2cEQUWDtl7Zgn7fe60mULQOHcZZ+IU49eTgyOjAj0Z2hm7hub/nBxduxw==
   dependencies:
-    "@volar/source-map" "0.34.17"
+    "@volar/source-map" "0.35.0"
 
-"@volar/pug-language-service@0.34.17":
-  version "0.34.17"
-  resolved "https://registry.yarnpkg.com/@volar/pug-language-service/-/pug-language-service-0.34.17.tgz#47edb96748c38c0286e77ce28eceae77e5d6256c"
-  integrity sha512-PQUiGJquwOJlkPzCyM1RsnfKZVeWaNxTZp/6NjWW6BFo4n/DtlahpD/BkUjyqJh7ENoj0lNWwdHdLEqHaHcDUQ==
+"@volar/pug-language-service@0.35.0":
+  version "0.35.0"
+  resolved "https://registry.yarnpkg.com/@volar/pug-language-service/-/pug-language-service-0.35.0.tgz#1454df749b538327bd67f0139ae5b6132303d192"
+  integrity sha512-adQbX0ZgUxFe3PG5+rXBJb3WwuqNK5r1pwbJA8MOYmxscN9w0oJI2gjDH8hzjQuaY59uk/PfGj6jULxTRl6tDg==
   dependencies:
-    "@volar/code-gen" "0.34.17"
-    "@volar/shared" "0.34.17"
-    "@volar/source-map" "0.34.17"
-    "@volar/transforms" "0.34.17"
+    "@volar/code-gen" "0.35.0"
+    "@volar/shared" "0.35.0"
+    "@volar/source-map" "0.35.0"
+    "@volar/transforms" "0.35.0"
     pug-lexer "^5.0.1"
     pug-parser "^6.0.0"
     vscode-languageserver-textdocument "^1.0.4"
     vscode-languageserver-types "^3.17.1"
 
-"@volar/shared@0.34.17":
-  version "0.34.17"
-  resolved "https://registry.yarnpkg.com/@volar/shared/-/shared-0.34.17.tgz#2de2e5d96c570b06d462cc55d7abe17558e49e29"
-  integrity sha512-nIrWsr8mAMiYpAH5RWF/AAuCiyS5JCpgx4ii30NnoxghT6MtwuOHI0hl4kq9vpbnlKOdEy/fXEs2ro/ml/7AWg==
+"@volar/shared@0.35.0":
+  version "0.35.0"
+  resolved "https://registry.yarnpkg.com/@volar/shared/-/shared-0.35.0.tgz#eaa9de100d92a7cce18a78d3f13fb473a06aa979"
+  integrity sha512-SFkA0i8YtGB02Ex72kzBbv8s/6t1VQTo+T1YRphT/Rw01EciqYanH7BvN+e9AZZOTezhWFfJgXLFnxjEUXeABQ==
   dependencies:
     upath "^2.0.1"
     vscode-languageserver-protocol "^3.17.1"
     vscode-languageserver-textdocument "^1.0.4"
     vscode-uri "^3.0.3"
 
-"@volar/source-map@0.34.17":
-  version "0.34.17"
-  resolved "https://registry.yarnpkg.com/@volar/source-map/-/source-map-0.34.17.tgz#79efc4d088e11f59fc857953185a1f852df70968"
-  integrity sha512-3yn1IMXJGGWB/G817/VFlFMi8oh5pmE7VzUqvgMZMrppaZpKj6/juvJIEiXNxRsgWc0RxIO8OSp4htdPUg1Raw==
+"@volar/source-map@0.35.0":
+  version "0.35.0"
+  resolved "https://registry.yarnpkg.com/@volar/source-map/-/source-map-0.35.0.tgz#d71f5d8040a9178b052bd92cca1e86353b52a32f"
+  integrity sha512-VvVyCW8SEQ297zoeZNi4HOSLU8H7/xbGg4WpcpVOy080y/MXTxjIZshSlMHx45EB91U2vk0gbgd2R/d9uyY+3A==
 
-"@volar/transforms@0.34.17":
-  version "0.34.17"
-  resolved "https://registry.yarnpkg.com/@volar/transforms/-/transforms-0.34.17.tgz#4aa0eb2af025fee2f67de110df36a163095f1f07"
-  integrity sha512-mGuKtyQRGrEndSB1bjwX70hnnz0dwahDjeahdM/HMKBFntKgjIs+WDjo0GkHn7ylAttYDrDaLynSZZne5fG1/Q==
+"@volar/transforms@0.35.0":
+  version "0.35.0"
+  resolved "https://registry.yarnpkg.com/@volar/transforms/-/transforms-0.35.0.tgz#c44cfb1a4fe092d24dad623b59ff57267a159a63"
+  integrity sha512-DMhZsWolaS+aqQnQbCq6nPY3j2YU78lfUhAlP9PqhfFci1zrMDu/2scYAt86euAJ5Tkr8WQrTttMQdoN3x8/Tg==
   dependencies:
-    "@volar/shared" "0.34.17"
+    "@volar/shared" "0.35.0"
     vscode-languageserver-types "^3.17.1"
 
-"@volar/typescript-language-service@0.34.17":
-  version "0.34.17"
-  resolved "https://registry.yarnpkg.com/@volar/typescript-language-service/-/typescript-language-service-0.34.17.tgz#f6a5d717f281182271aab2ee88763e9c17d14608"
-  integrity sha512-dFRLjUtkPok1EYsZW8FISOkDMjEGKvq3oZ7qlF7MQc/Rb0mGCZ1salJo2L5M4UiIs7HYur7s/VfrKMCkoVHQ7g==
+"@volar/typescript-language-service@0.35.0":
+  version "0.35.0"
+  resolved "https://registry.yarnpkg.com/@volar/typescript-language-service/-/typescript-language-service-0.35.0.tgz#bda53fa8644ba2d22462090a885aac2b09913620"
+  integrity sha512-9jOleN9Bd5wlBtaCOXC8gymr3K8As/Cz1XW99mdFncPI6qdycv0i+pmJoHpIVtodOYlQSNypPvXyRDSul83tVw==
   dependencies:
-    "@volar/shared" "0.34.17"
+    "@volar/shared" "0.35.0"
     semver "^7.3.7"
     upath "^2.0.1"
     vscode-languageserver-protocol "^3.17.1"
     vscode-languageserver-textdocument "^1.0.4"
     vscode-nls "^5.0.1"
 
-"@volar/vue-code-gen@0.34.17":
-  version "0.34.17"
-  resolved "https://registry.yarnpkg.com/@volar/vue-code-gen/-/vue-code-gen-0.34.17.tgz#55ca9c21b38c91bf362761b268a77b9f0ecae8bf"
-  integrity sha512-17pzcK29fyFWUc+C82J3JYSnA+jy3QNrIldb9kPaP9Itbik05ZjEIyEue9FjhgIAuHeYSn4LDM5s6nGjxyfhsQ==
+"@volar/vue-code-gen@0.35.0":
+  version "0.35.0"
+  resolved "https://registry.yarnpkg.com/@volar/vue-code-gen/-/vue-code-gen-0.35.0.tgz#5f79bd8ac9c35017771319b8bf9fb0de31893a43"
+  integrity sha512-IqIkzs3eRlJjABVXXBf5ik4/a8lQ3wqKemWMR33+KzOmj5xtXS+lgMMLNXJpj0Mw2nOLVl0I2KuIaTHFy485DQ==
   dependencies:
-    "@volar/code-gen" "0.34.17"
-    "@volar/source-map" "0.34.17"
+    "@volar/code-gen" "0.35.0"
+    "@volar/source-map" "0.35.0"
     "@vue/compiler-core" "^3.2.36"
     "@vue/compiler-dom" "^3.2.36"
     "@vue/shared" "^3.2.36"
 
-"@volar/vue-language-server@0.34.17":
-  version "0.34.17"
-  resolved "https://registry.yarnpkg.com/@volar/vue-language-server/-/vue-language-server-0.34.17.tgz#ae1ab1a8468d620134fb8cc1fa3a8d4078c78faf"
-  integrity sha512-w0WU89brZlXZPT5TmxMUf+qobhMi207bdnHd2om1NuddMQNuuBp0KBc1xtRii4qLgZionMR0etruFXYrmyTBog==
+"@volar/vue-language-server@0.35.0":
+  version "0.35.0"
+  resolved "https://registry.yarnpkg.com/@volar/vue-language-server/-/vue-language-server-0.35.0.tgz#710b5bb5f87fbeeac8a85c8f3092bff4a0b9d8a2"
+  integrity sha512-OmyQi1r1ks+10HkjpKdM11sFFuHFPGTqAj6tBSksDr4iQ8IqqLZe0CoZM+5xw5ei4d4nc47/A/wB2nfYVPqIoA==
   dependencies:
-    "@volar/shared" "0.34.17"
-    "@volar/vue-language-service" "0.34.17"
-    "@volar/vue-typescript" "0.34.17"
+    "@volar/shared" "0.35.0"
+    "@volar/vue-language-service" "0.35.0"
+    "@volar/vue-typescript" "0.35.0"
     "@vue/shared" "^3.2.36"
     request-light "^0.5.8"
     upath "^2.0.1"
@@ -278,29 +278,29 @@
     vscode-languageserver-textdocument "^1.0.4"
     vscode-uri "^3.0.3"
 
-"@volar/vue-language-service-types@0.34.17":
-  version "0.34.17"
-  resolved "https://registry.yarnpkg.com/@volar/vue-language-service-types/-/vue-language-service-types-0.34.17.tgz#f891ff3e55f2697acf4e233a2e5188d198201438"
-  integrity sha512-skDO8ZS6Vs0M+zbnYeoBWk7JX8WbCeCohOwnkstqYxXtcqEU4HTeTShhVxrfyWGS0FLHVE79VAhicxjul2EnHw==
+"@volar/vue-language-service-types@0.35.0":
+  version "0.35.0"
+  resolved "https://registry.yarnpkg.com/@volar/vue-language-service-types/-/vue-language-service-types-0.35.0.tgz#c60bb05037840844f2b15da6f13a02bd4db3f059"
+  integrity sha512-n7C0MlXa/HlgajdyxCtXYVA/udpURZD0552vWxXzoOtm1sIDyklVCcg9fxkT74DYj4nBRL12uQtH1ggVq9tHfA==
   dependencies:
     vscode-languageserver-protocol "^3.17.1"
     vscode-languageserver-textdocument "^1.0.4"
 
-"@volar/vue-language-service@0.34.17":
-  version "0.34.17"
-  resolved "https://registry.yarnpkg.com/@volar/vue-language-service/-/vue-language-service-0.34.17.tgz#9c39a61e904087c05f74d69b74e88157d0a3b354"
-  integrity sha512-ZfQLMpqDGwDrbXPzFEjEDtwYmWakSxg/IYLEdXKAU02+ikeQ8b2fZRIYLcBkLGfRHc+CFjStl1w6XTBR7FvrIA==
+"@volar/vue-language-service@0.35.0":
+  version "0.35.0"
+  resolved "https://registry.yarnpkg.com/@volar/vue-language-service/-/vue-language-service-0.35.0.tgz#32dac0548964babd306eb2ec8780aaab0b045257"
+  integrity sha512-Rb/BBqiSuGI20prmfxBZgawxXEzeSGrXugMVskWAXBstzW/sKR7MZLUDOCIaNSq7NfMseIPEq2lggRgoU4i4TQ==
   dependencies:
     "@johnsoncodehk/html2pug" "^1.0.0"
     "@johnsoncodehk/pug-beautify" "^0.2.2"
-    "@volar/pug-language-service" "0.34.17"
-    "@volar/shared" "0.34.17"
-    "@volar/source-map" "0.34.17"
-    "@volar/transforms" "0.34.17"
-    "@volar/typescript-language-service" "0.34.17"
-    "@volar/vue-code-gen" "0.34.17"
-    "@volar/vue-language-service-types" "0.34.17"
-    "@volar/vue-typescript" "0.34.17"
+    "@volar/pug-language-service" "0.35.0"
+    "@volar/shared" "0.35.0"
+    "@volar/source-map" "0.35.0"
+    "@volar/transforms" "0.35.0"
+    "@volar/typescript-language-service" "0.35.0"
+    "@volar/vue-code-gen" "0.35.0"
+    "@volar/vue-language-service-types" "0.35.0"
+    "@volar/vue-typescript" "0.35.0"
     "@vscode/emmet-helper" "^2.8.4"
     "@vue/reactivity" "^3.2.36"
     "@vue/shared" "^3.2.36"
@@ -312,14 +312,14 @@
     vscode-languageserver-protocol "^3.17.1"
     vscode-languageserver-textdocument "^1.0.4"
 
-"@volar/vue-typescript@0.34.17":
-  version "0.34.17"
-  resolved "https://registry.yarnpkg.com/@volar/vue-typescript/-/vue-typescript-0.34.17.tgz#497eb471ebac25ff61af04031b78ec71a34d470b"
-  integrity sha512-U0YSVIBPRWVPmgJHNa4nrfq88+oS+tmyZNxmnfajIw9A/GOGZQiKXHC0k09SVvbYXlsjgJ6NIjhm9NuAhGRQjg==
+"@volar/vue-typescript@0.35.0":
+  version "0.35.0"
+  resolved "https://registry.yarnpkg.com/@volar/vue-typescript/-/vue-typescript-0.35.0.tgz#e51d93c86d16f6ef75f38d6410f11f4a48ea807f"
+  integrity sha512-Ojn98P888wWbk1qeR5f6spgtJZMwUos+OkJfZpzyafN5S21LxF58o7DhhNG8rMm1zMNUQHb+evlp5AXI5zHOmA==
   dependencies:
-    "@volar/code-gen" "0.34.17"
-    "@volar/source-map" "0.34.17"
-    "@volar/vue-code-gen" "0.34.17"
+    "@volar/code-gen" "0.35.0"
+    "@volar/source-map" "0.35.0"
+    "@volar/vue-code-gen" "0.35.0"
     "@vue/compiler-sfc" "^3.2.36"
     "@vue/reactivity" "^3.2.36"
 
