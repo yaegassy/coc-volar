@@ -95,7 +95,17 @@ For more information, check this coc.nvim's wiki.
 
 If `coc-prettier` (v9.2.0 later) is installed, `prettier` will be run as the formatter.
 
-If you want to use the volar's built-in formatter, set `prettier.disableLanguages` to `vue` in `.vim/coc-settings.json`.
+If you want to use the volar's built-in formatter, set `prettier.enable` to `false` or set `prettier.disableLanguages` to `vue` in `.vim/coc-settings.json`.
+
+**Example1**:
+
+```jsonc
+{
+  "prettier.enable": false
+}
+```
+
+**Example2**:
 
 ```jsonc
 {
