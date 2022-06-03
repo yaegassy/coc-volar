@@ -10,6 +10,7 @@
 						{
 							"enum": [
 								2,
+								2.7,
 								3
 							]
 						}
@@ -60,6 +61,10 @@
 				"experimentalAllowTypeNarrowingInInlineHandlers": {
 					"type": "boolean",
 					"markdownDescription": "https://github.com/johnsoncodehk/volar/issues/1249"
+				},
+				"experimentalUseScriptLeadingCommentInTemplate": {
+					"type": "boolean",
+					"markdownDescription": "https://github.com/johnsoncodehk/volar/issues/1369"
 				},
 				"experimentalResolveStyleCssClasses": {
 					"enum": [
