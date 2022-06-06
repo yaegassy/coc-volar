@@ -512,10 +512,10 @@ character-parser@^2.2.0:
   dependencies:
     is-regex "^1.0.3"
 
-coc.nvim@^0.0.81-next.29:
-  version "0.0.81-next.29"
-  resolved "https://registry.yarnpkg.com/coc.nvim/-/coc.nvim-0.0.81-next.29.tgz#7d47d1e50713ba4886222ea0362f445d00b3d4ea"
-  integrity sha512-SeK0QVvIavVt20UtnMoL0d4bY+m5OgMeo6ws2IyA/jggMYHWPhgSVr9a5CRefH5jCDstsrgsqY85aheujlGt+A==
+coc.nvim@^0.0.81:
+  version "0.0.81"
+  resolved "https://registry.yarnpkg.com/coc.nvim/-/coc.nvim-0.0.81.tgz#6c28ed4e773e7f274f1c295dd4fa2d46e351d306"
+  integrity sha512-e9FSAXPNs3vAgjSrspYRuPcX8L+AQw1T+0SfY0srJ6tsDtWnainnwSvyjInw1tEmGXRMgdBmVowW0JY2qjv9Dw==
 
 color-convert@^2.0.1:
   version "2.0.1"
