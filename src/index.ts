@@ -50,7 +50,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
     const clientOptions: LanguageClientOptions = {
       documentSelector,
       initializationOptions: initOptions,
-      progressOnInitialization: true,
+      progressOnInitialization: getConfigProgressOnInitialization(),
       synchronize: {
         fileEvents: workspace.createFileSystemWatcher('{**/*.vue,**/*.js,**/*.jsx,**/*.ts,**/*.tsx,**/*.json}'),
       },
@@ -69,6 +69,10 @@ export function deactivate(): Thenable<any> | undefined {
 
 function getConfigVolarEnable() {
   return workspace.getConfiguration('volar').get<boolean>('enable', true);
+}
+
+function getConfigProgressOnInitialization() {
+  return workspace.getConfiguration('volar').get<boolean>('progressOnInitialization.enable', true);
 }
 
 function getConfigDevServerPath() {
