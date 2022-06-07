@@ -19,6 +19,7 @@ export async function activate(context: ExtensionContext, htmlClient: LanguageCl
 
   const supportedLanguages: Record<string, boolean> = {
     vue: true,
+    markdown: true,
     javascript: true,
     typescript: true,
     javascriptreact: true,

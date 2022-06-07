@@ -151,6 +151,11 @@
           "default": true,
           "description": "Whether to show inlay hints. In order for inlay hints to work with volar, you will need to further configure `typescript.inlayHints.*` or `javascript.inlayHints.*` settings."
         },
+        "volar.vitePressSupport.enable": {
+          "type": "boolean",
+          "default": false,
+          "description": "Use `.md` instead of `.vue` for file extension. If you use this setting, it is recommended to enable it at the workspace (project) level."
+        },
         "volar.progressOnInitialization.enable": {
           "type": "boolean",
           "default": true,
