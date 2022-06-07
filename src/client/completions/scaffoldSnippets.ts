@@ -16,7 +16,7 @@ import {
 import path from 'path';
 import fs from 'fs';
 
-export async function activate(context: ExtensionContext) {
+export async function register(context: ExtensionContext) {
   if (workspace.getConfiguration('volar').get<boolean>('scaffoldSnippets.enable')) {
     context.subscriptions.push(
       languages.registerCompletionItemProvider(
