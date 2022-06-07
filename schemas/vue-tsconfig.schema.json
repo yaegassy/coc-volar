@@ -3,9 +3,9 @@
 		"vueCompilerOptions": {
 			"type": "object",
 			"properties": {
-				"experimentalCompatMode": {
+				"target": {
 					"type": "number",
-					"default": 3,
+					"default": 2.7,
 					"anyOf": [
 						{
 							"enum": [
@@ -15,7 +15,7 @@
 							]
 						}
 					],
-					"markdownDescription": "https://github.com/johnsoncodehk/volar/pull/351"
+					"markdownDescription": "Target version of Vue."
 				},
 				"experimentalRuntimeMode": {
 					"type": "string",
@@ -69,6 +69,10 @@
 				"experimentalSuppressUnknownJsxPropertyErrors": {
 					"type": "boolean",
 					"markdownDescription": "Suppress unknown property errors in JSX and template. (Default true)"
+				},
+				"experimentalSuppressInvalidJsxElementTypeErrors": {
+					"type": "boolean",
+					"markdownDescription": "Suppress invalid JSX element type errors in template. (Default false)"
 				},
 				"experimentalResolveStyleCssClasses": {
 					"enum": [
