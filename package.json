@@ -51,6 +51,7 @@
   },
   "activationEvents": [
     "onLanguage:vue",
+    "onLanguage:markdown",
     "onLanguage:javascript",
     "onLanguage:typescript",
     "onLanguage:javascriptreact",
