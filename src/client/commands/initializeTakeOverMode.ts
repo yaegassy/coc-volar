@@ -1,6 +1,6 @@
 import { commands, ExtensionContext, window, workspace } from 'coc.nvim';
 
-export async function activate(context: ExtensionContext) {
+export async function register(context: ExtensionContext) {
   context.subscriptions.push(commands.registerCommand('volar.initializeTakeOverMode', initializeTakeOverModeCommand()));
 }
 

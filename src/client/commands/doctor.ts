@@ -2,7 +2,7 @@ import { commands, ExtensionContext, Uri, window, workspace } from 'coc.nvim';
 import fs from 'fs';
 import path from 'path';
 
-export async function activate(context: ExtensionContext) {
+export async function register(context: ExtensionContext) {
   context.subscriptions.push(commands.registerCommand('volar.action.doctor', doctorCommand(context)));
 }
 

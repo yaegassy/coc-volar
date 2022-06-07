@@ -3,7 +3,7 @@ import { InlayHint } from 'vscode-languageserver-types';
 
 const supportLanguages = ['vue', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact'];
 
-export async function activate(context: ExtensionContext, languageClient: LanguageClient) {
+export async function register(context: ExtensionContext, languageClient: LanguageClient) {
   await languageClient.onReady();
 
   await workspace.nvim.command('hi default link CocVolarTypeHint CocHintSign');

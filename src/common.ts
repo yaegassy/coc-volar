@@ -36,7 +36,7 @@ let activated: boolean;
 
 export async function activate(context: ExtensionContext, createLc: CreateLanguageClient): Promise<void> {
   /** MEMO: Custom commands for coc-volar */
-  initializeTakeOverMode.activate(context);
+  initializeTakeOverMode.register(context);
 
   //
   // For the first activation event
@@ -167,15 +167,21 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
   registerRestartRequest();
   registerClientRequests();
 
-  verifyAll.activate(context, docClient ?? apiClient);
-  inlayHints.activate(context, docClient ?? apiClient);
+  verifyAll.register(context, docClient ?? apiClient);
+  inlayHints.register(context, docClient ?? apiClient);
+  /** Custom commands for coc-volar */
+  doctor.register(context);
+  /** Custom snippets completion for coc-volar */
+  scaffoldSnippets.register(context);
+  /** Custom status-bar for coc-volar */
+  statusBar.register(context, docClient ?? apiClient);
 
   if (
     workspace.getConfiguration('volar').get<boolean>('autoCreateQuotes') ||
     workspace.getConfiguration('volar').get<boolean>('autoClosingTags') ||
     workspace.getConfiguration('volar').get<boolean>('autoCompleteRefs')
   ) {
-    autoInsertion.activate(context, htmlClient, apiClient);
+    autoInsertion.register(context, htmlClient, apiClient);
   }
 
   async function registerRestartRequest() {
@@ -196,13 +202,6 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
       documentVersion.activate(context, client);
     }
   }
-
-  /** MEMO: Custom commands for coc-volar */
-  doctor.activate(context);
-  /** MEMO: Custom snippets completion for coc-volar */
-  scaffoldSnippets.activate(context);
-  /** MEMO: Custom status-bar for coc-volar */
-  statusBar.activate(context, docClient ?? apiClient);
 }
 
 function getInitializationOptions(

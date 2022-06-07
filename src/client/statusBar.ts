@@ -1,6 +1,6 @@
 import { events, ExtensionContext, LanguageClient, window, workspace } from 'coc.nvim';
 
-export async function activate(context: ExtensionContext, languageClient: LanguageClient) {
+export async function register(context: ExtensionContext, languageClient: LanguageClient) {
   await languageClient.onReady();
 
   const statusBar = window.createStatusBarItem(99);
