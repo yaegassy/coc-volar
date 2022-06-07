@@ -24,6 +24,22 @@ export async function activate(context: ExtensionContext, languageClient: Langua
     ) {
       statusBar.text = 'Volar (TakeOverMode)';
       statusBar.show();
+    } else if (
+      workspace.getConfiguration('volar').get<boolean>('takeOverMode.enabled') &&
+      workspace.getConfiguration('volar').get<boolean>('vitePressSupport.enable') &&
+      ['markdown'].includes(document.languageId)
+    ) {
+      statusBar.text = 'Volar (TakeOverMode)';
+      statusBar.show();
+    } else if (
+      workspace.getConfiguration('volar').get<boolean>('vitePressSupport.enable') &&
+      ['markdown'].includes(document.languageId)
+    ) {
+      statusBar.text = 'Volar';
+      statusBar.show();
+    } else if (['vue'].includes(document.languageId)) {
+      statusBar.text = 'Volar';
+      statusBar.show();
     } else {
       statusBar.hide();
     }
