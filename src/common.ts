@@ -49,6 +49,13 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
       activated = true;
     }
 
+    if (workspace.getConfiguration('volar').get<boolean>('vitePressSupport.enable', false)) {
+      if (!activated && document.languageId === 'markdown') {
+        doActivate(context, createLc);
+        activated = true;
+      }
+    }
+
     if (
       !activated &&
       ['javascript', 'typescript', 'javascriptreact', 'typescriptreact'].includes(document.languageId)
@@ -75,6 +82,13 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
         activated = true;
       }
 
+      if (workspace.getConfiguration('volar').get<boolean>('vitePressSupport.enable', false)) {
+        if (!activated && document.languageId === 'markdown') {
+          doActivate(context, createLc);
+          activated = true;
+        }
+      }
+
       if (
         !activated &&
         ['javascript', 'typescript', 'javascriptreact', 'typescriptreact'].includes(document.languageId)
@@ -95,6 +109,7 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
   initializeWorkspaceState(context);
 
   const takeOverMode = takeOverModeEnabled();
+  const isVitePressSupport = workspace.getConfiguration('volar').get<boolean>('vitePressSupport.enable', false);
 
   const languageFeaturesDocumentSelector: DocumentSelector = takeOverMode
     ? [
@@ -106,6 +121,8 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
         { scheme: 'file', language: 'json' },
       ]
     : [{ scheme: 'file', language: 'vue' }];
+  if (isVitePressSupport) languageFeaturesDocumentSelector.push({ scheme: 'file', language: 'markdown' });
+
   const documentFeaturesDocumentSelector: DocumentSelector = takeOverMode
     ? [
         { language: 'vue' },
@@ -115,6 +132,7 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
         { language: 'typescriptreact' },
       ]
     : [{ language: 'vue' }];
+  if (isVitePressSupport) documentFeaturesDocumentSelector.push({ scheme: 'file', language: 'markdown' });
 
   const _useSecondServer = useSecondServer();
 

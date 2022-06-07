@@ -47,12 +47,17 @@ export async function activate(context: ExtensionContext): Promise<void> {
       }
     }
 
+    let watcherGlobPattern = '{**/*.vue,**/*.js,**/*.jsx,**/*.ts,**/*.tsx,**/*.json}';
+    if (workspace.getConfiguration('volar').get<boolean>('vitePressSupport.enable', false)) {
+      watcherGlobPattern = '{**/*.vue,**/*.md,**/*.js,**/*.jsx,**/*.ts,**/*.tsx,**/*.json}';
+    }
+
     const clientOptions: LanguageClientOptions = {
       documentSelector,
       initializationOptions: initOptions,
       progressOnInitialization: getConfigProgressOnInitialization(),
       synchronize: {
-        fileEvents: workspace.createFileSystemWatcher('{**/*.vue,**/*.js,**/*.jsx,**/*.ts,**/*.tsx,**/*.json}'),
+        fileEvents: workspace.createFileSystemWatcher(watcherGlobPattern),
       },
     };
 
