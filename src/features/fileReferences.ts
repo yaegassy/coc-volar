@@ -12,7 +12,7 @@ import {
 import { FindFileReferenceRequestType } from '../requestTypes';
 
 export async function register(context: ExtensionContext, client: LanguageClient) {
-  commands.registerCommand('vue.findAllFileReferences', async (uri: Uri) => {
+  commands.registerCommand('volar.findAllFileReferences', async (uri?: Uri) => {
     await window.withProgress(
       {
         title: 'Finding file references',
@@ -20,13 +20,13 @@ export async function register(context: ExtensionContext, client: LanguageClient
       },
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       async (_progress, token) => {
-        // MEMO: patch for coc-volar
-        const { document } = await workspace.getCurrentState();
+        if (!uri) {
+          const { document } = await workspace.getCurrentState();
+          uri = Uri.parse(document.uri);
+        }
 
         const response = await client.sendRequest(FindFileReferenceRequestType, {
-          // MEMO: patch for coc-volar
-          //textDocument: { uri: uri.toString() },
-          textDocument: { uri: document.uri },
+          textDocument: { uri: uri.toString() },
         });
         if (!response) {
           return;
