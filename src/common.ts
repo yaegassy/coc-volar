@@ -6,7 +6,7 @@ import * as scaffoldSnippets from './client/completions/scaffoldSnippets';
 import * as statusBar from './client/statusBar';
 import * as autoInsertion from './features/autoInsertion';
 import * as documentVersion from './features/documentVersion';
-import * as findFileReference from './features/fileReferences';
+import * as fileReferences from './features/fileReferences';
 import * as inlayHints from './features/inlayHints';
 import * as showReferences from './features/showReferences';
 import * as tsVersion from './features/tsVersion';
@@ -167,7 +167,7 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
 
   verifyAll.register(context, docClient ?? apiClient);
   inlayHints.register(context, docClient ?? apiClient);
-  findFileReference.register(context, docClient ?? apiClient);
+  fileReferences.register(context, docClient ?? apiClient);
   /** Custom commands for coc-volar */
   doctor.register(context);
   /** Custom snippets completion for coc-volar */
