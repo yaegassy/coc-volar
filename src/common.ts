@@ -1,18 +1,16 @@
-import { commands, DocumentSelector, ExtensionContext, LanguageClient, Thenable, workspace } from 'coc.nvim';
-
 import * as shared from '@volar/shared';
-
-import * as documentVersion from './features/documentVersion';
-import * as showReferences from './features/showReferences';
-import * as autoInsertion from './features/autoInsertion';
-import * as tsVersion from './features/tsVersion';
-import * as verifyAll from './features/verifyAll';
-import * as inlayHints from './features/inlayHints';
-
-import * as initializeTakeOverMode from './client/commands/initializeTakeOverMode';
+import { commands, DocumentSelector, ExtensionContext, LanguageClient, Thenable, workspace } from 'coc.nvim';
 import * as doctor from './client/commands/doctor';
+import * as initializeTakeOverMode from './client/commands/initializeTakeOverMode';
 import * as scaffoldSnippets from './client/completions/scaffoldSnippets';
 import * as statusBar from './client/statusBar';
+import * as autoInsertion from './features/autoInsertion';
+import * as documentVersion from './features/documentVersion';
+import * as findFileReference from './features/fileReferences';
+import * as inlayHints from './features/inlayHints';
+import * as showReferences from './features/showReferences';
+import * as tsVersion from './features/tsVersion';
+import * as verifyAll from './features/verifyAll';
 
 let apiClient: LanguageClient;
 let docClient: LanguageClient | undefined;
@@ -169,6 +167,7 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
 
   verifyAll.register(context, docClient ?? apiClient);
   inlayHints.register(context, docClient ?? apiClient);
+  findFileReference.register(context, docClient ?? apiClient);
   /** Custom commands for coc-volar */
   doctor.register(context);
   /** Custom snippets completion for coc-volar */

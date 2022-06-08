@@ -322,6 +322,11 @@
         "command": "volar.action.verifyAllScripts",
         "title": "Verify All Scripts",
         "category": "Volar"
+      },
+      {
+        "command": "vue.findAllFileReferences",
+        "title": "Vue: Find File References",
+        "category": "Volar"
       }
     ]
   },
