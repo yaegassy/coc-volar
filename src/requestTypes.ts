@@ -15,6 +15,12 @@ export const GetDocumentVersionRequestType = new coc.RequestType<
   shared.GetDocumentVersionRequest.ErrorType
 >(shared.GetDocumentVersionRequest.type.method);
 
+export const FindFileReferenceRequestType = new coc.RequestType<
+  shared.FindFileReferenceRequest.ParamsType,
+  shared.FindFileReferenceRequest.ResponseType,
+  shared.FindFileReferenceRequest.ErrorType
+>(shared.FindFileReferenceRequest.type.method);
+
 /**
  * Server Requests
  */
