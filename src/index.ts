@@ -47,10 +47,14 @@ export async function activate(context: ExtensionContext): Promise<void> {
       }
     }
 
-    let watcherGlobPattern = '{**/*.vue,**/*.js,**/*.jsx,**/*.ts,**/*.tsx,**/*.json}';
+    const globPatterns: string[] = ['**/*.vue', '**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx', '**/*.json'];
     if (workspace.getConfiguration('volar').get<boolean>('vitePressSupport.enable', false)) {
-      watcherGlobPattern = '{**/*.vue,**/*.md,**/*.js,**/*.jsx,**/*.ts,**/*.tsx,**/*.json}';
+      globPatterns.push('**/*.md');
     }
+    if (workspace.getConfiguration('volar').get<boolean>('volar.petiteVueSupport.enable', false)) {
+      globPatterns.push('**/*.html');
+    }
+    const watcherGlobPattern = '{' + globPatterns.join(',') + '}';
 
     const clientOptions: LanguageClientOptions = {
       documentSelector,
