@@ -128,6 +128,7 @@ Check the README of `coc-prettier` for details. <https://github.com/neoclide/coc
 - `volar.diagnostics.tsLocale`: Locale of diagnostics messages from typescript, valid option: `["cs", "de", "es", "fr", "it", "ja", "ko", "en", "pl", "pt-br", "ru", "tr", "zh-cn", "zh-tw"]`, default: `"en"`
 - `volar.inlayHints.enable`: Whether to show inlay hints. In order for inlayHints to work with volar, you will need to further configure `typescript.inlayHints.*` or `javascript.inlayHints.*` settings, default: `true`
 - `volar.vitePressSupport.enable`: Use `.md` instead of `.vue` for file extension. If you use this setting, it is recommended to enable it at the workspace (project) level, default: `false`
+- `volar.petiteVueSupport.enable`: Use `.html` instead of `.vue` for file extension. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, default: `false`
 - `volar.progressOnInitialization.enable`: Enable/disable progress window at language server startup, default: `true`
 - `volar-language-features.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
 - `volar-language-features-2.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`

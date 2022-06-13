@@ -47,8 +47,15 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
       activated = true;
     }
 
-    if (workspace.getConfiguration('volar').get<boolean>('vitePressSupport.enable', false)) {
-      if (!activated && document.languageId === 'markdown') {
+    if (!activated && document.languageId === 'markdown') {
+      if (workspace.getConfiguration('volar').get<boolean>('vitePressSupport.enable', false)) {
+        doActivate(context, createLc);
+        activated = true;
+      }
+    }
+
+    if (!activated && document.languageId === 'html') {
+      if (workspace.getConfiguration('volar').get<boolean>('petiteVueSupport.enable', false)) {
         doActivate(context, createLc);
         activated = true;
       }
@@ -80,8 +87,15 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
         activated = true;
       }
 
-      if (workspace.getConfiguration('volar').get<boolean>('vitePressSupport.enable', false)) {
-        if (!activated && document.languageId === 'markdown') {
+      if (!activated && document.languageId === 'markdown') {
+        if (workspace.getConfiguration('volar').get<boolean>('vitePressSupport.enable', false)) {
+          doActivate(context, createLc);
+          activated = true;
+        }
+      }
+
+      if (!activated && document.languageId === 'html') {
+        if (workspace.getConfiguration('volar').get<boolean>('petiteVueSupport.enable', false)) {
           doActivate(context, createLc);
           activated = true;
         }
@@ -108,6 +122,7 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
 
   const takeOverMode = takeOverModeEnabled();
   const isVitePressSupport = workspace.getConfiguration('volar').get<boolean>('vitePressSupport.enable', false);
+  const isPetiteVueSupport = workspace.getConfiguration('volar').get<boolean>('petiteVueSupport.enable', false);
 
   const languageFeaturesDocumentSelector: DocumentSelector = takeOverMode
     ? [
@@ -120,6 +135,7 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
       ]
     : [{ scheme: 'file', language: 'vue' }];
   if (isVitePressSupport) languageFeaturesDocumentSelector.push({ scheme: 'file', language: 'markdown' });
+  if (isPetiteVueSupport) languageFeaturesDocumentSelector.push({ scheme: 'file', language: 'html' });
 
   const documentFeaturesDocumentSelector: DocumentSelector = takeOverMode
     ? [
@@ -131,6 +147,7 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
       ]
     : [{ language: 'vue' }];
   if (isVitePressSupport) documentFeaturesDocumentSelector.push({ scheme: 'file', language: 'markdown' });
+  if (isPetiteVueSupport) documentFeaturesDocumentSelector.push({ scheme: 'file', language: 'html' });
 
   const _useSecondServer = useSecondServer();
 
