@@ -184,7 +184,7 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
 
   verifyAll.register(context, docClient ?? apiClient);
   inlayHints.register(context, docClient ?? apiClient);
-  fileReferences.register(context, docClient ?? apiClient);
+  fileReferences.register('volar.vue.findAllFileReferences', docClient ?? apiClient);
   /** Custom commands for coc-volar */
   doctor.register(context);
   /** Custom snippets completion for coc-volar */

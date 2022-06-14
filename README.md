@@ -161,7 +161,7 @@ Check the README of `coc-prettier` for details. <https://github.com/neoclide/coc
   - Please install [coc-volar-tools](https://github.com/yaegassy/coc-volar-tools) separately to use this command
 - `volar.action.nuxt`: Experimental Features for Nuxt
   - Please install [coc-volar-tools](https://github.com/yaegassy/coc-volar-tools) separately to use this command
-- `volar.findAllFileReferences`: Vue: Find File References
+- `volar.vue.findAllFileReferences`: Vue: Find File References
 
 ## More features
 
