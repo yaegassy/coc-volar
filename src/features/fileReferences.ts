@@ -11,8 +11,8 @@ import {
 } from 'coc.nvim';
 import { FindFileReferenceRequestType } from '../requestTypes';
 
-export async function register(context: ExtensionContext, client: LanguageClient) {
-  commands.registerCommand('volar.findAllFileReferences', async (uri?: Uri) => {
+export async function register(cmd: string, client: LanguageClient) {
+  commands.registerCommand(cmd, async (uri?: Uri) => {
     await window.withProgress(
       {
         title: 'Finding file references',
