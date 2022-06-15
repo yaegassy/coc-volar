@@ -73,6 +73,26 @@ In this case, please execute the command to restart the language server.
 
 Delete the `.vim/coc-settings.json` file in the "project root", and start Vim again.
 
+## VitePress and petite-vue support
+
+Notes for make `VitePress`, `petite-vue` project working with Volar.
+
+### VitePress
+
+- Set `volar.vitePressSupport.enable` to `true` in `.vim/coc-settings.json`.
+  - **[WARNING]** If you use this setting, it is recommended to enable it at the workspace (project) level.
+- `vue` is optional add in devDependencies for better intellisense.
+- Make sure added related `.md` files path to tsconfig.json `include` property
+- Usually needed `"allowJs": true` and `"jsx": "preserve"` config.
+
+### petite-vue
+
+- Set `volar.petiteVueSupport.enable` to `true` in `.vim/coc-settings.json`.
+  - **[WARNING]** If you use this setting, it is recommended to enable it at the workspace (project) level.
+- `vue` is optional add in devDependencies for better intellisense.
+- Make sure added related `.html` files path to tsconfig.json `include` property
+- Usually needed `"allowJs": true` and `"jsx": "preserve"` config.
+
 ## workspaceFolders
 
 Depending on the project like mono repo or how Vim/Neovim is started, `workspaceFolders` may not be recognized correctly.
