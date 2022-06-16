@@ -1,14 +1,4 @@
-import {
-  commands,
-  LanguageClient,
-  ExtensionContext,
-  Uri,
-  window,
-  workspace,
-  Position,
-  Location,
-  Range,
-} from 'coc.nvim';
+import { commands, LanguageClient, Location, Position, Range, Uri, window, workspace } from 'coc.nvim';
 import { FindFileReferenceRequestType } from '../requestTypes';
 
 export async function register(cmd: string, client: LanguageClient) {
