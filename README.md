@@ -49,7 +49,29 @@ If you have difficulty installing watchman, you can use coc-volar without watchm
 
 In this case, please execute the command to restart the language server.
 
-- `:CocCommand volar.action.restartServer` or `:CocRestart`
+- `:CocRestart`
+
+## workspaceFolders
+
+Depending on the project like mono repo or how Vim/Neovim is started, `workspaceFolders` may not be recognized correctly.
+
+If `workspaceFolders` are not recognized correctly, the language server may parse unnecessary project folders, etc., slowing down the operation. Or Language Server may not work properly.
+
+The default configuration of coc.nvim resolves to the directory where the `.git`, `.hg`, and `.projections.json` files reside as the workspace root.
+
+`coc-volar` has also already added `vite.config.ts`, `vue.config.js` or `nuxt.config.ts` to the extension side to resolve workspace root.
+
+If further customization is needed, set `b:coc_root_patterns` in ".vimrc/init.vim".
+
+**Example**:
+
+```vim
+  au FileType vue let b:coc_root_patterns = ['.git', '.env', 'package.json', 'tsconfig.json', 'jsconfig.json', 'vite.config.ts', 'vue.config.js', 'nuxt.config.ts']
+```
+
+For more information, check this coc.nvim's wiki.
+
+- <https://github.com/neoclide/coc.nvim/wiki/Using-workspaceFolders>
 
 ## Usage & Notes
 
@@ -92,24 +114,6 @@ Notes for make `VitePress`, `petite-vue` project working with Volar.
 - `vue` is optional add in devDependencies for better intellisense.
 - Make sure added related `.html` files path to tsconfig.json `include` property
 - Usually needed `"allowJs": true` and `"jsx": "preserve"` config.
-
-## workspaceFolders
-
-Depending on the project like mono repo or how Vim/Neovim is started, `workspaceFolders` may not be recognized correctly.
-
-If `workspaceFolders` are not recognized correctly, the language server may parse unnecessary project folders, etc., slowing down the operation.
-
-To make coc.nvim recognize `workspaceFolders` correctly, you can set `b:coc_root_patterns` in ".vimrc/init.vim"
-
-**Example**:
-
-```vim
-  au FileType vue let b:coc_root_patterns = ['.git', '.env', 'package.json', 'tsconfig.json', 'jsconfig.json', 'vite.config.ts', 'nuxt.config.ts']
-```
-
-For more information, check this coc.nvim's wiki.
-
-- <https://github.com/neoclide/coc.nvim/wiki/Using-workspaceFolders>
 
 ## Formatter
 
