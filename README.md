@@ -57,7 +57,7 @@ Depending on the project like mono repo or how Vim/Neovim is started, `workspace
 
 If `workspaceFolders` are not recognized correctly, the language server may parse unnecessary project folders, etc., slowing down the operation. Or Language Server may not work properly.
 
-The default configuration of coc.nvim resolves to the directory where the `.git`, `.hg`, and `.projections.json` files reside as the workspace root.
+The default configuration of coc.nvim resolves to the directory where the `.git`, `.hg`, or `.projections.json` files reside as the workspace root.
 
 `coc-volar` has also already added `vite.config.ts`, `vue.config.js` or `nuxt.config.ts` to the extension side to resolve workspace root.
 
