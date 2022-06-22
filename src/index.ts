@@ -1,8 +1,19 @@
 import {
+  CancellationToken,
+  CodeAction,
+  CodeActionContext,
+  Command,
+  CreateFile,
+  DeleteFile,
   ExtensionContext,
   LanguageClient,
   LanguageClientOptions,
+  LinesTextDocument,
+  ProvideCodeActionsSignature,
+  Range,
+  RenameFile,
   ServerOptions,
+  TextDocumentEdit,
   Thenable,
   TransportKind,
   workspace,
@@ -60,6 +71,13 @@ export async function activate(context: ExtensionContext): Promise<void> {
       documentSelector,
       initializationOptions: initOptions,
       progressOnInitialization: getConfigProgressOnInitialization(),
+      middleware: {
+        provideCodeActions: getConfigMiddlewareProvideCodeActionsEnable()
+          ? id === 'volar-language-features'
+            ? handleProvideCodeActions
+            : undefined
+          : undefined,
+      },
       synchronize: {
         fileEvents: workspace.createFileSystemWatcher(watcherGlobPattern),
       },
@@ -76,6 +94,65 @@ export function deactivate(): Thenable<any> | undefined {
   return commonDeactivate();
 }
 
+async function handleProvideCodeActions(
+  document: LinesTextDocument,
+  range: Range,
+  context: CodeActionContext,
+  token: CancellationToken,
+  next: ProvideCodeActionsSignature
+) {
+  const originalActions = await next(document, range, context, token);
+  if (!originalActions) return [];
+
+  const newActions: (CodeAction | Command)[] = [];
+  for (const originalAction of originalActions) {
+    if ('disabled' in originalAction) {
+      // volar's langauge sever also lists code-actions that are not executable in the current context.
+      // code-action with the "disabled" property are excludes from the new code-action list.
+      continue;
+    } else if ('edit' in originalAction) {
+      if (originalAction.edit && originalAction.edit.documentChanges) {
+        const newDocumentChanges: (TextDocumentEdit | CreateFile | RenameFile | DeleteFile)[] = [];
+
+        for (const documentChange of originalAction.edit.documentChanges) {
+          if ('textDocument' in documentChange) {
+            const newTextDocumentEdit: TextDocumentEdit = {
+              textDocument: {
+                uri: documentChange.textDocument.uri,
+                version: 0,
+              },
+              edits: documentChange.edits,
+            };
+            newDocumentChanges.push(newTextDocumentEdit);
+          } else {
+            newDocumentChanges.push(documentChange);
+          }
+        }
+
+        const newAction: CodeAction = {
+          title: originalAction.title,
+          kind: originalAction.kind ?? originalAction.kind,
+          diagnostics: originalAction.diagnostics ?? originalAction.diagnostics,
+          isPreferred: originalAction.isPreferred ?? originalAction.isPreferred,
+          edit: {
+            changes: originalAction.edit.changes ?? originalAction.edit.changes,
+            documentChanges: newDocumentChanges,
+          },
+          command: originalAction.command ?? originalAction.command,
+          clientId: originalAction.clientId ?? originalAction.clientId,
+        };
+        newActions.push(newAction);
+      } else {
+        newActions.push(originalAction);
+      }
+    } else {
+      newActions.push(originalAction);
+    }
+  }
+
+  return newActions;
+}
+
 function getConfigVolarEnable() {
   return workspace.getConfiguration('volar').get<boolean>('enable', true);
 }
@@ -90,4 +167,8 @@ function getConfigDevServerPath() {
 
 function getConfigServerMaxOldSpaceSize() {
   return workspace.getConfiguration('volar').get<number | null>('vueserver.maxOldSpaceSize');
+}
+
+function getConfigMiddlewareProvideCodeActionsEnable() {
+  return workspace.getConfiguration('volar').get<boolean>('middleware.provideCodeActions.enable', true);
 }
