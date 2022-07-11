@@ -273,6 +273,10 @@ function getInitializationOptions(
     documentFeatures:
       mode === 'document-features'
         ? {
+            // **MEMO**:
+            // allowedLanguageId is a vscode-specific setting.
+            // In coc-volar, only vue.
+            allowedLanguageIds: ['vue'],
             selectionRange: true,
             foldingRange: true,
             linkedEditingRange: true,
