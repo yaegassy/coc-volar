@@ -344,6 +344,11 @@
           "default": true,
           "description": "Enabled auto-import for component with tag completion."
         },
+        "volar.updateImportsOnFileMove.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enabled update imports on file move."
+        },
         "volar.dev.serverPath": {
           "type": "string",
           "default": "",

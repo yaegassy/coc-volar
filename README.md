@@ -171,6 +171,7 @@ Check the README of `coc-prettier` for details. <https://github.com/neoclide/coc
 - `volar.completion.tagNameCase`: Tag name case, valid options: `["both", "kebab", "pascal"]`, default: `"both"`
 - `volar.completion.attrNameCase`: Attr name case, valid options: `["kebab", "camel"]`, default: `"kebab"`
 - `volar.completion.autoImportComponent`: Enabled auto-import for component with tag completion, default: `true`
+- `volar.updateImportsOnFileMove.enabled`: Enabled update imports on file move, default: `true`
 - `volar.dev.serverPath`: (For develop and check) Custom path to volar server module, `~` and `$HOME`, etc. can also be used. If there is no setting, the built-in module will be used, default: `""`
 
 ## Commands
