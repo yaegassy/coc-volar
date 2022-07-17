@@ -3,13 +3,17 @@ import {
   CodeAction,
   CodeActionContext,
   Command,
+  CreateFile,
+  DeleteFile,
   ExtensionContext,
   LanguageClient,
   LanguageClientOptions,
   LinesTextDocument,
   ProvideCodeActionsSignature,
   Range,
+  RenameFile,
   ServerOptions,
+  TextDocumentEdit,
   Thenable,
   TransportKind,
   workspace,
@@ -106,6 +110,41 @@ async function handleProvideCodeActions(
       // volar's langauge sever also lists code-actions that are not executable in the current context.
       // code-action with the "disabled" property are excludes from the new code-action list.
       continue;
+    } else if ('edit' in originalAction) {
+      if (originalAction.edit && originalAction.edit.documentChanges) {
+        const newDocumentChanges: (TextDocumentEdit | CreateFile | RenameFile | DeleteFile)[] = [];
+
+        for (const documentChange of originalAction.edit.documentChanges) {
+          if ('textDocument' in documentChange) {
+            const newTextDocumentEdit: TextDocumentEdit = {
+              textDocument: {
+                uri: documentChange.textDocument.uri,
+                version: 0,
+              },
+              edits: documentChange.edits,
+            };
+            newDocumentChanges.push(newTextDocumentEdit);
+          } else {
+            newDocumentChanges.push(documentChange);
+          }
+        }
+
+        const newAction: CodeAction = {
+          title: originalAction.title,
+          kind: originalAction.kind ?? originalAction.kind,
+          diagnostics: originalAction.diagnostics ?? originalAction.diagnostics,
+          isPreferred: originalAction.isPreferred ?? originalAction.isPreferred,
+          edit: {
+            changes: originalAction.edit.changes ?? originalAction.edit.changes,
+            documentChanges: newDocumentChanges,
+          },
+          command: originalAction.command ?? originalAction.command,
+          clientId: originalAction.clientId ?? originalAction.clientId,
+        };
+        newActions.push(newAction);
+      } else {
+        newActions.push(originalAction);
+      }
     } else {
       newActions.push(originalAction);
     }
