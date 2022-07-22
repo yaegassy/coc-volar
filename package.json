@@ -25,7 +25,7 @@
     "access": "public"
   },
   "scripts": {
-    "schema": "curl -o schemas/vue-tsconfig.schema.json https://raw.githubusercontent.com/johnsoncodehk/volar/master/extensions/vscode-vue-language-features/schemas/vue-tsconfig.schema.json",
+    "schema": "curl -o schemas/vue-tsconfig.schema.json https://raw.githubusercontent.com/johnsoncodehk/volar/master/packages/vue-language-core/schemas/vue-tsconfig.schema.json",
     "lint": "eslint src --ext ts",
     "clean": "rimraf lib",
     "watch": "node esbuild.js --watch",
