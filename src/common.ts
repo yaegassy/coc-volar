@@ -5,7 +5,6 @@ import * as initializeTakeOverMode from './client/commands/initializeTakeOverMod
 import * as scaffoldSnippets from './client/completions/scaffoldSnippets';
 import * as statusBar from './client/statusBar';
 import * as autoInsertion from './features/autoInsertion';
-import * as documentVersion from './features/documentVersion';
 import * as fileReferences from './features/fileReferences';
 import * as inlayHints from './features/inlayHints';
 import * as showReferences from './features/showReferences';
@@ -215,7 +214,6 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
   function registerClientRequests() {
     for (const client of clients) {
       showReferences.activate(context, client);
-      documentVersion.activate(context, client);
     }
   }
 }
@@ -324,13 +322,7 @@ function getConfigAttrNameCase() {
 }
 
 function getConfigDiagnostics(): NonNullable<shared.ServerInitializationOptions['languageFeatures']>['diagnostics'] {
-  const isDiagnosticsEnable = workspace.getConfiguration('volar').get<boolean>('diagnostics.enable', true);
-
-  if (isDiagnosticsEnable) {
-    return { getDocumentVersionRequest: true };
-  } else {
-    return undefined;
-  }
+  return workspace.getConfiguration('volar').get<boolean>('diagnostics.enable', true);
 }
 
 function getConfigDocumentFormatting(): NonNullable<
