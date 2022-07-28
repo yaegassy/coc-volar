@@ -9,12 +9,6 @@ export const ShowReferencesNotificationType = new coc.NotificationType<shared.Sh
   shared.ShowReferencesNotification.type.method
 );
 
-export const GetDocumentVersionRequestType = new coc.RequestType<
-  shared.GetDocumentVersionRequest.ParamsType,
-  shared.GetDocumentVersionRequest.ResponseType,
-  shared.GetDocumentVersionRequest.ErrorType
->(shared.GetDocumentVersionRequest.type.method);
-
 export const FindFileReferenceRequestType = new coc.RequestType<
   shared.FindFileReferenceRequest.ParamsType,
   shared.FindFileReferenceRequest.ResponseType,
