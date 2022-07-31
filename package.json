@@ -398,6 +398,11 @@
         "category": "Volar"
       },
       {
+        "command": "volar.action.reloadProject",
+        "title": "Reload Project",
+        "category": "Volar"
+      },
+      {
         "command": "volar.action.verifyAllScripts",
         "title": "Verify All Scripts",
         "category": "Volar"
