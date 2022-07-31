@@ -181,6 +181,7 @@ Check the README of `coc-prettier` for details. <https://github.com/neoclide/coc
 - `volar.toggleInlayHints`: Toggle inlay hints Enable/Disable
 - `volar.action.doctor`: Show Doctor info
 - `volar.action.restartServer`: Restart Vue server
+- `volar.action.restartServer`: Reload Project
 - `volar.action.verifyAllScripts`: Verify All Scripts
 - `volar.action.splitEditors`: Split `<script>`, `<template>`, `<style>` Editors
   - Please install [coc-volar-tools](https://github.com/yaegassy/coc-volar-tools) separately to use this command

@@ -28,3 +28,5 @@ export const AutoInsertRequestType = new coc.RequestType<
 export const VerifyAllScriptsNotificationType = new coc.NotificationType0(
   shared.VerifyAllScriptsNotification.type.method
 );
+
+export const ReloadProjectNotificationType = new coc.NotificationType(shared.ReloadProjectNotification.type.method);

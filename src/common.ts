@@ -7,6 +7,7 @@ import * as statusBar from './client/statusBar';
 import * as autoInsertion from './features/autoInsertion';
 import * as fileReferences from './features/fileReferences';
 import * as inlayHints from './features/inlayHints';
+import * as reloadProject from './features/reloadProject';
 import * as showReferences from './features/showReferences';
 import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
@@ -184,6 +185,7 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
   verifyAll.register(context, docClient ?? apiClient);
   inlayHints.register(context, docClient ?? apiClient);
   fileReferences.register('volar.vue.findAllFileReferences', docClient ?? apiClient);
+  reloadProject.register('volar.action.reloadProject', context, [apiClient, docClient].filter(shared.notEmpty));
   /** Custom commands for coc-volar */
   doctor.register(context);
   /** Custom snippets completion for coc-volar */
