@@ -373,11 +373,6 @@
     },
     "commands": [
       {
-        "command": "volar.version",
-        "title": "Show Volar (client/server) version",
-        "category": "Volar"
-      },
-      {
         "command": "volar.initializeTakeOverMode",
         "title": "Enable TakeOverMode in your project",
         "category": "Volar"
