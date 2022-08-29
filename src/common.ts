@@ -12,7 +12,7 @@ import * as showReferences from './features/showReferences';
 import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
 
-let apiClient: LanguageClient;
+let apiClient: LanguageClient | undefined;
 let docClient: LanguageClient | undefined;
 let htmlClient: LanguageClient;
 
@@ -32,8 +32,8 @@ type CreateLanguageClient = (
 
 let activated: boolean;
 
-export async function activate(context: ExtensionContext, createLc: CreateLanguageClient): Promise<void> {
-  /** MEMO: Custom commands for coc-volar */
+export async function activate(context: ExtensionContext, createLc: CreateLanguageClient, env: 'node' | 'browser') {
+  /** Custom commands for coc-volar */
   initializeTakeOverMode.register(context);
 
   //
@@ -43,20 +43,20 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
   if (!activated) {
     const { document } = await workspace.getCurrentState();
     if (document.languageId === 'vue') {
-      doActivate(context, createLc);
+      doActivate(context, createLc, env);
       activated = true;
     }
 
     if (!activated && document.languageId === 'markdown') {
       if (workspace.getConfiguration('volar').get<boolean>('vitePressSupport.enable', false)) {
-        doActivate(context, createLc);
+        doActivate(context, createLc, env);
         activated = true;
       }
     }
 
     if (!activated && document.languageId === 'html') {
       if (workspace.getConfiguration('volar').get<boolean>('petiteVueSupport.enable', false)) {
-        doActivate(context, createLc);
+        doActivate(context, createLc, env);
         activated = true;
       }
     }
@@ -67,7 +67,7 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
     ) {
       const takeOverMode = takeOverModeEnabled();
       if (takeOverMode) {
-        doActivate(context, createLc);
+        doActivate(context, createLc, env);
         activated = true;
       }
     }
@@ -83,20 +83,20 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
 
       const { document } = await workspace.getCurrentState();
       if (document.languageId === 'vue') {
-        doActivate(context, createLc);
+        doActivate(context, createLc, env);
         activated = true;
       }
 
       if (!activated && document.languageId === 'markdown') {
         if (workspace.getConfiguration('volar').get<boolean>('vitePressSupport.enable', false)) {
-          doActivate(context, createLc);
+          doActivate(context, createLc, env);
           activated = true;
         }
       }
 
       if (!activated && document.languageId === 'html') {
         if (workspace.getConfiguration('volar').get<boolean>('petiteVueSupport.enable', false)) {
-          doActivate(context, createLc);
+          doActivate(context, createLc, env);
           activated = true;
         }
       }
@@ -107,7 +107,7 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
       ) {
         const takeOverMode = takeOverModeEnabled();
         if (takeOverMode) {
-          doActivate(context, createLc);
+          doActivate(context, createLc, env);
           activated = true;
         }
       }
@@ -117,7 +117,7 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
   );
 }
 
-export async function doActivate(context: ExtensionContext, createLc: CreateLanguageClient): Promise<void> {
+export async function doActivate(context: ExtensionContext, createLc: CreateLanguageClient, env: 'node' | 'browser') {
   initializeWorkspaceState(context);
 
   const takeOverMode = takeOverModeEnabled();
@@ -151,54 +151,59 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
 
   const _useSecondServer = useSecondServer();
 
-  apiClient = createLc(
-    'volar-language-features',
-    'Volar - Language Features Server',
-    languageFeaturesDocumentSelector,
-    getInitializationOptions(context, 'main-language-features', _useSecondServer),
-    6009
-  );
-
-  docClient = _useSecondServer
-    ? createLc(
-        'volar-language-features-2',
-        'Volar - Second Language Features Server',
-        languageFeaturesDocumentSelector,
-        getInitializationOptions(context, 'second-language-features', _useSecondServer),
-        6010
-      )
-    : undefined;
-
-  htmlClient = createLc(
-    'volar-document-features',
-    'Volar - Document Features Server',
-    documentFeaturesDocumentSelector,
-    getInitializationOptions(context, 'document-features', _useSecondServer),
-    6011
-  );
+  [apiClient, docClient, htmlClient] = await Promise.all([
+    env === 'node'
+      ? createLc(
+          'volar-language-features',
+          'Volar - Language Features Server',
+          languageFeaturesDocumentSelector,
+          getInitializationOptions(context, 'main-language-features', _useSecondServer),
+          6009
+        )
+      : undefined,
+    env === 'node' && _useSecondServer
+      ? createLc(
+          'volar-language-features-2',
+          'Volar - Second Language Features Server',
+          languageFeaturesDocumentSelector,
+          getInitializationOptions(context, 'second-language-features', _useSecondServer),
+          6010
+        )
+      : undefined,
+    createLc(
+      'volar-document-features',
+      'Volar - Document Features Server',
+      documentFeaturesDocumentSelector,
+      getInitializationOptions(context, 'document-features', _useSecondServer),
+      6011
+    ),
+  ]);
 
   const clients = [apiClient, docClient, htmlClient].filter(shared.notEmpty);
 
   registerRestartRequest();
   registerClientRequests();
 
-  verifyAll.register(context, docClient ?? apiClient);
-  inlayHints.register(context, docClient ?? apiClient);
-  fileReferences.register('volar.vue.findAllFileReferences', docClient ?? apiClient);
   reloadProject.register('volar.action.reloadProject', context, [apiClient, docClient].filter(shared.notEmpty));
   /** Custom commands for coc-volar */
   doctor.register(context);
   /** Custom snippets completion for coc-volar */
   scaffoldSnippets.register(context);
-  /** Custom status-bar for coc-volar */
-  statusBar.register(context, docClient ?? apiClient);
 
-  if (
-    workspace.getConfiguration('volar').get<boolean>('autoCreateQuotes') ||
-    workspace.getConfiguration('volar').get<boolean>('autoClosingTags') ||
-    workspace.getConfiguration('volar').get<boolean>('autoCompleteRefs')
-  ) {
-    autoInsertion.register(context, htmlClient, apiClient);
+  if (apiClient) {
+    verifyAll.register(context, docClient ?? apiClient);
+    inlayHints.register(context, docClient ?? apiClient);
+    fileReferences.register('volar.vue.findAllFileReferences', docClient ?? apiClient);
+    /** Custom status-bar for coc-volar */
+    statusBar.register(context, docClient ?? apiClient);
+
+    if (
+      workspace.getConfiguration('volar').get<boolean>('autoCreateQuotes') ||
+      workspace.getConfiguration('volar').get<boolean>('autoClosingTags') ||
+      workspace.getConfiguration('volar').get<boolean>('autoCompleteRefs')
+    ) {
+      autoInsertion.register(context, htmlClient, apiClient);
+    }
   }
 
   async function registerRestartRequest() {
