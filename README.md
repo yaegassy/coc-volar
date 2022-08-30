@@ -151,7 +151,6 @@ Check the README of `coc-prettier` for details. <https://github.com/neoclide/coc
 - `volar.scaffoldSnippets.enable`: Enable/disable scaffold snippets completion. Typing `vue` or `vuedc` will output completion suggestions. This snippets completion feature will only work on the first line of the file, default: `true`
 - `volar.diagnostics.enable`: Enable/disable the Volar diagnostics, default: `true`
 - `volar.diagnostics.tsLocale`: Locale of diagnostics messages from typescript, valid option: `["cs", "de", "es", "fr", "it", "ja", "ko", "en", "pl", "pt-br", "ru", "tr", "zh-cn", "zh-tw"]`, default: `"en"`
-- `volar.inlayHints.enable`: Whether to show inlay hints. In order for inlayHints to work with volar, you will need to further configure `typescript.inlayHints.*` or `javascript.inlayHints.*` settings, default: `true`
 - `volar.vitePressSupport.enable`: Use `.md` instead of `.vue` for file extension. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, default: `false`
 - `volar.petiteVueSupport.enable`: Use `.html` instead of `.vue` for file extension. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, default: `false`
 - `volar.progressOnInitialization.enable`: Enable/disable progress window at language server startup, default: `true`
@@ -178,7 +177,6 @@ Check the README of `coc-prettier` for details. <https://github.com/neoclide/coc
 ## Commands
 
 - `volar.initializeTakeOverMode`: Enable Take Over Mode in your project
-- `volar.toggleInlayHints`: Toggle inlay hints Enable/Disable
 - `volar.action.doctor`: Show Doctor info
 - `volar.action.restartServer`: Restart Vue server
 - `volar.action.reloadProject`: Reload Project

@@ -6,7 +6,6 @@ import * as scaffoldSnippets from './client/completions/scaffoldSnippets';
 import * as statusBar from './client/statusBar';
 import * as autoInsertion from './features/autoInsertion';
 import * as fileReferences from './features/fileReferences';
-import * as inlayHints from './features/inlayHints';
 import * as reloadProject from './features/reloadProject';
 import * as showReferences from './features/showReferences';
 import * as tsVersion from './features/tsVersion';
@@ -192,7 +191,6 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
 
   if (apiClient) {
     verifyAll.register(context, docClient ?? apiClient);
-    inlayHints.register(context, docClient ?? apiClient);
     fileReferences.register('volar.vue.findAllFileReferences', docClient ?? apiClient);
     /** Custom status-bar for coc-volar */
     statusBar.register(context, docClient ?? apiClient);
