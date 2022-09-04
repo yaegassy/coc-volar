@@ -32,7 +32,7 @@ type CreateLanguageClient = (
 
 let activated: boolean;
 
-export async function activate(context: ExtensionContext, createLc: CreateLanguageClient, env: 'node' | 'browser') {
+export async function activate(context: ExtensionContext, createLc: CreateLanguageClient) {
   /** Custom commands for coc-volar */
   initializeTakeOverMode.register(context);
 
@@ -43,20 +43,20 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
   if (!activated) {
     const { document } = await workspace.getCurrentState();
     if (document.languageId === 'vue') {
-      doActivate(context, createLc, env);
+      doActivate(context, createLc);
       activated = true;
     }
 
     if (!activated && document.languageId === 'markdown') {
       if (workspace.getConfiguration('volar').get<boolean>('vitePressSupport.enable', false)) {
-        doActivate(context, createLc, env);
+        doActivate(context, createLc);
         activated = true;
       }
     }
 
     if (!activated && document.languageId === 'html') {
       if (workspace.getConfiguration('volar').get<boolean>('petiteVueSupport.enable', false)) {
-        doActivate(context, createLc, env);
+        doActivate(context, createLc);
         activated = true;
       }
     }
@@ -67,7 +67,7 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
     ) {
       const takeOverMode = takeOverModeEnabled();
       if (takeOverMode) {
-        doActivate(context, createLc, env);
+        doActivate(context, createLc);
         activated = true;
       }
     }
@@ -83,20 +83,20 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
 
       const { document } = await workspace.getCurrentState();
       if (document.languageId === 'vue') {
-        doActivate(context, createLc, env);
+        doActivate(context, createLc);
         activated = true;
       }
 
       if (!activated && document.languageId === 'markdown') {
         if (workspace.getConfiguration('volar').get<boolean>('vitePressSupport.enable', false)) {
-          doActivate(context, createLc, env);
+          doActivate(context, createLc);
           activated = true;
         }
       }
 
       if (!activated && document.languageId === 'html') {
         if (workspace.getConfiguration('volar').get<boolean>('petiteVueSupport.enable', false)) {
-          doActivate(context, createLc, env);
+          doActivate(context, createLc);
           activated = true;
         }
       }
@@ -107,7 +107,7 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
       ) {
         const takeOverMode = takeOverModeEnabled();
         if (takeOverMode) {
-          doActivate(context, createLc, env);
+          doActivate(context, createLc);
           activated = true;
         }
       }
@@ -117,7 +117,7 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
   );
 }
 
-export async function doActivate(context: ExtensionContext, createLc: CreateLanguageClient, env: 'node' | 'browser') {
+export async function doActivate(context: ExtensionContext, createLc: CreateLanguageClient) {
   initializeWorkspaceState(context);
 
   const takeOverMode = takeOverModeEnabled();
@@ -152,16 +152,14 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
   const _useSecondServer = useSecondServer();
 
   [apiClient, docClient, htmlClient] = await Promise.all([
-    env === 'node'
-      ? createLc(
-          'volar-language-features',
-          'Volar - Language Features Server',
-          languageFeaturesDocumentSelector,
-          getInitializationOptions(context, 'main-language-features', _useSecondServer),
-          6009
-        )
-      : undefined,
-    env === 'node' && _useSecondServer
+    createLc(
+      'volar-language-features',
+      'Volar - Language Features Server',
+      languageFeaturesDocumentSelector,
+      getInitializationOptions(context, 'main-language-features', _useSecondServer),
+      6009
+    ),
+    _useSecondServer
       ? createLc(
           'volar-language-features-2',
           'Volar - Second Language Features Server',
