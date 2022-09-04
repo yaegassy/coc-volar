@@ -400,8 +400,8 @@
     ]
   },
   "dependencies": {
-    "@volar/shared": "0.40.5",
-    "@volar/vue-language-server": "0.40.5",
+    "@volar/shared": "0.40.6",
+    "@volar/vue-language-server": "0.40.6",
     "typescript": "4.7.3"
   }
 }
