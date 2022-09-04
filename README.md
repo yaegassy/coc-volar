@@ -157,6 +157,7 @@ Check the README of `coc-prettier` for details. <https://github.com/neoclide/coc
 - `volar-language-features.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
 - `volar-language-features-2.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
 - `volar-document-features.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
+- `volar.vueserver.textDocumentSync`: Defines how the host (editor) should sync document changes to the language server. SFC incremental parser only working when config "incremental", valid option: `["incremental", "full", "none"]`, default: `incremental`
 - `volar.vueserver.useSecondServer`: Use second server to progress heavy diagnostic works, the main server workhorse computing intellisense, operations such as auto-complete can respond faster. Note that this will lead to more memory usage, default: `true`
 - `volar.vueserver.maxOldSpaceSize`: Set `--max-old-space-size` option on server process. Maximum memory (in MB) that the server should use. On some systems this may only have effect when runtime has been set. Minimum 256.
 - `volar.takeOverMode.enabled`: Take over language support for *.ts, default: `false`

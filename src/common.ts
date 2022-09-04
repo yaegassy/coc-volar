@@ -1,5 +1,9 @@
-import * as shared from '@volar/shared';
 import { commands, DocumentSelector, ExtensionContext, LanguageClient, Thenable, workspace } from 'coc.nvim';
+
+import * as shared from '@volar/shared';
+import { ServerInitializationOptions } from '@volar/vue-language-server';
+import { TextDocumentSyncKind } from 'vscode-languageserver-protocol';
+
 import * as doctor from './client/commands/doctor';
 import * as initializeTakeOverMode from './client/commands/initializeTakeOverMode';
 import * as scaffoldSnippets from './client/completions/scaffoldSnippets';
@@ -10,7 +14,6 @@ import * as reloadProject from './features/reloadProject';
 import * as showReferences from './features/showReferences';
 import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
-import { ServerInitializationOptions } from '@volar/vue-language-server';
 
 let apiClient: LanguageClient | undefined;
 let docClient: LanguageClient | undefined;
@@ -232,7 +235,17 @@ function getInitializationOptions(
     context.workspaceState.update('coc-volar-ts-server-path', resolveCurrentTsPaths.serverPath);
   }
 
+  const textDocumentSync = workspace
+    .getConfiguration('volar')
+    .get<'incremental' | 'full' | 'none'>('vueserver.textDocumentSync');
   const initializationOptions: ServerInitializationOptions = {
+    textDocumentSync: textDocumentSync
+      ? {
+          incremental: TextDocumentSyncKind.Incremental,
+          full: TextDocumentSyncKind.Full,
+          none: TextDocumentSyncKind.None,
+        }[textDocumentSync]
+      : TextDocumentSyncKind.Incremental,
     typescript: resolveCurrentTsPaths,
     languageFeatures:
       mode === 'main-language-features' || mode === 'second-language-features'
