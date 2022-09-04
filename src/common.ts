@@ -1,5 +1,9 @@
-import * as shared from '@volar/shared';
 import { commands, DocumentSelector, ExtensionContext, LanguageClient, Thenable, workspace } from 'coc.nvim';
+
+import * as shared from '@volar/shared';
+import { ServerInitializationOptions } from '@volar/vue-language-server';
+import { TextDocumentSyncKind } from 'vscode-languageserver-protocol';
+
 import * as doctor from './client/commands/doctor';
 import * as initializeTakeOverMode from './client/commands/initializeTakeOverMode';
 import * as scaffoldSnippets from './client/completions/scaffoldSnippets';
@@ -25,13 +29,13 @@ type CreateLanguageClient = (
   id: string,
   name: string,
   documentSelector: DocumentSelector,
-  initOptions: shared.ServerInitializationOptions,
+  initOptions: ServerInitializationOptions,
   port: number
 ) => LanguageClient;
 
 let activated: boolean;
 
-export async function activate(context: ExtensionContext, createLc: CreateLanguageClient, env: 'node' | 'browser') {
+export async function activate(context: ExtensionContext, createLc: CreateLanguageClient) {
   /** Custom commands for coc-volar */
   initializeTakeOverMode.register(context);
 
@@ -42,20 +46,20 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
   if (!activated) {
     const { document } = await workspace.getCurrentState();
     if (document.languageId === 'vue') {
-      doActivate(context, createLc, env);
+      doActivate(context, createLc);
       activated = true;
     }
 
     if (!activated && document.languageId === 'markdown') {
       if (workspace.getConfiguration('volar').get<boolean>('vitePressSupport.enable', false)) {
-        doActivate(context, createLc, env);
+        doActivate(context, createLc);
         activated = true;
       }
     }
 
     if (!activated && document.languageId === 'html') {
       if (workspace.getConfiguration('volar').get<boolean>('petiteVueSupport.enable', false)) {
-        doActivate(context, createLc, env);
+        doActivate(context, createLc);
         activated = true;
       }
     }
@@ -66,7 +70,7 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
     ) {
       const takeOverMode = takeOverModeEnabled();
       if (takeOverMode) {
-        doActivate(context, createLc, env);
+        doActivate(context, createLc);
         activated = true;
       }
     }
@@ -82,20 +86,20 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
 
       const { document } = await workspace.getCurrentState();
       if (document.languageId === 'vue') {
-        doActivate(context, createLc, env);
+        doActivate(context, createLc);
         activated = true;
       }
 
       if (!activated && document.languageId === 'markdown') {
         if (workspace.getConfiguration('volar').get<boolean>('vitePressSupport.enable', false)) {
-          doActivate(context, createLc, env);
+          doActivate(context, createLc);
           activated = true;
         }
       }
 
       if (!activated && document.languageId === 'html') {
         if (workspace.getConfiguration('volar').get<boolean>('petiteVueSupport.enable', false)) {
-          doActivate(context, createLc, env);
+          doActivate(context, createLc);
           activated = true;
         }
       }
@@ -106,7 +110,7 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
       ) {
         const takeOverMode = takeOverModeEnabled();
         if (takeOverMode) {
-          doActivate(context, createLc, env);
+          doActivate(context, createLc);
           activated = true;
         }
       }
@@ -116,7 +120,7 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
   );
 }
 
-export async function doActivate(context: ExtensionContext, createLc: CreateLanguageClient, env: 'node' | 'browser') {
+export async function doActivate(context: ExtensionContext, createLc: CreateLanguageClient) {
   initializeWorkspaceState(context);
 
   const takeOverMode = takeOverModeEnabled();
@@ -151,16 +155,14 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
   const _useSecondServer = useSecondServer();
 
   [apiClient, docClient, htmlClient] = await Promise.all([
-    env === 'node'
-      ? createLc(
-          'volar-language-features',
-          'Volar - Language Features Server',
-          languageFeaturesDocumentSelector,
-          getInitializationOptions(context, 'main-language-features', _useSecondServer),
-          6009
-        )
-      : undefined,
-    env === 'node' && _useSecondServer
+    createLc(
+      'volar-language-features',
+      'Volar - Language Features Server',
+      languageFeaturesDocumentSelector,
+      getInitializationOptions(context, 'main-language-features', _useSecondServer),
+      6009
+    ),
+    _useSecondServer
       ? createLc(
           'volar-language-features-2',
           'Volar - Second Language Features Server',
@@ -233,7 +235,17 @@ function getInitializationOptions(
     context.workspaceState.update('coc-volar-ts-server-path', resolveCurrentTsPaths.serverPath);
   }
 
-  const initializationOptions: shared.ServerInitializationOptions = {
+  const textDocumentSync = workspace
+    .getConfiguration('volar')
+    .get<'incremental' | 'full' | 'none'>('vueserver.textDocumentSync');
+  const initializationOptions: ServerInitializationOptions = {
+    textDocumentSync: textDocumentSync
+      ? {
+          incremental: TextDocumentSyncKind.Incremental,
+          full: TextDocumentSyncKind.Full,
+          none: TextDocumentSyncKind.None,
+        }[textDocumentSync]
+      : TextDocumentSyncKind.Incremental,
     typescript: resolveCurrentTsPaths,
     languageFeatures:
       mode === 'main-language-features' || mode === 'second-language-features'
@@ -326,12 +338,12 @@ function getConfigAttrNameCase() {
   return 'kebabCase' as const;
 }
 
-function getConfigDiagnostics(): NonNullable<shared.ServerInitializationOptions['languageFeatures']>['diagnostics'] {
+function getConfigDiagnostics(): NonNullable<ServerInitializationOptions['languageFeatures']>['diagnostics'] {
   return workspace.getConfiguration('volar').get<boolean>('diagnostics.enable', true);
 }
 
 function getConfigDocumentFormatting(): NonNullable<
-  shared.ServerInitializationOptions['documentFeatures']
+  ServerInitializationOptions['documentFeatures']
 >['documentFormatting'] {
   const isFormattingEnable = workspace.getConfiguration('volar').get<boolean>('formatting.enable', true);
 
