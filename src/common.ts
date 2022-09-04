@@ -10,6 +10,7 @@ import * as reloadProject from './features/reloadProject';
 import * as showReferences from './features/showReferences';
 import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
+import { ServerInitializationOptions } from '@volar/vue-language-server';
 
 let apiClient: LanguageClient | undefined;
 let docClient: LanguageClient | undefined;
@@ -25,7 +26,7 @@ type CreateLanguageClient = (
   id: string,
   name: string,
   documentSelector: DocumentSelector,
-  initOptions: shared.ServerInitializationOptions,
+  initOptions: ServerInitializationOptions,
   port: number
 ) => LanguageClient;
 
@@ -233,7 +234,7 @@ function getInitializationOptions(
     context.workspaceState.update('coc-volar-ts-server-path', resolveCurrentTsPaths.serverPath);
   }
 
-  const initializationOptions: shared.ServerInitializationOptions = {
+  const initializationOptions: ServerInitializationOptions = {
     typescript: resolveCurrentTsPaths,
     languageFeatures:
       mode === 'main-language-features' || mode === 'second-language-features'
@@ -326,12 +327,12 @@ function getConfigAttrNameCase() {
   return 'kebabCase' as const;
 }
 
-function getConfigDiagnostics(): NonNullable<shared.ServerInitializationOptions['languageFeatures']>['diagnostics'] {
+function getConfigDiagnostics(): NonNullable<ServerInitializationOptions['languageFeatures']>['diagnostics'] {
   return workspace.getConfiguration('volar').get<boolean>('diagnostics.enable', true);
 }
 
 function getConfigDocumentFormatting(): NonNullable<
-  shared.ServerInitializationOptions['documentFeatures']
+  ServerInitializationOptions['documentFeatures']
 >['documentFormatting'] {
   const isFormattingEnable = workspace.getConfiguration('volar').get<boolean>('formatting.enable', true);
 
