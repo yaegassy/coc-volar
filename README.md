@@ -160,13 +160,13 @@ Check the README of `coc-prettier` for details. <https://github.com/neoclide/coc
 - `volar.vueserver.textDocumentSync`: Defines how the host (editor) should sync document changes to the language server. SFC incremental parser only working when config "incremental", valid option: `["incremental", "full", "none"]`, default: `incremental`
 - `volar.vueserver.useSecondServer`: Use second server to progress heavy diagnostic works, the main server workhorse computing intellisense, operations such as auto-complete can respond faster. Note that this will lead to more memory usage, default: `true`
 - `volar.vueserver.maxOldSpaceSize`: Set `--max-old-space-size` option on server process. Maximum memory (in MB) that the server should use. On some systems this may only have effect when runtime has been set. Minimum 256.
-- `volar.takeOverMode.enabled`: Take over language support for *.ts, default: `false`
 - `volar.codeLens.references`: [references] code lens, default: `true`
 - `volar.codeLens.pugTools`: [pug ☐] code lens, default: `false`
 - `volar.codeLens.scriptSetupTools`: [ref sugar ☐] code lens, default: `false`
 - `volar.autoCreateQuotes`: Enable/disable auto creation of quotes for HTML attribute assignment, default: `false`
 - `volar.autoClosingTags`: Enable/disable autoClosing of HTML tags, default: `false`
 - `volar.autoCompleteRefs`: Auto-complete Ref value with '.value', default: `false`
+- `volar.takeOverMode.enabled`: Take over language support for *.ts, default: `false`
 - `volar.formatting.enable`: Enable/disable the Volar document formatter, default: `true`
 - `volar.format.initialIndent`: `volar.format.initialIndent`, default: `{ "html": true }`
 - `volar.completion.tagNameCase`: Tag name case, valid options: `["both", "kebab", "pascal"]`, default: `"both"`
