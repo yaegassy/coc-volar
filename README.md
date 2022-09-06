@@ -66,34 +66,6 @@ Notes for make `VitePress`, `petite-vue` project working with Volar.
 - Make sure added related `.html` files path to tsconfig.json `include` property
 - Usually needed `"allowJs": true` and `"jsx": "preserve"` config.
 
-## Formatter
-
-If `coc-prettier` (v9.2.0 later) is installed, `prettier` will be run as the formatter.
-
-If you want to use the volar's built-in formatter, set `prettier.enable` to `false` or set `prettier.disableLanguages` to `vue` in `.vim/coc-settings.json`.
-
-**Example1**:
-
-```jsonc
-{
-  "prettier.enable": false
-}
-```
-
-**Example2**:
-
-```jsonc
-{
-  "prettier.disableLanguages": [
-    "vue"
-  ]
-}
-```
-
-It can also be controlled by other `coc-prettier` settings and `.prettierignore` files.
-
-Check the README of `coc-prettier` for details. <https://github.com/neoclide/coc-prettier/blob/master/Readme.md>
-
 ## Recommended additional installation: "watchman"
 
 `coc-volar` uses the `fileEvents` option to watch files in the project, it is recommended to install [watchman](https://facebook.github.io/watchman/).
