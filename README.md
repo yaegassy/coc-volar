@@ -7,25 +7,16 @@
 
 ## Install
 
-**CocInstall**:
-
 ```vim
 :CocInstall @yaegassy/coc-volar
 ```
 
 > scoped packages
 
-**vim-plug**:
-
-```vim
-Plug 'yaegassy/coc-volar', {'do': 'yarn install --frozen-lockfile'}
-```
-
 ## (Optional) Additional installation of coc-extension
 
 If you want to use `volar.action.splitEditors`, `volar.action.vite`, `volar.action.nuxt` and other feature, please install [coc-volar-tools](https://github.com/yaegassy/coc-volar-tools).
 
-**CocInstall**:
 
 ```vim
 :CocInstall @yaegassy/coc-volar-tools
@@ -33,54 +24,13 @@ If you want to use `volar.action.splitEditors`, `volar.action.vite`, `volar.acti
 
 > scoped packages
 
-**vim-plug**:
+## [IMPORTANT] Enable "Take Over Mode"
 
-```vim
-Plug 'yaegassy/coc-volar-tools', {'do': 'yarn install --frozen-lockfile'}
-```
+In `coc-volar`, please enable and use "Take Over Mode". Check the Vue.js documentation for more information on "Take Over Mode".
 
-## Recommended additional installation: "watchman"
+- <https://vuejs.org/guide/typescript/overview.html#volar-takeover-mode>
 
-`coc-volar` uses the `fileEvents` option to watch files in the project, it is recommended to install [watchman](https://facebook.github.io/watchman/).
-
-- See: <https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions>
-
-If you have difficulty installing watchman, you can use coc-volar without watchman, but you may not be able to immediately use volar's IntelliSense with the newly added files.
-
-In this case, please execute the command to restart the language server.
-
-- `:CocRestart`
-
-## workspaceFolders
-
-Depending on the project like mono repo or how Vim/Neovim is started, `workspaceFolders` may not be recognized correctly.
-
-If `workspaceFolders` are not recognized correctly, the language server may parse unnecessary project folders, etc., slowing down the operation. Or Language Server may not work properly.
-
-The default configuration of coc.nvim resolves to the directory where the `.git`, `.hg`, or `.projections.json` files reside as the workspace root.
-
-`coc-volar` has also already added `vite.config.ts`, `vue.config.js` or `nuxt.config.ts` to the extension side to resolve workspace root.
-
-If further customization is needed, set `b:coc_root_patterns` in ".vimrc/init.vim".
-
-**Example**:
-
-```vim
-  au FileType vue let b:coc_root_patterns = ['.git', '.env', 'package.json', 'tsconfig.json', 'jsconfig.json', 'vite.config.ts', 'vue.config.js', 'nuxt.config.ts']
-```
-
-For more information, check this coc.nvim's wiki.
-
-- <https://github.com/neoclide/coc.nvim/wiki/Using-workspaceFolders>
-
-## Usage & Notes
-
-**See**:
-
-- <https://github.com/johnsoncodehk/volar/tree/master/extensions/vscode-vue-language-features#usage>
-- <https://github.com/johnsoncodehk/volar/tree/master/extensions/vscode-vue-language-features#notes>
-
-## How to enable "Take Over Mode" in coc-volar
+If you want to use the "TypeScript Vue Plugin" instead of Take Over Mode, install `typescript-vue-plugin` in your project (`npm install typescript-vue-plugin`). After installation, add a setting in `tsconfig.json` to use `typescript-vue-plugin`.
 
 ### If you are using "Take Over Mode" for the first time in your project
 
@@ -143,6 +93,40 @@ If you want to use the volar's built-in formatter, set `prettier.enable` to `fal
 It can also be controlled by other `coc-prettier` settings and `.prettierignore` files.
 
 Check the README of `coc-prettier` for details. <https://github.com/neoclide/coc-prettier/blob/master/Readme.md>
+
+## Recommended additional installation: "watchman"
+
+`coc-volar` uses the `fileEvents` option to watch files in the project, it is recommended to install [watchman](https://facebook.github.io/watchman/).
+
+- See: <https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions>
+
+If you have difficulty installing watchman, you can use coc-volar without watchman, but you may not be able to immediately use volar's IntelliSense with the newly added files.
+
+In this case, please execute the command to restart the language server.
+
+- `:CocRestart`
+
+## workspaceFolders
+
+Depending on the project like mono repo or how Vim/Neovim is started, `workspaceFolders` may not be recognized correctly.
+
+If `workspaceFolders` are not recognized correctly, the language server may parse unnecessary project folders, etc., slowing down the operation. Or Language Server may not work properly.
+
+The default configuration of coc.nvim resolves to the directory where the `.git`, `.hg`, or `.projections.json` files reside as the workspace root.
+
+`coc-volar` has also already added `vite.config.ts`, `vue.config.js` or `nuxt.config.ts` to the extension side to resolve workspace root.
+
+If further customization is needed, set `b:coc_root_patterns` in ".vimrc/init.vim".
+
+**Example**:
+
+```vim
+  au FileType vue let b:coc_root_patterns = ['.git', '.env', 'package.json', 'tsconfig.json', 'jsconfig.json', 'vite.config.ts', 'vue.config.js', 'nuxt.config.ts']
+```
+
+For more information, check this coc.nvim's wiki.
+
+- <https://github.com/neoclide/coc.nvim/wiki/Using-workspaceFolders>
 
 ## Configuration options
 
