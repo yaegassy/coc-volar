@@ -37,26 +37,24 @@ export async function activate(context: ExtensionContext): Promise<void> {
       );
     }
 
+    const maxOldSpaceSize = workspace.getConfiguration('volar').get<number | null>('vueserver.maxOldSpaceSize');
+    const runOptions = { execArgv: <string[]>[] };
+    if (maxOldSpaceSize) {
+      runOptions.execArgv.push('--max-old-space-size=' + maxOldSpaceSize);
+    }
     const debugOptions = { execArgv: ['--nolazy', '--inspect=' + port] };
     const serverOptions: ServerOptions = {
-      run: { module: serverModule, transport: TransportKind.ipc },
+      run: {
+        module: serverModule,
+        transport: TransportKind.ipc,
+        options: runOptions,
+      },
       debug: {
         module: serverModule,
         transport: TransportKind.ipc,
         options: debugOptions,
       },
     };
-
-    const memorySize = Math.floor(Number(getConfigServerMaxOldSpaceSize()));
-    if (memorySize && memorySize >= 256) {
-      const maxOldSpaceSize = '--max-old-space-size=' + memorySize.toString();
-      serverOptions.run.options = { execArgv: [maxOldSpaceSize] };
-      if (serverOptions.debug.options) {
-        if (serverOptions.debug.options.execArgv) {
-          serverOptions.debug.options.execArgv.push(maxOldSpaceSize);
-        }
-      }
-    }
 
     const globPatterns: string[] = ['**/*.vue', '**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx', '**/*.json'];
     if (workspace.getConfiguration('volar').get<boolean>('vitePressSupport.enable', false)) {
@@ -163,10 +161,6 @@ function getConfigProgressOnInitialization() {
 
 function getConfigDevServerPath() {
   return workspace.getConfiguration('volar').get<string>('dev.serverPath', '');
-}
-
-function getConfigServerMaxOldSpaceSize() {
-  return workspace.getConfiguration('volar').get<number | null>('vueserver.maxOldSpaceSize');
 }
 
 function getConfigMiddlewareProvideCodeActionsEnable() {
