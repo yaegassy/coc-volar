@@ -3,10 +3,10 @@ import { ShowReferencesNotificationType } from '../requestTypes';
 
 export async function activate(context: ExtensionContext, languageClient: LanguageClient) {
   await languageClient.onReady();
-  languageClient.onNotification(ShowReferencesNotificationType, (handler) => {
-    const uri = handler.textDocument.uri;
-    const pos = handler.position;
-    const refs = handler.references;
+  languageClient.onNotification(ShowReferencesNotificationType, (params) => {
+    const uri = params.textDocument.uri;
+    const pos = params.position;
+    const refs = params.references;
     commands.executeCommand(
       'editor.action.showReferences',
       Uri.parse(uri),
