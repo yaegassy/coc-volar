@@ -51,7 +51,7 @@ Notes for make `VitePress`, `petite-vue` project working with Volar.
 
 ### VitePress
 
-- Set `volar.vitePressSupport.enable` to `true` in `.vim/coc-settings.json`.
+- Set `volar.vueserver.vitePress.processMdFile` to `true` in `.vim/coc-settings.json`.
   - **[WARNING]** If you use this setting, it is recommended to enable it at the workspace (project) level.
 - `vue` is optional add in devDependencies for better intellisense.
 - Make sure added related `.md` files path to tsconfig.json `include` property
@@ -59,7 +59,7 @@ Notes for make `VitePress`, `petite-vue` project working with Volar.
 
 ### petite-vue
 
-- Set `volar.petiteVueSupport.enable` to `true` in `.vim/coc-settings.json`.
+- Set `volar.vueserver.petiteVue.processHtmlFile` to `true` in `.vim/coc-settings.json`.
   - **[WARNING]** If you use this setting, it is recommended to enable it at the workspace (project) level.
 - Set `html.enable` to `false` in `.vim/coc-settings.json`.
 - `vue` is optional add in devDependencies for better intellisense.
@@ -107,12 +107,12 @@ For more information, check this coc.nvim's wiki.
 - `volar.scaffoldSnippets.enable`: Enable/disable scaffold snippets completion. Typing `vue` or `vuedc` will output completion suggestions. This snippets completion feature will only work on the first line of the file, default: `true`
 - `volar.diagnostics.enable`: Enable/disable the Volar diagnostics, default: `true`
 - `volar.diagnostics.tsLocale`: Locale of diagnostics messages from typescript, valid option: `["cs", "de", "es", "fr", "it", "ja", "ko", "en", "pl", "pt-br", "ru", "tr", "zh-cn", "zh-tw"]`, default: `"en"`
-- `volar.vitePressSupport.enable`: Use `.md` instead of `.vue` for file extension. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, default: `false`
-- `volar.petiteVueSupport.enable`: Use `.html` instead of `.vue` for file extension. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, default: `false`
 - `volar.progressOnInitialization.enable`: Enable/disable progress window at language server startup, default: `true`
 - `volar-language-features.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
 - `volar-language-features-2.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
 - `volar-document-features.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
+- `volar.vueserver.petiteVue.processHtmlFile`: Use `.html` instead of `.vue` for file extension. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, default: `false`
+- `volar.vueserver.vitePress.processMdFile`: Use `.md` instead of `.vue` for file extension. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, default: `false`
 - `volar.vueserver.textDocumentSync`: Defines how the host (editor) should sync document changes to the language server. SFC incremental parser only working when config "incremental", valid option: `["incremental", "full", "none"]`, default: `incremental`
 - `volar.vueserver.useSecondServer`: Use second server to progress heavy diagnostic works, the main server workhorse computing intellisense, operations such as auto-complete can respond faster. Note that this will lead to more memory usage, default: `true`
 - `volar.vueserver.maxOldSpaceSize`: Set `--max-old-space-size` option on server process. Maximum memory (in MB) that the server should use. On some systems this may only have effect when runtime has been set. Minimum 256.

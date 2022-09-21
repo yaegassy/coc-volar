@@ -205,16 +205,6 @@
           "default": "en",
           "description": "Locale of diagnostics messages from typescript."
         },
-        "volar.vitePressSupport.enable": {
-          "type": "boolean",
-          "default": false,
-          "description": "Use `.md` instead of `.vue` for file extension. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project."
-        },
-        "volar.petiteVueSupport.enable": {
-          "type": "boolean",
-          "default": false,
-          "description": "Use `.html` instead of `.vue` for file extension. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project."
-        },
         "volar.progressOnInitialization.enable": {
           "type": "boolean",
           "default": true,
@@ -252,6 +242,16 @@
           ],
           "default": "off",
           "description": "Traces the communication between coc.nvim and the language server."
+        },
+        "volar.vueserver.petiteVue.processHtmlFile": {
+          "type": "boolean",
+          "default": false,
+          "description": "Use `.html` instead of `.vue` for file extension. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project."
+        },
+        "volar.vueserver.vitePress.processMdFile": {
+          "type": "boolean",
+          "default": false,
+          "description": "Use `.md` instead of `.vue` for file extension. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project."
         },
         "volar.vueserver.textDocumentSync": {
           "type": "string",

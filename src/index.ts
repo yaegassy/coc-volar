@@ -20,7 +20,7 @@ import {
 } from 'coc.nvim';
 import * as fs from 'fs';
 import * as path from 'path';
-import { activate as commonActivate, deactivate as commonDeactivate } from './common';
+import { activate as commonActivate, deactivate as commonDeactivate, processHtml, processMd } from './common';
 
 let serverModule: string;
 
@@ -57,10 +57,10 @@ export async function activate(context: ExtensionContext): Promise<void> {
     };
 
     const globPatterns: string[] = ['**/*.vue', '**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx', '**/*.json'];
-    if (workspace.getConfiguration('volar').get<boolean>('vitePressSupport.enable', false)) {
+    if (processMd()) {
       globPatterns.push('**/*.md');
     }
-    if (workspace.getConfiguration('volar').get<boolean>('volar.petiteVueSupport.enable', false)) {
+    if (processHtml()) {
       globPatterns.push('**/*.html');
     }
     const watcherGlobPattern = '{' + globPatterns.join(',') + '}';

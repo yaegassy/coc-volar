@@ -45,34 +45,28 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
 
   if (!activated) {
     const { document } = await workspace.getCurrentState();
-    if (document.languageId === 'vue') {
+    const currentlangId = document.languageId;
+    if (currentlangId === 'vue') {
       doActivate(context, createLc);
       activated = true;
     }
 
-    if (!activated && document.languageId === 'markdown') {
-      if (workspace.getConfiguration('volar').get<boolean>('vitePressSupport.enable', false)) {
-        doActivate(context, createLc);
-        activated = true;
-      }
+    if (
+      (!activated && currentlangId === 'markdown' && processMd()) ||
+      (!activated && currentlangId === 'html' && processHtml())
+    ) {
+      doActivate(context, createLc);
+      activated = true;
     }
 
-    if (!activated && document.languageId === 'html') {
-      if (workspace.getConfiguration('volar').get<boolean>('petiteVueSupport.enable', false)) {
-        doActivate(context, createLc);
-        activated = true;
-      }
-    }
-
+    const takeOverMode = takeOverModeEnabled();
     if (
       !activated &&
-      ['javascript', 'typescript', 'javascriptreact', 'typescriptreact'].includes(document.languageId)
+      takeOverMode &&
+      ['javascript', 'typescript', 'javascriptreact', 'typescriptreact'].includes(currentlangId)
     ) {
-      const takeOverMode = takeOverModeEnabled();
-      if (takeOverMode) {
-        doActivate(context, createLc);
-        activated = true;
-      }
+      doActivate(context, createLc);
+      activated = true;
     }
   }
 
@@ -85,34 +79,30 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
       if (activated) return;
 
       const { document } = await workspace.getCurrentState();
-      if (document.languageId === 'vue') {
+      const currentlangId = document.languageId;
+
+      if (currentlangId === 'vue') {
         doActivate(context, createLc);
         activated = true;
       }
 
-      if (!activated && document.languageId === 'markdown') {
-        if (workspace.getConfiguration('volar').get<boolean>('vitePressSupport.enable', false)) {
-          doActivate(context, createLc);
-          activated = true;
-        }
+      if (
+        (!activated && currentlangId === 'markdown' && processMd()) ||
+        (!activated && currentlangId === 'html' && processHtml())
+      ) {
+        doActivate(context, createLc);
+        activated = true;
       }
 
-      if (!activated && document.languageId === 'html') {
-        if (workspace.getConfiguration('volar').get<boolean>('petiteVueSupport.enable', false)) {
-          doActivate(context, createLc);
-          activated = true;
-        }
-      }
+      const takeOverMode = takeOverModeEnabled();
 
       if (
         !activated &&
-        ['javascript', 'typescript', 'javascriptreact', 'typescriptreact'].includes(document.languageId)
+        takeOverMode &&
+        ['javascript', 'typescript', 'javascriptreact', 'typescriptreact'].includes(currentlangId)
       ) {
-        const takeOverMode = takeOverModeEnabled();
-        if (takeOverMode) {
-          doActivate(context, createLc);
-          activated = true;
-        }
+        doActivate(context, createLc);
+        activated = true;
       }
     },
     null,
@@ -124,8 +114,6 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
   initializeWorkspaceState(context);
 
   const takeOverMode = takeOverModeEnabled();
-  const isVitePressSupport = workspace.getConfiguration('volar').get<boolean>('vitePressSupport.enable', false);
-  const isPetiteVueSupport = workspace.getConfiguration('volar').get<boolean>('petiteVueSupport.enable', false);
 
   const languageFeaturesDocumentSelector: DocumentSelector = takeOverMode
     ? [
@@ -137,20 +125,26 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
         { scheme: 'file', language: 'json' },
       ]
     : [{ scheme: 'file', language: 'vue' }];
-  if (isVitePressSupport) languageFeaturesDocumentSelector.push({ scheme: 'file', language: 'markdown' });
-  if (isPetiteVueSupport) languageFeaturesDocumentSelector.push({ scheme: 'file', language: 'html' });
 
   const documentFeaturesDocumentSelector: DocumentSelector = takeOverMode
     ? [
-        { language: 'vue' },
-        { language: 'javascript' },
-        { language: 'typescript' },
-        { language: 'javascriptreact' },
-        { language: 'typescriptreact' },
+        { scheme: 'file', language: 'vue' },
+        { scheme: 'file', language: 'javascript' },
+        { scheme: 'file', language: 'typescript' },
+        { scheme: 'file', language: 'javascriptreact' },
+        { scheme: 'file', language: 'typescriptreact' },
       ]
-    : [{ language: 'vue' }];
-  if (isVitePressSupport) documentFeaturesDocumentSelector.push({ scheme: 'file', language: 'markdown' });
-  if (isPetiteVueSupport) documentFeaturesDocumentSelector.push({ scheme: 'file', language: 'html' });
+    : [{ scheme: 'file', language: 'vue' }];
+
+  if (processHtml()) {
+    languageFeaturesDocumentSelector.push({ scheme: 'file', language: 'html' });
+    documentFeaturesDocumentSelector.push({ scheme: 'file', language: 'html' });
+  }
+
+  if (processMd()) {
+    languageFeaturesDocumentSelector.push({ scheme: 'file', language: 'markdown' });
+    documentFeaturesDocumentSelector.push({ scheme: 'file', language: 'markdown' });
+  }
 
   const _useSecondServer = useSecondServer();
 
@@ -239,6 +233,12 @@ function getInitializationOptions(
     .getConfiguration('volar')
     .get<'incremental' | 'full' | 'none'>('vueserver.textDocumentSync');
   const initializationOptions: VueServerInitializationOptions = {
+    petiteVue: {
+      processHtmlFile: processHtml(),
+    },
+    vitePress: {
+      processMdFile: processMd(),
+    },
     textDocumentSync: textDocumentSync
       ? {
           incremental: TextDocumentSyncKind.Incremental,
@@ -311,6 +311,14 @@ export function takeOverModeEnabled() {
 
 function useSecondServer() {
   return !!workspace.getConfiguration('volar').get<boolean>('vueserver.useSecondServer');
+}
+
+export function processHtml() {
+  return !!workspace.getConfiguration('volar').get<boolean>('vueserver.petiteVue.processHtmlFile');
+}
+
+export function processMd() {
+  return !!workspace.getConfiguration('volar').get<boolean>('vueserver.vitePress.processMdFile');
 }
 
 function getConfigTagNameCase() {
