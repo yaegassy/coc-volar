@@ -288,7 +288,6 @@ function getInitializationOptions(
     documentFeatures:
       mode === 'document-features'
         ? {
-            allowedLanguageIds: ['vue', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact'],
             selectionRange: true,
             foldingRange: true,
             linkedEditingRange: true,
