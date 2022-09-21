@@ -375,19 +375,6 @@
             }
           }
         },
-        "volar.completion.attrNameCase": {
-          "type": "string",
-          "enum": [
-            "kebab",
-            "camel"
-          ],
-          "enumDescriptions": [
-            "kebab-case",
-            "pascalCase"
-          ],
-          "default": "kebab",
-          "description": "Attr name case."
-        },
         "volar.completion.preferredTagNameCase": {
           "type": "string",
           "enum": [
@@ -402,6 +389,19 @@
           ],
           "default": "both",
           "description": "Preferred tag name case."
+        },
+        "volar.completion.preferredAttrNameCase": {
+          "type": "string",
+          "enum": [
+            "kebab",
+            "camel"
+          ],
+          "enumDescriptions": [
+            ":kebab-case=\"...\"",
+            ":camelCase=\"...\""
+          ],
+          "default": "kebab",
+          "description": "Preferred attr name case."
         },
         "volar.completion.autoImportComponent": {
           "type": "boolean",
