@@ -321,19 +321,6 @@ export function processMd() {
   return !!workspace.getConfiguration('volar').get<boolean>('vueserver.vitePress.processMdFile');
 }
 
-function getConfigTagNameCase() {
-  const tagNameCase = workspace.getConfiguration('volar').get<'both' | 'kebab' | 'pascal'>('completion.tagNameCase');
-  switch (tagNameCase) {
-    case 'both':
-      return 'both' as const;
-    case 'kebab':
-      return 'kebabCase' as const;
-    case 'pascal':
-      return 'pascalCase' as const;
-  }
-  return 'both' as const;
-}
-
 function getConfigAttrNameCase() {
   const tagNameCase = workspace.getConfiguration('volar').get<'kebab' | 'camel'>('completion.attrNameCase');
   switch (tagNameCase) {

@@ -126,8 +126,8 @@ For more information, check this coc.nvim's wiki.
 - `volar.takeOverMode.enabled`: Take over language support for *.ts, default: `false`
 - `volar.formatting.enable`: Enable/disable the Volar document formatter, default: `true`
 - `volar.format.initialIndent`: `volar.format.initialIndent`, default: `{ "html": true }`
-- `volar.completion.tagNameCase`: Tag name case, valid options: `["both", "kebab", "pascal"]`, default: `"both"`
 - `volar.completion.attrNameCase`: Attr name case, valid options: `["kebab", "camel"]`, default: `"kebab"`
+- `volar.completion.preferredTagNameCase`: Preferred tag name case, valid options: `["both", "kebab", "pascal"]`, default: `"both"`
 - `volar.completion.autoImportComponent`: Enabled auto-import for component with tag completion, default: `true`
 - `volar.updateImportsOnFileMove.enabled`: Enabled update imports on file move, default: `true`
 - `volar.diagnostics.delay`: Delay time for diagnostics, default: `200`
