@@ -1,7 +1,7 @@
 import { commands, DocumentSelector, ExtensionContext, LanguageClient, Thenable, workspace } from 'coc.nvim';
 
 import * as shared from '@volar/shared';
-import { ServerInitializationOptions } from '@volar/vue-language-server';
+import { VueServerInitializationOptions } from '@volar/vue-language-server';
 import { TextDocumentSyncKind } from 'vscode-languageserver-protocol';
 
 import * as doctor from './client/commands/doctor';
@@ -29,7 +29,7 @@ type CreateLanguageClient = (
   id: string,
   name: string,
   documentSelector: DocumentSelector,
-  initOptions: ServerInitializationOptions,
+  initOptions: VueServerInitializationOptions,
   port: number
 ) => LanguageClient;
 
@@ -238,7 +238,7 @@ function getInitializationOptions(
   const textDocumentSync = workspace
     .getConfiguration('volar')
     .get<'incremental' | 'full' | 'none'>('vueserver.textDocumentSync');
-  const initializationOptions: ServerInitializationOptions = {
+  const initializationOptions: VueServerInitializationOptions = {
     textDocumentSync: textDocumentSync
       ? {
           incremental: TextDocumentSyncKind.Incremental,
@@ -264,10 +264,10 @@ function getInitializationOptions(
                   codeAction: true,
                   workspaceSymbol: true,
                   completion: {
-                    defaultTagNameCase: getConfigTagNameCase(),
-                    defaultAttrNameCase: getConfigAttrNameCase(),
-                    getDocumentNameCasesRequest: false /** MEMO: Set to false for coc-volar */,
-                    getDocumentSelectionRequest: false /** MEMO: Set to false for coc-volar */,
+                    // **MEMO**:
+                    // Set to false for coc-volar. Setting this to true, auto-imports, etc. will not work.
+                    // May need to implement "activeSelection".
+                    getDocumentSelectionRequest: false,
                   },
                   schemaRequestService: true,
                 }
@@ -337,12 +337,12 @@ function getConfigAttrNameCase() {
   return 'kebabCase' as const;
 }
 
-function getConfigDiagnostics(): NonNullable<ServerInitializationOptions['languageFeatures']>['diagnostics'] {
+function getConfigDiagnostics(): NonNullable<VueServerInitializationOptions['languageFeatures']>['diagnostics'] {
   return workspace.getConfiguration('volar').get<boolean>('diagnostics.enable', true);
 }
 
 function getConfigDocumentFormatting(): NonNullable<
-  ServerInitializationOptions['documentFeatures']
+  VueServerInitializationOptions['documentFeatures']
 >['documentFormatting'] {
   const isFormattingEnable = workspace.getConfiguration('volar').get<boolean>('formatting.enable', true);
 
