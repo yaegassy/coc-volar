@@ -378,16 +378,14 @@
         "volar.completion.preferredTagNameCase": {
           "type": "string",
           "enum": [
-            "both",
             "kebab",
             "pascal"
           ],
           "enumDescriptions": [
-            "<kebab-case> and <PascalCase>",
             "<kebab-case>",
             "<PascalCase>"
           ],
-          "default": "both",
+          "default": "pascal",
           "description": "Preferred tag name case."
         },
         "volar.completion.preferredAttrNameCase": {
