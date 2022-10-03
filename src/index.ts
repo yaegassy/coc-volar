@@ -18,8 +18,10 @@ import {
   TransportKind,
   workspace,
 } from 'coc.nvim';
+
 import * as fs from 'fs';
 import * as path from 'path';
+
 import { activate as commonActivate, deactivate as commonDeactivate, processHtml, processMd } from './common';
 
 let serverModule: string;
@@ -27,7 +29,7 @@ let serverModule: string;
 export async function activate(context: ExtensionContext): Promise<void> {
   if (!getConfigVolarEnable()) return;
 
-  return commonActivate(context, (id, name, documentSelector, initOptions, port) => {
+  return commonActivate(context, (id, name, langs, initOptions, fillInitializeParams, port) => {
     const devVolarServerPath = workspace.expand(getConfigDevServerPath());
     if (devVolarServerPath && fs.existsSync(devVolarServerPath)) {
       serverModule = devVolarServerPath;
@@ -66,12 +68,17 @@ export async function activate(context: ExtensionContext): Promise<void> {
     const watcherGlobPattern = '{' + globPatterns.join(',') + '}';
 
     const clientOptions: LanguageClientOptions = {
-      documentSelector,
+      documentSelector: langs.map((lang) => {
+        return {
+          scheme: 'file',
+          languages: lang,
+        };
+      }),
       initializationOptions: initOptions,
       progressOnInitialization: getConfigProgressOnInitialization(),
       middleware: {
         provideCodeActions: getConfigMiddlewareProvideCodeActionsEnable()
-          ? id === 'volar-language-features'
+          ? id === 'vue-semantic-server'
             ? handleProvideCodeActions
             : undefined
           : undefined,

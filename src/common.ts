@@ -1,7 +1,6 @@
-import { commands, DocumentSelector, ExtensionContext, LanguageClient, Thenable, workspace } from 'coc.nvim';
+import { commands, ExtensionContext, InitializeParams, LanguageClient, Thenable, workspace } from 'coc.nvim';
 
-import * as shared from '@volar/shared';
-import { VueServerInitializationOptions } from '@volar/vue-language-server';
+import { DiagnosticModel, ServerMode, VueServerInitializationOptions } from '@volar/vue-language-server';
 import { TextDocumentSyncKind } from 'vscode-languageserver-protocol';
 
 import * as doctor from './client/commands/doctor';
@@ -15,23 +14,27 @@ import * as showReferences from './features/showReferences';
 import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
 
-let apiClient: LanguageClient | undefined;
-let docClient: LanguageClient | undefined;
-let htmlClient: LanguageClient;
+enum LanguageFeaturesKind {
+  Semantic,
+  Syntactic,
+}
 
-let resolveCurrentTsPaths: {
-  serverPath: string;
-  localizedPath: string | undefined;
-  isWorkspacePath: boolean;
-};
+let semanticClient: LanguageClient;
+let syntacticClient: LanguageClient;
 
 type CreateLanguageClient = (
   id: string,
   name: string,
-  documentSelector: DocumentSelector,
+  langs: string[],
   initOptions: VueServerInitializationOptions,
+  fillInitializeParams: (params: InitializeParams) => void,
   port: number
 ) => LanguageClient;
+
+let resolveCurrentTsPaths: {
+  tsdk: string;
+  isWorkspacePath: boolean;
+};
 
 let activated: boolean;
 
@@ -113,90 +116,47 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
 export async function doActivate(context: ExtensionContext, createLc: CreateLanguageClient) {
   initializeWorkspaceState(context);
 
-  const takeOverMode = takeOverModeEnabled();
-
-  const languageFeaturesDocumentSelector: DocumentSelector = takeOverMode
-    ? [
-        { scheme: 'file', language: 'vue' },
-        { scheme: 'file', language: 'javascript' },
-        { scheme: 'file', language: 'typescript' },
-        { scheme: 'file', language: 'javascriptreact' },
-        { scheme: 'file', language: 'typescriptreact' },
-        { scheme: 'file', language: 'json' },
-      ]
-    : [{ scheme: 'file', language: 'vue' }];
-
-  const documentFeaturesDocumentSelector: DocumentSelector = takeOverMode
-    ? [
-        { scheme: 'file', language: 'vue' },
-        { scheme: 'file', language: 'javascript' },
-        { scheme: 'file', language: 'typescript' },
-        { scheme: 'file', language: 'javascriptreact' },
-        { scheme: 'file', language: 'typescriptreact' },
-      ]
-    : [{ scheme: 'file', language: 'vue' }];
-
-  if (processHtml()) {
-    languageFeaturesDocumentSelector.push({ scheme: 'file', language: 'html' });
-    documentFeaturesDocumentSelector.push({ scheme: 'file', language: 'html' });
-  }
-
-  if (processMd()) {
-    languageFeaturesDocumentSelector.push({ scheme: 'file', language: 'markdown' });
-    documentFeaturesDocumentSelector.push({ scheme: 'file', language: 'markdown' });
-  }
-
-  const _useSecondServer = useSecondServer();
-
-  [apiClient, docClient, htmlClient] = await Promise.all([
+  [semanticClient, syntacticClient] = await Promise.all([
     createLc(
-      'volar-language-features',
-      'Volar - Language Features Server',
-      languageFeaturesDocumentSelector,
-      getInitializationOptions(context, 'main-language-features', _useSecondServer),
+      'vue-semantic-server',
+      'Vue Semantic Server',
+      getDocumentSelector(ServerMode.Semantic),
+      getInitializationOptions(ServerMode.Semantic, context),
+      getFillInitializeParams([LanguageFeaturesKind.Semantic]),
       6009
     ),
-    _useSecondServer
-      ? createLc(
-          'volar-language-features-2',
-          'Volar - Second Language Features Server',
-          languageFeaturesDocumentSelector,
-          getInitializationOptions(context, 'second-language-features', _useSecondServer),
-          6010
-        )
-      : undefined,
     createLc(
-      'volar-document-features',
-      'Volar - Document Features Server',
-      documentFeaturesDocumentSelector,
-      getInitializationOptions(context, 'document-features', _useSecondServer),
+      'vue-syntactic-server',
+      'Vue Syntactic Server',
+      getDocumentSelector(ServerMode.Syntactic),
+      getInitializationOptions(ServerMode.Syntactic, context),
+      getFillInitializeParams([LanguageFeaturesKind.Syntactic]),
       6011
     ),
   ]);
-
-  const clients = [apiClient, docClient, htmlClient].filter(shared.notEmpty);
+  const clients = [semanticClient, syntacticClient];
 
   registerRestartRequest();
   registerClientRequests();
 
-  reloadProject.register('volar.action.reloadProject', context, [apiClient, docClient].filter(shared.notEmpty));
+  reloadProject.register('volar.action.reloadProject', context, semanticClient);
   /** Custom commands for coc-volar */
   doctor.register(context);
   /** Custom snippets completion for coc-volar */
   scaffoldSnippets.register(context);
 
-  if (apiClient) {
-    verifyAll.register(context, docClient ?? apiClient);
-    fileReferences.register('volar.vue.findAllFileReferences', docClient ?? apiClient);
+  if (semanticClient) {
+    verifyAll.register(context, semanticClient);
+    fileReferences.register('volar.vue.findAllFileReferences', semanticClient);
     /** Custom status-bar for coc-volar */
-    statusBar.register(context, docClient ?? apiClient);
+    statusBar.register(context, semanticClient);
 
     if (
       workspace.getConfiguration('volar').get<boolean>('autoCreateQuotes') ||
       workspace.getConfiguration('volar').get<boolean>('autoClosingTags') ||
       workspace.getConfiguration('volar').get<boolean>('autoCompleteRefs')
     ) {
-      autoInsertion.register(context, htmlClient, apiClient);
+      autoInsertion.register(context, syntacticClient, semanticClient);
     }
   }
 
@@ -219,98 +179,27 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
   }
 }
 
-function getInitializationOptions(
-  context: ExtensionContext,
-  mode: 'main-language-features' | 'second-language-features' | 'document-features',
-  useSecondServer: boolean
-) {
-  if (!resolveCurrentTsPaths) {
-    resolveCurrentTsPaths = tsVersion.getCurrentTsPaths(context);
-    context.workspaceState.update('coc-volar-ts-server-path', resolveCurrentTsPaths.serverPath);
-  }
-
-  const textDocumentSync = workspace
-    .getConfiguration('volar')
-    .get<'incremental' | 'full' | 'none'>('vueserver.textDocumentSync');
-  const initializationOptions: VueServerInitializationOptions = {
-    petiteVue: {
-      processHtmlFile: processHtml(),
-    },
-    vitePress: {
-      processMdFile: processMd(),
-    },
-    textDocumentSync: textDocumentSync
-      ? {
-          incremental: TextDocumentSyncKind.Incremental,
-          full: TextDocumentSyncKind.Full,
-          none: TextDocumentSyncKind.None,
-        }[textDocumentSync]
-      : TextDocumentSyncKind.Incremental,
-    typescript: resolveCurrentTsPaths,
-    languageFeatures:
-      mode === 'main-language-features' || mode === 'second-language-features'
-        ? {
-            ...(mode === 'main-language-features'
-              ? {
-                  references: true,
-                  implementation: true,
-                  definition: true,
-                  typeDefinition: true,
-                  callHierarchy: true,
-                  hover: true,
-                  rename: true,
-                  renameFileRefactoring: true,
-                  signatureHelp: true,
-                  codeAction: true,
-                  workspaceSymbol: true,
-                  completion: {
-                    // **MEMO**:
-                    // Set to false for coc-volar. Setting this to true, auto-imports, etc. will not work.
-                    // May need to implement "activeSelection".
-                    getDocumentSelectionRequest: false,
-                  },
-                  schemaRequestService: true,
-                }
-              : {}),
-            ...(mode === 'second-language-features' || (mode === 'main-language-features' && !useSecondServer)
-              ? {
-                  documentHighlight: true,
-                  documentLink: true,
-                  codeLens: { showReferencesNotification: true },
-                  semanticTokens: true,
-                  inlayHints: true,
-                  diagnostics: getConfigDiagnostics(),
-                  schemaRequestService: true,
-                }
-              : {}),
-          }
-        : undefined,
-    documentFeatures:
-      mode === 'document-features'
-        ? {
-            selectionRange: true,
-            foldingRange: true,
-            linkedEditingRange: true,
-            documentSymbol: true,
-            documentColor: true,
-            documentFormatting: getConfigDocumentFormatting(),
-          }
-        : undefined,
-  };
-
-  return initializationOptions;
-}
-
 export function deactivate(): Thenable<any> | undefined {
-  return Promise.all([apiClient?.stop(), docClient?.stop(), htmlClient?.stop()].filter(shared.notEmpty));
+  return Promise.all([semanticClient?.stop(), syntacticClient?.stop()]);
 }
 
 export function takeOverModeEnabled() {
   return !!workspace.getConfiguration('volar').get<boolean>('takeOverMode.enabled');
 }
 
-function useSecondServer() {
-  return !!workspace.getConfiguration('volar').get<boolean>('vueserver.useSecondServer');
+export function getDocumentSelector(serverMode: ServerMode) {
+  const takeOverMode = takeOverModeEnabled();
+  const langs = takeOverMode ? ['vue', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact'] : ['vue'];
+  if (takeOverMode && serverMode === ServerMode.Semantic) {
+    langs.push('json');
+  }
+  if (processHtml()) {
+    langs.push('html');
+  }
+  if (processMd()) {
+    langs.push('markdown');
+  }
+  return langs;
 }
 
 export function processHtml() {
@@ -321,20 +210,76 @@ export function processMd() {
   return !!workspace.getConfiguration('volar').get<boolean>('vueserver.vitePress.processMdFile');
 }
 
-function getConfigDiagnostics(): NonNullable<VueServerInitializationOptions['languageFeatures']>['diagnostics'] {
-  return workspace.getConfiguration('volar').get<boolean>('diagnostics.enable', true);
+function getFillInitializeParams(featuresKinds: LanguageFeaturesKind[]) {
+  return function (params: InitializeParams) {
+    if (params.capabilities.textDocument) {
+      if (!featuresKinds.includes(LanguageFeaturesKind.Semantic)) {
+        params.capabilities.textDocument.references = undefined;
+        params.capabilities.textDocument.implementation = undefined;
+        params.capabilities.textDocument.definition = undefined;
+        params.capabilities.textDocument.typeDefinition = undefined;
+        params.capabilities.textDocument.callHierarchy = undefined;
+        params.capabilities.textDocument.hover = undefined;
+        params.capabilities.textDocument.rename = undefined;
+        params.capabilities.textDocument.signatureHelp = undefined;
+        params.capabilities.textDocument.codeAction = undefined;
+        params.capabilities.textDocument.completion = undefined;
+        // Tardy
+        params.capabilities.textDocument.documentHighlight = undefined;
+        params.capabilities.textDocument.documentLink = undefined;
+        params.capabilities.textDocument.codeLens = undefined;
+        params.capabilities.textDocument.semanticTokens = undefined;
+        params.capabilities.textDocument.inlayHint = undefined;
+        params.capabilities.textDocument.diagnostic = undefined;
+      }
+      if (!featuresKinds.includes(LanguageFeaturesKind.Syntactic)) {
+        params.capabilities.textDocument.selectionRange = undefined;
+        params.capabilities.textDocument.foldingRange = undefined;
+        params.capabilities.textDocument.linkedEditingRange = undefined;
+        params.capabilities.textDocument.documentSymbol = undefined;
+        params.capabilities.textDocument.colorProvider = undefined;
+        params.capabilities.textDocument.formatting = undefined;
+        params.capabilities.textDocument.rangeFormatting = undefined;
+        params.capabilities.textDocument.onTypeFormatting = undefined;
+      }
+    }
+    if (params.capabilities.workspace) {
+      if (!featuresKinds.includes(LanguageFeaturesKind.Semantic)) {
+        params.capabilities.workspace.symbol = undefined;
+        params.capabilities.workspace.fileOperations = undefined;
+      }
+    }
+  };
 }
 
-function getConfigDocumentFormatting(): NonNullable<
-  VueServerInitializationOptions['documentFeatures']
->['documentFormatting'] {
-  const isFormattingEnable = workspace.getConfiguration('volar').get<boolean>('formatting.enable', true);
-
-  if (isFormattingEnable) {
-    return true;
-  } else {
-    return undefined;
+function getInitializationOptions(serverMode: ServerMode, context: ExtensionContext) {
+  if (!resolveCurrentTsPaths) {
+    resolveCurrentTsPaths = tsVersion.getCurrentTsPaths(context);
+    context.workspaceState.update('coc-volar-ts-server-path', resolveCurrentTsPaths.tsdk);
   }
+
+  const textDocumentSync = workspace
+    .getConfiguration('volar')
+    .get<'incremental' | 'full' | 'none'>('vueserver.textDocumentSync');
+  const initializationOptions: VueServerInitializationOptions = {
+    serverMode,
+    diagnosticModel: DiagnosticModel.Push,
+    textDocumentSync: textDocumentSync
+      ? {
+          incremental: TextDocumentSyncKind.Incremental,
+          full: TextDocumentSyncKind.Full,
+          none: TextDocumentSyncKind.None,
+        }[textDocumentSync]
+      : TextDocumentSyncKind.Incremental,
+    typescript: resolveCurrentTsPaths,
+    petiteVue: {
+      processHtmlFile: processHtml(),
+    },
+    vitePress: {
+      processMdFile: processMd(),
+    },
+  };
+  return initializationOptions;
 }
 
 function initializeWorkspaceState(context: ExtensionContext) {
