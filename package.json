@@ -279,11 +279,6 @@
           "default": false,
           "description": "Take over language support for *.ts."
         },
-        "volar.formatting.enable": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enable/disable the Volar document formatter."
-        },
         "volar.format.initialIndent": {
           "type": "object",
           "description": "Whether to have initial indent.",

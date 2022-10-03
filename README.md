@@ -120,7 +120,6 @@ For more information, check this coc.nvim's wiki.
 - `volar.autoClosingTags`: Enable/disable autoClosing of HTML tags, default: `false`
 - `volar.autoCompleteRefs`: Auto-complete Ref value with '.value', default: `false`
 - `volar.takeOverMode.enabled`: Take over language support for *.ts, default: `false`
-- `volar.formatting.enable`: Enable/disable the Volar document formatter, default: `true`
 - `volar.format.initialIndent`: `volar.format.initialIndent`, default: `{ "html": true }`
 - `volar.completion.preferredTagNameCase`: Preferred tag name case, valid options: `["kebab", "pascal"]`, default: `"pascal"`
 - `volar.completion.preferredAttrNameCase`: Preferred attr name case, valid options: `["kebab", "camel"]`, default: `"kebab"`
