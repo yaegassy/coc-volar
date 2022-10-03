@@ -111,7 +111,6 @@ For more information, check this coc.nvim's wiki.
 - `volar.vueserver.petiteVue.processHtmlFile`: Use `.html` instead of `.vue` for file extension. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, default: `false`
 - `volar.vueserver.vitePress.processMdFile`: Use `.md` instead of `.vue` for file extension. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, default: `false`
 - `volar.vueserver.textDocumentSync`: Defines how the host (editor) should sync document changes to the language server. SFC incremental parser only working when config "incremental", valid option: `["incremental", "full", "none"]`, default: `incremental`
-- `volar.vueserver.useSecondServer`: Use second server to progress heavy diagnostic works, the main server workhorse computing intellisense, operations such as auto-complete can respond faster. Note that this will lead to more memory usage, default: `true`
 - `volar.vueserver.maxOldSpaceSize`: Set `--max-old-space-size` option on server process. Maximum memory (in MB) that the server should use. On some systems this may only have effect when runtime has been set. Minimum 256.
 - `volar.codeLens.references`: [references] code lens, default: `true`
 - `volar.codeLens.pugTools`: [pug ☐] code lens, default: `false`

@@ -231,11 +231,6 @@
           ],
           "description": "Defines how the host (editor) should sync document changes to the language server. SFC incremental parser only working when config \"incremental\"."
         },
-        "volar.vueserver.useSecondServer": {
-          "type": "boolean",
-          "default": true,
-          "description": "Use second server to progress heavy diagnostic works, the main server workhorse computing intellisense, operations such as auto-complete can respond faster. Note that this will lead to more memory usage."
-        },
         "volar.vueserver.maxOldSpaceSize": {
           "type": [
             "number",
