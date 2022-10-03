@@ -179,11 +179,6 @@
           "default": true,
           "description": "Enable/disable scaffold snippets completion. Typing `vue` or `vuedc` will output completion suggestions. This snippets completion feature will only work on the first line of the file."
         },
-        "volar.diagnostics.enable": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enable/disable the Volar diagnostics."
-        },
         "volar.diagnostics.tsLocale": {
           "type": "string",
           "enum": [
