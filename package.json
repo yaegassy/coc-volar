@@ -210,7 +210,7 @@
           "default": true,
           "description": "Enable/disable progress window at language server startup."
         },
-        "volar-language-features.trace.server": {
+        "vue-semantic-server.trace.server": {
           "scope": "window",
           "type": "string",
           "enum": [
@@ -221,18 +221,7 @@
           "default": "off",
           "description": "Traces the communication between coc.nvim and the language server."
         },
-        "volar-language-features-2.trace.server": {
-          "scope": "window",
-          "type": "string",
-          "enum": [
-            "off",
-            "messages",
-            "verbose"
-          ],
-          "default": "off",
-          "description": "Traces the communication between coc.nvim and the language server."
-        },
-        "volar-document-features.trace.server": {
+        "vue-syntactic-server.trace.server": {
           "scope": "window",
           "type": "string",
           "enum": [
