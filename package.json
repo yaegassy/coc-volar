@@ -179,27 +179,6 @@
           "default": true,
           "description": "Enable/disable scaffold snippets completion. Typing `vue` or `vuedc` will output completion suggestions. This snippets completion feature will only work on the first line of the file."
         },
-        "volar.diagnostics.tsLocale": {
-          "type": "string",
-          "enum": [
-            "cs",
-            "de",
-            "es",
-            "fr",
-            "it",
-            "ja",
-            "ko",
-            "en",
-            "pl",
-            "pt-br",
-            "ru",
-            "tr",
-            "zh-cn",
-            "zh-tw"
-          ],
-          "default": "en",
-          "description": "Locale of diagnostics messages from typescript."
-        },
         "volar.progressOnInitialization.enable": {
           "type": "boolean",
           "default": true,
