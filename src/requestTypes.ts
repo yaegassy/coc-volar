@@ -33,7 +33,7 @@ export const AutoInsertRequestType = new coc.RequestType<
   AutoInsertRequest.ErrorType
 >(AutoInsertRequest.type.method);
 
-export const VerifyAllScriptsNotificationType = new coc.NotificationType0(VerifyAllScriptsNotification.type.method);
+export const VerifyAllScriptsNotificationType = new coc.NotificationType(VerifyAllScriptsNotification.type.method);
 
 export const ReloadProjectNotificationType = new coc.NotificationType(ReloadProjectNotification.type.method);
 
