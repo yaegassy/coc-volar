@@ -58,7 +58,18 @@ export async function activate(context: ExtensionContext): Promise<void> {
       },
     };
 
-    const globPatterns: string[] = ['**/*.vue', '**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx', '**/*.json'];
+    const globPatterns: string[] = [
+      '**/*.vue',
+      '**/*.js',
+      '**/*.cjs',
+      '**/*.mjs',
+      '**/*.jsx',
+      '**/*.ts',
+      '**/*.cts',
+      '**/*.mts',
+      '**/*.tsx',
+      '**/*.json',
+    ];
     if (processMd()) {
       globPatterns.push('**/*.md');
     }
