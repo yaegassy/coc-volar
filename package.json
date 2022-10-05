@@ -189,10 +189,10 @@
           "default": false,
           "description": "Disable formatting from Volar."
         },
-        "volar.progressOnInitialization.enable": {
+        "volar.disableProgressNotifications": {
           "type": "boolean",
-          "default": true,
-          "description": "Enable/disable progress window at language server startup."
+          "default": false,
+          "description": "Disable the initialization and workdone progress notifications."
         },
         "vue-semantic-server.trace.server": {
           "scope": "window",

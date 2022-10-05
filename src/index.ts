@@ -75,7 +75,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
         };
       }),
       initializationOptions: initOptions,
-      progressOnInitialization: getConfigProgressOnInitialization(),
+      progressOnInitialization: !getConfigDisableProgressNotifications(),
       disabledFeatures: getDisabledFeatures(),
       middleware: {
         provideCodeActions: getConfigMiddlewareProvideCodeActionsEnable()
@@ -163,8 +163,8 @@ function getConfigVolarEnable() {
   return workspace.getConfiguration('volar').get<boolean>('enable', true);
 }
 
-function getConfigProgressOnInitialization() {
-  return workspace.getConfiguration('volar').get<boolean>('progressOnInitialization.enable', true);
+function getConfigDisableProgressNotifications() {
+  return workspace.getConfiguration('volar').get<boolean>('disableProgressNotifications', false);
 }
 
 function getConfigDevServerPath() {
@@ -185,6 +185,9 @@ function getDisabledFeatures() {
     disabledFeatures.push('formatting');
     disabledFeatures.push('documentFormatting');
     disabledFeatures.push('documentRangeFormatting');
+  }
+  if (getConfigDisableProgressNotifications()) {
+    disabledFeatures.push('progress');
   }
 
   return disabledFeatures;
