@@ -177,5 +177,10 @@ function getConfigMiddlewareProvideCodeActionsEnable() {
 
 function getDisabledFeatures() {
   const disabledFeatures: string[] = [];
+
+  if (workspace.getConfiguration('volar').get<boolean>('disableDiagnostics')) {
+    disabledFeatures.push('diagnostics');
+  }
+
   return disabledFeatures;
 }
