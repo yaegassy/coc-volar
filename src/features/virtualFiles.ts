@@ -8,7 +8,7 @@ export async function register(context: ExtensionContext, client: LanguageClient
     commands.registerCommand('volar.action.showVirtualFiles', async () => {
       const { document } = await workspace.getCurrentState();
 
-      const fileNames = await client.sendRequest<string[]>(GetVirtualFileNamesRequestType.method, {
+      const fileNames = await client.sendRequest(GetVirtualFileNamesRequestType, {
         uri: document.uri,
       });
 
