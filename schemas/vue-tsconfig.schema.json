@@ -31,12 +31,22 @@
 					"type": "boolean",
 					"markdownDescription": "https://github.com/johnsoncodehk/volar/issues/577"
 				},
+				"dataAttributes": {
+					"type": "array",
+					"default": ["data-*"],
+					"markdownDescription": "A glob matcher array that should always avoid recognized as HTML Attributes and Component props."
+				},
+				"htmlAttributes": {
+					"type": "array",
+					"default": ["aria-*"],
+					"markdownDescription": "A glob matcher array that should always be recognizing as HTML Attributes rather than Component props. Attribute name will never convert to camelize case."
+				},
 				"plugins": {
 					"type": "array",
 					"default": [],
 					"markdownDescription": "Plugins to be used in the SFC compiler."
 				},
-				"experimentalComponentOptionsWrapper": {
+				"optionsWrapper": {
 					"type": "array",
 					"default": [
 						"(await import('vue')).defineComponent(",
@@ -44,14 +54,13 @@
 					],
 					"markdownDescription": "How to wrap option of `export default { ... }`? Default: `[\"(await import('vue')).default.extend(\", \")\"]` for target < 2.7, `[\"(await import('vue')).defineComponent(\", \")\"]` for target >= 2.7."
 				},
-				"experimentalComponentOptionsWrapperEnable": {
-					"enum": [
-						true,
-						false,
-						"onlyJs"
-					],
-					"default": "onlyJs",
-					"markdownDescription": "Enable `experimentalComponentOptionsWrapper`?"
+				"narrowingTypesInInlineHandlers": {
+					"type": "boolean",
+					"markdownDescription": "https://github.com/johnsoncodehk/volar/issues/1249"
+				},
+				"bypassDefineComponentToExposePropsAndEmitsForJsScriptSetupComponents": {
+					"type": "boolean",
+					"markdownDescription": "https://github.com/johnsoncodehk/volar/issues/1192"
 				},
 				"experimentalRuntimeMode": {
 					"type": "string",
@@ -66,14 +75,6 @@
 					],
 					"markdownDescription": "Run app in browser or uni-app"
 				},
-				"experimentalDowngradePropsAndEmitsToSetupReturnOnScriptSetup": {
-					"enum": [
-						true,
-						false,
-						"onlyJs"
-					],
-					"markdownDescription": "https://github.com/johnsoncodehk/volar/issues/1192"
-				},
 				"experimentalTemplateCompilerOptions": {
 					"type": "object",
 					"markdownDescription": "https://github.com/johnsoncodehk/volar/issues/576"
@@ -81,10 +82,6 @@
 				"experimentalTemplateCompilerOptionsRequirePath": {
 					"type": "string",
 					"markdownDescription": "https://github.com/johnsoncodehk/volar/issues/698"
-				},
-				"experimentalAllowTypeNarrowingInInlineHandlers": {
-					"type": "boolean",
-					"markdownDescription": "https://github.com/johnsoncodehk/volar/issues/1249"
 				},
 				"experimentalResolveStyleCssClasses": {
 					"enum": [
