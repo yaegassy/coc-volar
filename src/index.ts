@@ -76,6 +76,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
       }),
       initializationOptions: initOptions,
       progressOnInitialization: getConfigProgressOnInitialization(),
+      disabledFeatures: getDisabledFeatures(),
       middleware: {
         provideCodeActions: getConfigMiddlewareProvideCodeActionsEnable()
           ? id === 'vue-semantic-server'
@@ -172,4 +173,9 @@ function getConfigDevServerPath() {
 
 function getConfigMiddlewareProvideCodeActionsEnable() {
   return workspace.getConfiguration('volar').get<boolean>('middleware.provideCodeActions.enable', true);
+}
+
+function getDisabledFeatures() {
+  const disabledFeatures: string[] = [];
+  return disabledFeatures;
 }
