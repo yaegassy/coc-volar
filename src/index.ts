@@ -181,6 +181,11 @@ function getDisabledFeatures() {
   if (workspace.getConfiguration('volar').get<boolean>('disableDiagnostics')) {
     disabledFeatures.push('diagnostics');
   }
+  if (workspace.getConfiguration('volar').get<boolean>('disableFormatting')) {
+    disabledFeatures.push('formatting');
+    disabledFeatures.push('documentFormatting');
+    disabledFeatures.push('documentRangeFormatting');
+  }
 
   return disabledFeatures;
 }

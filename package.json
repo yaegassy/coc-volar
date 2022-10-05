@@ -184,6 +184,11 @@
           "default": false,
           "description": "Disable diagnostics from Volar."
         },
+        "volar.disableFormatting": {
+          "type": "boolean",
+          "default": false,
+          "description": "Disable formatting from Volar."
+        },
         "volar.progressOnInitialization.enable": {
           "type": "boolean",
           "default": true,
