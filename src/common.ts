@@ -13,6 +13,7 @@ import * as reloadProject from './features/reloadProject';
 import * as showReferences from './features/showReferences';
 import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
+import * as virtualFiles from './features/virtualFiles';
 
 enum LanguageFeaturesKind {
   Semantic,
@@ -146,10 +147,11 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
   scaffoldSnippets.register(context);
 
   if (semanticClient) {
-    verifyAll.register(context, semanticClient);
-    fileReferences.register('volar.vue.findAllFileReferences', semanticClient);
     /** Custom status-bar for coc-volar */
     statusBar.register(context, semanticClient);
+
+    verifyAll.register(context, semanticClient);
+    fileReferences.register('volar.vue.findAllFileReferences', semanticClient);
 
     if (
       workspace.getConfiguration('volar').get<boolean>('autoCreateQuotes') ||
@@ -158,6 +160,8 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
     ) {
       autoInsertion.register(context, syntacticClient, semanticClient);
     }
+
+    virtualFiles.register(context, semanticClient);
   }
 
   async function registerRestartRequest() {

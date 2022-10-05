@@ -137,6 +137,7 @@ For more information, check this coc.nvim's wiki.
 - `volar.action.restartServer`: Restart Vue server
 - `volar.action.reloadProject`: Reload Project
 - `volar.action.verifyAllScripts`: Verify All Scripts
+- `volar.action.showVirtualFiles`: Show Virtual Files (Debug)
 - `volar.action.splitEditors`: Split `<script>`, `<template>`, `<style>` Editors
   - Please install [coc-volar-tools](https://github.com/yaegassy/coc-volar-tools) separately to use this command
 - `volar.action.vite`: Experimental Features for Vite
