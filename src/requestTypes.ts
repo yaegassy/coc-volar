@@ -10,22 +10,22 @@ import {
 import * as coc from 'coc.nvim';
 
 /**
- * Client Requests
+ * Server Requests
  */
 
 export const ShowReferencesNotificationType = new coc.NotificationType<ShowReferencesNotification.ResponseType>(
   ShowReferencesNotification.type.method
 );
 
+/**
+ * Client Requests
+ */
+
 export const FindFileReferenceRequestType = new coc.RequestType<
   FindFileReferenceRequest.ParamsType,
   FindFileReferenceRequest.ResponseType,
   FindFileReferenceRequest.ErrorType
 >(FindFileReferenceRequest.type.method);
-
-/**
- * Server Requests
- */
 
 export const AutoInsertRequestType = new coc.RequestType<
   AutoInsertRequest.ParamsType,
