@@ -18,16 +18,18 @@ import {
   TransportKind,
   workspace,
 } from 'coc.nvim';
+
 import * as fs from 'fs';
 import * as path from 'path';
-import { activate as commonActivate, deactivate as commonDeactivate } from './common';
+
+import { activate as commonActivate, deactivate as commonDeactivate, processHtml, processMd } from './common';
 
 let serverModule: string;
 
 export async function activate(context: ExtensionContext): Promise<void> {
   if (!getConfigVolarEnable()) return;
 
-  return commonActivate(context, (id, name, documentSelector, initOptions, port) => {
+  return commonActivate(context, (id, name, langs, initOptions, fillInitializeParams, port) => {
     const devVolarServerPath = workspace.expand(getConfigDevServerPath());
     if (devVolarServerPath && fs.existsSync(devVolarServerPath)) {
       serverModule = devVolarServerPath;
@@ -37,9 +39,18 @@ export async function activate(context: ExtensionContext): Promise<void> {
       );
     }
 
+    const maxOldSpaceSize = workspace.getConfiguration('volar').get<number | null>('vueserver.maxOldSpaceSize');
+    const runOptions = { execArgv: <string[]>[] };
+    if (maxOldSpaceSize) {
+      runOptions.execArgv.push('--max-old-space-size=' + maxOldSpaceSize);
+    }
     const debugOptions = { execArgv: ['--nolazy', '--inspect=' + port] };
     const serverOptions: ServerOptions = {
-      run: { module: serverModule, transport: TransportKind.ipc },
+      run: {
+        module: serverModule,
+        transport: TransportKind.ipc,
+        options: runOptions,
+      },
       debug: {
         module: serverModule,
         transport: TransportKind.ipc,
@@ -47,33 +58,39 @@ export async function activate(context: ExtensionContext): Promise<void> {
       },
     };
 
-    const memorySize = Math.floor(Number(getConfigServerMaxOldSpaceSize()));
-    if (memorySize && memorySize >= 256) {
-      const maxOldSpaceSize = '--max-old-space-size=' + memorySize.toString();
-      serverOptions.run.options = { execArgv: [maxOldSpaceSize] };
-      if (serverOptions.debug.options) {
-        if (serverOptions.debug.options.execArgv) {
-          serverOptions.debug.options.execArgv.push(maxOldSpaceSize);
-        }
-      }
-    }
-
-    const globPatterns: string[] = ['**/*.vue', '**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx', '**/*.json'];
-    if (workspace.getConfiguration('volar').get<boolean>('vitePressSupport.enable', false)) {
+    const globPatterns: string[] = [
+      '**/*.vue',
+      '**/*.js',
+      '**/*.cjs',
+      '**/*.mjs',
+      '**/*.jsx',
+      '**/*.ts',
+      '**/*.cts',
+      '**/*.mts',
+      '**/*.tsx',
+      '**/*.json',
+    ];
+    if (processMd()) {
       globPatterns.push('**/*.md');
     }
-    if (workspace.getConfiguration('volar').get<boolean>('volar.petiteVueSupport.enable', false)) {
+    if (processHtml()) {
       globPatterns.push('**/*.html');
     }
     const watcherGlobPattern = '{' + globPatterns.join(',') + '}';
 
     const clientOptions: LanguageClientOptions = {
-      documentSelector,
+      documentSelector: langs.map((lang) => {
+        return {
+          scheme: 'file',
+          languages: lang,
+        };
+      }),
       initializationOptions: initOptions,
-      progressOnInitialization: getConfigProgressOnInitialization(),
+      progressOnInitialization: !getConfigDisableProgressNotifications(),
+      disabledFeatures: getDisabledFeatures(),
       middleware: {
         provideCodeActions: getConfigMiddlewareProvideCodeActionsEnable()
-          ? id === 'volar-language-features'
+          ? id === 'vue-semantic-server'
             ? handleProvideCodeActions
             : undefined
           : undefined,
@@ -157,18 +174,32 @@ function getConfigVolarEnable() {
   return workspace.getConfiguration('volar').get<boolean>('enable', true);
 }
 
-function getConfigProgressOnInitialization() {
-  return workspace.getConfiguration('volar').get<boolean>('progressOnInitialization.enable', true);
+function getConfigDisableProgressNotifications() {
+  return workspace.getConfiguration('volar').get<boolean>('disableProgressNotifications', false);
 }
 
 function getConfigDevServerPath() {
   return workspace.getConfiguration('volar').get<string>('dev.serverPath', '');
 }
 
-function getConfigServerMaxOldSpaceSize() {
-  return workspace.getConfiguration('volar').get<number | null>('vueserver.maxOldSpaceSize');
-}
-
 function getConfigMiddlewareProvideCodeActionsEnable() {
   return workspace.getConfiguration('volar').get<boolean>('middleware.provideCodeActions.enable', true);
+}
+
+function getDisabledFeatures() {
+  const disabledFeatures: string[] = [];
+
+  if (workspace.getConfiguration('volar').get<boolean>('disableDiagnostics')) {
+    disabledFeatures.push('diagnostics');
+  }
+  if (workspace.getConfiguration('volar').get<boolean>('disableFormatting')) {
+    disabledFeatures.push('formatting');
+    disabledFeatures.push('documentFormatting');
+    disabledFeatures.push('documentRangeFormatting');
+  }
+  if (getConfigDisableProgressNotifications()) {
+    disabledFeatures.push('progress');
+  }
+
+  return disabledFeatures;
 }

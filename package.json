@@ -25,7 +25,7 @@
     "access": "public"
   },
   "scripts": {
-    "schema": "curl -o schemas/vue-tsconfig.schema.json https://raw.githubusercontent.com/johnsoncodehk/volar/master/packages/vue-language-core/schemas/vue-tsconfig.schema.json",
+    "schema": "curl -o schemas/vue-tsconfig.schema.json https://raw.githubusercontent.com/johnsoncodehk/volar/master/vue-language-tools/vue-language-core/schemas/vue-tsconfig.schema.json",
     "lint": "eslint src --ext ts",
     "clean": "rimraf lib",
     "watch": "node esbuild.js --watch",
@@ -179,79 +179,52 @@
           "default": true,
           "description": "Enable/disable scaffold snippets completion. Typing `vue` or `vuedc` will output completion suggestions. This snippets completion feature will only work on the first line of the file."
         },
-        "volar.diagnostics.enable": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enable/disable the Volar diagnostics."
-        },
-        "volar.diagnostics.tsLocale": {
-          "type": "string",
-          "enum": [
-            "cs",
-            "de",
-            "es",
-            "fr",
-            "it",
-            "ja",
-            "ko",
-            "en",
-            "pl",
-            "pt-br",
-            "ru",
-            "tr",
-            "zh-cn",
-            "zh-tw"
-          ],
-          "default": "en",
-          "description": "Locale of diagnostics messages from typescript."
-        },
-        "volar.vitePressSupport.enable": {
+        "volar.disableDiagnostics": {
           "type": "boolean",
           "default": false,
-          "description": "Use `.md` instead of `.vue` for file extension. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project."
+          "description": "Disable diagnostics from Volar."
         },
-        "volar.petiteVueSupport.enable": {
+        "volar.disableFormatting": {
+          "type": "boolean",
+          "default": false,
+          "description": "Disable formatting from Volar."
+        },
+        "volar.disableProgressNotifications": {
+          "type": "boolean",
+          "default": false,
+          "description": "Disable the initialization and workdone progress notifications."
+        },
+        "vue-semantic-server.trace.server": {
+          "scope": "window",
+          "type": "string",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "default": "off",
+          "description": "Traces the communication between coc.nvim and the language server."
+        },
+        "vue-syntactic-server.trace.server": {
+          "scope": "window",
+          "type": "string",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "default": "off",
+          "description": "Traces the communication between coc.nvim and the language server."
+        },
+        "volar.vueserver.petiteVue.processHtmlFile": {
           "type": "boolean",
           "default": false,
           "description": "Use `.html` instead of `.vue` for file extension. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project."
         },
-        "volar.progressOnInitialization.enable": {
+        "volar.vueserver.vitePress.processMdFile": {
           "type": "boolean",
-          "default": true,
-          "description": "Enable/disable progress window at language server startup."
-        },
-        "volar-language-features.trace.server": {
-          "scope": "window",
-          "type": "string",
-          "enum": [
-            "off",
-            "messages",
-            "verbose"
-          ],
-          "default": "off",
-          "description": "Traces the communication between coc.nvim and the language server."
-        },
-        "volar-language-features-2.trace.server": {
-          "scope": "window",
-          "type": "string",
-          "enum": [
-            "off",
-            "messages",
-            "verbose"
-          ],
-          "default": "off",
-          "description": "Traces the communication between coc.nvim and the language server."
-        },
-        "volar-document-features.trace.server": {
-          "scope": "window",
-          "type": "string",
-          "enum": [
-            "off",
-            "messages",
-            "verbose"
-          ],
-          "default": "off",
-          "description": "Traces the communication between coc.nvim and the language server."
+          "default": false,
+          "description": "Use `.md` instead of `.vue` for file extension. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project."
         },
         "volar.vueserver.textDocumentSync": {
           "type": "string",
@@ -267,11 +240,6 @@
             "Documents should not be synced at all."
           ],
           "description": "Defines how the host (editor) should sync document changes to the language server. SFC incremental parser only working when config \"incremental\"."
-        },
-        "volar.vueserver.useSecondServer": {
-          "type": "boolean",
-          "default": true,
-          "description": "Use second server to progress heavy diagnostic works, the main server workhorse computing intellisense, operations such as auto-complete can respond faster. Note that this will lead to more memory usage."
         },
         "volar.vueserver.maxOldSpaceSize": {
           "type": [
@@ -321,11 +289,6 @@
           "default": false,
           "description": "Take over language support for *.ts."
         },
-        "volar.formatting.enable": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enable/disable the Volar document formatter."
-        },
         "volar.format.initialIndent": {
           "type": "object",
           "description": "Whether to have initial indent.",
@@ -361,6 +324,10 @@
               "type": "boolean",
               "default": false
             },
+            "less": {
+              "type": "boolean",
+              "default": false
+            },
             "json": {
               "type": "boolean",
               "default": false
@@ -371,33 +338,31 @@
             }
           }
         },
-        "volar.completion.tagNameCase": {
+        "volar.completion.preferredTagNameCase": {
           "type": "string",
           "enum": [
-            "both",
             "kebab",
             "pascal"
           ],
           "enumDescriptions": [
-            "<kebab-case> and <PascalCase>",
             "<kebab-case>",
             "<PascalCase>"
           ],
-          "default": "both",
-          "description": "Tag name case."
+          "default": "pascal",
+          "description": "Preferred tag name case."
         },
-        "volar.completion.attrNameCase": {
+        "volar.completion.preferredAttrNameCase": {
           "type": "string",
           "enum": [
             "kebab",
             "camel"
           ],
           "enumDescriptions": [
-            "kebab-case",
-            "pascalCase"
+            ":kebab-case=\"...\"",
+            ":camelCase=\"...\""
           ],
           "default": "kebab",
-          "description": "Attr name case."
+          "description": "Preferred attr name case."
         },
         "volar.completion.autoImportComponent": {
           "type": "boolean",
@@ -458,6 +423,11 @@
         "category": "Volar"
       },
       {
+        "command": "volar.action.showVirtualFiles",
+        "title": "Show Virtual Files (Debug)",
+        "category": "Volar (Debug)"
+      },
+      {
         "command": "volar.vue.findAllFileReferences",
         "title": "Vue: Find File References",
         "category": "Volar"
@@ -465,8 +435,7 @@
     ]
   },
   "dependencies": {
-    "@volar/shared": "0.40.13",
-    "@volar/vue-language-server": "0.40.13",
+    "@volar/vue-language-server": "1.0.0",
     "typescript": "4.8.2"
   }
 }
