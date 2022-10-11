@@ -54,8 +54,7 @@ Notes for make `VitePress`, `petite-vue` project working with Volar.
 - Set `volar.vueserver.vitePress.processMdFile` to `true` in `.vim/coc-settings.json`.
   - **[WARNING]** If you use this setting, it is recommended to enable it at the workspace (project) level.
 - `vue` is optional add in devDependencies for better intellisense.
-- Make sure added related `.md` files path to tsconfig.json `include` property
-- Usually needed `"allowJs": true` and `"jsx": "preserve"` config.
+- Make sure added related `.md` files path to tsconfig.json `include` property.
 
 ### petite-vue
 
@@ -63,8 +62,7 @@ Notes for make `VitePress`, `petite-vue` project working with Volar.
   - **[WARNING]** If you use this setting, it is recommended to enable it at the workspace (project) level.
 - Set `html.enable` to `false` in `.vim/coc-settings.json`.
 - `vue` is optional add in devDependencies for better intellisense.
-- Make sure added related `.html` files path to tsconfig.json `include` property
-- Usually needed `"allowJs": true` and `"jsx": "preserve"` config.
+- Make sure added related `.html` files path to tsconfig.json `include` property.
 
 ## Recommended additional installation: "watchman"
 
