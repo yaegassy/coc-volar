@@ -1,11 +1,12 @@
 import {
   AutoInsertRequest,
   FindFileReferenceRequest,
+  GetComponentMeta,
+  GetVirtualFileNamesRequest,
+  GetVirtualFileRequest,
   ReloadProjectNotification,
   ShowReferencesNotification,
   VerifyAllScriptsNotification,
-  GetVirtualFileNamesRequest,
-  GetVirtualFileRequest,
 } from '@volar/vue-language-server';
 import * as coc from 'coc.nvim';
 
@@ -48,3 +49,9 @@ export const GetVirtualFileRequestType = new coc.RequestType<
   GetVirtualFileRequest.ResponseType,
   GetVirtualFileRequest.ErrorType
 >(GetVirtualFileRequest.type.method);
+
+export const GetComponentMetaType = new coc.RequestType<
+  GetComponentMeta.ParamsType,
+  GetComponentMeta.ResponseType,
+  GetComponentMeta.ErrorType
+>(GetComponentMeta.type.method);

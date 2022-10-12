@@ -8,6 +8,7 @@ import * as initializeTakeOverMode from './client/commands/initializeTakeOverMod
 import * as scaffoldSnippets from './client/completions/scaffoldSnippets';
 import * as statusBar from './client/statusBar';
 import * as autoInsertion from './features/autoInsertion';
+import * as componentMeta from './features/componentMeta';
 import * as fileReferences from './features/fileReferences';
 import * as reloadProject from './features/reloadProject';
 import * as showReferences from './features/showReferences';
@@ -162,6 +163,7 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
     }
 
     virtualFiles.register(context, semanticClient);
+    componentMeta.register(context, semanticClient);
   }
 
   async function registerRestartRequest() {
@@ -282,6 +284,7 @@ function getInitializationOptions(serverMode: ServerMode, context: ExtensionCont
     vitePress: {
       processMdFile: processMd(),
     },
+    __language: workspace.getConfiguration('volar').get<string>('tsLocale', 'en'),
   };
   return initializationOptions;
 }
