@@ -174,6 +174,27 @@
           "default": false,
           "description": "Use workspace (project) detected tsLibs in volar. if false, use coc-volar's built-in tsLibs."
         },
+        "volar.tsLocale": {
+          "type": "string",
+          "enum": [
+            "cs",
+            "de",
+            "es",
+            "fr",
+            "it",
+            "ja",
+            "ko",
+            "en",
+            "pl",
+            "pt-br",
+            "ru",
+            "tr",
+            "zh-cn",
+            "zh-tw"
+          ],
+          "default": "en",
+          "description": "Sets the locale used to report diagnostics message from typescript."
+        },
         "volar.scaffoldSnippets.enable": {
           "type": "boolean",
           "default": true,

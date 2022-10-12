@@ -284,6 +284,7 @@ function getInitializationOptions(serverMode: ServerMode, context: ExtensionCont
     vitePress: {
       processMdFile: processMd(),
     },
+    __language: workspace.getConfiguration('volar').get<string>('tsLocale', 'en'),
   };
   return initializationOptions;
 }

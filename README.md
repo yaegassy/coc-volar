@@ -102,6 +102,7 @@ For more information, check this coc.nvim's wiki.
 
 - `volar.enable`: Enable coc-volar extension, default: `true`
 - `volar.useWorkspaceTsdk`: Use workspace (project) detected tsLibs in volar. if false, use coc-volar's built-in tsLibs, default: `false`
+- `volar.tsLocale`: Sets the locale used to report diagnostics message from typescript, valid option: `["cs", "de", "es", "fr", "it", "ja", "ko", "en", "pl", "pt-br", "ru", "tr", "zh-cn", "zh-tw"]`, default: `"en"`
 - `volar.scaffoldSnippets.enable`: Enable/disable scaffold snippets completion. Typing `vue` or `vuedc` will output completion suggestions. This snippets completion feature will only work on the first line of the file, default: `true`
 - `volar.disableDiagnostics`: Disable diagnostics from Volar, default: `false`
 - `volar.disableFormatting`: Disable formatting from Volar, default: `false`
