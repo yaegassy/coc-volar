@@ -218,6 +218,9 @@ export function processMd() {
 
 function getFillInitializeParams(featuresKinds: LanguageFeaturesKind[]) {
   return function (params: InitializeParams) {
+
+    (params as any).locale = workspace.getConfiguration('volar').get<string>('tsLocale', 'en');
+
     if (params.capabilities.textDocument) {
       if (!featuresKinds.includes(LanguageFeaturesKind.Semantic)) {
         params.capabilities.textDocument.references = undefined;
@@ -284,7 +287,6 @@ function getInitializationOptions(serverMode: ServerMode, context: ExtensionCont
     vitePress: {
       processMdFile: processMd(),
     },
-    __language: workspace.getConfiguration('volar').get<string>('tsLocale', 'en'),
   };
   return initializationOptions;
 }
