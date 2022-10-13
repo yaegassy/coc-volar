@@ -5,7 +5,9 @@ import {
   Command,
   CreateFile,
   DeleteFile,
+  DocumentSelector,
   ExtensionContext,
+  InitializeParams,
   LanguageClient,
   LanguageClientOptions,
   LinesTextDocument,
@@ -13,6 +15,7 @@ import {
   Range,
   RenameFile,
   ServerOptions,
+  StaticFeature,
   TextDocumentEdit,
   Thenable,
   TransportKind,
@@ -30,6 +33,20 @@ export async function activate(context: ExtensionContext): Promise<void> {
   if (!getConfigVolarEnable()) return;
 
   return commonActivate(context, (id, name, langs, initOptions, fillInitializeParams, port) => {
+    class _LanguageClient implements StaticFeature {
+      fillInitializeParams(params: InitializeParams) {
+        fillInitializeParams(params);
+      }
+
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      fillClientCapabilities(capabilities: any): void {}
+
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      initialize(capabilities: any, documentSelector: DocumentSelector | undefined): void {}
+
+      dispose(): void {}
+    }
+
     const devVolarServerPath = workspace.expand(getConfigDevServerPath());
     if (devVolarServerPath && fs.existsSync(devVolarServerPath)) {
       serverModule = devVolarServerPath;
@@ -101,6 +118,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
     };
 
     const client = new LanguageClient(id, name, serverOptions, clientOptions);
+    client.registerFeature(new _LanguageClient());
     context.subscriptions.push(client.start());
 
     return client;
