@@ -216,6 +216,10 @@ export function processMd() {
   return !!workspace.getConfiguration('volar').get<boolean>('vueserver.vitePress.processMdFile');
 }
 
+export function noProjectReferences() {
+  return !!workspace.getConfiguration('volar').get<boolean>('vueserver.noProjectReferences');
+}
+
 function getFillInitializeParams(featuresKinds: LanguageFeaturesKind[]) {
   return function (params: InitializeParams) {
     (params as any).locale = workspace.getConfiguration('volar').get<string>('tsLocale', 'en');
@@ -286,6 +290,7 @@ function getInitializationOptions(serverMode: ServerMode, context: ExtensionCont
     vitePress: {
       processMdFile: processMd(),
     },
+    noProjectReferences: noProjectReferences(),
   };
   return initializationOptions;
 }
