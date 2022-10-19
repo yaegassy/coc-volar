@@ -36,7 +36,6 @@ If you want to use the "TypeScript Vue Plugin" instead of Take Over Mode, instal
 
 1. To begin, open the `*.vue`, `*.ts`, `*.js`, `*.tsx`, `*.jsx` file.
 1. Then run `:CocCommand volar.initializeTakeOverMode`.
-1. When prompted by `Enable Take Over Mode? (y/n)?`, enter `y`
 1. The `.vim/coc-settings.json` file will be created in the "project root".
    - The `"volar.takeOverMode.enabled": true` and `"tsserver.enable": false` settings will be added.
 1. `coc.nvim` will be restarted and the settings will be reflected.
