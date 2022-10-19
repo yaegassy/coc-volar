@@ -98,6 +98,14 @@ For more information, check this coc.nvim's wiki.
 
 - <https://github.com/neoclide/coc.nvim/wiki/Using-workspaceFolders>
 
+## iskeyword
+
+If the completion menu disappears when typing `-`, add the `iskeyword` setting to `.vimrc` / `init.vim`.
+
+```vim
+autocmd Filetype vue setlocal iskeyword+=-
+```
+
 ## Configuration options
 
 - `volar.enable`: Enable coc-volar extension, default: `true`
