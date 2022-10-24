@@ -220,6 +220,10 @@ export function noProjectReferences() {
   return !!workspace.getConfiguration('volar').get<boolean>('vueserver.noProjectReferences');
 }
 
+export function diagnosticModel() {
+  return workspace.getConfiguration('volar').get<'push' | 'pull'>('vueserver.diagnosticModel');
+}
+
 function getFillInitializeParams(featuresKinds: LanguageFeaturesKind[]) {
   return function (params: InitializeParams) {
     (params as any).locale = workspace.getConfiguration('volar').get<string>('tsLocale', 'en');
@@ -275,7 +279,7 @@ function getInitializationOptions(serverMode: ServerMode, context: ExtensionCont
     .get<'incremental' | 'full' | 'none'>('vueserver.textDocumentSync');
   const initializationOptions: VueServerInitializationOptions = {
     serverMode,
-    diagnosticModel: DiagnosticModel.Push,
+    diagnosticModel: diagnosticModel() === 'pull' ? DiagnosticModel.Pull : DiagnosticModel.Push,
     textDocumentSync: textDocumentSync
       ? {
           incremental: TextDocumentSyncKind.Incremental,
