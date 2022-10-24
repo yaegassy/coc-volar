@@ -129,7 +129,7 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `volar.autoCreateQuotes`: Enable/disable auto creation of quotes for HTML attribute assignment, default: `false`
 - `volar.autoClosingTags`: Enable/disable autoClosing of HTML tags, default: `false`
 - `volar.autoCompleteRefs`: Auto-complete Ref value with '.value', default: `false`
-- `volar.takeOverMode.enabled`: Take over language support for *.ts, default: `false`
+- `volar.takeOverMode.enabled`: Take over language support for `*.ts`, default: `false`
 - `volar.format.initialIndent`: `volar.format.initialIndent`, default: `{ "html": true }`
 - `volar.completion.preferredTagNameCase`: Preferred tag name case, valid options: `["kebab", "pascal"]`, default: `"pascal"`
 - `volar.completion.preferredAttrNameCase`: Preferred attr name case, valid options: `["kebab", "camel"]`, default: `"kebab"`
