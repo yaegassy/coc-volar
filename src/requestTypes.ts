@@ -5,6 +5,7 @@ import {
   GetVirtualFileNamesRequest,
   GetVirtualFileRequest,
   ReloadProjectNotification,
+  ReportStats,
   ShowReferencesNotification,
   VerifyAllScriptsNotification,
 } from '@volar/vue-language-server';
@@ -49,6 +50,8 @@ export const GetVirtualFileRequestType = new coc.RequestType<
   GetVirtualFileRequest.ResponseType,
   GetVirtualFileRequest.ErrorType
 >(GetVirtualFileRequest.type.method);
+
+export const ReportStatsType = new coc.NotificationType(ReportStats.type.method);
 
 export const GetComponentMetaType = new coc.RequestType<
   GetComponentMeta.ParamsType,

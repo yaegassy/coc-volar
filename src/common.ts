@@ -11,6 +11,7 @@ import * as autoInsertion from './features/autoInsertion';
 import * as componentMeta from './features/componentMeta';
 import * as fileReferences from './features/fileReferences';
 import * as reloadProject from './features/reloadProject';
+import * as serverStatus from './features/serverStatus';
 import * as showReferences from './features/showReferences';
 import * as tsVersion from './features/tsVersion';
 import * as verifyAll from './features/verifyAll';
@@ -50,15 +51,15 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
 
   if (!activated) {
     const { document } = await workspace.getCurrentState();
-    const currentlangId = document.languageId;
-    if (currentlangId === 'vue') {
+    const currentLangId = document.languageId;
+    if (currentLangId === 'vue') {
       doActivate(context, createLc);
       activated = true;
     }
 
     if (
-      (!activated && currentlangId === 'markdown' && processMd()) ||
-      (!activated && currentlangId === 'html' && processHtml())
+      (!activated && currentLangId === 'markdown' && processMd()) ||
+      (!activated && currentLangId === 'html' && processHtml())
     ) {
       doActivate(context, createLc);
       activated = true;
@@ -68,7 +69,7 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
     if (
       !activated &&
       takeOverMode &&
-      ['javascript', 'typescript', 'javascriptreact', 'typescriptreact'].includes(currentlangId)
+      ['javascript', 'typescript', 'javascriptreact', 'typescriptreact'].includes(currentLangId)
     ) {
       doActivate(context, createLc);
       activated = true;
@@ -163,6 +164,7 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
     }
 
     virtualFiles.register(context, semanticClient);
+    serverStatus.register(context, semanticClient);
     componentMeta.register(context, semanticClient);
   }
 
@@ -220,6 +222,14 @@ export function noProjectReferences() {
   return !!workspace.getConfiguration('volar').get<boolean>('vueserver.noProjectReferences');
 }
 
+export function diagnosticModel() {
+  return workspace.getConfiguration('volar').get<'push' | 'pull'>('vueserver.diagnosticModel');
+}
+
+function additionalExtensions() {
+  return workspace.getConfiguration('volar').get<string[]>('vueserver.additionalExtensions') ?? [];
+}
+
 function getFillInitializeParams(featuresKinds: LanguageFeaturesKind[]) {
   return function (params: InitializeParams) {
     (params as any).locale = workspace.getConfiguration('volar').get<string>('tsLocale', 'en');
@@ -275,7 +285,7 @@ function getInitializationOptions(serverMode: ServerMode, context: ExtensionCont
     .get<'incremental' | 'full' | 'none'>('vueserver.textDocumentSync');
   const initializationOptions: VueServerInitializationOptions = {
     serverMode,
-    diagnosticModel: DiagnosticModel.Push,
+    diagnosticModel: diagnosticModel() === 'pull' ? DiagnosticModel.Pull : DiagnosticModel.Push,
     textDocumentSync: textDocumentSync
       ? {
           incremental: TextDocumentSyncKind.Incremental,
@@ -291,6 +301,7 @@ function getInitializationOptions(serverMode: ServerMode, context: ExtensionCont
       processMdFile: processMd(),
     },
     noProjectReferences: noProjectReferences(),
+    additionalExtensions: additionalExtensions(),
   };
   return initializationOptions;
 }

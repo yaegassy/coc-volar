@@ -262,6 +262,19 @@
           ],
           "description": "Defines how the host (editor) should sync document changes to the language server. SFC incremental parser only working when config \"incremental\"."
         },
+        "volar.vueserver.diagnosticModel": {
+          "type": "string",
+          "default": "push",
+          "enum": [
+            "push",
+            "pull"
+          ],
+          "enumDescriptions": [
+            "Diagnostic push by language server.",
+            "Diagnostic pull by language client."
+          ],
+          "description": "Diagnostic update model."
+        },
         "volar.vueserver.maxOldSpaceSize": {
           "type": [
             "number",
@@ -274,6 +287,14 @@
           "type": "boolean",
           "default": false,
           "description": "Ignore project references settings of tsconfig in language server for resolve volar's issue #1916."
+        },
+        "volar.vueserver.additionalExtensions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "List any additional file extensions that should be processed as Vue files (requires restart)."
         },
         "volar.codeLens.references": {
           "type": "boolean",
@@ -390,10 +411,10 @@
           "default": "kebab",
           "description": "Preferred attr name case."
         },
-        "volar.completion.autoImportComponent": {
+        "volar.completion.normalizeComponentAutoImportName": {
           "type": "boolean",
           "default": true,
-          "description": "Enabled auto-import for component with tag completion."
+          "description": "Normalize import name for auto import. (\"myCompVue\" -> \"MyComp\")"
         },
         "volar.updateImportsOnFileMove.enabled": {
           "type": "boolean",
@@ -454,6 +475,11 @@
         "category": "Volar (Debug)"
       },
       {
+        "command": "volar.action.serverStats",
+        "title": "Server Stats",
+        "category": "Volar (Debug)"
+      },
+      {
         "command": "volar.action.showComponentMeta",
         "title": "Show Component Meta",
         "category": "Volar"
@@ -466,7 +492,7 @@
     ]
   },
   "dependencies": {
-    "@volar/vue-language-server": "1.0.8",
+    "@volar/vue-language-server": "1.0.9",
     "typescript": "4.8.4"
   }
 }

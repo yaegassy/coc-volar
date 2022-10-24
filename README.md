@@ -63,18 +63,6 @@ Notes for make `VitePress`, `petite-vue` project working with Volar.
 - `vue` is optional add in devDependencies for better intellisense.
 - Make sure added related `.html` files path to tsconfig.json `include` property.
 
-## Recommended additional installation: "watchman"
-
-`coc-volar` uses the `fileEvents` option to watch files in the project, it is recommended to install [watchman](https://facebook.github.io/watchman/).
-
-- See: <https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions>
-
-If you have difficulty installing watchman, you can use coc-volar without watchman, but you may not be able to immediately use volar's IntelliSense with the newly added files.
-
-In this case, please execute the command to restart the language server.
-
-- `:CocRestart`
-
 ## workspaceFolders
 
 Depending on the project like mono repo or how Vim/Neovim is started, `workspaceFolders` may not be recognized correctly.
@@ -119,8 +107,10 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `volar.vueserver.petiteVue.processHtmlFile`: Use `.html` instead of `.vue` for file extension. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, default: `false`
 - `volar.vueserver.vitePress.processMdFile`: Use `.md` instead of `.vue` for file extension. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, default: `false`
 - `volar.vueserver.textDocumentSync`: Defines how the host (editor) should sync document changes to the language server. SFC incremental parser only working when config "incremental", valid option: `["incremental", "full", "none"]`, default: `incremental`
+- `volar.vueserver.diagnosticModel`: Diagnostic update model, valid option: `["push", "pull"]`, default: `pull`
 - `volar.vueserver.maxOldSpaceSize`: Set `--max-old-space-size` option on server process. Maximum memory (in MB) that the server should use. On some systems this may only have effect when runtime has been set. Minimum 256.
 - `volar.vueserver.noProjectReferences`: Ignore project references settings of tsconfig in language server for resolve volar's issue #1916, default: `false`
+- `volar.vueserver.additionalExtensions`: List any additional file extensions that should be processed as Vue files (requires restart), default: `[]`
 - `volar.codeLens.references`: [references] code lens, default: `true`
 - `volar.codeLens.pugTools`: [pug ☐] code lens, default: `false`
 - `volar.codeLens.scriptSetupTools`: [ref sugar ☐] code lens, default: `false`
@@ -128,11 +118,11 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `volar.autoCreateQuotes`: Enable/disable auto creation of quotes for HTML attribute assignment, default: `false`
 - `volar.autoClosingTags`: Enable/disable autoClosing of HTML tags, default: `false`
 - `volar.autoCompleteRefs`: Auto-complete Ref value with '.value', default: `false`
-- `volar.takeOverMode.enabled`: Take over language support for *.ts, default: `false`
+- `volar.takeOverMode.enabled`: Take over language support for `*.ts`, default: `false`
 - `volar.format.initialIndent`: `volar.format.initialIndent`, default: `{ "html": true }`
 - `volar.completion.preferredTagNameCase`: Preferred tag name case, valid options: `["kebab", "pascal"]`, default: `"pascal"`
 - `volar.completion.preferredAttrNameCase`: Preferred attr name case, valid options: `["kebab", "camel"]`, default: `"kebab"`
-- `volar.completion.autoImportComponent`: Enabled auto-import for component with tag completion, default: `true`
+- `volar.completion.normalizeComponentAutoImportName`: Normalize import name for auto import. ("myCompVue" -> "MyComp"), default: `true`
 - `volar.updateImportsOnFileMove.enabled`: Enabled update imports on file move, default: `true`
 - `volar.diagnostics.delay`: Delay time for diagnostics, default: `200`
 - `volar.dev.serverPath`: (For develop and check) Custom path to volar server module, `~` and `$HOME`, etc. can also be used. If there is no setting, the built-in module will be used, default: `""`
@@ -145,6 +135,7 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `volar.action.reloadProject`: Reload Project
 - `volar.action.verifyAllScripts`: Verify All Scripts
 - `volar.action.showVirtualFiles`: Show Virtual Files (Debug)
+- `volar.action.serverStats`: Server Stats (Debug)
 - `volar.action.showComponentMeta`: Show Component Meta
 - `volar.action.splitEditors`: Split `<script>`, `<template>`, `<style>` Editors
   - Please install [coc-volar-tools](https://github.com/yaegassy/coc-volar-tools) separately to use this command
