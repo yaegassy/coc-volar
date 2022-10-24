@@ -50,15 +50,15 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
 
   if (!activated) {
     const { document } = await workspace.getCurrentState();
-    const currentlangId = document.languageId;
-    if (currentlangId === 'vue') {
+    const currentLangId = document.languageId;
+    if (currentLangId === 'vue') {
       doActivate(context, createLc);
       activated = true;
     }
 
     if (
-      (!activated && currentlangId === 'markdown' && processMd()) ||
-      (!activated && currentlangId === 'html' && processHtml())
+      (!activated && currentLangId === 'markdown' && processMd()) ||
+      (!activated && currentLangId === 'html' && processHtml())
     ) {
       doActivate(context, createLc);
       activated = true;
@@ -68,7 +68,7 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
     if (
       !activated &&
       takeOverMode &&
-      ['javascript', 'typescript', 'javascriptreact', 'typescriptreact'].includes(currentlangId)
+      ['javascript', 'typescript', 'javascriptreact', 'typescriptreact'].includes(currentLangId)
     ) {
       doActivate(context, createLc);
       activated = true;
