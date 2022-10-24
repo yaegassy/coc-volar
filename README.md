@@ -132,7 +132,7 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `volar.format.initialIndent`: `volar.format.initialIndent`, default: `{ "html": true }`
 - `volar.completion.preferredTagNameCase`: Preferred tag name case, valid options: `["kebab", "pascal"]`, default: `"pascal"`
 - `volar.completion.preferredAttrNameCase`: Preferred attr name case, valid options: `["kebab", "camel"]`, default: `"kebab"`
-- `volar.completion.autoImportComponent`: Enabled auto-import for component with tag completion, default: `true`
+- `volar.completion.normalizeComponentAutoImportName`: Normalize import name for auto import. ("myCompVue" -> "MyComp"), default: `true`
 - `volar.updateImportsOnFileMove.enabled`: Enabled update imports on file move, default: `true`
 - `volar.diagnostics.delay`: Delay time for diagnostics, default: `200`
 - `volar.dev.serverPath`: (For develop and check) Custom path to volar server module, `~` and `$HOME`, etc. can also be used. If there is no setting, the built-in module will be used, default: `""`
