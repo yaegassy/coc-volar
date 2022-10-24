@@ -224,6 +224,10 @@ export function diagnosticModel() {
   return workspace.getConfiguration('volar').get<'push' | 'pull'>('vueserver.diagnosticModel');
 }
 
+function additionalExtensions() {
+  return workspace.getConfiguration('volar').get<string[]>('vueserver.additionalExtensions') ?? [];
+}
+
 function getFillInitializeParams(featuresKinds: LanguageFeaturesKind[]) {
   return function (params: InitializeParams) {
     (params as any).locale = workspace.getConfiguration('volar').get<string>('tsLocale', 'en');
@@ -295,6 +299,7 @@ function getInitializationOptions(serverMode: ServerMode, context: ExtensionCont
       processMdFile: processMd(),
     },
     noProjectReferences: noProjectReferences(),
+    additionalExtensions: additionalExtensions(),
   };
   return initializationOptions;
 }
