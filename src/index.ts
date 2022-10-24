@@ -25,7 +25,7 @@ import {
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { activate as commonActivate, deactivate as commonDeactivate, processHtml, processMd } from './common';
+import { activate as commonActivate, deactivate as commonDeactivate } from './common';
 
 let serverModule: string;
 
@@ -75,26 +75,6 @@ export async function activate(context: ExtensionContext): Promise<void> {
       },
     };
 
-    const globPatterns: string[] = [
-      '**/*.vue',
-      '**/*.js',
-      '**/*.cjs',
-      '**/*.mjs',
-      '**/*.jsx',
-      '**/*.ts',
-      '**/*.cts',
-      '**/*.mts',
-      '**/*.tsx',
-      '**/*.json',
-    ];
-    if (processMd()) {
-      globPatterns.push('**/*.md');
-    }
-    if (processHtml()) {
-      globPatterns.push('**/*.html');
-    }
-    const watcherGlobPattern = '{' + globPatterns.join(',') + '}';
-
     const clientOptions: LanguageClientOptions = {
       documentSelector: langs.map((lang) => {
         return {
@@ -111,9 +91,6 @@ export async function activate(context: ExtensionContext): Promise<void> {
             ? handleProvideCodeActions
             : undefined
           : undefined,
-      },
-      synchronize: {
-        fileEvents: workspace.createFileSystemWatcher(watcherGlobPattern),
       },
     };
 
