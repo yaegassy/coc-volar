@@ -3,6 +3,9 @@ import {
   CodeAction,
   CodeActionContext,
   Command,
+  CompletionContext,
+  CompletionItem,
+  CompletionList,
   CreateFile,
   DeleteFile,
   DocumentSelector,
@@ -11,7 +14,9 @@ import {
   LanguageClient,
   LanguageClientOptions,
   LinesTextDocument,
+  Position,
   ProvideCodeActionsSignature,
+  ProvideCompletionItemsSignature,
   Range,
   RenameFile,
   ServerOptions,
@@ -91,6 +96,13 @@ export async function activate(context: ExtensionContext): Promise<void> {
             ? handleProvideCodeActions
             : undefined
           : undefined,
+        // for resolve https://github.com/yaegassy/coc-volar/issues/226
+        // for resolve https://github.com/neoclide/coc.nvim/issues/4348
+        provideCompletionItem: getConfigMiddlewareProvideCompletionItemEnable()
+          ? id === 'vue-semantic-server'
+            ? handleProvideCompletionItem
+            : undefined
+          : undefined,
       },
     };
 
@@ -165,6 +177,30 @@ async function handleProvideCodeActions(
   return newActions;
 }
 
+async function handleProvideCompletionItem(
+  document: LinesTextDocument,
+  position: Position,
+  context: CompletionContext,
+  token: CancellationToken,
+  next: ProvideCompletionItemsSignature
+) {
+  const res = await Promise.resolve(next(document, position, context, token));
+  const doc = workspace.getDocument(document.uri);
+  if (!doc || !res) return [];
+
+  let items: CompletionItem[] = res.hasOwnProperty('isIncomplete')
+    ? (res as CompletionList).items
+    : (res as CompletionItem[]);
+
+  const pre = doc.getline(position.line).slice(0, position.character);
+
+  if (context.triggerCharacter === '@' || /@\w*$/.test(pre)) {
+    items = items.filter((o) => o.label.startsWith('@'));
+  }
+
+  return items;
+}
+
 function getConfigVolarEnable() {
   return workspace.getConfiguration('volar').get<boolean>('enable', true);
 }
@@ -179,6 +215,10 @@ function getConfigDevServerPath() {
 
 function getConfigMiddlewareProvideCodeActionsEnable() {
   return workspace.getConfiguration('volar').get<boolean>('middleware.provideCodeActions.enable', true);
+}
+
+function getConfigMiddlewareProvideCompletionItemEnable() {
+  return workspace.getConfiguration('volar').get<boolean>('middleware.provideCompletionItem.enable', true);
 }
 
 function getDisabledFeatures() {
