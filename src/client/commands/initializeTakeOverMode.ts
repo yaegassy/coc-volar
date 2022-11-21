@@ -1,4 +1,4 @@
-import { commands, ExtensionContext, workspace } from 'coc.nvim';
+import { commands, ExtensionContext, window, workspace } from 'coc.nvim';
 
 export async function register(context: ExtensionContext) {
   context.subscriptions.push(commands.registerCommand('volar.initializeTakeOverMode', initializeTakeOverModeCommand()));
@@ -6,11 +6,17 @@ export async function register(context: ExtensionContext) {
 
 function initializeTakeOverModeCommand() {
   return async () => {
+    const enableTakeOverMode = await window.showPrompt('Enable Take Over Mode?');
     const config = workspace.getConfiguration('volar');
     const tsserverConfig = workspace.getConfiguration('tsserver');
 
-    config.update('takeOverMode.enabled', true);
-    tsserverConfig.update('enable', false);
+    if (enableTakeOverMode) {
+      config.update('takeOverMode.enabled', true);
+      tsserverConfig.update('enable', false);
+    } else {
+      config.update('takeOverMode.enabled', false);
+      tsserverConfig.update('enable', true);
+    }
 
     workspace.nvim.command(`CocRestart`, true);
   };
