@@ -226,6 +226,10 @@ export function reverseConfigFilePriority() {
   return !!workspace.getConfiguration('volar').get<boolean>('vueserver.reverseConfigFilePriority');
 }
 
+export function disableFileWatcher() {
+  return !!workspace.getConfiguration('volar').get<boolean>('vueserver.disableFileWatcher');
+}
+
 export function diagnosticModel() {
   return workspace.getConfiguration('volar').get<'push' | 'pull'>('vueserver.diagnosticModel');
 }
@@ -311,6 +315,7 @@ function getInitializationOptions(serverMode: ServerMode, context: ExtensionCont
     },
     noProjectReferences: noProjectReferences(),
     reverseConfigFilePriority: reverseConfigFilePriority(),
+    disableFileWatcher: disableFileWatcher(),
     additionalExtensions: additionalExtensions(),
   };
   return initializationOptions;
