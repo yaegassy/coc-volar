@@ -222,6 +222,14 @@ export function noProjectReferences() {
   return !!workspace.getConfiguration('volar').get<boolean>('vueserver.noProjectReferences');
 }
 
+export function reverseConfigFilePriority() {
+  return !!workspace.getConfiguration('volar').get<boolean>('vueserver.reverseConfigFilePriority');
+}
+
+export function disableFileWatcher() {
+  return !!workspace.getConfiguration('volar').get<boolean>('vueserver.disableFileWatcher');
+}
+
 export function diagnosticModel() {
   return workspace.getConfiguration('volar').get<'push' | 'pull'>('vueserver.diagnosticModel');
 }
@@ -284,6 +292,7 @@ function getInitializationOptions(serverMode: ServerMode, context: ExtensionCont
     .getConfiguration('volar')
     .get<'incremental' | 'full' | 'none'>('vueserver.textDocumentSync');
   const initializationOptions: VueServerInitializationOptions = {
+    respectClientCapabilities: true,
     serverMode,
     diagnosticModel: diagnosticModel() === 'pull' ? DiagnosticModel.Pull : DiagnosticModel.Push,
     textDocumentSync: textDocumentSync
@@ -300,7 +309,14 @@ function getInitializationOptions(serverMode: ServerMode, context: ExtensionCont
     vitePress: {
       processMdFile: processMd(),
     },
+    json: {
+      customBlockSchemaUrls: workspace
+        .getConfiguration('volar')
+        .get<Record<string, string>>('vueserver.json.customBlockSchemaUrls'),
+    },
     noProjectReferences: noProjectReferences(),
+    reverseConfigFilePriority: reverseConfigFilePriority(),
+    disableFileWatcher: disableFileWatcher(),
     additionalExtensions: additionalExtensions(),
   };
   return initializationOptions;

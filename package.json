@@ -247,6 +247,11 @@
           "default": false,
           "description": "Use `.md` instead of `.vue` for file extension. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project."
         },
+        "volar.vueserver.json.customBlockSchemaUrls": {
+          "type": "object",
+          "default": null,
+          "description": "preset json schema urls for custom blocks"
+        },
         "volar.vueserver.textDocumentSync": {
           "type": "string",
           "default": "incremental",
@@ -287,6 +292,16 @@
           "type": "boolean",
           "default": false,
           "description": "Ignore project references settings of tsconfig in language server for resolve volar's issue #1916."
+        },
+        "volar.vueserver.reverseConfigFilePriority": {
+          "type": "boolean",
+          "default": false,
+          "description": "Reverse priority for tsconfig pickup."
+        },
+        "volar.vueserver.disableFileWatcher": {
+          "type": "boolean",
+          "default": false,
+          "description": "Disable file watcher in language server for better performance."
         },
         "volar.vueserver.additionalExtensions": {
           "type": "array",
@@ -497,7 +512,7 @@
     ]
   },
   "dependencies": {
-    "@volar/vue-language-server": "1.0.9",
+    "@volar/vue-language-server": "1.0.10",
     "typescript": "4.8.4"
   }
 }
