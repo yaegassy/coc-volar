@@ -222,6 +222,10 @@ export function noProjectReferences() {
   return !!workspace.getConfiguration('volar').get<boolean>('vueserver.noProjectReferences');
 }
 
+export function reverseConfigFilePriority() {
+  return !!workspace.getConfiguration('volar').get<boolean>('vueserver.reverseConfigFilePriority');
+}
+
 export function diagnosticModel() {
   return workspace.getConfiguration('volar').get<'push' | 'pull'>('vueserver.diagnosticModel');
 }
@@ -306,6 +310,7 @@ function getInitializationOptions(serverMode: ServerMode, context: ExtensionCont
         .get<Record<string, string>>('vueserver.json.customBlockSchemaUrls'),
     },
     noProjectReferences: noProjectReferences(),
+    reverseConfigFilePriority: reverseConfigFilePriority(),
     additionalExtensions: additionalExtensions(),
   };
   return initializationOptions;
