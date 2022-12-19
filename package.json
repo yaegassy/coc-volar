@@ -237,6 +237,11 @@
           "default": "off",
           "description": "Traces the communication between coc.nvim and the language server."
         },
+        "volar.vueserver.configFilePath": {
+          "type": "string",
+          "default": "./volar.config.js",
+          "description": "Path to volar.config.js."
+        },
         "volar.vueserver.petiteVue.processHtmlFile": {
           "type": "boolean",
           "default": false,

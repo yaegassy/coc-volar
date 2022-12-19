@@ -105,6 +105,7 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `volar.disableProgressNotifications`: Disable the initialization and workdone progress notifications, default: `false`
 - `vue-semantic-server.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
 - `vue-syntactic-server.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
+- `volar.vueserver.configFilePath`: Path to volar.config.js, default: `./volar.config.js`
 - `volar.vueserver.petiteVue.processHtmlFile`: Use `.html` instead of `.vue` for file extension. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, default: `false`
 - `volar.vueserver.vitePress.processMdFile`: Use `.md` instead of `.vue` for file extension. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, default: `false`
 - `volar.vueserver.json.customBlockSchemaUrls`: preset json schema urls for custom blocks, default: `null`
