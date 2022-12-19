@@ -304,6 +304,7 @@ function getInitializationOptions(serverMode: ServerMode, context: ExtensionCont
         }[textDocumentSync]
       : TextDocumentSyncKind.Incremental,
     typescript: resolveCurrentTsPaths,
+    maxFileSize: workspace.getConfiguration('volar').get<number>('vueserver.maxFileSize'),
     petiteVue: {
       processHtmlFile: processHtml(),
     },
