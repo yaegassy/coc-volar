@@ -292,6 +292,8 @@ function getInitializationOptions(serverMode: ServerMode, context: ExtensionCont
     .getConfiguration('volar')
     .get<'incremental' | 'full' | 'none'>('vueserver.textDocumentSync');
   const initializationOptions: VueServerInitializationOptions = {
+    // volar
+    configFilePath: workspace.getConfiguration('volar').get<string>('vueserver.configFilePath'),
     respectClientCapabilities: true,
     serverMode,
     diagnosticModel: diagnosticModel() === 'pull' ? DiagnosticModel.Pull : DiagnosticModel.Push,
@@ -303,6 +305,11 @@ function getInitializationOptions(serverMode: ServerMode, context: ExtensionCont
         }[textDocumentSync]
       : TextDocumentSyncKind.Incremental,
     typescript: resolveCurrentTsPaths,
+    noProjectReferences: noProjectReferences(),
+    reverseConfigFilePriority: reverseConfigFilePriority(),
+    disableFileWatcher: disableFileWatcher(),
+    maxFileSize: workspace.getConfiguration('volar').get<number>('vueserver.maxFileSize'),
+    // vue
     petiteVue: {
       processHtmlFile: processHtml(),
     },
@@ -314,9 +321,6 @@ function getInitializationOptions(serverMode: ServerMode, context: ExtensionCont
         .getConfiguration('volar')
         .get<Record<string, string>>('vueserver.json.customBlockSchemaUrls'),
     },
-    noProjectReferences: noProjectReferences(),
-    reverseConfigFilePriority: reverseConfigFilePriority(),
-    disableFileWatcher: disableFileWatcher(),
     additionalExtensions: additionalExtensions(),
   };
   return initializationOptions;

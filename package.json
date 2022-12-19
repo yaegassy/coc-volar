@@ -237,6 +237,16 @@
           "default": "off",
           "description": "Traces the communication between coc.nvim and the language server."
         },
+        "volar.vueserver.configFilePath": {
+          "type": "string",
+          "default": "./volar.config.js",
+          "description": "Path to volar.config.js."
+        },
+        "volar.vueserver.maxFileSize": {
+          "type": "number",
+          "default": 20971520,
+          "description": "Maximum file size for Vue Server to load. (default: 20MB)"
+        },
         "volar.vueserver.petiteVue.processHtmlFile": {
           "type": "boolean",
           "default": false,
@@ -512,7 +522,7 @@
     ]
   },
   "dependencies": {
-    "@volar/vue-language-server": "1.0.13",
+    "@volar/vue-language-server": "1.0.14",
     "typescript": "4.9.3"
   }
 }
