@@ -7,7 +7,6 @@ import {
   ReloadProjectNotification,
   ReportStats,
   ShowReferencesNotification,
-  VerifyAllScriptsNotification,
 } from '@volar/vue-language-server';
 import * as coc from 'coc.nvim';
 
@@ -34,8 +33,6 @@ export const AutoInsertRequestType = new coc.RequestType<
   AutoInsertRequest.ResponseType,
   AutoInsertRequest.ErrorType
 >(AutoInsertRequest.type.method);
-
-export const VerifyAllScriptsNotificationType = new coc.NotificationType(VerifyAllScriptsNotification.type.method);
 
 export const ReloadProjectNotificationType = new coc.NotificationType(ReloadProjectNotification.type.method);
 

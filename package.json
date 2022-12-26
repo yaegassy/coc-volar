@@ -495,11 +495,6 @@
         "category": "Volar"
       },
       {
-        "command": "volar.action.verifyAllScripts",
-        "title": "Verify All Scripts",
-        "category": "Volar"
-      },
-      {
         "command": "volar.action.showVirtualFiles",
         "title": "Show Virtual Files (Debug)",
         "category": "Volar (Debug)"
@@ -522,7 +517,7 @@
     ]
   },
   "dependencies": {
-    "@volar/vue-language-server": "1.0.16",
+    "@volar/vue-language-server": "1.0.17",
     "typescript": "4.9.4"
   }
 }
