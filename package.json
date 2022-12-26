@@ -495,11 +495,6 @@
         "category": "Volar"
       },
       {
-        "command": "volar.action.verifyAllScripts",
-        "title": "Verify All Scripts",
-        "category": "Volar"
-      },
-      {
         "command": "volar.action.showVirtualFiles",
         "title": "Show Virtual Files (Debug)",
         "category": "Volar (Debug)"

@@ -14,7 +14,6 @@ import * as reloadProject from './features/reloadProject';
 import * as serverStatus from './features/serverStatus';
 import * as showReferences from './features/showReferences';
 import * as tsVersion from './features/tsVersion';
-import * as verifyAll from './features/verifyAll';
 import * as virtualFiles from './features/virtualFiles';
 
 enum LanguageFeaturesKind {
@@ -152,7 +151,6 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
     /** Custom status-bar for coc-volar */
     statusBar.register(context, semanticClient);
 
-    verifyAll.register(context, semanticClient);
     fileReferences.register('volar.vue.findAllFileReferences', semanticClient);
 
     if (
