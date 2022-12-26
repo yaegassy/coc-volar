@@ -320,6 +320,10 @@ function getInitializationOptions(serverMode: ServerMode, context: ExtensionCont
         .get<Record<string, string>>('vueserver.json.customBlockSchemaUrls'),
     },
     additionalExtensions: additionalExtensions(),
+    semanticTokensLegend: {
+      tokenTypes: ['component'],
+      tokenModifiers: [],
+    },
   };
   return initializationOptions;
 }
