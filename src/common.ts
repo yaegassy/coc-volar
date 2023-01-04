@@ -294,7 +294,12 @@ function getInitializationOptions(serverMode: ServerMode, context: ExtensionCont
     configFilePath: workspace.getConfiguration('volar').get<string>('vueserver.configFilePath'),
     respectClientCapabilities: true,
     serverMode,
-    diagnosticModel: diagnosticModel() === 'pull' ? DiagnosticModel.Pull : DiagnosticModel.Push,
+    diagnosticModel:
+      serverMode === ServerMode.Syntactic
+        ? DiagnosticModel.None
+        : diagnosticModel() === 'pull'
+        ? DiagnosticModel.Pull
+        : DiagnosticModel.Push,
     textDocumentSync: textDocumentSync
       ? {
           incremental: TextDocumentSyncKind.Incremental,
