@@ -65,6 +65,7 @@
         "filetype": "vue",
         "patterns": [
           "vite.config.ts",
+          "vite.config.js",
           "vue.config.js",
           "nuxt.config.ts"
         ]
@@ -73,6 +74,7 @@
         "filetype": "typescript",
         "patterns": [
           "vite.config.ts",
+          "vite.config.js",
           "vue.config.js",
           "nuxt.config.ts"
         ]
@@ -81,6 +83,7 @@
         "filetype": "javascript",
         "patterns": [
           "vite.config.ts",
+          "vite.config.js",
           "vue.config.js",
           "nuxt.config.ts"
         ]
@@ -89,6 +92,7 @@
         "filetype": "typescriptreact",
         "patterns": [
           "vite.config.ts",
+          "vite.config.js",
           "vue.config.js",
           "nuxt.config.ts"
         ]
@@ -97,6 +101,7 @@
         "filetype": "javascriptreact",
         "patterns": [
           "vite.config.ts",
+          "vite.config.js",
           "vue.config.js",
           "nuxt.config.ts"
         ]
@@ -105,6 +110,7 @@
         "filetype": "html",
         "patterns": [
           "vite.config.ts",
+          "vite.config.js",
           "vue.config.js",
           "nuxt.config.ts"
         ]
@@ -113,6 +119,7 @@
         "filetype": "markdown",
         "patterns": [
           "vite.config.ts",
+          "vite.config.js",
           "vue.config.js",
           "nuxt.config.ts"
         ]
