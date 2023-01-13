@@ -72,14 +72,14 @@ If `workspaceFolders` are not recognized correctly, the language server may pars
 
 The default configuration of coc.nvim resolves to the directory where the `.git`, `.hg`, or `.projections.json` files reside as the workspace root.
 
-`coc-volar` has also already added `vite.config.ts`, `vue.config.js` or `nuxt.config.ts` to the extension side to resolve workspace root.
+`coc-volar` has also already added `vite.config.ts`, `vite.config.js`, `vue.config.js` or `nuxt.config.ts` to the extension side to resolve workspace root.
 
 If further customization is needed, set `b:coc_root_patterns` in ".vimrc/init.vim".
 
 **Example**:
 
 ```vim
-  au FileType vue let b:coc_root_patterns = ['.git', '.env', 'package.json', 'tsconfig.json', 'jsconfig.json', 'vite.config.ts', 'vue.config.js', 'nuxt.config.ts']
+  au FileType vue let b:coc_root_patterns = ['.git', '.env', 'package.json', 'tsconfig.json', 'jsconfig.json', 'vite.config.ts', 'vite.config.js', 'vue.config.js', 'nuxt.config.ts']
 ```
 
 For more information, check this coc.nvim's wiki.
