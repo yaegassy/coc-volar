@@ -25,7 +25,7 @@
     "access": "public"
   },
   "scripts": {
-    "schema": "curl -o schemas/vue-tsconfig.schema.json https://raw.githubusercontent.com/johnsoncodehk/volar/master/vue-language-tools/vue-language-core/schemas/vue-tsconfig.schema.json",
+    "schema": "curl -o schemas/vue-tsconfig.schema.json https://raw.githubusercontent.com/vuejs/language-tools/master/packages/vue-language-core/schemas/vue-tsconfig.schema.json",
     "lint": "eslint src --ext ts",
     "clean": "rimraf lib",
     "watch": "node esbuild.js --watch",
@@ -333,15 +333,10 @@
           "default": true,
           "description": "[references] code lens."
         },
-        "volar.codeLens.pugTools": {
+        "volar.inlayHints.missingRequiredProps": {
           "type": "boolean",
-          "default": false,
-          "description": "[pug ☐] code lens."
-        },
-        "volar.codeLens.scriptSetupTools": {
-          "type": "boolean",
-          "default": false,
-          "description": "[ref sugar ☐] code lens."
+          "default": true,
+          "description": "Show inlay hints for missing required props."
         },
         "volar.autoWrapParentheses": {
           "type": "boolean",
@@ -407,11 +402,23 @@
               "type": "boolean",
               "default": false
             },
+            "sass": {
+              "type": "boolean",
+              "default": false
+            },
+            "jade": {
+              "type": "boolean",
+              "default": false
+            },
             "json": {
               "type": "boolean",
               "default": false
             },
             "jsonc": {
+              "type": "boolean",
+              "default": false
+            },
+            "json5": {
               "type": "boolean",
               "default": false
             }
@@ -524,7 +531,7 @@
     ]
   },
   "dependencies": {
-    "@volar/vue-language-server": "1.0.24",
+    "@volar/vue-language-server": "1.1.2",
     "typescript": "4.9.4"
   }
 }

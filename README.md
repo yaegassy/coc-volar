@@ -1,6 +1,7 @@
 # coc-volar
 
-> fork from a [vscode-vue](https://github.com/johnsoncodehk/volar/tree/master/vue-language-tools/vscode-vue)
+> fork from a [vscode-vue](https://github.com/vuejs/language-tools/tree/master/packages/vscode-vue)
+
 
 [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (Fast Vue Language Support) extension for [coc.nvim](https://github.com/neoclide/coc.nvim)
 <img width="780" alt="coc-volar-demo" src="https://user-images.githubusercontent.com/188642/130296846-72ff5989-5853-46fb-a053-a979f7041b99.gif">
@@ -118,8 +119,7 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `volar.vueserver.disableFileWatcher`: Disable file watcher in language server for better performance, default: `false`
 - `volar.vueserver.additionalExtensions`: List any additional file extensions that should be processed as Vue files (requires restart), default: `[]`
 - `volar.codeLens.references`: [references] code lens, default: `true`
-- `volar.codeLens.pugTools`: [pug ☐] code lens, default: `false`
-- `volar.codeLens.scriptSetupTools`: [ref sugar ☐] code lens, default: `false`
+- `volar.inlayHints.missingRequiredProps`: Show inlay hints for missing required props, default: `"true"`
 - `volar.autoWrapParentheses`: Auto-wrap `()` to As Expression in interpolations for fix issue `#520` of volar, default: `true`
 - `volar.autoCreateQuotes`: Enable/disable auto creation of quotes for HTML attribute assignment, default: `false`
 - `volar.autoClosingTags`: Enable/disable autoClosing of HTML tags, default: `false`
@@ -158,7 +158,7 @@ Other major LSP feature are of course supported as well.
 
 ## Thanks
 
-- [johnsoncodehk/volar](https://github.com/johnsoncodehk/volar)
+- [vuejs/language-tools](https://github.com/vuejs/language-tools)
 
 ## License
 
