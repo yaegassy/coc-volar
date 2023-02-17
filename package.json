@@ -333,6 +333,11 @@
           "default": true,
           "description": "[references] code lens."
         },
+        "volar.inlayHints.missingRequiredProps": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show inlay hints for missing required props."
+        },
         "volar.autoWrapParentheses": {
           "type": "boolean",
           "default": true,
