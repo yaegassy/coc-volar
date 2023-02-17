@@ -9,7 +9,8 @@
     "strict": true,
     "moduleResolution": "node",
     "noImplicitAny": false,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "skipLibCheck": true
   },
   "include": ["src"]
 }
