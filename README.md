@@ -119,8 +119,7 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `volar.vueserver.disableFileWatcher`: Disable file watcher in language server for better performance, default: `false`
 - `volar.vueserver.additionalExtensions`: List any additional file extensions that should be processed as Vue files (requires restart), default: `[]`
 - `volar.codeLens.references`: [references] code lens, default: `true`
-- `volar.codeLens.pugTools`: [pug ☐] code lens, default: `false`
-- `volar.codeLens.scriptSetupTools`: [ref sugar ☐] code lens, default: `false`
+- `volar.inlayHints.missingRequiredProps`: Show inlay hints for missing required props, default: `"true"`
 - `volar.autoWrapParentheses`: Auto-wrap `()` to As Expression in interpolations for fix issue `#520` of volar, default: `true`
 - `volar.autoCreateQuotes`: Enable/disable auto creation of quotes for HTML attribute assignment, default: `false`
 - `volar.autoClosingTags`: Enable/disable autoClosing of HTML tags, default: `false`
