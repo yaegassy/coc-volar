@@ -333,16 +333,6 @@
           "default": true,
           "description": "[references] code lens."
         },
-        "volar.codeLens.pugTools": {
-          "type": "boolean",
-          "default": false,
-          "description": "[pug ☐] code lens."
-        },
-        "volar.codeLens.scriptSetupTools": {
-          "type": "boolean",
-          "default": false,
-          "description": "[ref sugar ☐] code lens."
-        },
         "volar.autoWrapParentheses": {
           "type": "boolean",
           "default": true,
