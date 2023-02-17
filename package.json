@@ -397,11 +397,23 @@
               "type": "boolean",
               "default": false
             },
+            "sass": {
+              "type": "boolean",
+              "default": false
+            },
+            "jade": {
+              "type": "boolean",
+              "default": false
+            },
             "json": {
               "type": "boolean",
               "default": false
             },
             "jsonc": {
+              "type": "boolean",
+              "default": false
+            },
+            "json5": {
               "type": "boolean",
               "default": false
             }
