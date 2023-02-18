@@ -120,6 +120,7 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `volar.vueserver.additionalExtensions`: List any additional file extensions that should be processed as Vue files (requires restart), default: `[]`
 - `volar.codeLens.references`: [references] code lens, default: `true`
 - `volar.inlayHints.missingRequiredProps`: Show inlay hints for missing required props, default: `"true"`
+- `volar.inlayHints.eventArgumentInInlineHandlers`: Show inlay hints for event argument in inline handlers, default: `true`
 - `volar.autoWrapParentheses`: Auto-wrap `()` to As Expression in interpolations for fix issue `#520` of volar, default: `true`
 - `volar.autoCreateQuotes`: Enable/disable auto creation of quotes for HTML attribute assignment, default: `false`
 - `volar.autoClosingTags`: Enable/disable autoClosing of HTML tags, default: `false`

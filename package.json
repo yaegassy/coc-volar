@@ -338,6 +338,11 @@
           "default": true,
           "description": "Show inlay hints for missing required props."
         },
+        "volar.inlayHints.eventArgumentInInlineHandlers": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show inlay hints for event argument in inline handlers."
+        },
         "volar.autoWrapParentheses": {
           "type": "boolean",
           "default": true,
