@@ -236,6 +236,10 @@ function additionalExtensions() {
   return workspace.getConfiguration('volar').get<string[]>('vueserver.additionalExtensions') ?? [];
 }
 
+function fullCompletionList() {
+  return workspace.getConfiguration('volar').get<boolean>('vueserver.fullCompletionList');
+}
+
 function getFillInitializeParams(featuresKinds: LanguageFeaturesKind[]) {
   return function (params: InitializeParams) {
     (params as any).locale = workspace.getConfiguration('volar').get<string>('tsLocale', 'en');
@@ -325,6 +329,7 @@ function getInitializationOptions(serverMode: ServerMode, context: ExtensionCont
         .get<Record<string, string>>('vueserver.json.customBlockSchemaUrls'),
     },
     additionalExtensions: additionalExtensions(),
+    fullCompletionList: fullCompletionList(),
   };
   return initializationOptions;
 }
