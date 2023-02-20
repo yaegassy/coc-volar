@@ -264,11 +264,6 @@
           "default": false,
           "description": "Use `.md` instead of `.vue` for file extension. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project."
         },
-        "volar.vueserver.json.customBlockSchemaUrls": {
-          "type": "object",
-          "default": null,
-          "description": "preset json schema urls for custom blocks"
-        },
         "volar.vueserver.textDocumentSync": {
           "type": "string",
           "default": "incremental",

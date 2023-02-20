@@ -323,11 +323,6 @@ function getInitializationOptions(serverMode: ServerMode, context: ExtensionCont
     vitePress: {
       processMdFile: processMd(),
     },
-    json: {
-      customBlockSchemaUrls: workspace
-        .getConfiguration('volar')
-        .get<Record<string, string>>('vueserver.json.customBlockSchemaUrls'),
-    },
     additionalExtensions: additionalExtensions(),
     fullCompletionList: fullCompletionList(),
   };
