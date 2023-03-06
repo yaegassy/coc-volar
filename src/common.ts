@@ -116,14 +116,14 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
     createLc(
       'vue-semantic-server',
       'Vue Semantic Server',
-      getDocumentSelector(ServerMode.Semantic),
+      getDocumentSelector(context),
       getInitializationOptions(ServerMode.Semantic, context),
       6009
     ),
     createLc(
       'vue-syntactic-server',
       'Vue Syntactic Server',
-      getDocumentSelector(ServerMode.Syntactic),
+      getDocumentSelector(context),
       getInitializationOptions(ServerMode.Syntactic, context),
       6011
     ),
@@ -185,10 +185,11 @@ export function takeOverModeEnabled() {
   return !!workspace.getConfiguration('volar').get<boolean>('takeOverMode.enabled');
 }
 
-export function getDocumentSelector(serverMode: ServerMode) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function getDocumentSelector(_context: ExtensionContext) {
   const takeOverMode = takeOverModeEnabled();
   const langs = takeOverMode ? ['vue', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact'] : ['vue'];
-  if (takeOverMode && serverMode === ServerMode.Semantic) {
+  if (takeOverMode) {
     langs.push('json');
   }
   if (processHtml()) {
