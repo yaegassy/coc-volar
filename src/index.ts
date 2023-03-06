@@ -39,7 +39,9 @@ export async function activate(context: ExtensionContext): Promise<void> {
 
   return commonActivate(context, (id, name, langs, initOptions, port) => {
     class _LanguageClient implements StaticFeature {
-      fillInitializeParams(params: InitializeParams) {}
+      fillInitializeParams(params: InitializeParams) {
+        (params as any).locale = workspace.getConfiguration('volar').get<string>('tsLocale', 'en');
+      }
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       fillClientCapabilities(capabilities: any): void {}
