@@ -44,10 +44,10 @@ export async function activate(context: ExtensionContext): Promise<void> {
       }
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      fillClientCapabilities(capabilities: any): void {}
+      fillClientCapabilities(_capabilities: any): void {}
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      initialize(capabilities: any, documentSelector: DocumentSelector | undefined): void {}
+      initialize(_capabilities: any, _documentSelector: DocumentSelector | undefined): void {}
 
       dispose(): void {}
     }
