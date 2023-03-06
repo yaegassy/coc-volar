@@ -296,7 +296,6 @@ function getInitializationOptions(serverMode: ServerMode, context: ExtensionCont
   const initializationOptions: VueServerInitializationOptions = {
     // volar
     configFilePath: workspace.getConfiguration('volar').get<string>('vueserver.configFilePath'),
-    respectClientCapabilities: true,
     serverMode,
     diagnosticModel:
       serverMode === ServerMode.Syntactic
