@@ -24,7 +24,6 @@ type CreateLanguageClient = (
   name: string,
   langs: string[],
   initOptions: VueServerInitializationOptions,
-  fillInitializeParams: (params: InitializeParams) => void,
   port: number
 ) => LanguageClient;
 
