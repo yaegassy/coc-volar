@@ -117,7 +117,7 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
       'vue-semantic-server',
       'Vue Semantic Server',
       getDocumentSelector(context),
-      getInitializationOptions(ServerMode.Semantic, context),
+      getInitializationOptions(ServerMode.PartialSemantic, context),
       6009
     ),
     createLc(
