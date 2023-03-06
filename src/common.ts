@@ -1,4 +1,4 @@
-import { commands, ExtensionContext, InitializeParams, LanguageClient, Thenable, workspace } from 'coc.nvim';
+import { commands, ExtensionContext, LanguageClient, Thenable, workspace } from 'coc.nvim';
 
 import { DiagnosticModel, ServerMode, VueServerInitializationOptions } from '@volar/vue-language-server';
 import { TextDocumentSyncKind } from 'vscode-languageserver-protocol';
