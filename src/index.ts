@@ -37,11 +37,9 @@ let serverModule: string;
 export async function activate(context: ExtensionContext): Promise<void> {
   if (!getConfigVolarEnable()) return;
 
-  return commonActivate(context, (id, name, langs, initOptions, fillInitializeParams, port) => {
+  return commonActivate(context, (id, name, langs, initOptions, port) => {
     class _LanguageClient implements StaticFeature {
-      fillInitializeParams(params: InitializeParams) {
-        fillInitializeParams(params);
-      }
+      fillInitializeParams(params: InitializeParams) {}
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       fillClientCapabilities(capabilities: any): void {}
