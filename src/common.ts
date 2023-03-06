@@ -1,4 +1,4 @@
-import { commands, ExtensionContext, InitializeParams, LanguageClient, Thenable, workspace } from 'coc.nvim';
+import { commands, ExtensionContext, LanguageClient, Thenable, workspace } from 'coc.nvim';
 
 import { DiagnosticModel, ServerMode, VueServerInitializationOptions } from '@volar/vue-language-server';
 import { TextDocumentSyncKind } from 'vscode-languageserver-protocol';
@@ -16,11 +16,6 @@ import * as showReferences from './features/showReferences';
 import * as tsVersion from './features/tsVersion';
 import * as virtualFiles from './features/virtualFiles';
 
-enum LanguageFeaturesKind {
-  Semantic,
-  Syntactic,
-}
-
 let semanticClient: LanguageClient;
 let syntacticClient: LanguageClient;
 
@@ -29,7 +24,6 @@ type CreateLanguageClient = (
   name: string,
   langs: string[],
   initOptions: VueServerInitializationOptions,
-  fillInitializeParams: (params: InitializeParams) => void,
   port: number
 ) => LanguageClient;
 
@@ -124,7 +118,6 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
       'Vue Semantic Server',
       getDocumentSelector(ServerMode.Semantic),
       getInitializationOptions(ServerMode.Semantic, context),
-      getFillInitializeParams([LanguageFeaturesKind.Semantic]),
       6009
     ),
     createLc(
@@ -132,7 +125,6 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
       'Vue Syntactic Server',
       getDocumentSelector(ServerMode.Syntactic),
       getInitializationOptions(ServerMode.Syntactic, context),
-      getFillInitializeParams([LanguageFeaturesKind.Syntactic]),
       6011
     ),
   ]);
@@ -240,50 +232,6 @@ function fullCompletionList() {
   return workspace.getConfiguration('volar').get<boolean>('vueserver.fullCompletionList');
 }
 
-function getFillInitializeParams(featuresKinds: LanguageFeaturesKind[]) {
-  return function (params: InitializeParams) {
-    (params as any).locale = workspace.getConfiguration('volar').get<string>('tsLocale', 'en');
-
-    if (params.capabilities.textDocument) {
-      if (!featuresKinds.includes(LanguageFeaturesKind.Semantic)) {
-        params.capabilities.textDocument.references = undefined;
-        params.capabilities.textDocument.implementation = undefined;
-        params.capabilities.textDocument.definition = undefined;
-        params.capabilities.textDocument.typeDefinition = undefined;
-        params.capabilities.textDocument.callHierarchy = undefined;
-        params.capabilities.textDocument.hover = undefined;
-        params.capabilities.textDocument.rename = undefined;
-        params.capabilities.textDocument.signatureHelp = undefined;
-        params.capabilities.textDocument.codeAction = undefined;
-        params.capabilities.textDocument.completion = undefined;
-        // Tardy
-        params.capabilities.textDocument.documentHighlight = undefined;
-        params.capabilities.textDocument.documentLink = undefined;
-        params.capabilities.textDocument.codeLens = undefined;
-        params.capabilities.textDocument.semanticTokens = undefined;
-        params.capabilities.textDocument.inlayHint = undefined;
-        params.capabilities.textDocument.diagnostic = undefined;
-      }
-      if (!featuresKinds.includes(LanguageFeaturesKind.Syntactic)) {
-        params.capabilities.textDocument.selectionRange = undefined;
-        params.capabilities.textDocument.foldingRange = undefined;
-        params.capabilities.textDocument.linkedEditingRange = undefined;
-        params.capabilities.textDocument.documentSymbol = undefined;
-        params.capabilities.textDocument.colorProvider = undefined;
-        params.capabilities.textDocument.formatting = undefined;
-        params.capabilities.textDocument.rangeFormatting = undefined;
-        params.capabilities.textDocument.onTypeFormatting = undefined;
-      }
-    }
-    if (params.capabilities.workspace) {
-      if (!featuresKinds.includes(LanguageFeaturesKind.Semantic)) {
-        params.capabilities.workspace.symbol = undefined;
-        params.capabilities.workspace.fileOperations = undefined;
-      }
-    }
-  };
-}
-
 function getInitializationOptions(serverMode: ServerMode, context: ExtensionContext) {
   if (!resolveCurrentTsPaths) {
     resolveCurrentTsPaths = tsVersion.getCurrentTsPaths(context);
@@ -296,7 +244,6 @@ function getInitializationOptions(serverMode: ServerMode, context: ExtensionCont
   const initializationOptions: VueServerInitializationOptions = {
     // volar
     configFilePath: workspace.getConfiguration('volar').get<string>('vueserver.configFilePath'),
-    respectClientCapabilities: true,
     serverMode,
     diagnosticModel:
       serverMode === ServerMode.Syntactic

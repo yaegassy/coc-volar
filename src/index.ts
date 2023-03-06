@@ -37,17 +37,17 @@ let serverModule: string;
 export async function activate(context: ExtensionContext): Promise<void> {
   if (!getConfigVolarEnable()) return;
 
-  return commonActivate(context, (id, name, langs, initOptions, fillInitializeParams, port) => {
+  return commonActivate(context, (id, name, langs, initOptions, port) => {
     class _LanguageClient implements StaticFeature {
       fillInitializeParams(params: InitializeParams) {
-        fillInitializeParams(params);
+        (params as any).locale = workspace.getConfiguration('volar').get<string>('tsLocale', 'en');
       }
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      fillClientCapabilities(capabilities: any): void {}
+      fillClientCapabilities(_capabilities: any): void {}
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      initialize(capabilities: any, documentSelector: DocumentSelector | undefined): void {}
+      initialize(_capabilities: any, _documentSelector: DocumentSelector | undefined): void {}
 
       dispose(): void {}
     }
