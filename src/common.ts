@@ -117,14 +117,14 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
       'vue-semantic-server',
       'Vue Semantic Server',
       getDocumentSelector(context),
-      getInitializationOptions(ServerMode.PartialSemantic, context),
+      await getInitializationOptions(ServerMode.PartialSemantic, context),
       6009
     ),
     createLc(
       'vue-syntactic-server',
       'Vue Syntactic Server',
       getDocumentSelector(context),
-      getInitializationOptions(ServerMode.Syntactic, context),
+      await getInitializationOptions(ServerMode.Syntactic, context),
       6011
     ),
   ]);
@@ -233,7 +233,7 @@ function fullCompletionList() {
   return workspace.getConfiguration('volar').get<boolean>('vueserver.fullCompletionList');
 }
 
-function getInitializationOptions(serverMode: ServerMode, context: ExtensionContext) {
+async function getInitializationOptions(serverMode: ServerMode, context: ExtensionContext) {
   if (!resolveCurrentTsPaths) {
     resolveCurrentTsPaths = tsVersion.getCurrentTsPaths(context);
     context.workspaceState.update('coc-volar-ts-server-path', resolveCurrentTsPaths.tsdk);
