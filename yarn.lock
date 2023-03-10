@@ -560,9 +560,9 @@ acorn@^7.1.1:
   integrity sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A==
 
 acorn@^8.8.0:
-  version "8.8.1"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.8.1.tgz#0a3f9cbecc4ec3bea6f0a80b66ae8dd2da250b73"
-  integrity sha512-7zFpHzhnqYKrkYdUjF1HI1bzd0VygEGX8lFk4k5zVMqHEoES+P+7TKI+EvLO9WVMJ8eekdO0aDEK044xTXwPPA==
+  version "8.8.2"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.8.2.tgz#1b2f25db02af965399b9776b0c2c391276d37c4a"
+  integrity sha512-xjIYgE8HBrkpd/sJqOGNspf8uHG+NOHGOw6a/Urj8taM2EXfdNAH2oFcPeIFfsv3+kz/mJrS5VuMqbNLjCa2vw==
 
 ajv@^6.10.0, ajv@^6.12.4:
   version "6.12.6"
@@ -1007,9 +1007,9 @@ glob@^7.1.3:
     path-is-absolute "^1.0.0"
 
 globals@^13.19.0:
-  version "13.19.0"
-  resolved "https://registry.yarnpkg.com/globals/-/globals-13.19.0.tgz#7a42de8e6ad4f7242fbcca27ea5b23aca367b5c8"
-  integrity sha512-dkQ957uSRWHw7CFXLUtUHQI3g3aWApYhfNR2O6jn/907riyTYKVBmxYVROkBcY614FSSeSJh7Xm7SrUWCxvJMQ==
+  version "13.20.0"
+  resolved "https://registry.yarnpkg.com/globals/-/globals-13.20.0.tgz#ea276a1e508ffd4f1612888f9d1bad1e2717bf82"
+  integrity sha512-Qg5QtVkCy/kv3FUSlu4ukeZDVf9ee0iXLAUYX13gbR17bnejFTzr4iS9bY7kwCf1NztRNm1t91fjOiyx4CSwPQ==
   dependencies:
     type-fest "^0.20.2"
 
@@ -1134,9 +1134,9 @@ isexe@^2.0.0:
   integrity sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==
 
 js-sdsl@^4.1.4:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/js-sdsl/-/js-sdsl-4.2.0.tgz#278e98b7bea589b8baaf048c20aeb19eb7ad09d0"
-  integrity sha512-dyBIzQBDkCqCu+0upx25Y2jGdbTGxE9fshMsCdK0ViOongpV+n5tXRcZY9v7CaVQ79AGS9KA1KHtojxiM7aXSQ==
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/js-sdsl/-/js-sdsl-4.3.0.tgz#aeefe32a451f7af88425b11fdb5f58c90ae1d711"
+  integrity sha512-mifzlm2+5nZ+lEcLJMoBK0/IH/bDg8XnJfd/Wq6IP+xoCjLZsTOnV2QpxlVbX9bMnkl5PdEjNtBJ9Cj1NjifhQ==
 
 js-yaml@^4.1.0:
   version "4.1.0"
@@ -1375,9 +1375,9 @@ pug-parser@^6.0.0:
     token-stream "1.0.0"
 
 punycode@^2.1.0:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
-  integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.3.0.tgz#f67fa67c94da8f4d0cfff981aee4118064199b8f"
+  integrity sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==
 
 queue-microtask@^1.2.2:
   version "1.2.3"
