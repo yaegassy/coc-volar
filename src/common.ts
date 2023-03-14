@@ -12,7 +12,6 @@ import * as componentMeta from './features/componentMeta';
 import * as fileReferences from './features/fileReferences';
 import * as reloadProject from './features/reloadProject';
 import * as serverStatus from './features/serverStatus';
-import * as showReferences from './features/showReferences';
 import * as tsVersion from './features/tsVersion';
 import * as virtualFiles from './features/virtualFiles';
 
@@ -131,7 +130,6 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
   const clients = [semanticClient, syntacticClient];
 
   registerRestartRequest();
-  registerClientRequests();
 
   reloadProject.register('volar.action.reloadProject', context, semanticClient);
   /** Custom commands for coc-volar */
@@ -165,15 +163,8 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
       commands.registerCommand('volar.action.restartServer', async () => {
         await Promise.all(clients.map((client) => client.stop()));
         await Promise.all(clients.map((client) => client.start()));
-        registerClientRequests();
       })
     );
-  }
-
-  function registerClientRequests() {
-    for (const client of clients) {
-      showReferences.activate(context, client);
-    }
   }
 }
 
