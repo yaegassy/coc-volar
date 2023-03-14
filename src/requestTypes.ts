@@ -6,17 +6,8 @@ import {
   GetVirtualFileRequest,
   ReloadProjectNotification,
   ReportStats,
-  ShowReferencesNotification,
 } from '@volar/vue-language-server';
 import * as coc from 'coc.nvim';
-
-/**
- * Server Requests
- */
-
-export const ShowReferencesNotificationType = new coc.NotificationType<ShowReferencesNotification.ResponseType>(
-  ShowReferencesNotification.type.method
-);
 
 /**
  * Client Requests
