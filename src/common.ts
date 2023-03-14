@@ -116,7 +116,11 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
       'vue-semantic-server',
       'Vue Semantic Server',
       getDocumentSelector(context),
-      await getInitializationOptions(ServerMode.PartialSemantic, context),
+      // **MEMO**:
+      //
+      // In coc-volar, `ServerMode.Semantic` is used because of problems
+      // related to diagnosis when `ServerMode.PartialSemantic` is used.
+      await getInitializationOptions(ServerMode.Semantic, context),
       6009
     ),
     createLc(
