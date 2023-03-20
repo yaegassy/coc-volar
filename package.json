@@ -335,12 +335,12 @@
         },
         "volar.inlayHints.missingRequiredProps": {
           "type": "boolean",
-          "default": true,
+          "default": false,
           "description": "Show inlay hints for missing required props."
         },
         "volar.inlayHints.eventArgumentInInlineHandlers": {
           "type": "boolean",
-          "default": true,
+          "default": false,
           "description": "Show inlay hints for event argument in inline handlers."
         },
         "volar.autoWrapParentheses": {
@@ -536,7 +536,7 @@
     ]
   },
   "dependencies": {
-    "@volar/vue-language-server": "1.3.2",
+    "@volar/vue-language-server": "1.3.4",
     "typescript": "4.9.5"
   }
 }
