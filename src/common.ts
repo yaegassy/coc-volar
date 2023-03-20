@@ -116,11 +116,7 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
       'vue-semantic-server',
       'Vue Semantic Server',
       getDocumentSelector(context),
-      // **MEMO**:
-      //
-      // In coc-volar, `ServerMode.Semantic` is used because of problems
-      // related to diagnosis when `ServerMode.PartialSemantic` is used.
-      await getInitializationOptions(ServerMode.Semantic, context),
+      await getInitializationOptions(ServerMode.PartialSemantic, context),
       6009
     ),
     createLc(
@@ -241,12 +237,7 @@ async function getInitializationOptions(serverMode: ServerMode, context: Extensi
     // volar
     configFilePath: workspace.getConfiguration('volar').get<string>('vueserver.configFilePath'),
     serverMode,
-    diagnosticModel:
-      serverMode === ServerMode.Syntactic
-        ? DiagnosticModel.None
-        : diagnosticModel() === 'pull'
-        ? DiagnosticModel.Pull
-        : DiagnosticModel.Push,
+    diagnosticModel: diagnosticModel() === 'pull' ? DiagnosticModel.Pull : DiagnosticModel.Push,
     textDocumentSync: textDocumentSync
       ? {
           incremental: TextDocumentSyncKind.Incremental,
