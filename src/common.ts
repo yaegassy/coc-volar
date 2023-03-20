@@ -250,6 +250,7 @@ async function getInitializationOptions(serverMode: ServerMode, context: Extensi
     reverseConfigFilePriority: reverseConfigFilePriority(),
     disableFileWatcher: disableFileWatcher(),
     maxFileSize: workspace.getConfiguration('volar').get<number>('vueserver.maxFileSize'),
+    fullCompletionList: fullCompletionList(),
     // vue
     petiteVue: {
       processHtmlFile: processHtml(),
@@ -258,7 +259,6 @@ async function getInitializationOptions(serverMode: ServerMode, context: Extensi
       processMdFile: processMd(),
     },
     additionalExtensions: additionalExtensions(),
-    fullCompletionList: fullCompletionList(),
   };
   return initializationOptions;
 }
