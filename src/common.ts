@@ -1,7 +1,6 @@
 import { commands, ExtensionContext, LanguageClient, Thenable, workspace } from 'coc.nvim';
 
 import { DiagnosticModel, ServerMode, VueServerInitializationOptions } from '@volar/vue-language-server';
-import { TextDocumentSyncKind } from 'vscode-languageserver-protocol';
 
 import * as doctor from './client/commands/doctor';
 import * as initializeTakeOverMode from './client/commands/initializeTakeOverMode';
@@ -230,21 +229,11 @@ async function getInitializationOptions(serverMode: ServerMode, context: Extensi
     context.workspaceState.update('coc-volar-ts-server-path', resolveCurrentTsPaths.tsdk);
   }
 
-  const textDocumentSync = workspace
-    .getConfiguration('volar')
-    .get<'incremental' | 'full' | 'none'>('vueserver.textDocumentSync');
   const initializationOptions: VueServerInitializationOptions = {
     // volar
     configFilePath: workspace.getConfiguration('volar').get<string>('vueserver.configFilePath'),
     serverMode,
     diagnosticModel: diagnosticModel() === 'pull' ? DiagnosticModel.Pull : DiagnosticModel.Push,
-    textDocumentSync: textDocumentSync
-      ? {
-          incremental: TextDocumentSyncKind.Incremental,
-          full: TextDocumentSyncKind.Full,
-          none: TextDocumentSyncKind.None,
-        }[textDocumentSync]
-      : TextDocumentSyncKind.Incremental,
     typescript: resolveCurrentTsPaths,
     noProjectReferences: noProjectReferences(),
     reverseConfigFilePriority: reverseConfigFilePriority(),
