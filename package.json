@@ -264,21 +264,6 @@
           "default": false,
           "description": "Recognize `.md` extension as VitePress file format. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, and adding `__PATH_TO_MD_FILES_/*.md` to config include option"
         },
-        "volar.vueserver.textDocumentSync": {
-          "type": "string",
-          "default": "incremental",
-          "enum": [
-            "incremental",
-            "full",
-            "none"
-          ],
-          "enumDescriptions": [
-            "Documents are synced by sending the full content on open. After that only incremental updates to the document are send.",
-            "Documents are synced by always sending the full content of the document.",
-            "Documents should not be synced at all."
-          ],
-          "description": "Defines how the host (editor) should sync document changes to the language server. SFC incremental parser only working when config \"incremental\"."
-        },
         "volar.vueserver.diagnosticModel": {
           "type": "string",
           "default": "push",
