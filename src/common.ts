@@ -178,10 +178,9 @@ export function takeOverModeEnabled() {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function getDocumentSelector(_context: ExtensionContext) {
   const takeOverMode = takeOverModeEnabled();
-  const langs = takeOverMode ? ['vue', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact'] : ['vue'];
-  if (takeOverMode) {
-    langs.push('json');
-  }
+  const langs = takeOverMode
+    ? ['vue', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'json']
+    : ['vue'];
   if (processHtml()) {
     langs.push('html');
   }
