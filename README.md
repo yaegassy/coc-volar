@@ -112,7 +112,6 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `volar.vueserver.vitePress.processMdFile`: Recognize `.md` extension as VitePress file format. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, and adding `__PATH_TO_MD_FILES_/*.md` to config include option, default: `false`
 - `volar.vueserver.diagnosticModel`: Diagnostic update model, valid option: `["push", "pull"]`, default: `push`
 - `volar.vueserver.maxOldSpaceSize`: Set `--max-old-space-size` option on server process. Maximum memory (in MB) that the server should use. On some systems this may only have effect when runtime has been set. Minimum 256.
-- `volar.vueserver.noProjectReferences`: Ignore project references settings of tsconfig in language server for resolve volar's issue #1916, default: `false`
 - `volar.vueserver.reverseConfigFilePriority`: Reverse priority for tsconfig pickup, default: `false`
 - `volar.vueserver.disableFileWatcher`: Disable file watcher in language server for better performance, default: `false`
 - `volar.vueserver.additionalExtensions`: List any additional file extensions that should be processed as Vue files (requires restart), default: `[]`

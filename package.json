@@ -285,11 +285,6 @@
           "default": null,
           "description": "Set `--max-old-space-size` option on server process. Maximum memory (in MB) that the server should use. On some systems this may only have effect when runtime has been set. Minimum 256"
         },
-        "volar.vueserver.noProjectReferences": {
-          "type": "boolean",
-          "default": false,
-          "description": "Ignore project references settings of tsconfig in language server for resolve volar's issue #1916."
-        },
         "volar.vueserver.reverseConfigFilePriority": {
           "type": "boolean",
           "default": false,

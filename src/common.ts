@@ -198,10 +198,6 @@ export function processMd() {
   return !!workspace.getConfiguration('volar').get<boolean>('vueserver.vitePress.processMdFile');
 }
 
-export function noProjectReferences() {
-  return !!workspace.getConfiguration('volar').get<boolean>('vueserver.noProjectReferences');
-}
-
 export function reverseConfigFilePriority() {
   return !!workspace.getConfiguration('volar').get<boolean>('vueserver.reverseConfigFilePriority');
 }
@@ -234,7 +230,6 @@ async function getInitializationOptions(serverMode: ServerMode, context: Extensi
     serverMode,
     diagnosticModel: diagnosticModel() === 'pull' ? DiagnosticModel.Pull : DiagnosticModel.Push,
     typescript: resolveCurrentTsPaths,
-    noProjectReferences: noProjectReferences(),
     reverseConfigFilePriority: reverseConfigFilePriority(),
     disableFileWatcher: disableFileWatcher(),
     maxFileSize: workspace.getConfiguration('volar').get<number>('vueserver.maxFileSize'),
