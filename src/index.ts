@@ -37,7 +37,7 @@ let serverModule: string;
 export async function activate(context: ExtensionContext): Promise<void> {
   if (!getConfigVolarEnable()) return;
 
-  return commonActivate(context, (id, name, langs, initOptions, port) => {
+  return commonActivate(context, (id, name, documentSelector, initOptions, port) => {
     class _LanguageClient implements StaticFeature {
       fillInitializeParams(params: InitializeParams) {
         (params as any).locale = workspace.getConfiguration('volar').get<string>('tsLocale', 'en');
@@ -81,12 +81,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
     };
 
     const clientOptions: LanguageClientOptions = {
-      documentSelector: langs.map((lang) => {
-        return {
-          scheme: 'file',
-          languages: lang,
-        };
-      }),
+      documentSelector: documentSelector,
       initializationOptions: initOptions,
       progressOnInitialization: !getConfigDisableProgressNotifications(),
       disabledFeatures: getDisabledFeatures(),

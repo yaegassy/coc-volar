@@ -1,4 +1,4 @@
-import { commands, ExtensionContext, LanguageClient, Thenable, workspace } from 'coc.nvim';
+import { commands, DocumentFilter, ExtensionContext, LanguageClient, Thenable, workspace } from 'coc.nvim';
 
 import { DiagnosticModel, ServerMode, VueServerInitializationOptions } from '@volar/vue-language-server';
 
@@ -20,7 +20,7 @@ let syntacticClient: LanguageClient;
 type CreateLanguageClient = (
   id: string,
   name: string,
-  langs: string[],
+  langs: DocumentFilter[],
   initOptions: VueServerInitializationOptions,
   port: number
 ) => LanguageClient;
@@ -176,20 +176,31 @@ export function takeOverModeEnabled() {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function getDocumentSelector(_context: ExtensionContext, serverMode: ServerMode) {
+export function getDocumentSelector(_context: ExtensionContext, serverMode: ServerMode): DocumentFilter[] {
   const takeOverMode = takeOverModeEnabled();
-  const langs = takeOverMode ? ['vue', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact'] : ['vue'];
-
-  if (takeOverMode && (serverMode === ServerMode.Semantic || serverMode === ServerMode.PartialSemantic)) {
-    langs.push('json');
+  const selectors: DocumentFilter[] = [];
+  selectors.push({ language: 'vue' });
+  if (takeOverMode) {
+    selectors.push({ language: 'javascript' });
+    selectors.push({ language: 'typescript' });
+    selectors.push({ language: 'javascriptreact' });
+    selectors.push({ language: 'typescriptreact' });
+    if (serverMode === ServerMode.Semantic || serverMode === ServerMode.PartialSemantic) {
+      // support find references for .json files
+      selectors.push({ language: 'json' });
+      // support document links for tsconfig.json
+      selectors.push({ language: 'jsonc', pattern: '**/[jt]sconfig.json' });
+      selectors.push({ language: 'jsonc', pattern: '**/[jt]sconfig.*.json' });
+    }
   }
+
   if (processHtml()) {
-    langs.push('html');
+    selectors.push({ language: 'html' });
   }
   if (processMd()) {
-    langs.push('markdown');
+    selectors.push({ language: 'markdown' });
   }
-  return langs;
+  return selectors;
 }
 
 export function processHtml() {
