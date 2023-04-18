@@ -441,11 +441,6 @@
           "default": true,
           "description": "Normalize import name for auto import. (\"myCompVue\" -> \"MyComp\")"
         },
-        "volar.updateImportsOnFileMove.enabled": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enabled update imports on file move."
-        },
         "volar.diagnostics.delay": {
           "type": "number",
           "default": 200,
