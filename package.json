@@ -304,11 +304,6 @@
           "default": false,
           "description": "Enable this option if you want to get complete CompletionList in language client. (Disable for better performance)"
         },
-        "volar.inlayHints.eventArgumentInInlineHandlers": {
-          "type": "boolean",
-          "default": false,
-          "description": "Show inlay hints for event argument in inline handlers."
-        },
         "volar.autoWrapParentheses": {
           "type": "boolean",
           "default": true,
