@@ -113,7 +113,6 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `volar.vueserver.diagnosticModel`: Diagnostic update model, valid option: `["push", "pull"]`, default: `push`
 - `volar.vueserver.maxOldSpaceSize`: Set `--max-old-space-size` option on server process. Maximum memory (in MB) that the server should use. On some systems this may only have effect when runtime has been set. Minimum 256.
 - `volar.vueserver.reverseConfigFilePriority`: Reverse priority for tsconfig pickup, default: `false`
-- `volar.vueserver.disableFileWatcher`: Disable file watcher in language server for better performance, default: `false`
 - `volar.vueserver.additionalExtensions`: List any additional file extensions that should be processed as Vue files (requires restart), default: `[]`
 - `volar.vueserver.fullCompletionList`: Enable this option if you want to get complete CompletionList in language client. (Disable for better performance), default: `false`
 - `volar.codeLens.references`: [references] code lens, default: `true`

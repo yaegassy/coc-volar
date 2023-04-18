@@ -215,10 +215,6 @@ export function reverseConfigFilePriority() {
   return !!workspace.getConfiguration('volar').get<boolean>('vueserver.reverseConfigFilePriority');
 }
 
-export function disableFileWatcher() {
-  return !!workspace.getConfiguration('volar').get<boolean>('vueserver.disableFileWatcher');
-}
-
 export function diagnosticModel() {
   return workspace.getConfiguration('volar').get<'push' | 'pull'>('vueserver.diagnosticModel');
 }
@@ -244,7 +240,6 @@ async function getInitializationOptions(serverMode: ServerMode, context: Extensi
     diagnosticModel: diagnosticModel() === 'pull' ? DiagnosticModel.Pull : DiagnosticModel.Push,
     typescript: resolveCurrentTsPaths,
     reverseConfigFilePriority: reverseConfigFilePriority(),
-    disableFileWatcher: disableFileWatcher(),
     maxFileSize: workspace.getConfiguration('volar').get<number>('vueserver.maxFileSize'),
     fullCompletionList: fullCompletionList(),
     // vue
