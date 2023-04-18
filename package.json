@@ -454,11 +454,6 @@
           "default": false,
           "description": "Show inlay hints for event argument in inline handlers."
         },
-        "volar.completion.normalizeComponentAutoImportName": {
-          "type": "boolean",
-          "default": true,
-          "description": "Normalize import name for auto import. (\"myCompVue\" -> \"MyComp\")"
-        },
         "volar.dev.serverPath": {
           "type": "string",
           "default": "",
