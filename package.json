@@ -446,11 +446,6 @@
           "default": true,
           "description": "Normalize import name for auto import. (\"myCompVue\" -> \"MyComp\")"
         },
-        "volar.diagnostics.delay": {
-          "type": "number",
-          "default": 200,
-          "description": "Delay time for diagnostics."
-        },
         "volar.dev.serverPath": {
           "type": "string",
           "default": "",
