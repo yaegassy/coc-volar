@@ -124,6 +124,7 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `vue.features.codeActions.enable`: Enabled code actions, default: `true`
 - `vue.features.codeLens.enable`: Enabled code lens, default: `true`
 - `vue.features.inlayHints.missingProps`: Show inlay hints for missing required props, `false`
+- `vue.features.inlayHints.inlineHandlerLeading`: Show inlay hints for event argument in inline handlers, default: `false`
 - `volar.completion.preferredTagNameCase`: Preferred tag name case, valid options: `["kebab", "pascal"]`, default: `"pascal"`
 - `volar.completion.preferredAttrNameCase`: Preferred attr name case, valid options: `["kebab", "camel"]`, default: `"kebab"`
 - `volar.completion.normalizeComponentAutoImportName`: Normalize import name for auto import. ("myCompVue" -> "MyComp"), default: `true`
