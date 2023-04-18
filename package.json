@@ -203,6 +203,16 @@
           "default": "en",
           "description": "Sets the locale used to report diagnostics message from typescript."
         },
+        "volar.autoCreateQuotes": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable/disable auto creation of quotes for HTML attribute assignment."
+        },
+        "volar.autoClosingTags": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable/disable autoClosing of HTML tags."
+        },
         "volar.scaffoldSnippets.enable": {
           "type": "boolean",
           "default": true,
@@ -222,6 +232,21 @@
           "type": "boolean",
           "default": false,
           "description": "Disable the initialization and workdone progress notifications."
+        },
+        "volar.dev.serverPath": {
+          "type": "string",
+          "default": "",
+          "description": "(For develop and check) Custom path to volar server module, ~ and $HOME, etc. can also be used. If there is no setting, the built-in module will be used "
+        },
+        "volar.middleware.provideCodeActions.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable fix patch for code action issue #112, #134"
+        },
+        "volar.middleware.provideCompletionItem.enable": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable fix patch for code action issue #226"
         },
         "vue-semantic-server.trace.server": {
           "scope": "window",
@@ -303,16 +328,6 @@
           "type": "boolean",
           "default": false,
           "description": "Enable this option if you want to get complete CompletionList in language client. (Disable for better performance)"
-        },
-        "volar.autoCreateQuotes": {
-          "type": "boolean",
-          "default": false,
-          "description": "Enable/disable auto creation of quotes for HTML attribute assignment."
-        },
-        "volar.autoClosingTags": {
-          "type": "boolean",
-          "default": false,
-          "description": "Enable/disable autoClosing of HTML tags."
         },
         "volar.takeOverMode.enabled": {
           "type": "boolean",
@@ -453,21 +468,6 @@
           "type": "boolean",
           "default": false,
           "description": "Show inlay hints for event argument in inline handlers."
-        },
-        "volar.dev.serverPath": {
-          "type": "string",
-          "default": "",
-          "description": "(For develop and check) Custom path to volar server module, ~ and $HOME, etc. can also be used. If there is no setting, the built-in module will be used "
-        },
-        "volar.middleware.provideCodeActions.enable": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enable fix patch for code action issue #112, #134"
-        },
-        "volar.middleware.provideCompletionItem.enable": {
-          "type": "boolean",
-          "default": false,
-          "description": "Enable fix patch for code action issue #226"
         },
         "vetur.enable": {
           "type": "boolean",
