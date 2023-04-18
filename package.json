@@ -314,11 +314,6 @@
           "default": false,
           "description": "Enable/disable autoClosing of HTML tags."
         },
-        "volar.autoCompleteRefs": {
-          "type": "boolean",
-          "default": false,
-          "description": "Auto-complete Ref value with '.value'."
-        },
         "volar.takeOverMode.enabled": {
           "type": "boolean",
           "default": false,
@@ -399,6 +394,11 @@
           "type": "boolean",
           "default": true,
           "description": "Auto-wrap `()` to As Expression in interpolations for fix volar-issue #520."
+        },
+        "vue.features.autoInsert.dotValue": {
+          "type": "boolean",
+          "default": false,
+          "description": "Auto-complete Ref value with `.value`."
         },
         "vue.features.inlayHints.missingProps": {
           "type": "boolean",

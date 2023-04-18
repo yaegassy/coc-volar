@@ -14,6 +14,8 @@ import * as serverStatus from './features/serverStatus';
 import * as tsVersion from './features/tsVersion';
 import * as virtualFiles from './features/virtualFiles';
 
+import { config } from './config';
+
 let semanticClient: LanguageClient;
 let syntacticClient: LanguageClient;
 
@@ -145,7 +147,7 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
     if (
       workspace.getConfiguration('volar').get<boolean>('autoCreateQuotes') ||
       workspace.getConfiguration('volar').get<boolean>('autoClosingTags') ||
-      workspace.getConfiguration('volar').get<boolean>('autoCompleteRefs')
+      workspace.getConfiguration('vue').get<boolean>('features.autoInsert.dotValue')
     ) {
       autoInsertion.register(context, syntacticClient, semanticClient);
     }
