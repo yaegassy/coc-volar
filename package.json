@@ -400,6 +400,11 @@
           "default": false,
           "description": "Auto-complete Ref value with `.value`."
         },
+        "vue.features.autoInsert.bracketSpacing": {
+          "type": "boolean",
+          "default": true,
+          "description": "Auto add space between double curly brackets: `{{|}} -> {{ | }}`"
+        },
         "vue.features.inlayHints.missingProps": {
           "type": "boolean",
           "default": false,

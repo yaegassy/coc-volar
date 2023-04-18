@@ -123,6 +123,7 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `vue.features.codeLens.enable`: Enabled code lens, default: `true`
 - `vue.features.autoInsert.parentheses`: Auto-wrap `()` to As Expression in interpolations for fix volar-issue #520, default: `true`
 - `vue.features.autoInsert.dotValue`: Auto-complete Ref value with `.value`, default: `false`
+- `vue.features.autoInsert.bracketSpacing`: Auto add space between double curly brackets: `{{|}} -> {{ | }}`, default: `true`
 - `vue.features.inlayHints.missingProps`: Show inlay hints for missing required props, `false`
 - `vue.features.inlayHints.inlineHandlerLeading`: Show inlay hints for event argument in inline handlers, default: `false`
 - `volar.completion.preferredTagNameCase`: Preferred tag name case, valid options: `["kebab", "pascal"]`, default: `"pascal"`
