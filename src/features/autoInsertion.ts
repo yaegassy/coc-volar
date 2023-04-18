@@ -175,8 +175,10 @@ export async function register(context: ExtensionContext, htmlClient: LanguageCl
                 // autoCreateQuotes
                 snippetManager.insertSnippet(text, true, Range.create(position, position));
               } else {
-                // autoCompleteRefs
-                snippetManager.insertSnippet(text, true, Range.create(position, position));
+                // vue.features.autoInsert.dotValue
+                if (workspace.getConfiguration('vue').get<boolean>('features.autoInsert.dotValue')) {
+                  snippetManager.insertSnippet(text, true, Range.create(position, position));
+                }
               }
             } else {
               snippetManager.insertSnippet(new SnippetString(text.newText), true, text.range);

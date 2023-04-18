@@ -100,10 +100,13 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `volar.enable`: Enable coc-volar extension, default: `true`
 - `volar.useWorkspaceTsdk`: Use workspace (project) detected tsLibs in volar. if false, use coc-volar's built-in tsLibs, default: `false`
 - `volar.tsLocale`: Sets the locale used to report diagnostics message from typescript, valid option: `["cs", "de", "es", "fr", "it", "ja", "ko", "en", "pl", "pt-br", "ru", "tr", "zh-cn", "zh-tw"]`, default: `"en"`
+- `volar.autoCreateQuotes`: Enable/disable auto creation of quotes for HTML attribute assignment, default: `false`
+- `volar.autoClosingTags`: Enable/disable autoClosing of HTML tags, default: `false`
 - `volar.scaffoldSnippets.enable`: Enable/disable scaffold snippets completion. Typing `vue` or `vuedc` will output completion suggestions. This snippets completion feature will only work on the first line of the file, default: `true`
 - `volar.disableDiagnostics`: Disable diagnostics from Volar, default: `false`
 - `volar.disableFormatting`: Disable formatting from Volar, default: `false`
 - `volar.disableProgressNotifications`: Disable the initialization and workdone progress notifications, default: `false`
+- `volar.dev.serverPath`: (For develop and check) Custom path to volar server module, `~` and `$HOME`, etc. can also be used. If there is no setting, the built-in module will be used, default: `""`
 - `vue-semantic-server.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
 - `vue-syntactic-server.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
 - `volar.vueserver.configFilePath`: Path to volar.config.js, default: `./volar.config.js`
@@ -113,24 +116,20 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `volar.vueserver.diagnosticModel`: Diagnostic update model, valid option: `["push", "pull"]`, default: `push`
 - `volar.vueserver.maxOldSpaceSize`: Set `--max-old-space-size` option on server process. Maximum memory (in MB) that the server should use. On some systems this may only have effect when runtime has been set. Minimum 256.
 - `volar.vueserver.reverseConfigFilePriority`: Reverse priority for tsconfig pickup, default: `false`
-- `volar.vueserver.disableFileWatcher`: Disable file watcher in language server for better performance, default: `false`
 - `volar.vueserver.additionalExtensions`: List any additional file extensions that should be processed as Vue files (requires restart), default: `[]`
 - `volar.vueserver.fullCompletionList`: Enable this option if you want to get complete CompletionList in language client. (Disable for better performance), default: `false`
-- `volar.codeLens.references`: [references] code lens, default: `true`
-- `volar.inlayHints.missingRequiredProps`: Show inlay hints for missing required props, default: `"true"`
-- `volar.inlayHints.eventArgumentInInlineHandlers`: Show inlay hints for event argument in inline handlers, default: `true`
-- `volar.autoWrapParentheses`: Auto-wrap `()` to As Expression in interpolations for fix issue `#520` of volar, default: `true`
-- `volar.autoCreateQuotes`: Enable/disable auto creation of quotes for HTML attribute assignment, default: `false`
-- `volar.autoClosingTags`: Enable/disable autoClosing of HTML tags, default: `false`
-- `volar.autoCompleteRefs`: Auto-complete Ref value with '.value', default: `false`
 - `volar.takeOverMode.enabled`: Take over language support for `*.ts`, default: `false`
-- `volar.format.initialIndent`: `volar.format.initialIndent`, default: `{ "html": true }`
-- `volar.completion.preferredTagNameCase`: Preferred tag name case, valid options: `["kebab", "pascal"]`, default: `"pascal"`
-- `volar.completion.preferredAttrNameCase`: Preferred attr name case, valid options: `["kebab", "camel"]`, default: `"kebab"`
-- `volar.completion.normalizeComponentAutoImportName`: Normalize import name for auto import. ("myCompVue" -> "MyComp"), default: `true`
-- `volar.updateImportsOnFileMove.enabled`: Enabled update imports on file move, default: `true`
-- `volar.diagnostics.delay`: Delay time for diagnostics, default: `200`
-- `volar.dev.serverPath`: (For develop and check) Custom path to volar server module, `~` and `$HOME`, etc. can also be used. If there is no setting, the built-in module will be used, default: `""`
+- `volar.format.initialIndent`: Whether to have initial indent, default: `{ "html": true }`
+- `vue.features.codeActions.enable`: Enabled code actions, default: `true`
+- `vue.features.codeLens.enable`: Enabled code lens, default: `true`
+- `vue.features.complete.tagNameCasing`: Preferred tag name case, valid options: `["autoKebab", "autoPascal", "kebab", "pascal"]`, default: `"autoPascal"`
+- `vue.features.complete.propNameCasing`: Preferred attr name case, valid options: `["autoKebab", "autoCamel", "kebab", "camel"]`, default: `"autoKebab"`
+- `vue.features.complete.normalizeComponentImportName`: Normalize import name for auto import. (\"myCompVue\" -> \"MyComp\"), default: `true`
+- `vue.features.autoInsert.parentheses`: Auto-wrap `()` to As Expression in interpolations for fix volar-issue #520, default: `true`
+- `vue.features.autoInsert.dotValue`: Auto-complete Ref value with `.value`, default: `false`
+- `vue.features.autoInsert.bracketSpacing`: Auto add space between double curly brackets: `{{|}} -> {{ | }}`, default: `true`
+- `vue.features.inlayHints.missingProps`: Show inlay hints for missing required props, `false`
+- `vue.features.inlayHints.inlineHandlerLeading`: Show inlay hints for event argument in inline handlers, default: `false`
 
 ## Commands
 
