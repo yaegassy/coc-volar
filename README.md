@@ -115,7 +115,6 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `volar.vueserver.reverseConfigFilePriority`: Reverse priority for tsconfig pickup, default: `false`
 - `volar.vueserver.additionalExtensions`: List any additional file extensions that should be processed as Vue files (requires restart), default: `[]`
 - `volar.vueserver.fullCompletionList`: Enable this option if you want to get complete CompletionList in language client. (Disable for better performance), default: `false`
-- `volar.autoWrapParentheses`: Auto-wrap `()` to As Expression in interpolations for fix issue `#520` of volar, default: `true`
 - `volar.autoCreateQuotes`: Enable/disable auto creation of quotes for HTML attribute assignment, default: `false`
 - `volar.autoClosingTags`: Enable/disable autoClosing of HTML tags, default: `false`
 - `volar.autoCompleteRefs`: Auto-complete Ref value with '.value', default: `false`
@@ -123,6 +122,7 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `volar.format.initialIndent`: `volar.format.initialIndent`, default: `{ "html": true }`
 - `vue.features.codeActions.enable`: Enabled code actions, default: `true`
 - `vue.features.codeLens.enable`: Enabled code lens, default: `true`
+- `vue.features.autoInsert.parentheses`: Auto-wrap `()` to As Expression in interpolations for fix volar-issue #520, default: `true`
 - `vue.features.inlayHints.missingProps`: Show inlay hints for missing required props, `false`
 - `vue.features.inlayHints.inlineHandlerLeading`: Show inlay hints for event argument in inline handlers, default: `false`
 - `volar.completion.preferredTagNameCase`: Preferred tag name case, valid options: `["kebab", "pascal"]`, default: `"pascal"`

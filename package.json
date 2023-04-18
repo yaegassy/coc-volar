@@ -304,11 +304,6 @@
           "default": false,
           "description": "Enable this option if you want to get complete CompletionList in language client. (Disable for better performance)"
         },
-        "volar.autoWrapParentheses": {
-          "type": "boolean",
-          "default": true,
-          "description": "Auto-wrap `()` to As Expression in interpolations for fix issue #520 of volar."
-        },
         "volar.autoCreateQuotes": {
           "type": "boolean",
           "default": false,
@@ -399,6 +394,11 @@
           "type": "boolean",
           "default": true,
           "description": "Enabled code lens."
+        },
+        "vue.features.autoInsert.parentheses": {
+          "type": "boolean",
+          "default": true,
+          "description": "Auto-wrap `()` to As Expression in interpolations for fix volar-issue #520."
         },
         "vue.features.inlayHints.missingProps": {
           "type": "boolean",
