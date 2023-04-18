@@ -123,6 +123,7 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `vue.features.codeLens.enable`: Enabled code lens, default: `true`
 - `vue.features.complete.tagNameCasing`: Preferred tag name case, valid options: `["autoKebab", "autoPascal", "kebab", "pascal"]`, default: `"autoPascal"`
 - `vue.features.complete.propNameCasing`: Preferred attr name case, valid options: `["autoKebab", "autoCamel", "kebab", "camel"]`, default: `"autoKebab"`
+- `vue.features.complete.normalizeComponentImportName`: Normalize import name for auto import. (\"myCompVue\" -> \"MyComp\"), default: `true`
 - `vue.features.autoInsert.parentheses`: Auto-wrap `()` to As Expression in interpolations for fix volar-issue #520, default: `true`
 - `vue.features.autoInsert.dotValue`: Auto-complete Ref value with `.value`, default: `false`
 - `vue.features.autoInsert.bracketSpacing`: Auto add space between double curly brackets: `{{|}} -> {{ | }}`, default: `true`
