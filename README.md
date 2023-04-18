@@ -122,12 +122,12 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `vue.features.codeActions.enable`: Enabled code actions, default: `true`
 - `vue.features.codeLens.enable`: Enabled code lens, default: `true`
 - `vue.features.complete.tagNameCasing`: Preferred tag name case, valid options: `["autoKebab", "autoPascal", "kebab", "pascal"]`, default: `autoPascal`
+- `vue.features.complete.propNameCasing`: Preferred attr name case, valid options: `["autoKebab", "autoCamel", "kebab", "camel"]`, default: `"autoKebab"`
 - `vue.features.autoInsert.parentheses`: Auto-wrap `()` to As Expression in interpolations for fix volar-issue #520, default: `true`
 - `vue.features.autoInsert.dotValue`: Auto-complete Ref value with `.value`, default: `false`
 - `vue.features.autoInsert.bracketSpacing`: Auto add space between double curly brackets: `{{|}} -> {{ | }}`, default: `true`
 - `vue.features.inlayHints.missingProps`: Show inlay hints for missing required props, `false`
 - `vue.features.inlayHints.inlineHandlerLeading`: Show inlay hints for event argument in inline handlers, default: `false`
-- `volar.completion.preferredAttrNameCase`: Preferred attr name case, valid options: `["kebab", "camel"]`, default: `"kebab"`
 - `volar.completion.normalizeComponentAutoImportName`: Normalize import name for auto import. ("myCompVue" -> "MyComp"), default: `true`
 - `volar.dev.serverPath`: (For develop and check) Custom path to volar server module, `~` and `$HOME`, etc. can also be used. If there is no setting, the built-in module will be used, default: `""`
 

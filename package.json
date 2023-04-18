@@ -407,6 +407,23 @@
           "default": "autoPascal",
           "description": "Preferred tag name case."
         },
+        "vue.features.complete.propNameCasing": {
+          "type": "string",
+          "enum": [
+            "autoKebab",
+            "autoCamel",
+            "kebab",
+            "camel"
+          ],
+          "enumDescriptions": [
+            "Auto Detect from Content (Fallback to :kebab-case=\"...\" if detect failed)",
+            "Auto Detect from Content (Fallback to :camelCase=\"...\" if detect failed)",
+            ":kebab-case=\"...\"",
+            ":camelCase=\"...\""
+          ],
+          "default": "autoKebab",
+          "description": "Preferred attr name case."
+        },
         "vue.features.autoInsert.parentheses": {
           "type": "boolean",
           "default": true,
@@ -431,19 +448,6 @@
           "type": "boolean",
           "default": false,
           "description": "Show inlay hints for event argument in inline handlers."
-        },
-        "volar.completion.preferredAttrNameCase": {
-          "type": "string",
-          "enum": [
-            "kebab",
-            "camel"
-          ],
-          "enumDescriptions": [
-            ":kebab-case=\"...\"",
-            ":camelCase=\"...\""
-          ],
-          "default": "kebab",
-          "description": "Preferred attr name case."
         },
         "volar.completion.normalizeComponentAutoImportName": {
           "type": "boolean",
