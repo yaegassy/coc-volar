@@ -121,7 +121,7 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `volar.format.initialIndent`: `volar.format.initialIndent`, default: `{ "html": true }`
 - `vue.features.codeActions.enable`: Enabled code actions, default: `true`
 - `vue.features.codeLens.enable`: Enabled code lens, default: `true`
-- `vue.features.complete.tagNameCasing`: Preferred tag name case, valid options: `["autoKebab", "autoPascal", "kebab", "pascal"]`, default: `autoPascal`
+- `vue.features.complete.tagNameCasing`: Preferred tag name case, valid options: `["autoKebab", "autoPascal", "kebab", "pascal"]`, default: `"autoPascal"`
 - `vue.features.complete.propNameCasing`: Preferred attr name case, valid options: `["autoKebab", "autoCamel", "kebab", "camel"]`, default: `"autoKebab"`
 - `vue.features.autoInsert.parentheses`: Auto-wrap `()` to As Expression in interpolations for fix volar-issue #520, default: `true`
 - `vue.features.autoInsert.dotValue`: Auto-complete Ref value with `.value`, default: `false`
