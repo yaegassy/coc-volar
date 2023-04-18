@@ -400,6 +400,11 @@
             }
           }
         },
+        "vue.features.codeLens.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enabled code lens."
+        },
         "volar.completion.preferredTagNameCase": {
           "type": "string",
           "enum": [
