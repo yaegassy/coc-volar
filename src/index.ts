@@ -32,6 +32,15 @@ import * as path from 'path';
 
 import { activate as commonActivate, deactivate as commonDeactivate } from './common';
 
+import {
+  getConfigVolarEnable,
+  getConfigDevServerPath,
+  getConfigDisableProgressNotifications,
+  getDisabledFeatures,
+  getConfigMiddlewareProvideCodeActionsEnable,
+  getConfigMiddlewareProvideCompletionItemEnable,
+} from './config';
+
 let serverModule: string;
 
 export async function activate(context: ExtensionContext): Promise<void> {
@@ -194,42 +203,4 @@ async function handleProvideCompletionItem(
   }
 
   return items;
-}
-
-function getConfigVolarEnable() {
-  return workspace.getConfiguration('volar').get<boolean>('enable', true);
-}
-
-function getConfigDisableProgressNotifications() {
-  return workspace.getConfiguration('volar').get<boolean>('disableProgressNotifications', false);
-}
-
-function getConfigDevServerPath() {
-  return workspace.getConfiguration('volar').get<string>('dev.serverPath', '');
-}
-
-function getConfigMiddlewareProvideCodeActionsEnable() {
-  return workspace.getConfiguration('volar').get<boolean>('middleware.provideCodeActions.enable', true);
-}
-
-function getConfigMiddlewareProvideCompletionItemEnable() {
-  return workspace.getConfiguration('volar').get<boolean>('middleware.provideCompletionItem.enable', true);
-}
-
-function getDisabledFeatures() {
-  const disabledFeatures: string[] = [];
-
-  if (workspace.getConfiguration('volar').get<boolean>('disableDiagnostics')) {
-    disabledFeatures.push('diagnostics');
-  }
-  if (workspace.getConfiguration('volar').get<boolean>('disableFormatting')) {
-    disabledFeatures.push('formatting');
-    disabledFeatures.push('documentFormatting');
-    disabledFeatures.push('documentRangeFormatting');
-  }
-  if (getConfigDisableProgressNotifications()) {
-    disabledFeatures.push('progress');
-  }
-
-  return disabledFeatures;
 }

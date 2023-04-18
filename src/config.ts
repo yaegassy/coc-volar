@@ -78,3 +78,45 @@ export const config = {
   //  },
   //},
 };
+
+//
+// Custom configuration for coc-volar.
+//
+
+export function getConfigVolarEnable() {
+  return workspace.getConfiguration('volar').get<boolean>('enable', true);
+}
+
+export function getConfigDisableProgressNotifications() {
+  return workspace.getConfiguration('volar').get<boolean>('disableProgressNotifications', false);
+}
+
+export function getConfigDevServerPath() {
+  return workspace.getConfiguration('volar').get<string>('dev.serverPath', '');
+}
+
+export function getConfigMiddlewareProvideCodeActionsEnable() {
+  return workspace.getConfiguration('volar').get<boolean>('middleware.provideCodeActions.enable', true);
+}
+
+export function getConfigMiddlewareProvideCompletionItemEnable() {
+  return workspace.getConfiguration('volar').get<boolean>('middleware.provideCompletionItem.enable', true);
+}
+
+export function getDisabledFeatures() {
+  const disabledFeatures: string[] = [];
+
+  if (workspace.getConfiguration('volar').get<boolean>('disableDiagnostics')) {
+    disabledFeatures.push('diagnostics');
+  }
+  if (workspace.getConfiguration('volar').get<boolean>('disableFormatting')) {
+    disabledFeatures.push('formatting');
+    disabledFeatures.push('documentFormatting');
+    disabledFeatures.push('documentRangeFormatting');
+  }
+  if (getConfigDisableProgressNotifications()) {
+    disabledFeatures.push('progress');
+  }
+
+  return disabledFeatures;
+}
