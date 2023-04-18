@@ -115,7 +115,6 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `volar.vueserver.reverseConfigFilePriority`: Reverse priority for tsconfig pickup, default: `false`
 - `volar.vueserver.additionalExtensions`: List any additional file extensions that should be processed as Vue files (requires restart), default: `[]`
 - `volar.vueserver.fullCompletionList`: Enable this option if you want to get complete CompletionList in language client. (Disable for better performance), default: `false`
-- `volar.codeLens.references`: [references] code lens, default: `true`
 - `volar.inlayHints.missingRequiredProps`: Show inlay hints for missing required props, default: `"true"`
 - `volar.inlayHints.eventArgumentInInlineHandlers`: Show inlay hints for event argument in inline handlers, default: `true`
 - `volar.autoWrapParentheses`: Auto-wrap `()` to As Expression in interpolations for fix issue `#520` of volar, default: `true`
