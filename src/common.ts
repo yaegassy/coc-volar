@@ -51,8 +51,8 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
     }
 
     if (
-      (!activated && currentLangId === 'markdown' && processMd()) ||
-      (!activated && currentLangId === 'html' && processHtml())
+      (!activated && currentLangId === 'markdown' && config.vueserver.vitePress.processMdFile) ||
+      (!activated && currentLangId === 'html' && config.vueserver.petiteVue.processHtmlFile)
     ) {
       doActivate(context, createLc);
       activated = true;
@@ -86,8 +86,8 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
       }
 
       if (
-        (!activated && currentlangId === 'markdown' && processMd()) ||
-        (!activated && currentlangId === 'html' && processHtml())
+        (!activated && currentlangId === 'markdown' && config.vueserver.vitePress.processMdFile) ||
+        (!activated && currentlangId === 'html' && config.vueserver.petiteVue.processHtmlFile)
       ) {
         doActivate(context, createLc);
         activated = true;
@@ -196,37 +196,18 @@ export function getDocumentSelector(_context: ExtensionContext, serverMode: Serv
     }
   }
 
-  if (processHtml()) {
+  if (config.vueserver.petiteVue.processHtmlFile) {
     selectors.push({ language: 'html' });
   }
-  if (processMd()) {
+  if (config.vueserver.vitePress.processMdFile) {
     selectors.push({ language: 'markdown' });
   }
+
   return selectors;
-}
-
-export function processHtml() {
-  return !!workspace.getConfiguration('volar').get<boolean>('vueserver.petiteVue.processHtmlFile');
-}
-
-export function processMd() {
-  return !!workspace.getConfiguration('volar').get<boolean>('vueserver.vitePress.processMdFile');
-}
-
-export function reverseConfigFilePriority() {
-  return !!workspace.getConfiguration('volar').get<boolean>('vueserver.reverseConfigFilePriority');
 }
 
 export function diagnosticModel() {
   return workspace.getConfiguration('volar').get<'push' | 'pull'>('vueserver.diagnosticModel');
-}
-
-function additionalExtensions() {
-  return workspace.getConfiguration('volar').get<string[]>('vueserver.additionalExtensions') ?? [];
-}
-
-function fullCompletionList() {
-  return workspace.getConfiguration('volar').get<boolean>('vueserver.fullCompletionList');
 }
 
 async function getInitializationOptions(serverMode: ServerMode, context: ExtensionContext) {
@@ -237,21 +218,21 @@ async function getInitializationOptions(serverMode: ServerMode, context: Extensi
 
   const initializationOptions: VueServerInitializationOptions = {
     // volar
-    configFilePath: workspace.getConfiguration('volar').get<string>('vueserver.configFilePath'),
+    configFilePath: config.vueserver.configFilePath,
     serverMode,
-    diagnosticModel: diagnosticModel() === 'pull' ? DiagnosticModel.Pull : DiagnosticModel.Push,
+    diagnosticModel: config.vueserver.diagnosticModel === 'pull' ? DiagnosticModel.Pull : DiagnosticModel.Push,
     typescript: resolveCurrentTsPaths,
-    reverseConfigFilePriority: reverseConfigFilePriority(),
-    maxFileSize: workspace.getConfiguration('volar').get<number>('vueserver.maxFileSize'),
-    fullCompletionList: fullCompletionList(),
+    reverseConfigFilePriority: config.vueserver.reverseConfigFilePriority,
+    maxFileSize: config.vueserver.maxFileSize,
+    fullCompletionList: config.vueserver.fullCompletionList,
     // vue
     petiteVue: {
-      processHtmlFile: processHtml(),
+      processHtmlFile: !!config.vueserver.petiteVue.processHtmlFile,
     },
     vitePress: {
-      processMdFile: processMd(),
+      processMdFile: !!config.vueserver.vitePress.processMdFile,
     },
-    additionalExtensions: additionalExtensions(),
+    additionalExtensions: config.vueserver.additionalExtensions,
   };
   return initializationOptions;
 }
