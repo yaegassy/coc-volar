@@ -114,6 +114,9 @@ export function getDisabledFeatures() {
     disabledFeatures.push('documentFormatting');
     disabledFeatures.push('documentRangeFormatting');
   }
+  if (!config.features.codeActions.enable) {
+    disabledFeatures.push('codeAction');
+  }
   if (!config.features.codeLens.enable) {
     disabledFeatures.push('codeLens');
   }

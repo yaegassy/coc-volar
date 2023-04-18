@@ -400,6 +400,11 @@
             }
           }
         },
+        "vue.features.codeActions.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enabled code actions."
+        },
         "vue.features.codeLens.enable": {
           "type": "boolean",
           "default": true,
