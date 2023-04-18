@@ -390,6 +390,23 @@
           "default": true,
           "description": "Enabled code lens."
         },
+        "vue.features.complete.tagNameCasing": {
+          "type": "string",
+          "enum": [
+            "autoKebab",
+            "autoPascal",
+            "kebab",
+            "pascal"
+          ],
+          "enumDescriptions": [
+            "Auto Detect from Content (Fallback to <kebab-case> if detect failed)",
+            "Auto Detect from Content  (Fallback to <PascalCase> if detect failed)",
+            "<kebab-case>",
+            "<PascalCase>"
+          ],
+          "default": "autoPascal",
+          "description": "Preferred tag name case."
+        },
         "vue.features.autoInsert.parentheses": {
           "type": "boolean",
           "default": true,
@@ -414,19 +431,6 @@
           "type": "boolean",
           "default": false,
           "description": "Show inlay hints for event argument in inline handlers."
-        },
-        "volar.completion.preferredTagNameCase": {
-          "type": "string",
-          "enum": [
-            "kebab",
-            "pascal"
-          ],
-          "enumDescriptions": [
-            "<kebab-case>",
-            "<PascalCase>"
-          ],
-          "default": "pascal",
-          "description": "Preferred tag name case."
         },
         "volar.completion.preferredAttrNameCase": {
           "type": "string",
