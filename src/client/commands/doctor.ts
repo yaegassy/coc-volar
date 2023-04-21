@@ -73,9 +73,9 @@ function doctorCommand(context: ExtensionContext) {
     }
 
     let tsVersion: string | undefined;
-    const tsServerPath = context.workspaceState.get<string>('coc-volar-ts-server-path');
-    if (tsServerPath) {
-      const typescriptPackageJsonPath = path.join(path.resolve(path.dirname(tsServerPath), '..'), 'package.json');
+    const tsdkPath = context.workspaceState.get<string>('coc-volar-tsdk-path');
+    if (tsdkPath) {
+      const typescriptPackageJsonPath = path.join(path.resolve(path.dirname(tsdkPath), '..'), 'package.json');
       if (fs.existsSync(typescriptPackageJsonPath)) {
         tsVersion = getPackageVersionFromJson(typescriptPackageJsonPath);
       }
@@ -90,7 +90,7 @@ function doctorCommand(context: ExtensionContext) {
       vueRuntimeDomVersion: vueRuntimeDomVersion === undefined ? 'none' : vueRuntimeDomVersion,
       vueTscVersion: vueTscVersion === undefined ? 'none' : vueTscVersion,
       tsVersion,
-      tsServerPath,
+      tsdkPath,
       settings: workspace.getConfiguration('volar'),
     };
 

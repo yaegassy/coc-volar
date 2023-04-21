@@ -213,7 +213,7 @@ export function diagnosticModel() {
 async function getInitializationOptions(serverMode: ServerMode, context: ExtensionContext) {
   if (!resolveCurrentTsPaths) {
     resolveCurrentTsPaths = tsVersion.getCurrentTsPaths(context);
-    context.workspaceState.update('coc-volar-ts-server-path', resolveCurrentTsPaths.tsdk);
+    context.workspaceState.update('coc-volar-tsdk-path', resolveCurrentTsPaths.tsdk);
   }
 
   const initializationOptions: VueServerInitializationOptions = {
@@ -238,5 +238,5 @@ async function getInitializationOptions(serverMode: ServerMode, context: Extensi
 }
 
 function initializeWorkspaceState(context: ExtensionContext) {
-  context.workspaceState.update('coc-volar-ts-server-path', undefined);
+  context.workspaceState.update('coc-volar-tsdk-path', undefined);
 }
