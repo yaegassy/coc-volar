@@ -520,7 +520,7 @@
     ]
   },
   "dependencies": {
-    "@volar/vue-language-server": "1.4.0",
+    "@volar/vue-language-server": "1.4.1",
     "typescript": "4.9.5"
   }
 }
