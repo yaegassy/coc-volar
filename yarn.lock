@@ -448,10 +448,10 @@
   dependencies:
     muggle-string "^0.2.2"
 
-"@volar/vue-language-core@1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@volar/vue-language-core/-/vue-language-core-1.4.1.tgz#d7701592acff4f83c78801d661a50b00d6e4a90c"
-  integrity sha512-BMfOUhrJ/2E6hwvY6tVq8FCAFCdh7QTscLNuwU71qr2wjxMytMQfrlSZI4fkIhuMt52anKGnps/Uk6wOL0JSgw==
+"@volar/vue-language-core@1.4.2":
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/@volar/vue-language-core/-/vue-language-core-1.4.2.tgz#dad9ebd126ffbb4b6252d8a89ac85d8d4c86bd4e"
+  integrity sha512-bDdFowfnyHI7udELEgUWukOh4l9jVTaxb9jZtj0GxUp0Mjj0u81d9+jE2UC3fFJpbndQLGFR6F+ffguHgmrj6Q==
   dependencies:
     "@volar/language-core" "1.4.0"
     "@volar/source-map" "1.4.0"
@@ -463,22 +463,22 @@
     muggle-string "^0.2.2"
     vue-template-compiler "^2.7.14"
 
-"@volar/vue-language-server@1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@volar/vue-language-server/-/vue-language-server-1.4.1.tgz#6c1434329572edeadf504a6900ccc1f18fb0537a"
-  integrity sha512-+/4umOU4XKbJbkY3965Pmi6KNpBe5S00BGJS7mS9sN6VnG2hlpZ3qELIwMGp8QUS987O6P3M2DymvEeLr1NNsg==
+"@volar/vue-language-server@1.4.2":
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/@volar/vue-language-server/-/vue-language-server-1.4.2.tgz#1f8d39cf7ee8d35dda8b60679b8b0d253bfc440f"
+  integrity sha512-Fvxj2/Tnmzxdsh4ADj4Z1rVtCoMpPwOalFdYMI9HD69ORP+7rJ9ea1um0a1IiyGLSwH59HcRvQiC2zbSsq7iBA==
   dependencies:
     "@volar/language-core" "1.4.0"
     "@volar/language-server" "1.4.0"
-    "@volar/vue-language-core" "1.4.1"
-    "@volar/vue-language-service" "1.4.1"
+    "@volar/vue-language-core" "1.4.2"
+    "@volar/vue-language-service" "1.4.2"
     vscode-languageserver-protocol "^3.17.3"
-    vue-component-meta "1.4.1"
+    vue-component-meta "1.4.2"
 
-"@volar/vue-language-service@1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@volar/vue-language-service/-/vue-language-service-1.4.1.tgz#2e16be16e2a12fcd9d8af424175ca5f84e6d0166"
-  integrity sha512-jzQjITWXLcAbiJlZrwTJPShlVLZdmeJN1/yFrXw+CZBF8Dk5q7HnQBRoU8iiSVprsHfhJAdSHXF/V7nWic5I2w==
+"@volar/vue-language-service@1.4.2":
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/@volar/vue-language-service/-/vue-language-service-1.4.2.tgz#4424f4d0f7216f3d82b752006a81296a26e1e1b9"
+  integrity sha512-g/8wI5ggcMUl3yOPVkRhQJmQEG4rmIzXNPJuapd76kIoMUZushtWuSYg7zOLIkLFca12M+7bFyFqQKMWYTFkrA==
   dependencies:
     "@volar-plugins/css" "2.0.0"
     "@volar-plugins/emmet" "2.0.0"
@@ -491,7 +491,7 @@
     "@volar/language-core" "1.4.0"
     "@volar/language-service" "1.4.0"
     "@volar/source-map" "1.4.0"
-    "@volar/vue-language-core" "1.4.1"
+    "@volar/vue-language-core" "1.4.2"
     "@vue/compiler-dom" "^3.2.0"
     "@vue/reactivity" "^3.2.0"
     "@vue/shared" "^3.2.0"
@@ -1658,13 +1658,13 @@ vscode-uri@^3.0.7:
   resolved "https://registry.yarnpkg.com/vscode-uri/-/vscode-uri-3.0.7.tgz#6d19fef387ee6b46c479e5fb00870e15e58c1eb8"
   integrity sha512-eOpPHogvorZRobNqJGhapa0JdwaxpjVvyBp0QIUMRMSf8ZAlqOdEquKuRmw9Qwu0qXtJIWqFtMkmvJjUZmMjVA==
 
-vue-component-meta@1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/vue-component-meta/-/vue-component-meta-1.4.1.tgz#f32620f2c9ee5514cc97c3b4d01cf05b8cb4d8f4"
-  integrity sha512-iXl5WRWUWI1w/Sxnsmfe9SSiCfPCuW/gOgllEgpNShffsogqdubDN0ReFIui8N2B1dafI/eMEz9vJfT+5F32gg==
+vue-component-meta@1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/vue-component-meta/-/vue-component-meta-1.4.2.tgz#3cc012bad4e49588c214a47f7f490491e7cb8ef2"
+  integrity sha512-rLxr67Yeeu4Ini5HtSbgOf98Ib05ywVBFyG7ZJh62OPou/p5mzQ6lMO/PCnHexsH+BMlxuhHfTvLx4cWASwdRg==
   dependencies:
     "@volar/language-core" "1.4.0"
-    "@volar/vue-language-core" "1.4.1"
+    "@volar/vue-language-core" "1.4.2"
     typesafe-path "^0.2.2"
 
 vue-template-compiler@^2.7.14:

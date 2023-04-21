@@ -190,9 +190,6 @@ export function getDocumentSelector(_context: ExtensionContext, serverMode: Serv
     if (serverMode === ServerMode.Semantic || serverMode === ServerMode.PartialSemantic) {
       // support find references for .json files
       selectors.push({ language: 'json' });
-      // support document links for tsconfig.json
-      selectors.push({ language: 'jsonc', pattern: '**/[jt]sconfig.json' });
-      selectors.push({ language: 'jsonc', pattern: '**/[jt]sconfig.*.json' });
     }
   }
 
