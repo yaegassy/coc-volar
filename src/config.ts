@@ -4,11 +4,11 @@ const volarConfigs = () => workspace.getConfiguration('volar');
 const vueConfigs = () => workspace.getConfiguration('vue');
 
 export const config = {
-  splitEditors: {
-    get layout() {
-      return volarConfigs().get<{ left: string[]; right: string[] }>('splitEditors.layout') ?? { left: [], right: [] };
-    },
-  },
+  //splitEditors: {
+  //  get layout() {
+  //    return volarConfigs().get<{ left: string[]; right: string[] }>('splitEditors.layout') ?? { left: [], right: [] };
+  //  },
+  //},
   features: {
     updateImportsOnFileMove: {
       get enable() {
@@ -78,11 +78,16 @@ export const config = {
       },
     },
   },
-  doctor: {
-    get status() {
-      return volarConfigs().get<boolean>('doctor.status');
-    },
-  },
+  //doctor: {
+  //  get status() {
+  //    return volarConfigs().get<boolean>('doctor.status');
+  //  },
+  //},
+  //nameCasing: {
+  //  get status() {
+  //    return volarConfigs().get<boolean>('nameCasing.status');
+  //  },
+  //},
 };
 
 //
