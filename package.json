@@ -521,6 +521,6 @@
   },
   "dependencies": {
     "@volar/vue-language-server": "1.5.0",
-    "typescript": "4.9.5"
+    "typescript": "5.0.4"
   }
 }
