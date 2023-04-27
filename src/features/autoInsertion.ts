@@ -169,14 +169,14 @@ export async function register(context: ExtensionContext, htmlClient: LanguageCl
           if (document.uri === activeDocument.uri && activeDocument.version === version) {
             if (typeof text === 'string') {
               if (lastChange.text === '>') {
-                // autoClosingTags
+                // volar.autoClosingTags
                 snippetManager.insertSnippet(text, true, Range.create(position, position));
               } else if (lastChange.text === '=') {
-                // autoCreateQuotes
+                // volar.autoCreateQuotes
                 snippetManager.insertSnippet(text, true, Range.create(position, position));
               } else {
-                // vue.features.autoInsert.dotValue
-                if (workspace.getConfiguration('vue').get<boolean>('features.autoInsert.dotValue')) {
+                // vue.autoInsert.dotValue
+                if (workspace.getConfiguration('vue').get<boolean>('autoInsert.dotValue')) {
                   snippetManager.insertSnippet(text, true, Range.create(position, position));
                 }
               }

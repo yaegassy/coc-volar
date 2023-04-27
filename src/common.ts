@@ -51,8 +51,8 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
     }
 
     if (
-      (!activated && currentLangId === 'markdown' && config.vueserver.vitePress.processMdFile) ||
-      (!activated && currentLangId === 'html' && config.vueserver.petiteVue.processHtmlFile)
+      (!activated && currentLangId === 'markdown' && config.server.vitePress.supportMdFile) ||
+      (!activated && currentLangId === 'html' && config.server.petiteVue.supportHtmlFile)
     ) {
       doActivate(context, createLc);
       activated = true;
@@ -86,8 +86,8 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
       }
 
       if (
-        (!activated && currentlangId === 'markdown' && config.vueserver.vitePress.processMdFile) ||
-        (!activated && currentlangId === 'html' && config.vueserver.petiteVue.processHtmlFile)
+        (!activated && currentlangId === 'markdown' && config.server.vitePress.supportMdFile) ||
+        (!activated && currentlangId === 'html' && config.server.petiteVue.supportHtmlFile)
       ) {
         doActivate(context, createLc);
         activated = true;
@@ -147,7 +147,7 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
     if (
       workspace.getConfiguration('volar').get<boolean>('autoCreateQuotes') ||
       workspace.getConfiguration('volar').get<boolean>('autoClosingTags') ||
-      workspace.getConfiguration('vue').get<boolean>('features.autoInsert.dotValue')
+      workspace.getConfiguration('vue').get<boolean>('autoInsert.dotValue')
     ) {
       autoInsertion.register(context, syntacticClient, semanticClient);
     }
@@ -193,18 +193,14 @@ export function getDocumentSelector(_context: ExtensionContext, serverMode: Serv
     }
   }
 
-  if (config.vueserver.petiteVue.processHtmlFile) {
+  if (config.server.petiteVue.supportHtmlFile) {
     selectors.push({ language: 'html' });
   }
-  if (config.vueserver.vitePress.processMdFile) {
+  if (config.server.vitePress.supportMdFile) {
     selectors.push({ language: 'markdown' });
   }
 
   return selectors;
-}
-
-export function diagnosticModel() {
-  return workspace.getConfiguration('volar').get<'push' | 'pull'>('vueserver.diagnosticModel');
 }
 
 async function getInitializationOptions(serverMode: ServerMode, context: ExtensionContext) {
@@ -215,21 +211,23 @@ async function getInitializationOptions(serverMode: ServerMode, context: Extensi
 
   const initializationOptions: VueServerInitializationOptions = {
     // volar
-    configFilePath: config.vueserver.configFilePath,
+    configFilePath: config.server.configFilePath,
     serverMode,
-    diagnosticModel: config.vueserver.diagnosticModel === 'pull' ? DiagnosticModel.Pull : DiagnosticModel.Push,
+    diagnosticModel: config.server.diagnosticModel === 'pull' ? DiagnosticModel.Pull : DiagnosticModel.Push,
     typescript: resolveCurrentTsPaths,
-    reverseConfigFilePriority: config.vueserver.reverseConfigFilePriority,
-    maxFileSize: config.vueserver.maxFileSize,
-    fullCompletionList: config.vueserver.fullCompletionList,
+    reverseConfigFilePriority: config.server.reverseConfigFilePriority,
+    maxFileSize: config.server.maxFileSize,
+    semanticTokensLegend: {
+      tokenTypes: ['component'],
+      tokenModifiers: [],
+    },
+    fullCompletionList: config.server.fullCompletionList,
     // vue
-    petiteVue: {
-      processHtmlFile: !!config.vueserver.petiteVue.processHtmlFile,
-    },
-    vitePress: {
-      processMdFile: !!config.vueserver.vitePress.processMdFile,
-    },
-    additionalExtensions: config.vueserver.additionalExtensions,
+    additionalExtensions: [
+      ...config.server.additionalExtensions,
+      ...(!config.server.petiteVue.supportHtmlFile ? [] : ['html']),
+      ...(!config.server.vitePress.supportMdFile ? [] : ['md']),
+    ],
   };
   return initializationOptions;
 }
