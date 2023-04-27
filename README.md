@@ -52,14 +52,14 @@ Notes for make `VitePress`, `petite-vue` project working with Volar.
 
 ### VitePress
 
-- Set `volar.vueserver.vitePress.processMdFile` to `true` in `.vim/coc-settings.json`.
+- Set `vue.server.vitePress.supportMdFile` to `true` in `.vim/coc-settings.json`.
   - **[WARNING]** If you use this setting, it is recommended to enable it at the workspace (project) level.
 - `vue` is optional add in devDependencies for better intellisense.
 - Make sure added related `.md` files path to tsconfig.json `include` property.
 
 ### petite-vue
 
-- Set `volar.vueserver.petiteVue.processHtmlFile` to `true` in `.vim/coc-settings.json`.
+- Set `vue.server.petiteVue.supportHtmlFile` to `true` in `.vim/coc-settings.json`.
   - **[WARNING]** If you use this setting, it is recommended to enable it at the workspace (project) level.
 - Set `html.enable` to `false` in `.vim/coc-settings.json`.
 - `vue` is optional add in devDependencies for better intellisense.
@@ -107,29 +107,30 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `volar.disableFormatting`: Disable formatting from Volar, default: `false`
 - `volar.disableProgressNotifications`: Disable the initialization and workdone progress notifications, default: `false`
 - `volar.dev.serverPath`: (For develop and check) Custom path to volar server module, `~` and `$HOME`, etc. can also be used. If there is no setting, the built-in module will be used, default: `""`
+- `volar.takeOverMode.enabled`: Take over language support for `*.ts`, default: `false`
+- `volar.format.initialIndent`: Whether to have initial indent, default: `{}`
 - `vue-semantic-server.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
 - `vue-syntactic-server.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
-- `volar.vueserver.configFilePath`: Path to volar.config.js, default: `./volar.config.js`
-- `volar.vueserver.maxFileSize`: Maximum file size for Vue Server to load. (default: 20MB), default: `20971520`
-- `volar.vueserver.petiteVue.processHtmlFile`: Recognize `.html` extension as PetiteVue file format. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, and adding `__PATH_TO_HTML_FILES_/*.html` to config include option, default: `false`
-- `volar.vueserver.vitePress.processMdFile`: Recognize `.md` extension as VitePress file format. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, and adding `__PATH_TO_MD_FILES_/*.md` to config include option, default: `false`
-- `volar.vueserver.diagnosticModel`: Diagnostic update model, valid option: `["push", "pull"]`, default: `push`
-- `volar.vueserver.maxOldSpaceSize`: Set `--max-old-space-size` option on server process. Maximum memory (in MB) that the server should use. On some systems this may only have effect when runtime has been set. Minimum 256.
-- `volar.vueserver.reverseConfigFilePriority`: Reverse priority for tsconfig pickup, default: `false`
-- `volar.vueserver.additionalExtensions`: List any additional file extensions that should be processed as Vue files (requires restart), default: `[]`
-- `volar.vueserver.fullCompletionList`: Enable this option if you want to get complete CompletionList in language client. (Disable for better performance), default: `false`
-- `volar.takeOverMode.enabled`: Take over language support for `*.ts`, default: `false`
-- `volar.format.initialIndent`: Whether to have initial indent, default: `{ "html": true }`
-- `vue.features.codeActions.enable`: Enabled code actions, default: `true`
-- `vue.features.codeLens.enable`: Enabled code lens, default: `true`
-- `vue.features.complete.tagNameCasing`: Preferred tag name case, valid options: `["autoKebab", "autoPascal", "kebab", "pascal"]`, default: `"autoPascal"`
-- `vue.features.complete.propNameCasing`: Preferred attr name case, valid options: `["autoKebab", "autoCamel", "kebab", "camel"]`, default: `"autoKebab"`
-- `vue.features.complete.normalizeComponentImportName`: Normalize import name for auto import. (\"myCompVue\" -> \"MyComp\"), default: `true`
-- `vue.features.autoInsert.parentheses`: Auto-wrap `()` to As Expression in interpolations for fix volar-issue #520, default: `true`
-- `vue.features.autoInsert.dotValue`: Auto-complete Ref value with `.value`, default: `false`
-- `vue.features.autoInsert.bracketSpacing`: Auto add space between double curly brackets: `{{|}} -> {{ | }}`, default: `true`
-- `vue.features.inlayHints.missingProps`: Show inlay hints for missing required props, `false`
-- `vue.features.inlayHints.inlineHandlerLeading`: Show inlay hints for event argument in inline handlers, default: `false`
+- `vue.server.configFilePath`: Path to volar.config.js, default: `./volar.config.js`
+- `vue.server.maxFileSize`: Maximum file size for Vue Server to load. (default: 20MB), default: `20971520`
+- `vue.server.petiteVue.supportHtmlFile `: Recognize `.html` extension as PetiteVue file format. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, and adding `__PATH_TO_HTML_FILES_/*.html` to config include option, default: `false`
+- `vue.server.vitePress.supportMdFile`: Recognize `.md` extension as VitePress file format. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, and adding `__PATH_TO_MD_FILES_/*.md` to config include option, default: `false`
+- `vue.server.diagnosticModel`: Diagnostic update model, valid option: `["push", "pull"]`, default: `push`
+- `vue.server.maxOldSpaceSize`: Set `--max-old-space-size` option on server process. Maximum memory (in MB) that the server should use. On some systems this may only have effect when runtime has been set. Minimum 256.
+- `vue.server.reverseConfigFilePriority`: Reverse priority for tsconfig pickup, default: `false`
+- `vue.server.additionalExtensions`: List any additional file extensions that should be processed as Vue files (requires restart), default: `[]`
+- `vue.server.fullCompletionList`: Enable this option if you want to get complete CompletionList in language client. (Disable for better performance), default: `false`
+- `vue.codeActions.enabled`: Enabled code actions, default: `true`
+- `vue.codeLens.enabled`: Enabled code lens, default: `true`
+- `vue.complete.casing.tags`: Preferred tag name case, valid options: `["autoKebab", "autoPascal", "kebab", "pascal"]`, default: `"autoPascal"`
+- `vue.complete.casing.props`: Preferred attr name case, valid options: `["autoKebab", "autoCamel", "kebab", "camel"]`, default: `"autoKebab"`
+- `vue.complete.normalizeComponentImportName`: Normalize import name for auto import. (\"myCompVue\" -> \"MyComp\"), default: `true`
+- `vue.autoInsert.parentheses`: Auto-wrap `()` to As Expression in interpolations for fix volar-issue #520, default: `true`
+- `vue.autoInsert.dotValue`: Auto-complete Ref value with `.value`, default: `false`
+- `vue.autoInsert.bracketSpacing`: Auto add space between double curly brackets: `{{|}} -> {{ | }}`, default: `true`
+- `vue.inlayHints.missingProps`: Show inlay hints for missing required props, `false`
+- `vue.inlayHints.inlineHandlerLeading`: Show inlay hints for event argument in inline handlers, default: `false`
+- `vue.inlayHints.optionsWrapper`: Show inlay hints for component options wrapper for type support, default: `true`
 
 ## Commands
 

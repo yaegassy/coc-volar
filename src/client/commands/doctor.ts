@@ -91,7 +91,7 @@ function doctorCommand(context: ExtensionContext) {
       vueTscVersion: vueTscVersion === undefined ? 'none' : vueTscVersion,
       tsVersion,
       tsdkPath,
-      settings: workspace.getConfiguration('volar'),
+      settings: { volar: { ...workspace.getConfiguration('volar') }, vue: { ...workspace.getConfiguration('vue') } },
     };
 
     const outputText = JSON.stringify(doctorData, null, 2);

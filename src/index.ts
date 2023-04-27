@@ -39,6 +39,7 @@ import {
   getDisabledFeatures,
   getConfigMiddlewareProvideCodeActionsEnable,
   getConfigMiddlewareProvideCompletionItemEnable,
+  config,
 } from './config';
 
 let serverModule: string;
@@ -70,7 +71,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
       );
     }
 
-    const maxOldSpaceSize = workspace.getConfiguration('volar').get<number | null>('vueserver.maxOldSpaceSize');
+    const maxOldSpaceSize = config.server.maxOldSpaceSize;
     const runOptions = { execArgv: <string[]>[] };
     if (maxOldSpaceSize) {
       runOptions.execArgv.push('--max-old-space-size=' + maxOldSpaceSize);

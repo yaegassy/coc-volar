@@ -248,87 +248,6 @@
           "default": false,
           "description": "Enable fix patch for code action issue #226"
         },
-        "vue-semantic-server.trace.server": {
-          "scope": "window",
-          "type": "string",
-          "enum": [
-            "off",
-            "messages",
-            "verbose"
-          ],
-          "default": "off",
-          "description": "Traces the communication between coc.nvim and the language server."
-        },
-        "vue-syntactic-server.trace.server": {
-          "scope": "window",
-          "type": "string",
-          "enum": [
-            "off",
-            "messages",
-            "verbose"
-          ],
-          "default": "off",
-          "description": "Traces the communication between coc.nvim and the language server."
-        },
-        "volar.vueserver.configFilePath": {
-          "type": "string",
-          "default": "./volar.config.js",
-          "description": "Path to volar.config.js."
-        },
-        "volar.vueserver.maxFileSize": {
-          "type": "number",
-          "default": 20971520,
-          "description": "Maximum file size for Vue Server to load. (default: 20MB)"
-        },
-        "volar.vueserver.petiteVue.processHtmlFile": {
-          "type": "boolean",
-          "default": false,
-          "description": "Recognize `.html` extension as PetiteVue file format. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, and adding `__PATH_TO_HTML_FILES_/*.html` to config include option"
-        },
-        "volar.vueserver.vitePress.processMdFile": {
-          "type": "boolean",
-          "default": false,
-          "description": "Recognize `.md` extension as VitePress file format. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, and adding `__PATH_TO_MD_FILES_/*.md` to config include option"
-        },
-        "volar.vueserver.diagnosticModel": {
-          "type": "string",
-          "default": "push",
-          "enum": [
-            "push",
-            "pull"
-          ],
-          "enumDescriptions": [
-            "Diagnostic push by language server.",
-            "Diagnostic pull by language client."
-          ],
-          "description": "Diagnostic update model."
-        },
-        "volar.vueserver.maxOldSpaceSize": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "default": null,
-          "description": "Set `--max-old-space-size` option on server process. Maximum memory (in MB) that the server should use. On some systems this may only have effect when runtime has been set. Minimum 256"
-        },
-        "volar.vueserver.reverseConfigFilePriority": {
-          "type": "boolean",
-          "default": false,
-          "description": "Reverse priority for tsconfig pickup."
-        },
-        "volar.vueserver.additionalExtensions": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "default": [],
-          "description": "List any additional file extensions that should be processed as Vue files (requires restart)."
-        },
-        "volar.vueserver.fullCompletionList": {
-          "type": "boolean",
-          "default": false,
-          "description": "Enable this option if you want to get complete CompletionList in language client. (Disable for better performance)"
-        },
         "volar.takeOverMode.enabled": {
           "type": "boolean",
           "default": false,
@@ -395,17 +314,98 @@
             }
           }
         },
-        "vue.features.codeActions.enable": {
+        "vue-semantic-server.trace.server": {
+          "scope": "window",
+          "type": "string",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "default": "off",
+          "description": "Traces the communication between coc.nvim and the language server."
+        },
+        "vue-syntactic-server.trace.server": {
+          "scope": "window",
+          "type": "string",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "default": "off",
+          "description": "Traces the communication between coc.nvim and the language server."
+        },
+        "vue.server.configFilePath": {
+          "type": "string",
+          "default": "./volar.config.js",
+          "description": "Path to volar.config.js."
+        },
+        "vue.server.maxFileSize": {
+          "type": "number",
+          "default": 20971520,
+          "description": "Maximum file size for Vue Server to load. (default: 20MB)"
+        },
+        "vue.server.petiteVue.supportHtmlFile": {
+          "type": "boolean",
+          "default": false,
+          "description": "Recognize `.html` extension as PetiteVue file format. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, and adding `__PATH_TO_HTML_FILES_/*.html` to config include option"
+        },
+        "vue.server.vitePress.supportMdFile": {
+          "type": "boolean",
+          "default": false,
+          "description": "Recognize `.md` extension as VitePress file format. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, and adding `__PATH_TO_MD_FILES_/*.md` to config include option"
+        },
+        "vue.server.diagnosticModel": {
+          "type": "string",
+          "default": "push",
+          "enum": [
+            "push",
+            "pull"
+          ],
+          "enumDescriptions": [
+            "Diagnostic push by language server.",
+            "Diagnostic pull by language client."
+          ],
+          "description": "Diagnostic update model."
+        },
+        "vue.server.maxOldSpaceSize": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "default": null,
+          "description": "Set `--max-old-space-size` option on server process. Maximum memory (in MB) that the server should use. On some systems this may only have effect when runtime has been set. Minimum 256"
+        },
+        "vue.server.reverseConfigFilePriority": {
+          "type": "boolean",
+          "default": false,
+          "description": "Reverse priority for tsconfig pickup."
+        },
+        "vue.server.additionalExtensions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "List any additional file extensions that should be processed as Vue files (requires restart)."
+        },
+        "vue.server.fullCompletionList": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable this option if you want to get complete CompletionList in language client. (Disable for better performance)"
+        },
+        "vue.codeActions.enabled": {
           "type": "boolean",
           "default": true,
           "description": "Enabled code actions."
         },
-        "vue.features.codeLens.enable": {
+        "vue.codeLens.enabled": {
           "type": "boolean",
           "default": true,
           "description": "Enabled code lens."
         },
-        "vue.features.complete.tagNameCasing": {
+        "vue.complete.casing.tags": {
           "type": "string",
           "enum": [
             "autoKebab",
@@ -422,7 +422,7 @@
           "default": "autoPascal",
           "description": "Preferred tag name case."
         },
-        "vue.features.complete.propNameCasing": {
+        "vue.complete.casing.props": {
           "type": "string",
           "enum": [
             "autoKebab",
@@ -439,35 +439,40 @@
           "default": "autoKebab",
           "description": "Preferred attr name case."
         },
-        "vue.features.complete.normalizeComponentImportName": {
+        "vue.complete.normalizeComponentImportName": {
           "type": "boolean",
           "default": true,
           "description": "Normalize import name for auto import. (\"myCompVue\" -> \"MyComp\")"
         },
-        "vue.features.autoInsert.parentheses": {
+        "vue.autoInsert.parentheses": {
           "type": "boolean",
           "default": true,
           "description": "Auto-wrap `()` to As Expression in interpolations for fix volar-issue #520."
         },
-        "vue.features.autoInsert.dotValue": {
+        "vue.autoInsert.dotValue": {
           "type": "boolean",
           "default": false,
           "description": "Auto-complete Ref value with `.value`."
         },
-        "vue.features.autoInsert.bracketSpacing": {
+        "vue.autoInsert.bracketSpacing": {
           "type": "boolean",
           "default": true,
           "description": "Auto add space between double curly brackets: `{{|}} -> {{ | }}`"
         },
-        "vue.features.inlayHints.missingProps": {
+        "vue.inlayHints.missingProps": {
           "type": "boolean",
           "default": false,
           "description": "Show inlay hints for missing required props."
         },
-        "vue.features.inlayHints.inlineHandlerLeading": {
+        "vue.inlayHints.inlineHandlerLeading": {
           "type": "boolean",
           "default": false,
           "description": "Show inlay hints for event argument in inline handlers."
+        },
+        "vue.inlayHints.optionsWrapper": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show inlay hints for component options wrapper for type support."
         },
         "vetur.enable": {
           "type": "boolean",
