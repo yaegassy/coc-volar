@@ -453,10 +453,10 @@
   dependencies:
     muggle-string "^0.2.2"
 
-"@volar/vue-language-core@1.6.2":
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/@volar/vue-language-core/-/vue-language-core-1.6.2.tgz#1652e74dd41f5e546d68dbc773fec21dc16b1a66"
-  integrity sha512-xcp4PMSoWAwBC6Lq8vmCCL6dShQtmgJXYvDeaBotGsKl5YbHermcR7U5Mog3mv6p2EIV1ErjhAzy5RgBsz17rQ==
+"@volar/vue-language-core@1.6.3":
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/@volar/vue-language-core/-/vue-language-core-1.6.3.tgz#20113de55c21f210dd5dc740891b5f3d8f9c0bac"
+  integrity sha512-e9OTDCPa8Wuh0ORhD4z++qTIcrsrqcI9waspr93YcQCq6j+Q+JTFuy7HBSQgyezSAsP6x1WWokKVk4fWWDJQOw==
   dependencies:
     "@volar/language-core" "1.4.1"
     "@volar/source-map" "1.4.1"
@@ -468,22 +468,22 @@
     muggle-string "^0.2.2"
     vue-template-compiler "^2.7.14"
 
-"@volar/vue-language-server@1.6.2":
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/@volar/vue-language-server/-/vue-language-server-1.6.2.tgz#e23cda0ae3647d622ddd40c6e6504abe92d5c886"
-  integrity sha512-53gbAoYvBUZcGpCB/iDAGCnJ/u3j5rVpy7wtUZoQ11QQfWY3dfvOKLmlHJnlwgeJdkQS18X2aXI7mrlakbktZA==
+"@volar/vue-language-server@1.6.3":
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/@volar/vue-language-server/-/vue-language-server-1.6.3.tgz#21a155405f069f200d6b335befb4c6ced8b0d677"
+  integrity sha512-YPP36VXy6WD0BWHTLPX79C75D6ymgbL3ovZPs7kl3BJ7tGFf67B7SFVaYJUuqsxJMjhyyadWhRlS1CC+WJO5zA==
   dependencies:
     "@volar/language-core" "1.4.1"
     "@volar/language-server" "1.4.1"
-    "@volar/vue-language-core" "1.6.2"
-    "@volar/vue-language-service" "1.6.2"
+    "@volar/vue-language-core" "1.6.3"
+    "@volar/vue-language-service" "1.6.3"
     vscode-languageserver-protocol "^3.17.3"
-    vue-component-meta "1.6.2"
+    vue-component-meta "1.6.3"
 
-"@volar/vue-language-service@1.6.2":
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/@volar/vue-language-service/-/vue-language-service-1.6.2.tgz#7e5fd1573439b232cdd5a033ef862625df7a7e86"
-  integrity sha512-9/xbvmhuJlTZgNNISz++/kKq0rKT0oLdR2PuaPsA/N4sNlt486Xm4D6guM96DRyGkNKuxA9i5b9DanVE7jJEnw==
+"@volar/vue-language-service@1.6.3":
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/@volar/vue-language-service/-/vue-language-service-1.6.3.tgz#1ef4fba3ea50e3fa2be37f016149e48989394fc5"
+  integrity sha512-4pOruLg1DwPCWkymeLtED87HKlZs/safOkgWaKe0L/gTNgMtMwrfbjx5b2nZtYcdE6FA8fwl2AzDFwphjkrWrg==
   dependencies:
     "@volar-plugins/css" "2.0.0"
     "@volar-plugins/emmet" "2.0.0"
@@ -496,7 +496,7 @@
     "@volar/language-core" "1.4.1"
     "@volar/language-service" "1.4.1"
     "@volar/source-map" "1.4.1"
-    "@volar/vue-language-core" "1.6.2"
+    "@volar/vue-language-core" "1.6.3"
     "@vue/compiler-dom" "^3.3.0-beta.3"
     "@vue/reactivity" "^3.3.0-beta.3"
     "@vue/shared" "^3.3.0-beta.3"
@@ -1655,20 +1655,20 @@ vscode-uri@^3.0.7:
   resolved "https://registry.yarnpkg.com/vscode-uri/-/vscode-uri-3.0.7.tgz#6d19fef387ee6b46c479e5fb00870e15e58c1eb8"
   integrity sha512-eOpPHogvorZRobNqJGhapa0JdwaxpjVvyBp0QIUMRMSf8ZAlqOdEquKuRmw9Qwu0qXtJIWqFtMkmvJjUZmMjVA==
 
-vue-component-meta@1.6.2:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/vue-component-meta/-/vue-component-meta-1.6.2.tgz#a97cd1b0997af43b6c191e2b21e35e7cb637ca72"
-  integrity sha512-c8EE3jIIKk44Z+6vWFX4e+Vfh1dXhn5UaFvAJqWWP/ciq2MRQzyqzzNlNuk4424mOuSxmRjMnKtLZhv8IranDw==
+vue-component-meta@1.6.3:
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/vue-component-meta/-/vue-component-meta-1.6.3.tgz#586d3a8e2be123ec1218769aa68f6145e2edfa38"
+  integrity sha512-ani/zGhKFriJna5FcuNfTp+t9X2Xy6AS4mwAeln3s8R3OYIrXp+yGmkJc+u6WmUgHeCPupTaXlfAC4nFYbrSCA==
   dependencies:
     "@volar/language-core" "1.4.1"
-    "@volar/vue-language-core" "1.6.2"
+    "@volar/vue-language-core" "1.6.3"
     typesafe-path "^0.2.2"
-    vue-component-type-helpers "1.6.2"
+    vue-component-type-helpers "1.6.3"
 
-vue-component-type-helpers@1.6.2:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/vue-component-type-helpers/-/vue-component-type-helpers-1.6.2.tgz#d0b55f36d601dc0c0b5d30de851d53ea5c3b3555"
-  integrity sha512-4+WBCUnf51ZTSLLBijJ0ePos+stILhWJvkBi3IezPhXS01JAy0WrzBWtmrK4sDI9SrjjTuaCJeGeaHqhwV7sFA==
+vue-component-type-helpers@1.6.3:
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/vue-component-type-helpers/-/vue-component-type-helpers-1.6.3.tgz#83b259fdc62ee7772199c3417af4d19a7343a29b"
+  integrity sha512-d1SA+w3EMauEG38rjdtUNOp3TK4dl/RVMHb4aCVaG5490rNIGoybJurWbwLa0ofdPTkT0ie8yUQSyhebyqGQQw==
 
 vue-template-compiler@^2.7.14:
   version "2.7.14"
