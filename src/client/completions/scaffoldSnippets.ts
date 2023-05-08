@@ -1,5 +1,4 @@
 import {
-  languages,
   CancellationToken,
   CompletionContext,
   CompletionItem,
@@ -8,13 +7,14 @@ import {
   CompletionList,
   ExtensionContext,
   InsertTextFormat,
+  languages,
   Position,
   TextDocument,
   workspace,
 } from 'coc.nvim';
 
-import path from 'path';
 import fs from 'fs';
+import path from 'path';
 
 export async function register(context: ExtensionContext) {
   if (workspace.getConfiguration('volar').get<boolean>('scaffoldSnippets.enable')) {

@@ -33,13 +33,13 @@ import * as path from 'path';
 import { activate as commonActivate, deactivate as commonDeactivate } from './common';
 
 import {
-  getConfigVolarEnable,
+  config,
   getConfigDevServerPath,
   getConfigDisableProgressNotifications,
-  getDisabledFeatures,
   getConfigMiddlewareProvideCodeActionsEnable,
   getConfigMiddlewareProvideCompletionItemEnable,
-  config,
+  getConfigVolarEnable,
+  getDisabledFeatures,
 } from './config';
 
 let serverModule: string;
