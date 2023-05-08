@@ -6,7 +6,7 @@ import {
   GetVirtualFileRequest,
   ReloadProjectNotification,
   ReportStats,
-} from '@volar/vue-language-server';
+} from '@vue/language-server';
 import * as coc from 'coc.nvim';
 
 /**
