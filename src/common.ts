@@ -1,6 +1,6 @@
 import { commands, DocumentFilter, ExtensionContext, LanguageClient, Thenable, workspace } from 'coc.nvim';
 
-import { DiagnosticModel, ServerMode, VueServerInitializationOptions } from '@volar/vue-language-server';
+import { DiagnosticModel, ServerMode, VueServerInitializationOptions } from '@vue/language-server';
 
 import * as doctor from './client/commands/doctor';
 import * as initializeTakeOverMode from './client/commands/initializeTakeOverMode';

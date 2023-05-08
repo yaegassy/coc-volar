@@ -33,13 +33,13 @@ import * as path from 'path';
 import { activate as commonActivate, deactivate as commonDeactivate } from './common';
 
 import {
-  getConfigVolarEnable,
+  config,
   getConfigDevServerPath,
   getConfigDisableProgressNotifications,
-  getDisabledFeatures,
   getConfigMiddlewareProvideCodeActionsEnable,
   getConfigMiddlewareProvideCompletionItemEnable,
-  config,
+  getConfigVolarEnable,
+  getDisabledFeatures,
 } from './config';
 
 let serverModule: string;
@@ -67,7 +67,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
       serverModule = devVolarServerPath;
     } else {
       serverModule = context.asAbsolutePath(
-        path.join('node_modules', '@volar', 'vue-language-server', 'bin', 'vue-language-server.js')
+        path.join('node_modules', '@vue', 'language-server', 'bin', 'vue-language-server.js')
       );
     }
 
