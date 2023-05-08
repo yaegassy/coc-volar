@@ -67,7 +67,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
       serverModule = devVolarServerPath;
     } else {
       serverModule = context.asAbsolutePath(
-        path.join('node_modules', '@volar', 'vue-language-server', 'bin', 'vue-language-server.js')
+        path.join('node_modules', '@vue', 'language-server', 'bin', 'vue-language-server.js')
       );
     }
 
