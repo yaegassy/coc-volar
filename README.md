@@ -138,7 +138,6 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `volar.action.doctor`: Show Doctor info
 - `volar.action.restartServer`: Restart Vue server
 - `volar.action.reloadProject`: Reload Project
-- `volar.action.showVirtualFiles`: Show Virtual Files (Debug)
 - `volar.action.serverStats`: Server Stats (Debug)
 - `volar.action.showComponentMeta`: Show Component Meta
 - `volar.action.splitEditors`: Split `<script>`, `<template>`, `<style>` Editors

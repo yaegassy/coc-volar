@@ -12,7 +12,6 @@ import * as fileReferences from './features/fileReferences';
 import * as reloadProject from './features/reloadProject';
 import * as serverStatus from './features/serverStatus';
 import * as tsVersion from './features/tsVersion';
-import * as virtualFiles from './features/virtualFiles';
 
 import { config } from './config';
 
@@ -152,7 +151,6 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
       autoInsertion.register(context, syntacticClient, semanticClient);
     }
 
-    virtualFiles.register(context, semanticClient);
     serverStatus.register(context, semanticClient);
     componentMeta.register(context, semanticClient);
   }
