@@ -503,11 +503,6 @@
         "category": "Volar"
       },
       {
-        "command": "volar.action.showVirtualFiles",
-        "title": "Show Virtual Files (Debug)",
-        "category": "Volar (Debug)"
-      },
-      {
         "command": "volar.action.serverStats",
         "title": "Server Stats",
         "category": "Volar (Debug)"

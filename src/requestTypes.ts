@@ -2,7 +2,6 @@ import {
   AutoInsertRequest,
   FindFileReferenceRequest,
   GetComponentMeta,
-  GetVirtualFileNamesRequest,
   GetVirtualFileRequest,
   ReloadProjectNotification,
   ReportStats,
@@ -26,12 +25,6 @@ export const AutoInsertRequestType = new coc.RequestType<
 >(AutoInsertRequest.type.method);
 
 export const ReloadProjectNotificationType = new coc.NotificationType(ReloadProjectNotification.type.method);
-
-export const GetVirtualFileNamesRequestType = new coc.RequestType<
-  GetVirtualFileNamesRequest.ParamsType,
-  GetVirtualFileNamesRequest.ResponseType,
-  GetVirtualFileNamesRequest.ErrorType
->(GetVirtualFileNamesRequest.type.method);
 
 export const GetVirtualFileRequestType = new coc.RequestType<
   GetVirtualFileRequest.ParamsType,
