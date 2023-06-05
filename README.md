@@ -65,6 +65,20 @@ Notes for make `VitePress`, `petite-vue` project working with Volar.
 - `vue` is optional add in devDependencies for better intellisense.
 - Make sure added related `.html` files path to tsconfig.json `include` property.
 
+## [RECOMMENDED] Additional installation of "watchman"
+
+In the `@vue/language-server` used by `coc-volar`, it utilizes the `workspace/didChangeWatchedFiles` notification to watch files within the project.
+
+In coc.nvim, it is recommended to install [watchman](https://facebook.github.io/watchman/) in order to utilize this feature.
+
+- See: <https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions>
+
+If you have difficulty installing `watchman`, you can use `coc-volar` without `watchman`, but you may not be able to immediately use volar's IntelliSense with the newly added files.
+
+In this case, please execute the command to restart the language server.
+
+- `:CocRestart`
+
 ## workspaceFolders
 
 Depending on the project like mono repo or how Vim/Neovim is started, `workspaceFolders` may not be recognized correctly.
