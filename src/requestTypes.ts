@@ -4,7 +4,6 @@ import {
   GetComponentMeta,
   GetVirtualFileRequest,
   ReloadProjectNotification,
-  ReportStats,
 } from '@vue/language-server';
 import * as coc from 'coc.nvim';
 
@@ -31,8 +30,6 @@ export const GetVirtualFileRequestType = new coc.RequestType<
   GetVirtualFileRequest.ResponseType,
   GetVirtualFileRequest.ErrorType
 >(GetVirtualFileRequest.type.method);
-
-export const ReportStatsType = new coc.NotificationType(ReportStats.type.method);
 
 export const GetComponentMetaType = new coc.RequestType<
   GetComponentMeta.ParamsType,
