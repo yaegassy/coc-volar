@@ -503,11 +503,6 @@
         "category": "Volar"
       },
       {
-        "command": "volar.action.serverStats",
-        "title": "Server Stats",
-        "category": "Volar (Debug)"
-      },
-      {
         "command": "volar.action.showComponentMeta",
         "title": "Show Component Meta",
         "category": "Volar"
@@ -520,7 +515,7 @@
     ]
   },
   "dependencies": {
-    "@vue/language-server": "1.7.8",
+    "@vue/language-server": "1.7.11",
     "typescript": "5.0.4"
   }
 }

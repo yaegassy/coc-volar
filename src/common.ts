@@ -10,7 +10,6 @@ import * as autoInsertion from './features/autoInsertion';
 import * as componentMeta from './features/componentMeta';
 import * as fileReferences from './features/fileReferences';
 import * as reloadProject from './features/reloadProject';
-import * as serverStatus from './features/serverStatus';
 import * as tsVersion from './features/tsVersion';
 
 import { config } from './config';
@@ -151,7 +150,6 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
       autoInsertion.register(context, syntacticClient, semanticClient);
     }
 
-    serverStatus.register(context, semanticClient);
     componentMeta.register(context, semanticClient);
   }
 
