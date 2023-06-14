@@ -3,6 +3,9 @@ module.exports = {
     node: true,
   },
   parser: '@typescript-eslint/parser',
+  parserOptions: {
+    warnOnUnsupportedTypeScriptVersion: false,
+  },
   extends: ['plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended'],
   rules: {
     '@typescript-eslint/ban-ts-comment': 'off',
