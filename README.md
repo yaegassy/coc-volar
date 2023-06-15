@@ -144,7 +144,7 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `vue.autoInsert.bracketSpacing`: Auto add space between double curly brackets: `{{|}} -> {{ | }}`, default: `true`
 - `vue.inlayHints.missingProps`: Show inlay hints for missing required props, `false`
 - `vue.inlayHints.inlineHandlerLeading`: Show inlay hints for event argument in inline handlers, default: `false`
-- `vue.inlayHints.optionsWrapper`: Show inlay hints for component options wrapper for type support, default: `true`
+- `vue.inlayHints.optionsWrapper`: Show inlay hints for component options wrapper for type support, default: `false`
 
 ## Commands
 
