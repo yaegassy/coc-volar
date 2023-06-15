@@ -471,7 +471,7 @@
         },
         "vue.inlayHints.optionsWrapper": {
           "type": "boolean",
-          "default": true,
+          "default": false,
           "description": "Show inlay hints for component options wrapper for type support."
         },
         "vetur.enable": {
@@ -515,7 +515,7 @@
     ]
   },
   "dependencies": {
-    "@vue/language-server": "1.7.12",
+    "@vue/language-server": "1.7.13",
     "typescript": "5.1.3"
   }
 }
