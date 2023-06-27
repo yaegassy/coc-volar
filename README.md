@@ -33,6 +33,12 @@ In `coc-volar`, please enable and use "Take Over Mode". Check the Vue.js documen
 
 If you want to use the "TypeScript Vue Plugin" instead of Take Over Mode, install `typescript-vue-plugin` in your project (`npm install typescript-vue-plugin`). After installation, add a setting in `tsconfig.json` to use `typescript-vue-plugin`.
 
+If you do not want to install `typescript-vue-plugin` in the project itself, use the [coc-typescript-vue-plugin](https://github.com/yaegassy/coc-typescript-vue-plugin) extension.
+
+```vim
+:CocInstall @yaegassy/coc-typescript-vue-plugin
+```
+
 ### If you are using "Take Over Mode" for the first time in your project
 
 1. To begin, open the `*.vue`, `*.ts`, `*.js`, `*.tsx`, `*.jsx` file.
