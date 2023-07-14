@@ -1,4 +1,13 @@
-import { commands, DocumentFilter, ExtensionContext, LanguageClient, Thenable, workspace } from 'coc.nvim';
+import {
+  DocumentFilter,
+  ExtensionContext,
+  LanguageClient,
+  OutputChannel,
+  Thenable,
+  commands,
+  window,
+  workspace,
+} from 'coc.nvim';
 
 import { DiagnosticModel, ServerMode, VueServerInitializationOptions } from '@vue/language-server';
 
@@ -22,7 +31,8 @@ type CreateLanguageClient = (
   name: string,
   langs: DocumentFilter[],
   initOptions: VueServerInitializationOptions,
-  port: number
+  port: number,
+  outputChannel: OutputChannel
 ) => LanguageClient;
 
 let resolveCurrentTsPaths: {
@@ -110,20 +120,25 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
 export async function doActivate(context: ExtensionContext, createLc: CreateLanguageClient) {
   initializeWorkspaceState(context);
 
+  const semanticOutputChannel = window.createOutputChannel('Vue Semantic Server');
+  const syntacticOutputChannel = window.createOutputChannel('Vue Syntactic Server');
+
   [semanticClient, syntacticClient] = await Promise.all([
     createLc(
       'vue-semantic-server',
       'Vue Semantic Server',
       getDocumentSelector(context, ServerMode.PartialSemantic),
       await getInitializationOptions(ServerMode.PartialSemantic, context),
-      6009
+      6009,
+      semanticOutputChannel
     ),
     createLc(
       'vue-syntactic-server',
       'Vue Syntactic Server',
       getDocumentSelector(context, ServerMode.Syntactic),
       await getInitializationOptions(ServerMode.Syntactic, context),
-      6011
+      6011,
+      syntacticOutputChannel
     ),
   ]);
   const clients = [semanticClient, syntacticClient];
@@ -199,33 +214,35 @@ export function getDocumentSelector(_context: ExtensionContext, serverMode: Serv
   return selectors;
 }
 
-async function getInitializationOptions(serverMode: ServerMode, context: ExtensionContext) {
+async function getInitializationOptions(
+  serverMode: ServerMode,
+  context: ExtensionContext,
+  options: VueServerInitializationOptions = {}
+) {
   if (!resolveCurrentTsPaths) {
     resolveCurrentTsPaths = tsVersion.getCurrentTsPaths(context);
     context.workspaceState.update('coc-volar-tsdk-path', resolveCurrentTsPaths.tsdk);
   }
 
-  const initializationOptions: VueServerInitializationOptions = {
-    // volar
-    configFilePath: config.server.configFilePath,
-    serverMode,
-    diagnosticModel: config.server.diagnosticModel === 'pull' ? DiagnosticModel.Pull : DiagnosticModel.Push,
-    typescript: resolveCurrentTsPaths,
-    reverseConfigFilePriority: config.server.reverseConfigFilePriority,
-    maxFileSize: config.server.maxFileSize,
-    semanticTokensLegend: {
-      tokenTypes: ['component'],
-      tokenModifiers: [],
-    },
-    fullCompletionList: config.server.fullCompletionList,
-    // vue
-    additionalExtensions: [
-      ...config.server.additionalExtensions,
-      ...(!config.server.petiteVue.supportHtmlFile ? [] : ['html']),
-      ...(!config.server.vitePress.supportMdFile ? [] : ['md']),
-    ],
+  // volar
+  options.configFilePath = config.server.configFilePath;
+  options.serverMode = serverMode;
+  options.diagnosticModel = config.server.diagnosticModel === 'pull' ? DiagnosticModel.Pull : DiagnosticModel.Push;
+  options.typescript = resolveCurrentTsPaths;
+  options.reverseConfigFilePriority = config.server.reverseConfigFilePriority;
+  options.maxFileSize = config.server.maxFileSize;
+  options.semanticTokensLegend = {
+    tokenTypes: ['component'],
+    tokenModifiers: [],
   };
-  return initializationOptions;
+  options.fullCompletionList = config.server.fullCompletionList;
+  options.additionalExtensions = [
+    ...config.server.additionalExtensions,
+    ...(!config.server.petiteVue.supportHtmlFile ? [] : ['html']),
+    ...(!config.server.vitePress.supportMdFile ? [] : ['md']),
+  ];
+
+  return options;
 }
 
 function initializeWorkspaceState(context: ExtensionContext) {
