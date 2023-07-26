@@ -87,7 +87,14 @@ export async function activate(context: ExtensionContext): Promise<void> {
     };
 
     const client = new _LanguageClient(id, name, serverOptions, clientOptions);
-    context.subscriptions.push(services.registerLanguageClient(client));
+
+    // **Memo**
+    //
+    // There is a registerLanguageClient, but it is not available for the
+    // slightly older coc.nvim, so an error is possible.
+    //
+    // Therefore, we will use the old registLanguageClient
+    context.subscriptions.push(services.registLanguageClient(client));
 
     return client;
   });
