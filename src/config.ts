@@ -75,10 +75,6 @@ export function getConfigDevServerPath() {
   return workspace.getConfiguration('volar').get<string>('dev.serverPath', '');
 }
 
-export function getConfigMiddlewareProvideCodeActionsEnable() {
-  return workspace.getConfiguration('volar').get<boolean>('middleware.provideCodeActions.enable', true);
-}
-
 export function getConfigMiddlewareProvideCompletionItemEnable() {
   return workspace.getConfiguration('volar').get<boolean>('middleware.provideCompletionItem.enable', true);
 }

@@ -238,11 +238,6 @@
           "default": "",
           "description": "(For develop and check) Custom path to volar server module, ~ and $HOME, etc. can also be used. If there is no setting, the built-in module will be used "
         },
-        "volar.middleware.provideCodeActions.enable": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enable fix patch for code action issue #112, #134"
-        },
         "volar.middleware.provideCompletionItem.enable": {
           "type": "boolean",
           "default": false,
