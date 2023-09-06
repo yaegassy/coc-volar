@@ -4,6 +4,7 @@ import {
   CompletionItem,
   CompletionList,
   ExtensionContext,
+  ForkOptions,
   InitializeParams,
   LanguageClient,
   LanguageClientOptions,
@@ -24,7 +25,6 @@ import { activate as commonActivate, deactivate as commonDeactivate } from './co
 
 import {
   config,
-  getConfigDevServerPath,
   getConfigDisableProgressNotifications,
   getConfigMiddlewareProvideCompletionItemEnable,
   getConfigVolarEnable,
@@ -43,20 +43,21 @@ export async function activate(context: ExtensionContext): Promise<void> {
       }
     }
 
-    const devVolarServerPath = workspace.expand(getConfigDevServerPath());
-    if (devVolarServerPath && fs.existsSync(devVolarServerPath)) {
-      serverModule = devVolarServerPath;
+    const vueServerPath = config.server.path ? workspace.expand(config.server.path) : null;
+    if (vueServerPath != null && fs.existsSync(vueServerPath)) {
+      serverModule = vueServerPath;
     } else {
       serverModule = context.asAbsolutePath(
         path.join('node_modules', '@vue', 'language-server', 'bin', 'vue-language-server.js')
       );
     }
 
-    const maxOldSpaceSize = config.server.maxOldSpaceSize;
-    const runOptions = { execArgv: <string[]>[] };
-    if (maxOldSpaceSize) {
-      runOptions.execArgv.push('--max-old-space-size=' + maxOldSpaceSize);
+    const runOptions: ForkOptions = {};
+    if (config.server.maxOldSpaceSize) {
+      runOptions.execArgv ??= [];
+      runOptions.execArgv.push('--max-old-space-size=' + config.server.maxOldSpaceSize);
     }
+
     const debugOptions = { execArgv: ['--nolazy', '--inspect=' + port] };
     const serverOptions: ServerOptions = {
       run: {
