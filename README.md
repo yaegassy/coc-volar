@@ -132,11 +132,11 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `vue-syntactic-server.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
 - `vue.server.path`: Custom path to volar server module, `~` and `$HOME` can also be used. If there is no setting, the built-in module will be used, default: `null`
 - `vue.server.configFilePath`: Path to volar.config.js, default: `./volar.config.js`
-- `vue.server.maxFileSize`: Maximum file size for Vue Server to load. (default: 20MB), default: `20971520`
+- `vue.server.maxFileSize`: Maximum file size for Vue Language Server to load. (default: 20MB), default: `20971520`
 - `vue.server.petiteVue.supportHtmlFile `: Recognize `.html` extension as PetiteVue file format. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, and adding `__PATH_TO_HTML_FILES_/*.html` to config include option, default: `false`
 - `vue.server.vitePress.supportMdFile`: Recognize `.md` extension as VitePress file format. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, and adding `__PATH_TO_MD_FILES_/*.md` to config include option, default: `false`
 - `vue.server.diagnosticModel`: Diagnostic update model, valid option: `["push", "pull"]`, default: `push`
-- `vue.server.maxOldSpaceSize`: Set `--max-old-space-size` option on server process. Maximum memory (in MB) that the server should use. On some systems this may only have effect when runtime has been set. Minimum 256.
+- `vue.server.maxOldSpaceSize`: Set `--max-old-space-size` option on server process. If you have problem on frequently `"Request textDocument/** failed."` error, try setting higher memory(MB) on it, default: `null`
 - `vue.server.reverseConfigFilePriority`: Reverse priority for tsconfig pickup, default: `false`
 - `vue.server.additionalExtensions`: List any additional file extensions that should be processed as Vue files (requires restart), default: `[]`
 - `vue.server.fullCompletionList`: Enable this option if you want to get complete CompletionList in language client. (Disable for better performance), default: `false`
