@@ -24,7 +24,6 @@ import { activate as commonActivate, deactivate as commonDeactivate } from './co
 
 import {
   config,
-  getConfigDevServerPath,
   getConfigDisableProgressNotifications,
   getConfigMiddlewareProvideCompletionItemEnable,
   getConfigVolarEnable,
@@ -43,9 +42,9 @@ export async function activate(context: ExtensionContext): Promise<void> {
       }
     }
 
-    const devVolarServerPath = workspace.expand(getConfigDevServerPath());
-    if (devVolarServerPath && fs.existsSync(devVolarServerPath)) {
-      serverModule = devVolarServerPath;
+    const vueServerPath = config.server.path ? workspace.expand(config.server.path) : null;
+    if (vueServerPath != null && fs.existsSync(vueServerPath)) {
+      serverModule = vueServerPath;
     } else {
       serverModule = context.asAbsolutePath(
         path.join('node_modules', '@vue', 'language-server', 'bin', 'vue-language-server.js')

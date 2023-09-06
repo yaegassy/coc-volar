@@ -234,11 +234,6 @@
           "default": false,
           "description": "Disable the initialization and workdone progress notifications."
         },
-        "volar.dev.serverPath": {
-          "type": "string",
-          "default": "",
-          "description": "(For develop and check) Custom path to volar server module, ~ and $HOME, etc. can also be used. If there is no setting, the built-in module will be used "
-        },
         "volar.middleware.provideCompletionItem.enable": {
           "type": "boolean",
           "default": false,
@@ -331,6 +326,14 @@
           ],
           "default": "off",
           "description": "Traces the communication between coc.nvim and the language server."
+        },
+        "vue.server.path": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null,
+          "description": "Custom path to volar server module, ~ and $HOME can also be used. If there is no setting, the built-in module will be used."
         },
         "vue.server.configFilePath": {
           "type": "string",

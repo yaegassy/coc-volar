@@ -16,6 +16,7 @@ export const config = {
   //  return _config().get('doctor')!;
   //},
   get server(): Readonly<{
+    path: null | string;
     maxOldSpaceSize: number;
     maxFileSize: number;
     reverseConfigFilePriority: boolean;
@@ -69,10 +70,6 @@ export function getConfigVolarEnable() {
 
 export function getConfigDisableProgressNotifications() {
   return workspace.getConfiguration('volar').get<boolean>('disableProgressNotifications', false);
-}
-
-export function getConfigDevServerPath() {
-  return workspace.getConfiguration('volar').get<string>('dev.serverPath', '');
 }
 
 export function getConfigMiddlewareProvideCompletionItemEnable() {
