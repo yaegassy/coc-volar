@@ -22,6 +22,6 @@ export async function register(context: ExtensionContext, client: LanguageClient
           const buf = await workspace.nvim.buffer;
           buf.setLines(JSON.stringify(meta, undefined, '\t').split('\n'), { start: 0, end: -1 });
         });
-    })
+    }),
   );
 }

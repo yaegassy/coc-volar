@@ -32,7 +32,7 @@ type CreateLanguageClient = (
   langs: DocumentFilter[],
   initOptions: VueServerInitializationOptions,
   port: number,
-  outputChannel: OutputChannel
+  outputChannel: OutputChannel,
 ) => LanguageClient;
 
 let resolveCurrentTsPaths: {
@@ -113,7 +113,7 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
       }
     },
     null,
-    context.subscriptions
+    context.subscriptions,
   );
 }
 
@@ -130,7 +130,7 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
       getDocumentSelector(context, ServerMode.PartialSemantic),
       await getInitializationOptions(ServerMode.PartialSemantic, context),
       6009,
-      semanticOutputChannel
+      semanticOutputChannel,
     ),
     createLc(
       'vue-syntactic-server',
@@ -138,7 +138,7 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
       getDocumentSelector(context, ServerMode.Syntactic),
       await getInitializationOptions(ServerMode.Syntactic, context),
       6011,
-      syntacticOutputChannel
+      syntacticOutputChannel,
     ),
   ]);
   const clients = [semanticClient, syntacticClient];
@@ -175,7 +175,7 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
       commands.registerCommand('volar.action.restartServer', async () => {
         await Promise.all(clients.map((client) => client.stop()));
         await Promise.all(clients.map((client) => client.start()));
-      })
+      }),
     );
   }
 }
@@ -217,7 +217,7 @@ export function getDocumentSelector(_context: ExtensionContext, serverMode: Serv
 async function getInitializationOptions(
   serverMode: ServerMode,
   context: ExtensionContext,
-  options: VueServerInitializationOptions = {}
+  options: VueServerInitializationOptions = {},
 ) {
   if (!resolveCurrentTsPaths) {
     resolveCurrentTsPaths = tsVersion.getCurrentTsPaths(context);

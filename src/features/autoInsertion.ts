@@ -48,7 +48,7 @@ export async function register(context: ExtensionContext, htmlClient: LanguageCl
       updateEnabledState(doc ? doc.bufnr : -1);
     },
     null,
-    disposables
+    disposables,
   );
 
   let timeout: NodeJS.Timeout | undefined;
@@ -73,12 +73,12 @@ export async function register(context: ExtensionContext, htmlClient: LanguageCl
       }
     },
     null,
-    disposables
+    disposables,
   );
 
   async function onDidChangeTextDocument(
     document: TextDocument,
-    changes: readonly TextDocumentContentChangeEvent[]
+    changes: readonly TextDocumentContentChangeEvent[],
   ): Promise<void> {
     if (!isEnabled) {
       return;
@@ -152,8 +152,8 @@ export async function register(context: ExtensionContext, htmlClient: LanguageCl
     provider: (
       document: TextDocument,
       position: Position,
-      lastChange: TextDocumentContentChangeEvent
-    ) => Thenable<string | TextEdit | null | undefined>
+      lastChange: TextDocumentContentChangeEvent,
+    ) => Thenable<string | TextEdit | null | undefined>,
   ) {
     if (!('range' in lastChange)) return;
     const rangeStart = lastChange.range.start;

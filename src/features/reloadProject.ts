@@ -8,6 +8,6 @@ export async function register(cmd: string, context: ExtensionContext, client: L
       client.sendNotification(ReloadProjectNotificationType, {
         uri: document.uri,
       });
-    })
+    }),
   );
 }

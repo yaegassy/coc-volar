@@ -25,7 +25,7 @@ function getWorkspaceTsPaths(useDefault = false) {
   if (tsdk) {
     const tsPath = getWorkspaceTypescriptPath(
       tsdk,
-      workspace.workspaceFolders.map((folder) => Uri.parse(folder.uri).fsPath)
+      workspace.workspaceFolders.map((folder) => Uri.parse(folder.uri).fsPath),
     );
     if (tsPath) {
       return {

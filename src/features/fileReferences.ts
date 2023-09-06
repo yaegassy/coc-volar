@@ -31,12 +31,12 @@ export async function register(cmd: string, client: LanguageClient) {
               ref.uri,
               Range.create(
                 Position.create(ref.range.start.line, ref.range.end.line),
-                Position.create(ref.range.end.line, ref.range.end.character)
-              )
-            )
-          )
+                Position.create(ref.range.end.line, ref.range.end.character),
+              ),
+            ),
+          ),
         );
-      }
+      },
     );
   });
 }

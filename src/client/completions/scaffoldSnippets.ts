@@ -23,8 +23,8 @@ export async function register(context: ExtensionContext) {
         'volar',
         'volar',
         ['vue'],
-        new scaffoldSnippetsCompletionProvider(context)
-      )
+        new scaffoldSnippetsCompletionProvider(context),
+      ),
     );
   }
 }
@@ -88,7 +88,7 @@ class scaffoldSnippetsCompletionProvider implements CompletionItemProvider {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     token: CancellationToken,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    context: CompletionContext
+    context: CompletionContext,
   ): Promise<CompletionItem[] | CompletionList> {
     if (position.line !== 0) return [];
     const doc = workspace.getDocument(document.uri);

@@ -13,7 +13,7 @@ export async function register(context: ExtensionContext, languageClient: Langua
       updateStatusBar();
     },
     null,
-    context.subscriptions
+    context.subscriptions,
   );
 
   async function updateStatusBar() {

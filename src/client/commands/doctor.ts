@@ -27,7 +27,7 @@ function doctorCommand(context: ExtensionContext) {
     if (workspace.workspaceFolders) {
       for (const folder of workspace.workspaceFolders) {
         const pnpmPackagesDirNames = getDirectoryItemNames(
-          path.join(Uri.parse(folder.uri).fsPath, 'node_modules', '.pnpm')
+          path.join(Uri.parse(folder.uri).fsPath, 'node_modules', '.pnpm'),
         );
 
         const vuePackageJsonPath = path.join(Uri.parse(folder.uri).fsPath, 'node_modules', 'vue', 'package.json');
@@ -37,14 +37,14 @@ function doctorCommand(context: ExtensionContext) {
           'node_modules',
           '@vue',
           'runtime-dom',
-          'package.json'
+          'package.json',
         );
 
         const vueTscVersionPackageJsonPath = path.join(
           Uri.parse(folder.uri).fsPath,
           'node_modules',
           'vue-tsc',
-          'package.json'
+          'package.json',
         );
 
         if (fs.existsSync(vuePackageJsonPath)) {

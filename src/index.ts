@@ -48,7 +48,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
       serverModule = vueServerPath;
     } else {
       serverModule = context.asAbsolutePath(
-        path.join('node_modules', '@vue', 'language-server', 'bin', 'vue-language-server.js')
+        path.join('node_modules', '@vue', 'language-server', 'bin', 'vue-language-server.js'),
       );
     }
 
@@ -110,7 +110,7 @@ async function handleProvideCompletionItem(
   position: Position,
   context: CompletionContext,
   token: CancellationToken,
-  next: ProvideCompletionItemsSignature
+  next: ProvideCompletionItemsSignature,
 ) {
   const res = await Promise.resolve(next(document, position, context, token));
   const doc = workspace.getDocument(document.uri);
