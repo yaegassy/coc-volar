@@ -4,6 +4,7 @@ import {
   CompletionItem,
   CompletionList,
   ExtensionContext,
+  ForkOptions,
   InitializeParams,
   LanguageClient,
   LanguageClientOptions,
@@ -51,11 +52,12 @@ export async function activate(context: ExtensionContext): Promise<void> {
       );
     }
 
-    const maxOldSpaceSize = config.server.maxOldSpaceSize;
-    const runOptions = { execArgv: <string[]>[] };
-    if (maxOldSpaceSize) {
-      runOptions.execArgv.push('--max-old-space-size=' + maxOldSpaceSize);
+    const runOptions: ForkOptions = {};
+    if (config.server.maxOldSpaceSize) {
+      runOptions.execArgv ??= [];
+      runOptions.execArgv.push('--max-old-space-size=' + config.server.maxOldSpaceSize);
     }
+
     const debugOptions = { execArgv: ['--nolazy', '--inspect=' + port] };
     const serverOptions: ServerOptions = {
       run: {
