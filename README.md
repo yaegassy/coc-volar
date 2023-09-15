@@ -25,13 +25,13 @@ If you want to use `volar.action.splitEditors`, `volar.action.vite`, `volar.acti
 
 > scoped packages
 
-## [IMPORTANT] Enable "Take Over Mode"
+## [IMPORTANT] Enable "Takeover Mode" or use "typescript-vue-plugin"
 
-In `coc-volar`, please enable and use "Take Over Mode". Check the Vue.js documentation for more information on "Take Over Mode".
+In `coc-volar`, please enable and use "Takeover Mode". Check the Vue.js documentation for more information on "Takeover Mode".
 
 - <https://vuejs.org/guide/typescript/overview.html#volar-takeover-mode>
 
-If you want to use the "TypeScript Vue Plugin" instead of Take Over Mode, install `typescript-vue-plugin` in your project (`npm install typescript-vue-plugin`). After installation, add a setting in `tsconfig.json` to use `typescript-vue-plugin`.
+If you want to use the "TypeScript Vue Plugin" instead of Takeover Mode, install `typescript-vue-plugin` in your project (`npm install typescript-vue-plugin`). After installation, add a setting in `tsconfig.json` to use `typescript-vue-plugin`.
 
 If you do not want to install `typescript-vue-plugin` in the project itself, use the [coc-typescript-vue-plugin](https://github.com/yaegassy/coc-typescript-vue-plugin) extension.
 
@@ -39,7 +39,7 @@ If you do not want to install `typescript-vue-plugin` in the project itself, use
 :CocInstall @yaegassy/coc-typescript-vue-plugin
 ```
 
-### If you are using "Take Over Mode" for the first time in your project
+### If you are using "Takeover Mode" for the first time in your project
 
 1. To begin, open the `*.vue`, `*.ts`, `*.js`, `*.tsx`, `*.jsx` file.
 1. Then run `:CocCommand volar.initializeTakeOverMode`.
@@ -48,7 +48,7 @@ If you do not want to install `typescript-vue-plugin` in the project itself, use
    - The `"volar.takeOverMode.enabled": true` and `"tsserver.enable": false` settings will be added.
 1. `coc.nvim` will be restarted and the settings will be reflected.
 
-### If you want to disable Take Over Mode for a project
+### If you want to disable Takeover Mode for a project
 
 Delete the `.vim/coc-settings.json` file in the "project root", and start Vim again.
 
