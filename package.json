@@ -25,7 +25,7 @@
     "access": "public"
   },
   "scripts": {
-    "schema": "curl -o schemas/vue-tsconfig.schema.json https://raw.githubusercontent.com/vuejs/language-tools/master/packages/vue-language-core/schemas/vue-tsconfig.schema.json",
+    "schema": "curl -o schemas/vue-tsconfig.schema.json https://raw.githubusercontent.com/vuejs/language-tools/master/packages/language-core/schemas/vue-tsconfig.schema.json",
     "type-check": "tsc --noEmit",
     "lint": "eslint src --ext ts",
     "clean": "rimraf lib",
