@@ -1,6 +1,6 @@
 # coc-volar
 
-> fork from a [vscode-vue](https://github.com/vuejs/language-tools/tree/master/packages/vscode-vue)
+> fork from a [vuejs/language-tools/extensions/vscode](https://github.com/vuejs/language-tools/tree/master/extensions/vscode)
 
 
 [Vue Language Features (Volar)](https://marketplace.visualstudio.com/items?itemName=vue.volar) extension for [coc.nvim](https://github.com/neoclide/coc.nvim)
