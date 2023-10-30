@@ -79,6 +79,9 @@ export function getConfigMiddlewareProvideCompletionItemEnable() {
 export function getDisabledFeatures() {
   const disabledFeatures: string[] = [];
 
+  if (workspace.getConfiguration('volar').get<boolean>('disableCompletion')) {
+    disabledFeatures.push('completion');
+  }
   if (workspace.getConfiguration('volar').get<boolean>('disableDiagnostics')) {
     disabledFeatures.push('diagnostics');
   }
