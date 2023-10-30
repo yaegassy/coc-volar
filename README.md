@@ -145,6 +145,7 @@ hi link CocSemComponent MoreMsg
 - `volar.autoCreateQuotes`: Enable/disable auto creation of quotes for HTML attribute assignment, default: `false`
 - `volar.autoClosingTags`: Enable/disable autoClosing of HTML tags, default: `false`
 - `volar.scaffoldSnippets.enable`: Enable/disable scaffold snippets completion. Typing `vue` or `vuedc` will output completion suggestions. This snippets completion feature will only work on the first line of the file, default: `true`
+- `volar.disableCompletion`: Disable completion from Volar, default: `false`
 - `volar.disableDiagnostics`: Disable diagnostics from Volar, default: `false`
 - `volar.disableFormatting`: Disable formatting from Volar, default: `false`
 - `volar.disableProgressNotifications`: Disable the initialization and workdone progress notifications, default: `false`
