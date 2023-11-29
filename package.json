@@ -519,7 +519,7 @@
     ]
   },
   "dependencies": {
-    "@vue/language-server": "1.8.22",
+    "@vue/language-server": "1.8.24",
     "typescript": "5.2.2"
   }
 }
