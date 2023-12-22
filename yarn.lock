@@ -449,10 +449,10 @@
     "@vue/compiler-core" "3.3.4"
     "@vue/shared" "3.3.4"
 
-"@vue/language-core@1.8.25":
-  version "1.8.25"
-  resolved "https://registry.yarnpkg.com/@vue/language-core/-/language-core-1.8.25.tgz#b44b4e3c244ba9b1b79cccf9eb7b046535a4676f"
-  integrity sha512-NJk/5DnAZlpvXX8BdWmHI45bWGLViUaS3R/RMrmFSvFMSbJKuEODpM4kR0F0Ofv5SFzCWuNiMhxameWpVdQsnA==
+"@vue/language-core@1.8.26":
+  version "1.8.26"
+  resolved "https://registry.yarnpkg.com/@vue/language-core/-/language-core-1.8.26.tgz#7edb6b51a6ed57b618928500c3cbda9757a9f5f0"
+  integrity sha512-9cmza/Y2YTiOnKZ0Mi9zsNn7Irw+aKirP+5LLWVSNaL3fjKJjW1cD3HGBckasY2RuVh4YycvdA9/Q6EBpVd/7Q==
   dependencies:
     "@volar/language-core" "~1.11.1"
     "@volar/source-map" "~1.11.1"
@@ -464,29 +464,29 @@
     path-browserify "^1.0.1"
     vue-template-compiler "^2.7.14"
 
-"@vue/language-server@1.8.25":
-  version "1.8.25"
-  resolved "https://registry.yarnpkg.com/@vue/language-server/-/language-server-1.8.25.tgz#15e624360f1d2ff548eb29df6e76d80128102628"
-  integrity sha512-zTD2rz7UPWHyQN0EHsar/mocycdLZVJ2Ls1BmQIta6XahVvv4Rl56n31pfegHdRWtkOUoHdD8o3tORcEglZxrw==
+"@vue/language-server@1.8.26":
+  version "1.8.26"
+  resolved "https://registry.yarnpkg.com/@vue/language-server/-/language-server-1.8.26.tgz#ab33824c482fab5423a58d5c489b466afc239903"
+  integrity sha512-I82PmK/28hQDsw584EaeHTc5PERW+rFjqD3+GaqQgbTWoJ3lutsGf7pLpz0P4yrmDvl+ENpjtUdfzRIMF4P1Jg==
   dependencies:
     "@volar/language-core" "~1.11.1"
     "@volar/language-server" "~1.11.1"
     "@volar/typescript" "~1.11.1"
-    "@vue/language-core" "1.8.25"
-    "@vue/language-service" "1.8.25"
+    "@vue/language-core" "1.8.26"
+    "@vue/language-service" "1.8.26"
     vscode-languageserver-protocol "^3.17.5"
-    vue-component-meta "1.8.25"
+    vue-component-meta "1.8.26"
 
-"@vue/language-service@1.8.25":
-  version "1.8.25"
-  resolved "https://registry.yarnpkg.com/@vue/language-service/-/language-service-1.8.25.tgz#59a7de842bc5274cd9840e788db6f7ca7e235a90"
-  integrity sha512-voKpGcsCrSdgstVMXmGVVQh/yaybzP/MKGMlIeTUtl2EdQwPtAbh7fCcv2y9yFlVAkifxC4q4BjC2Mzoanmfbw==
+"@vue/language-service@1.8.26":
+  version "1.8.26"
+  resolved "https://registry.yarnpkg.com/@vue/language-service/-/language-service-1.8.26.tgz#06f7748103e25f7a6945e964f3a99367babb48ff"
+  integrity sha512-scJcfOLHYV34Agooe9dILyiZuu87EePLYiibGdIaTXCu7DEm7S6LLNjjHEbu3763O37EKbgmiOPAALYGCplGig==
   dependencies:
     "@volar/language-core" "~1.11.1"
     "@volar/language-service" "~1.11.1"
     "@volar/typescript" "~1.11.1"
     "@vue/compiler-dom" "^3.3.0"
-    "@vue/language-core" "1.8.25"
+    "@vue/language-core" "1.8.26"
     "@vue/shared" "^3.3.0"
     computeds "^0.0.1"
     path-browserify "^1.0.1"
@@ -1929,20 +1929,20 @@ vscode-uri@^3.0.7, vscode-uri@^3.0.8:
   resolved "https://registry.yarnpkg.com/vscode-uri/-/vscode-uri-3.0.8.tgz#1770938d3e72588659a172d0fd4642780083ff9f"
   integrity sha512-AyFQ0EVmsOZOlAnxoFOGOq1SQDWAB7C6aqMGS23svWAllfOaxbuFvcT8D1i8z3Gyn8fraVeZNNmN6e9bxxXkKw==
 
-vue-component-meta@1.8.25:
-  version "1.8.25"
-  resolved "https://registry.yarnpkg.com/vue-component-meta/-/vue-component-meta-1.8.25.tgz#d008ec9ed95e2e70d7c428dbcca086c8e4df8dfd"
-  integrity sha512-CLsDWVJGBpUmdWiNuKaQ74yvCa3kYi17tT0nO7Fdmcd3GpzChpqYl/0M+WmZjwRDJha91ojWHtrBLWBv/XQiIQ==
+vue-component-meta@1.8.26:
+  version "1.8.26"
+  resolved "https://registry.yarnpkg.com/vue-component-meta/-/vue-component-meta-1.8.26.tgz#163070e8b9bd31e7ab62c107781bbfe555fdc3db"
+  integrity sha512-Yy6rToykDK83QtW9RWOt3nEfJ9toVAG8rMt7oQSIfunm4dKFbYvjBCVkHQAi2+Ry6Q5T+mPW3C+5h8x8y+ICRw==
   dependencies:
     "@volar/typescript" "~1.11.1"
-    "@vue/language-core" "1.8.25"
+    "@vue/language-core" "1.8.26"
     path-browserify "^1.0.1"
-    vue-component-type-helpers "1.8.25"
+    vue-component-type-helpers "1.8.26"
 
-vue-component-type-helpers@1.8.25:
-  version "1.8.25"
-  resolved "https://registry.yarnpkg.com/vue-component-type-helpers/-/vue-component-type-helpers-1.8.25.tgz#8e2c57ee57f0c8640aa910a3a4cd6597ae8bf688"
-  integrity sha512-NCA6sekiJIMnMs4DdORxATXD+/NRkQpS32UC+I1KQJUasx+Z7MZUb3Y+MsKsFmX+PgyTYSteb73JW77AibaCCw==
+vue-component-type-helpers@1.8.26:
+  version "1.8.26"
+  resolved "https://registry.yarnpkg.com/vue-component-type-helpers/-/vue-component-type-helpers-1.8.26.tgz#579c14c7a4ee8e1077c65d1e8f0b8c7796b9e09d"
+  integrity sha512-CIwb7s8cqUuPpHDk+0DY8EJ/x8tzdzqw8ycX8hhw1GnbngTgSsIceHAqrrLjmv8zXi+j5XaiqYRQMw8sKyyjkw==
 
 vue-template-compiler@^2.7.14:
   version "2.7.14"
