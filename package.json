@@ -294,11 +294,6 @@
           "default": "autoKebab",
           "description": "Preferred attr name case."
         },
-        "vue.complete.normalizeComponentImportName": {
-          "type": "boolean",
-          "default": true,
-          "description": "Normalize import name for auto import. (\"myCompVue\" -> \"MyComp\")"
-        },
         "vue.autoInsert.parentheses": {
           "type": "boolean",
           "default": true,
