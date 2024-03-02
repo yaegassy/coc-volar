@@ -79,7 +79,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
       disabledFeatures: getDisabledFeatures(),
       middleware: {
         provideCompletionItem: getConfigMiddlewareProvideCompletionItemEnable()
-          ? id === 'vue-semantic-server'
+          ? id === 'vue'
             ? handleProvideCompletionItem
             : undefined
           : undefined,
