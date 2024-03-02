@@ -19,11 +19,8 @@ export const config = {
     path: null | string;
     maxOldSpaceSize: number;
     maxFileSize: number;
-    reverseConfigFilePriority: boolean;
     diagnosticModel: 'push' | 'pull';
     additionalExtensions: string[];
-    fullCompletionList: boolean;
-    configFilePath: string;
     vitePress: {
       supportMdFile: boolean;
     };

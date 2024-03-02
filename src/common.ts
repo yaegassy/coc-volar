@@ -222,17 +222,14 @@ async function getInitializationOptions(
   }
 
   // volar
-  options.configFilePath = config.server.configFilePath;
   options.serverMode = serverMode;
   options.diagnosticModel = config.server.diagnosticModel === 'pull' ? DiagnosticModel.Pull : DiagnosticModel.Push;
   options.typescript = resolveCurrentTsPaths;
-  options.reverseConfigFilePriority = config.server.reverseConfigFilePriority;
   options.maxFileSize = config.server.maxFileSize;
   options.semanticTokensLegend = {
     tokenTypes: ['component'],
     tokenModifiers: [],
   };
-  options.fullCompletionList = config.server.fullCompletionList;
   options.additionalExtensions = [
     ...config.server.additionalExtensions,
     ...(!config.server.petiteVue.supportHtmlFile ? [] : ['html']),
