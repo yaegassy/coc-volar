@@ -151,8 +151,7 @@ hi link CocSemComponent MoreMsg
 - `volar.disableProgressNotifications`: Disable the initialization and workdone progress notifications, default: `false`
 - `volar.takeOverMode.enabled`: Take over language support for `*.ts`, default: `false`
 - `volar.format.initialIndent`: Whether to have initial indent, default: `{}`
-- `vue-semantic-server.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
-- `vue-syntactic-server.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
+- `vue.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
 - `vue.server.path`: Custom path to volar server module, `~` and `$HOME` can also be used. If there is no setting, the built-in module will be used, default: `null`
 - `vue.server.maxFileSize`: Maximum file size for Vue Language Server to load. (default: 20MB), default: `20971520`
 - `vue.server.petiteVue.supportHtmlFile `: Recognize `.html` extension as PetiteVue file format. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, and adding `__PATH_TO_HTML_FILES_/*.html` to config include option, default: `false`
