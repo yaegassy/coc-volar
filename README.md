@@ -132,7 +132,6 @@ hi link CocSemComponent MoreMsg
 - `volar.disableDiagnostics`: Disable diagnostics from Volar, default: `false`
 - `volar.disableFormatting`: Disable formatting from Volar, default: `false`
 - `volar.disableProgressNotifications`: Disable the initialization and workdone progress notifications, default: `false`
-- `volar.format.initialIndent`: Whether to have initial indent, default: `{}`
 - `vue.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
 - `vue.server.path`: Custom path to volar server module, `~` and `$HOME` can also be used. If there is no setting, the built-in module will be used, default: `null`
 - `vue.server.maxFileSize`: Maximum file size for Vue Language Server to load. (default: 20MB), default: `20971520`
