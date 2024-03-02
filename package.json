@@ -58,8 +58,7 @@
     "onLanguage:javascript",
     "onLanguage:typescript",
     "onLanguage:javascriptreact",
-    "onLanguage:typescriptreact",
-    "onCommand:volar.initializeTakeOverMode"
+    "onLanguage:typescriptreact"
   ],
   "contributes": {
     "rootPatterns": [
@@ -243,11 +242,6 @@
           "type": "boolean",
           "default": false,
           "description": "Enable fix patch for code action issue #226"
-        },
-        "volar.takeOverMode.enabled": {
-          "type": "boolean",
-          "default": false,
-          "description": "Take over language support for *.ts."
         },
         "volar.format.initialIndent": {
           "type": "object",
@@ -460,11 +454,6 @@
       }
     },
     "commands": [
-      {
-        "command": "volar.initializeTakeOverMode",
-        "title": "Enable TakeOverMode in your project",
-        "category": "Volar"
-      },
       {
         "command": "volar.action.doctor",
         "title": "Show Doctor info",

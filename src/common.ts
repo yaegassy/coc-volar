@@ -12,7 +12,6 @@ import {
 import { DiagnosticModel, VueInitializationOptions } from '@vue/language-server';
 
 import * as doctor from './client/commands/doctor';
-import * as initializeTakeOverMode from './client/commands/initializeTakeOverMode';
 import * as scaffoldSnippets from './client/completions/scaffoldSnippets';
 //import * as statusBar from './client/statusBar';
 //import * as autoInsertion from './features/autoInsertion';
@@ -41,9 +40,6 @@ let resolveCurrentTsPaths: {
 let activated: boolean;
 
 export async function activate(context: ExtensionContext, createLc: CreateLanguageClient) {
-  /** Custom commands for coc-volar */
-  initializeTakeOverMode.register(context);
-
   //
   // For the first activation event
   //

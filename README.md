@@ -25,32 +25,15 @@ If you want to use `volar.action.splitEditors`, `volar.action.vite`, `volar.acti
 
 > scoped packages
 
-## [IMPORTANT] Enable "Takeover Mode" or use "typescript-vue-plugin"
+## [IMPORTANT] Use "typescript-vue-plugin"
 
-In `coc-volar`, please enable and use "Takeover Mode". Check the Vue.js documentation for more information on "Takeover Mode".
-
-- <https://vuejs.org/guide/typescript/overview.html#volar-takeover-mode>
-
-If you want to use the "TypeScript Vue Plugin" instead of Takeover Mode, install `typescript-vue-plugin` in your project (`npm install typescript-vue-plugin`). After installation, add a setting in `tsconfig.json` to use `typescript-vue-plugin`.
+Install `typescript-vue-plugin` in your project, After installation, add a setting to `tsconfig.json` to use `typescript-vue-plugin`.
 
 If you do not want to install `typescript-vue-plugin` in the project itself, use the [coc-typescript-vue-plugin](https://github.com/yaegassy/coc-typescript-vue-plugin) extension.
 
 ```vim
 :CocInstall @yaegassy/coc-typescript-vue-plugin
 ```
-
-### If you are using "Takeover Mode" for the first time in your project
-
-1. To begin, open the `*.vue`, `*.ts`, `*.js`, `*.tsx`, `*.jsx` file.
-1. Then run `:CocCommand volar.initializeTakeOverMode`.
-1. When prompted by `Enable Take Over Mode? (y/n)?`, enter `y`
-1. The `.vim/coc-settings.json` file will be created in the "project root".
-   - The `"volar.takeOverMode.enabled": true` and `"tsserver.enable": false` settings will be added.
-1. `coc.nvim` will be restarted and the settings will be reflected.
-
-### If you want to disable Takeover Mode for a project
-
-Delete the `.vim/coc-settings.json` file in the "project root", and start Vim again.
 
 ## VitePress and petite-vue support
 
@@ -149,7 +132,6 @@ hi link CocSemComponent MoreMsg
 - `volar.disableDiagnostics`: Disable diagnostics from Volar, default: `false`
 - `volar.disableFormatting`: Disable formatting from Volar, default: `false`
 - `volar.disableProgressNotifications`: Disable the initialization and workdone progress notifications, default: `false`
-- `volar.takeOverMode.enabled`: Take over language support for `*.ts`, default: `false`
 - `volar.format.initialIndent`: Whether to have initial indent, default: `{}`
 - `vue.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
 - `vue.server.path`: Custom path to volar server module, `~` and `$HOME` can also be used. If there is no setting, the built-in module will be used, default: `null`
@@ -173,7 +155,6 @@ hi link CocSemComponent MoreMsg
 
 ## Commands
 
-- `volar.initializeTakeOverMode`: Enable Take Over Mode in your project
 - `volar.action.doctor`: Show Doctor info
 - `volar.action.restartServer`: Restart Vue server
 - `volar.action.reloadProject`: Reload Project
