@@ -324,6 +324,18 @@
           "default": false,
           "description": "Show inlay hints for component options wrapper for type support."
         },
+        "vue.format.template.initialIndent": {
+          "type": "boolean",
+          "default": true
+        },
+        "vue.format.style.initialIndent": {
+          "type": "boolean",
+          "default": false
+        },
+        "vue.format.script.initialIndent": {
+          "type": "boolean",
+          "default": false
+        },
         "vetur.enable": {
           "type": "boolean",
           "default": true,
