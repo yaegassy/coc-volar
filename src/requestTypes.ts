@@ -1,7 +1,6 @@
 import {
   AutoInsertRequest,
   FindFileReferenceRequest,
-  GetComponentMeta,
   GetVirtualFileRequest,
   ReloadProjectNotification,
 } from '@vue/language-server';
@@ -30,9 +29,3 @@ export const GetVirtualFileRequestType = new coc.RequestType<
   GetVirtualFileRequest.ResponseType,
   GetVirtualFileRequest.ErrorType
 >(GetVirtualFileRequest.type.method);
-
-export const GetComponentMetaType = new coc.RequestType<
-  GetComponentMeta.ParamsType,
-  GetComponentMeta.ResponseType,
-  GetComponentMeta.ErrorType
->(GetComponentMeta.type.method);

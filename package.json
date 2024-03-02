@@ -507,11 +507,6 @@
         "category": "Volar"
       },
       {
-        "command": "volar.action.showComponentMeta",
-        "title": "Show Component Meta",
-        "category": "Volar"
-      },
-      {
         "command": "volar.vue.findAllFileReferences",
         "title": "Vue: Find File References",
         "category": "Volar"
