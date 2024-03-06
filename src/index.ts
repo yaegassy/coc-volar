@@ -14,6 +14,7 @@ import {
   ServerOptions,
   Thenable,
   TransportKind,
+  extensions,
   services,
   workspace,
 } from 'coc.nvim';
@@ -35,6 +36,15 @@ let serverModule: string;
 
 export async function activate(context: ExtensionContext): Promise<void> {
   if (!getConfigVolarEnable()) return;
+
+  let tsExtension = extensions.getExtensionById('coc-tsserver');
+  // https://github.com/neoclide/coc-tsserver/pull/445#issuecomment-1976305468
+  tsExtension = extensions.getExtensionById('coc-tsserver-dev');
+  if (tsExtension) {
+    if (!tsExtension.isActive) await tsExtension.activate();
+    const tsService = services.getService('tsserver');
+    if (tsService) await tsService.start();
+  }
 
   return commonActivate(context, (id, name, documentSelector, initOptions, port, outputChannel) => {
     class _LanguageClient extends LanguageClient {
