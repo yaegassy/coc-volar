@@ -364,6 +364,17 @@
         "title": "Vue: Find File References",
         "category": "Volar"
       }
+    ],
+    "typescriptServerPlugins": [
+      {
+        "name": "@vue/typescript-plugin",
+        "enableForWorkspaceTypeScriptVersions": true,
+        "languages": [
+          "javascript",
+          "typescript",
+          "vue"
+        ]
+      }
     ]
   },
   "dependencies": {
