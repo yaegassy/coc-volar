@@ -223,7 +223,7 @@
         },
         "vue.server.diagnosticModel": {
           "type": "string",
-          "default": "push",
+          "default": "pull",
           "enum": [
             "push",
             "pull"
