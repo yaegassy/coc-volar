@@ -16,6 +16,7 @@ import {
   TransportKind,
   extensions,
   services,
+  window,
   workspace,
 } from 'coc.nvim';
 
@@ -36,6 +37,14 @@ let serverModule: string;
 
 export async function activate(context: ExtensionContext): Promise<void> {
   if (!getConfigVolarEnable()) return;
+
+  const cocTypeScriptVuePlugin = extensions.getExtensionById('@yaegassy/coc-typescript-vue-plugin');
+  if (cocTypeScriptVuePlugin) {
+    window.showWarningMessage(
+      'Please uninstall @yaegassy/coc-typescript-vue-plugin as it has been deprecated. :CocUninstall @yaegassy/coc-typescript-vue-plugin',
+    );
+    return;
+  }
 
   let tsExtension = extensions.getExtensionById('coc-tsserver');
   // https://github.com/neoclide/coc-tsserver/pull/445#issuecomment-1976305468
