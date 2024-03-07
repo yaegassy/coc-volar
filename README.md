@@ -134,8 +134,6 @@ hi link CocSemComponent MoreMsg
 
 - `vue.action.reloadProject`: Reload Project
 - `vue.action.restartServer`: Restart Vue server
-- `volar.action.doctor`: Show Doctor info
-- `volar.vue.findAllFileReferences`: Vue: Find File References
 
 ## More features
 
