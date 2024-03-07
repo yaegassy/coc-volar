@@ -135,12 +135,6 @@ hi link CocSemComponent MoreMsg
 - `volar.action.doctor`: Show Doctor info
 - `volar.action.restartServer`: Restart Vue server
 - `volar.action.reloadProject`: Reload Project
-- `volar.action.splitEditors`: Split `<script>`, `<template>`, `<style>` Editors
-  - Please install [coc-volar-tools](https://github.com/yaegassy/coc-volar-tools) separately to use this command
-- `volar.action.vite`: Experimental Features for Vite
-  - Please install [coc-volar-tools](https://github.com/yaegassy/coc-volar-tools) separately to use this command
-- `volar.action.nuxt`: Experimental Features for Nuxt
-  - Please install [coc-volar-tools](https://github.com/yaegassy/coc-volar-tools) separately to use this command
 - `volar.vue.findAllFileReferences`: Vue: Find File References
 
 ## More features
