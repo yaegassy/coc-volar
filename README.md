@@ -14,18 +14,6 @@
 
 > scoped packages
 
-## petite-vue support
-
-Notes for make `petite-vue` project working with Volar.
-
-### petite-vue
-
-- Set `vue.server.petiteVue.supportHtmlFile` to `true` in `.vim/coc-settings.json`.
-  - **[WARNING]** If you use this setting, it is recommended to enable it at the workspace (project) level.
-- Set `html.enable` to `false` in `.vim/coc-settings.json`.
-- `vue` is optional add in devDependencies for better intellisense.
-- Make sure added related `.html` files path to tsconfig.json `include` property.
-
 ## [RECOMMENDED] Additional installation of "watchman"
 
 In the `@vue/language-server` used by `coc-volar`, it utilizes the `workspace/didChangeWatchedFiles` notification to watch files within the project.
@@ -107,7 +95,6 @@ hi link CocSemComponent MoreMsg
 - `vue.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
 - `vue.server.path`: Custom path to volar server module, `~` and `$HOME` can also be used. If there is no setting, the built-in module will be used, default: `null`
 - `vue.server.maxFileSize`: Maximum file size for Vue Language Server to load. (default: 20MB), default: `20971520`
-- `vue.server.petiteVue.supportHtmlFile `: Recognize `.html` extension as PetiteVue file format. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, and adding `__PATH_TO_HTML_FILES_/*.html` to config include option, default: `false`
 - `vue.server.diagnosticModel`: Diagnostic update model, valid option: `["push", "pull"]`, default: `pull`
 - `vue.server.maxOldSpaceSize`: Set `--max-old-space-size` option on server process. If you have problem on frequently `"Request textDocument/** failed."` error, try setting higher memory(MB) on it, default: `null`
 - `vue.server.additionalExtensions`: List any additional file extensions that should be processed as Vue files (requires restart), default: `[]`

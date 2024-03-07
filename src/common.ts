@@ -51,11 +51,6 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
       doActivate(context, createLc);
       activated = true;
     }
-
-    if (!activated && currentLangId === 'html' && config.server.petiteVue.supportHtmlFile) {
-      doActivate(context, createLc);
-      activated = true;
-    }
   }
 
   //
@@ -70,11 +65,6 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
       const currentlangId = document.languageId;
 
       if (currentlangId === 'vue') {
-        doActivate(context, createLc);
-        activated = true;
-      }
-
-      if (!activated && currentlangId === 'html' && config.server.petiteVue.supportHtmlFile) {
         doActivate(context, createLc);
         activated = true;
       }
@@ -149,10 +139,6 @@ export function getDocumentSelector(): DocumentFilter[] {
   const selectors: DocumentFilter[] = [];
   selectors.push({ language: 'vue' });
 
-  if (config.server.petiteVue.supportHtmlFile) {
-    selectors.push({ language: 'html' });
-  }
-
   return selectors;
 }
 
@@ -172,10 +158,7 @@ async function getInitializationOptions(context: ExtensionContext): Promise<VueI
       tokenModifiers: [],
     },
     vue: {
-      additionalExtensions: [
-        ...config.server.additionalExtensions,
-        ...(!config.server.petiteVue.supportHtmlFile ? [] : ['html']),
-      ],
+      additionalExtensions: [...config.server.additionalExtensions],
     },
   };
 }

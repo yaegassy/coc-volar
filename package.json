@@ -52,8 +52,7 @@
     "rimraf": "^5.0.1"
   },
   "activationEvents": [
-    "onLanguage:vue",
-    "onLanguage:html"
+    "onLanguage:vue"
   ],
   "contributes": {
     "rootPatterns": [
