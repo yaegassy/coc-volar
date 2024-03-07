@@ -25,16 +25,6 @@ If you want to use `volar.action.splitEditors`, `volar.action.vite`, `volar.acti
 
 > scoped packages
 
-## [IMPORTANT] Use "typescript-vue-plugin"
-
-Install `typescript-vue-plugin` in your project, After installation, add a setting to `tsconfig.json` to use `typescript-vue-plugin`.
-
-If you do not want to install `typescript-vue-plugin` in the project itself, use the [coc-typescript-vue-plugin](https://github.com/yaegassy/coc-typescript-vue-plugin) extension.
-
-```vim
-:CocInstall @yaegassy/coc-typescript-vue-plugin
-```
-
 ## VitePress and petite-vue support
 
 Notes for make `VitePress`, `petite-vue` project working with Volar.
