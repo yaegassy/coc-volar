@@ -350,7 +350,7 @@
         "category": "Volar"
       },
       {
-        "command": "volar.action.restartServer",
+        "command": "vue.action.restartServer",
         "title": "Restart Vue server",
         "category": "Volar"
       },
