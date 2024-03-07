@@ -133,8 +133,8 @@ hi link CocSemComponent MoreMsg
 ## Commands
 
 - `vue.action.reloadProject`: Reload Project
+- `vue.action.restartServer`: Restart Vue server
 - `volar.action.doctor`: Show Doctor info
-- `volar.action.restartServer`: Restart Vue server
 - `volar.vue.findAllFileReferences`: Vue: Find File References
 
 ## More features
