@@ -1,30 +1,21 @@
 import {
   Disposable,
-  events,
-  ExtensionContext,
+  DocumentSelector,
   LanguageClient,
   Position,
   Range,
-  snippetManager,
   SnippetString,
   TextDocument,
   TextEdit,
+  events,
+  snippetManager,
   workspace,
 } from 'coc.nvim';
 import { TextDocumentContentChangeEvent } from 'vscode-languageserver-protocol';
 import { AutoInsertRequestType } from '../requestTypes';
 
-export async function register(context: ExtensionContext, htmlClient: LanguageClient, tsClient: LanguageClient) {
-  await Promise.all([htmlClient.onReady(), tsClient.onReady()]);
-
-  const supportedLanguages: Record<string, boolean> = {
-    vue: true,
-    markdown: true,
-    javascript: true,
-    typescript: true,
-    javascriptreact: true,
-    typescriptreact: true,
-  };
+export async function activate(_selectors: DocumentSelector, client: LanguageClient) {
+  await client.onReady();
 
   let disposables: Disposable[] = [];
   let isEnabled = false;
@@ -58,6 +49,14 @@ export async function register(context: ExtensionContext, htmlClient: LanguageCl
 
     const document = workspace.getDocument(bufnr);
     if (!document || !document.attached) return;
+
+    // MEMO: coc.nvim does not have `languages.match`, so I used a different way.
+    ////if (!languages.match(selectors, document)) {
+    ////	return;
+    ////}
+    const supportedLanguages: Record<string, boolean> = {
+      vue: true,
+    };
     if (!supportedLanguages[document.textDocument.languageId]) {
       return;
     }
@@ -103,11 +102,11 @@ export async function register(context: ExtensionContext, htmlClient: LanguageCl
     if (lastCharacter === '/') return;
 
     if (!workspace.getConfiguration('volar').get<boolean>('autoClosingTags')) {
-      if (lastCharacter === '>') return;
+      if (lastCharacter.endsWith('>')) return;
     }
 
     if (!workspace.getConfiguration('volar').get<boolean>('autoCreateQuotes')) {
-      if (lastCharacter === '=') return;
+      if (lastCharacter.endsWith('=')) return;
     }
 
     if (lastCharacter === undefined) {
@@ -126,17 +125,13 @@ export async function register(context: ExtensionContext, htmlClient: LanguageCl
       const params = {
         textDocument: { uri: document.uri },
         position,
-        options: {
-          lastChange: {
-            ...lastChange,
-            range: lastChange['range'],
-          },
+        lastChange: {
+          text: lastChange.text,
+          range: lastChange['range'],
         },
       };
 
-      const result =
-        (await htmlClient.sendRequest(AutoInsertRequestType.method, params)) ??
-        (await tsClient.sendRequest(AutoInsertRequestType.method, params));
+      const result = await client.sendRequest(AutoInsertRequestType.method, params);
 
       if (typeof result === 'string') {
         return result;
@@ -168,17 +163,14 @@ export async function register(context: ExtensionContext, htmlClient: LanguageCl
           const activeDocument = doc.textDocument;
           if (document.uri === activeDocument.uri && activeDocument.version === version) {
             if (typeof text === 'string') {
-              if (lastChange.text === '>') {
+              if (lastChange.text.endsWith('>')) {
                 // volar.autoClosingTags
                 snippetManager.insertSnippet(text, true, Range.create(position, position));
-              } else if (lastChange.text === '=') {
+              } else if (lastChange.text.endsWith('=')) {
                 // volar.autoCreateQuotes
                 snippetManager.insertSnippet(text, true, Range.create(position, position));
               } else {
-                // vue.autoInsert.dotValue
-                if (workspace.getConfiguration('vue').get<boolean>('autoInsert.dotValue')) {
-                  snippetManager.insertSnippet(text, true, Range.create(position, position));
-                }
+                // ...noop
               }
             } else {
               snippetManager.insertSnippet(new SnippetString(text.newText), true, text.range);

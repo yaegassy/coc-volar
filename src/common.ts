@@ -14,8 +14,8 @@ import { DiagnosticModel, VueInitializationOptions } from '@vue/language-server'
 import * as doctor from './client/commands/doctor';
 import * as scaffoldSnippets from './client/completions/scaffoldSnippets';
 //import * as statusBar from './client/statusBar';
-//import * as autoInsertion from './features/autoInsertion';
 //import * as fileReferences from './features/fileReferences';
+import * as autoInsertion from './features/autoInsertion';
 import * as reloadProject from './features/reloadProject';
 import * as tsVersion from './features/tsVersion';
 
@@ -89,21 +89,17 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
   /** Custom snippets completion for coc-volar */
   scaffoldSnippets.register(context);
 
-  //// MEMO: Temporarily commented out
-  ////if (semanticClient) {
-  ////  /** Custom status-bar for coc-volar */
-  ////  statusBar.register(context, semanticClient);
+  const selectors: DocumentFilter[] = [{ language: 'vue' }];
 
-  ////  fileReferences.register('volar.vue.findAllFileReferences', semanticClient);
-
-  ////  if (
-  ////    workspace.getConfiguration('volar').get<boolean>('autoCreateQuotes') ||
-  ////    workspace.getConfiguration('volar').get<boolean>('autoClosingTags') ||
-  ////    workspace.getConfiguration('vue').get<boolean>('autoInsert.dotValue')
-  ////  ) {
-  ////    autoInsertion.register(context, syntacticClient, semanticClient);
-  ////  }
-  ////}
+  if (client) {
+    if (
+      workspace.getConfiguration('volar').get<boolean>('autoCreateQuotes') ||
+      workspace.getConfiguration('volar').get<boolean>('autoClosingTags') ||
+      workspace.getConfiguration('vue').get<boolean>('autoInsert.dotValue')
+    ) {
+      autoInsertion.activate(selectors, client);
+    }
+  }
 
   async function activateRestartRequest() {
     context.subscriptions.push(
