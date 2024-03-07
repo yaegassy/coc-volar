@@ -13,7 +13,6 @@ import { DiagnosticModel, VueInitializationOptions } from '@vue/language-server'
 
 import * as doctor from './client/commands/doctor';
 import * as scaffoldSnippets from './client/completions/scaffoldSnippets';
-//import * as statusBar from './client/statusBar';
 import * as autoInsertion from './features/autoInsertion';
 import * as reloadProject from './features/reloadProject';
 import * as tsVersion from './features/tsVersion';
