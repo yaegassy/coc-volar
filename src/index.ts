@@ -47,8 +47,10 @@ export async function activate(context: ExtensionContext): Promise<void> {
   }
 
   let tsExtension = extensions.getExtensionById('coc-tsserver');
-  // https://github.com/neoclide/coc-tsserver/pull/445#issuecomment-1976305468
-  tsExtension = extensions.getExtensionById('coc-tsserver-dev');
+  if (!tsExtension) {
+    // https://github.com/neoclide/coc-tsserver/pull/445#issuecomment-1976305468
+    tsExtension = extensions.getExtensionById('coc-tsserver-dev');
+  }
   if (tsExtension) {
     if (!tsExtension.isActive) await tsExtension.activate();
     const tsService = services.getService('tsserver');
