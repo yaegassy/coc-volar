@@ -355,11 +355,6 @@
       {
         "command": "vue.action.reloadProject",
         "title": "Reload Project"
-      },
-      {
-        "command": "volar.vue.findAllFileReferences",
-        "title": "Vue: Find File References",
-        "category": "Volar"
       }
     ],
     "typescriptServerPlugins": [
