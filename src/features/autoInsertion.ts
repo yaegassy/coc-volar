@@ -170,7 +170,10 @@ export async function activate(_selectors: DocumentSelector, client: LanguageCli
                 // volar.autoCreateQuotes
                 snippetManager.insertSnippet(text, true, Range.create(position, position));
               } else {
-                // ...noop
+                // vue.autoInsert.dotValue
+                if (workspace.getConfiguration('vue').get<boolean>('autoInsert.dotValue')) {
+                  snippetManager.insertSnippet(text, true, Range.create(position, position));
+                }
               }
             } else {
               snippetManager.insertSnippet(new SnippetString(text.newText), true, text.range);
