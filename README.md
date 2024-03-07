@@ -14,17 +14,6 @@
 
 > scoped packages
 
-## (Optional) Additional installation of coc-extension
-
-If you want to use `volar.action.splitEditors`, `volar.action.vite`, `volar.action.nuxt` and other feature, please install [coc-volar-tools](https://github.com/yaegassy/coc-volar-tools).
-
-
-```vim
-:CocInstall @yaegassy/coc-volar-tools
-```
-
-> scoped packages
-
 ## VitePress and petite-vue support
 
 Notes for make `VitePress`, `petite-vue` project working with Volar.
