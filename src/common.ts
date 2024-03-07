@@ -52,10 +52,7 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
       activated = true;
     }
 
-    if (
-      (!activated && currentLangId === 'markdown' && config.server.vitePress.supportMdFile) ||
-      (!activated && currentLangId === 'html' && config.server.petiteVue.supportHtmlFile)
-    ) {
+    if (!activated && currentLangId === 'html' && config.server.petiteVue.supportHtmlFile) {
       doActivate(context, createLc);
       activated = true;
     }
@@ -77,10 +74,7 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
         activated = true;
       }
 
-      if (
-        (!activated && currentlangId === 'markdown' && config.server.vitePress.supportMdFile) ||
-        (!activated && currentlangId === 'html' && config.server.petiteVue.supportHtmlFile)
-      ) {
+      if (!activated && currentlangId === 'html' && config.server.petiteVue.supportHtmlFile) {
         doActivate(context, createLc);
         activated = true;
       }
@@ -158,9 +152,6 @@ export function getDocumentSelector(): DocumentFilter[] {
   if (config.server.petiteVue.supportHtmlFile) {
     selectors.push({ language: 'html' });
   }
-  if (config.server.vitePress.supportMdFile) {
-    selectors.push({ language: 'markdown' });
-  }
 
   return selectors;
 }
@@ -184,7 +175,6 @@ async function getInitializationOptions(context: ExtensionContext): Promise<VueI
       additionalExtensions: [
         ...config.server.additionalExtensions,
         ...(!config.server.petiteVue.supportHtmlFile ? [] : ['html']),
-        ...(!config.server.vitePress.supportMdFile ? [] : ['md']),
       ],
     },
   };
