@@ -355,9 +355,8 @@
         "category": "Volar"
       },
       {
-        "command": "volar.action.reloadProject",
-        "title": "Reload Project",
-        "category": "Volar"
+        "command": "vue.action.reloadProject",
+        "title": "Reload Project"
       },
       {
         "command": "volar.vue.findAllFileReferences",

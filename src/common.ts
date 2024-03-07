@@ -99,7 +99,7 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
   activateRestartRequest();
   activateClientRequests();
 
-  reloadProject.register('volar.action.reloadProject', context, client);
+  reloadProject.register('vue.action.reloadProject', context, client);
   /** Custom commands for coc-volar */
   doctor.register(context);
   /** Custom snippets completion for coc-volar */
