@@ -1,21 +1,9 @@
-import {
-  AutoInsertRequest,
-  FindFileReferenceRequest,
-  GetComponentMeta,
-  GetVirtualFileRequest,
-  ReloadProjectNotification,
-} from '@vue/language-server';
+import { AutoInsertRequest, GetVirtualFileRequest, ReloadProjectNotification } from '@vue/language-server';
 import * as coc from 'coc.nvim';
 
 /**
  * Client Requests
  */
-
-export const FindFileReferenceRequestType = new coc.RequestType<
-  FindFileReferenceRequest.ParamsType,
-  FindFileReferenceRequest.ResponseType,
-  FindFileReferenceRequest.ErrorType
->(FindFileReferenceRequest.type.method);
 
 export const AutoInsertRequestType = new coc.RequestType<
   AutoInsertRequest.ParamsType,
@@ -30,9 +18,3 @@ export const GetVirtualFileRequestType = new coc.RequestType<
   GetVirtualFileRequest.ResponseType,
   GetVirtualFileRequest.ErrorType
 >(GetVirtualFileRequest.type.method);
-
-export const GetComponentMetaType = new coc.RequestType<
-  GetComponentMeta.ParamsType,
-  GetComponentMeta.ResponseType,
-  GetComponentMeta.ErrorType
->(GetComponentMeta.type.method);

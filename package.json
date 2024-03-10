@@ -41,66 +41,23 @@
   "devDependencies": {
     "@babel/types": "^7.21.4",
     "@types/node": "^18.18.4",
-    "@typescript-eslint/eslint-plugin": "^6.7.4",
-    "@typescript-eslint/parser": "^6.7.4",
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "@typescript-eslint/parser": "^7.1.1",
     "coc.nvim": "0.0.83-next.17",
     "esbuild": "^0.16.17",
-    "eslint": "^8.51.0",
+    "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "prettier": "^3.0.3",
     "rimraf": "^5.0.1"
   },
   "activationEvents": [
-    "onLanguage:vue",
-    "onLanguage:markdown",
-    "onLanguage:html",
-    "onLanguage:javascript",
-    "onLanguage:typescript",
-    "onLanguage:javascriptreact",
-    "onLanguage:typescriptreact",
-    "onCommand:volar.initializeTakeOverMode"
+    "onLanguage:vue"
   ],
   "contributes": {
     "rootPatterns": [
       {
         "filetype": "vue",
-        "patterns": [
-          "vite.config.ts",
-          "vite.config.js",
-          "vue.config.js",
-          "nuxt.config.ts"
-        ]
-      },
-      {
-        "filetype": "typescript",
-        "patterns": [
-          "vite.config.ts",
-          "vite.config.js",
-          "vue.config.js",
-          "nuxt.config.ts"
-        ]
-      },
-      {
-        "filetype": "javascript",
-        "patterns": [
-          "vite.config.ts",
-          "vite.config.js",
-          "vue.config.js",
-          "nuxt.config.ts"
-        ]
-      },
-      {
-        "filetype": "typescriptreact",
-        "patterns": [
-          "vite.config.ts",
-          "vite.config.js",
-          "vue.config.js",
-          "nuxt.config.ts"
-        ]
-      },
-      {
-        "filetype": "javascriptreact",
         "patterns": [
           "vite.config.ts",
           "vite.config.js",
@@ -138,15 +95,7 @@
       },
       {
         "fileMatch": "tsconfig.*.json",
-        "url": "https://json.schemastore.org/tsconfig"
-      },
-      {
-        "fileMatch": "tsconfig.*.json",
         "url": "./schemas/vue-tsconfig.schema.json"
-      },
-      {
-        "fileMatch": "jsconfig.*.json",
-        "url": "https://json.schemastore.org/jsconfig"
       },
       {
         "fileMatch": "jsconfig.*.json",
@@ -154,15 +103,7 @@
       },
       {
         "fileMatch": "tsconfig-*.json",
-        "url": "https://json.schemastore.org/tsconfig"
-      },
-      {
-        "fileMatch": "tsconfig-*.json",
         "url": "./schemas/vue-tsconfig.schema.json"
-      },
-      {
-        "fileMatch": "jsconfig-*.json",
-        "url": "https://json.schemastore.org/jsconfig"
       },
       {
         "fileMatch": "jsconfig-*.json",
@@ -244,84 +185,7 @@
           "default": false,
           "description": "Enable fix patch for code action issue #226"
         },
-        "volar.takeOverMode.enabled": {
-          "type": "boolean",
-          "default": false,
-          "description": "Take over language support for *.ts."
-        },
-        "volar.format.initialIndent": {
-          "type": "object",
-          "description": "Whether to have initial indent.",
-          "default": {
-            "html": true
-          },
-          "properties": {
-            "html": {
-              "type": "boolean",
-              "default": true
-            },
-            "typescript": {
-              "type": "boolean",
-              "default": false
-            },
-            "javascript": {
-              "type": "boolean",
-              "default": false
-            },
-            "typescriptreact": {
-              "type": "boolean",
-              "default": false
-            },
-            "javascriptreact": {
-              "type": "boolean",
-              "default": false
-            },
-            "css": {
-              "type": "boolean",
-              "default": false
-            },
-            "scss": {
-              "type": "boolean",
-              "default": false
-            },
-            "less": {
-              "type": "boolean",
-              "default": false
-            },
-            "sass": {
-              "type": "boolean",
-              "default": false
-            },
-            "jade": {
-              "type": "boolean",
-              "default": false
-            },
-            "json": {
-              "type": "boolean",
-              "default": false
-            },
-            "jsonc": {
-              "type": "boolean",
-              "default": false
-            },
-            "json5": {
-              "type": "boolean",
-              "default": false
-            }
-          }
-        },
-        "vue-semantic-server.trace.server": {
-          "scope": "window",
-          "type": "string",
-          "enum": [
-            "off",
-            "messages",
-            "verbose"
-          ],
-          "default": "off",
-          "description": "Traces the communication between coc.nvim and the language server."
-        },
-        "vue-syntactic-server.trace.server": {
+        "vue.trace.server": {
           "scope": "window",
           "type": "string",
           "enum": [
@@ -340,11 +204,6 @@
           "default": null,
           "description": "Custom path to volar server module, ~ and $HOME can also be used. If there is no setting, the built-in module will be used."
         },
-        "vue.server.configFilePath": {
-          "type": "string",
-          "default": "./volar.config.js",
-          "description": "Path to volar.config.js."
-        },
         "vue.server.maxFileSize": {
           "type": "number",
           "default": 20971520,
@@ -362,7 +221,7 @@
         },
         "vue.server.diagnosticModel": {
           "type": "string",
-          "default": "push",
+          "default": "pull",
           "enum": [
             "push",
             "pull"
@@ -381,11 +240,6 @@
           "default": null,
           "description": "Set --max-old-space-size option on server process. If you have problem on frequently \"Request textDocument/** failed.\" error, try setting higher memory(MB) on it."
         },
-        "vue.server.reverseConfigFilePriority": {
-          "type": "boolean",
-          "default": false,
-          "description": "Reverse priority for tsconfig pickup."
-        },
         "vue.server.additionalExtensions": {
           "type": "array",
           "items": {
@@ -393,11 +247,6 @@
           },
           "default": [],
           "description": "List any additional file extensions that should be processed as Vue files (requires restart)."
-        },
-        "vue.server.fullCompletionList": {
-          "type": "boolean",
-          "default": false,
-          "description": "Enable this option if you want to get complete CompletionList in language client. (Disable for better performance)"
         },
         "vue.codeActions.enabled": {
           "type": "boolean",
@@ -443,11 +292,6 @@
           "default": "autoKebab",
           "description": "Preferred attr name case."
         },
-        "vue.complete.normalizeComponentImportName": {
-          "type": "boolean",
-          "default": true,
-          "description": "Normalize import name for auto import. (\"myCompVue\" -> \"MyComp\")"
-        },
         "vue.autoInsert.parentheses": {
           "type": "boolean",
           "default": true,
@@ -478,6 +322,18 @@
           "default": false,
           "description": "Show inlay hints for component options wrapper for type support."
         },
+        "vue.format.template.initialIndent": {
+          "type": "boolean",
+          "default": true
+        },
+        "vue.format.style.initialIndent": {
+          "type": "boolean",
+          "default": false
+        },
+        "vue.format.script.initialIndent": {
+          "type": "boolean",
+          "default": false
+        },
         "vetur.enable": {
           "type": "boolean",
           "default": true,
@@ -487,39 +343,35 @@
     },
     "commands": [
       {
-        "command": "volar.initializeTakeOverMode",
-        "title": "Enable TakeOverMode in your project",
-        "category": "Volar"
-      },
-      {
         "command": "volar.action.doctor",
         "title": "Show Doctor info",
         "category": "Volar"
       },
       {
-        "command": "volar.action.restartServer",
+        "command": "vue.action.restartServer",
         "title": "Restart Vue server",
         "category": "Volar"
       },
       {
-        "command": "volar.action.reloadProject",
-        "title": "Reload Project",
-        "category": "Volar"
-      },
+        "command": "vue.action.reloadProject",
+        "title": "Reload Project"
+      }
+    ],
+    "typescriptServerPlugins": [
       {
-        "command": "volar.action.showComponentMeta",
-        "title": "Show Component Meta",
-        "category": "Volar"
-      },
-      {
-        "command": "volar.vue.findAllFileReferences",
-        "title": "Vue: Find File References",
-        "category": "Volar"
+        "name": "@vue/typescript-plugin",
+        "enableForWorkspaceTypeScriptVersions": true,
+        "languages": [
+          "javascript",
+          "typescript",
+          "vue"
+        ]
       }
     ]
   },
   "dependencies": {
-    "@vue/language-server": "1.8.27",
-    "typescript": "5.2.2"
+    "@vue/language-server": "2.0.6",
+    "@vue/typescript-plugin": "2.0.6",
+    "typescript": "5.3.3"
   }
 }

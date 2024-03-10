@@ -14,63 +14,6 @@
 
 > scoped packages
 
-## (Optional) Additional installation of coc-extension
-
-If you want to use `volar.action.splitEditors`, `volar.action.vite`, `volar.action.nuxt` and other feature, please install [coc-volar-tools](https://github.com/yaegassy/coc-volar-tools).
-
-
-```vim
-:CocInstall @yaegassy/coc-volar-tools
-```
-
-> scoped packages
-
-## [IMPORTANT] Enable "Takeover Mode" or use "typescript-vue-plugin"
-
-In `coc-volar`, please enable and use "Takeover Mode". Check the Vue.js documentation for more information on "Takeover Mode".
-
-- <https://vuejs.org/guide/typescript/overview.html#volar-takeover-mode>
-
-If you want to use the "TypeScript Vue Plugin" instead of Takeover Mode, install `typescript-vue-plugin` in your project (`npm install typescript-vue-plugin`). After installation, add a setting in `tsconfig.json` to use `typescript-vue-plugin`.
-
-If you do not want to install `typescript-vue-plugin` in the project itself, use the [coc-typescript-vue-plugin](https://github.com/yaegassy/coc-typescript-vue-plugin) extension.
-
-```vim
-:CocInstall @yaegassy/coc-typescript-vue-plugin
-```
-
-### If you are using "Takeover Mode" for the first time in your project
-
-1. To begin, open the `*.vue`, `*.ts`, `*.js`, `*.tsx`, `*.jsx` file.
-1. Then run `:CocCommand volar.initializeTakeOverMode`.
-1. When prompted by `Enable Take Over Mode? (y/n)?`, enter `y`
-1. The `.vim/coc-settings.json` file will be created in the "project root".
-   - The `"volar.takeOverMode.enabled": true` and `"tsserver.enable": false` settings will be added.
-1. `coc.nvim` will be restarted and the settings will be reflected.
-
-### If you want to disable Takeover Mode for a project
-
-Delete the `.vim/coc-settings.json` file in the "project root", and start Vim again.
-
-## VitePress and petite-vue support
-
-Notes for make `VitePress`, `petite-vue` project working with Volar.
-
-### VitePress
-
-- Set `vue.server.vitePress.supportMdFile` to `true` in `.vim/coc-settings.json`.
-  - **[WARNING]** If you use this setting, it is recommended to enable it at the workspace (project) level.
-- `vue` is optional add in devDependencies for better intellisense.
-- Make sure added related `.md` files path to tsconfig.json `include` property.
-
-### petite-vue
-
-- Set `vue.server.petiteVue.supportHtmlFile` to `true` in `.vim/coc-settings.json`.
-  - **[WARNING]** If you use this setting, it is recommended to enable it at the workspace (project) level.
-- Set `html.enable` to `false` in `.vim/coc-settings.json`.
-- `vue` is optional add in devDependencies for better intellisense.
-- Make sure added related `.html` files path to tsconfig.json `include` property.
-
 ## [RECOMMENDED] Additional installation of "watchman"
 
 In the `@vue/language-server` used by `coc-volar`, it utilizes the `workspace/didChangeWatchedFiles` notification to watch files within the project.
@@ -149,25 +92,16 @@ hi link CocSemComponent MoreMsg
 - `volar.disableDiagnostics`: Disable diagnostics from Volar, default: `false`
 - `volar.disableFormatting`: Disable formatting from Volar, default: `false`
 - `volar.disableProgressNotifications`: Disable the initialization and workdone progress notifications, default: `false`
-- `volar.takeOverMode.enabled`: Take over language support for `*.ts`, default: `false`
-- `volar.format.initialIndent`: Whether to have initial indent, default: `{}`
-- `vue-semantic-server.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
-- `vue-syntactic-server.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
+- `vue.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
 - `vue.server.path`: Custom path to volar server module, `~` and `$HOME` can also be used. If there is no setting, the built-in module will be used, default: `null`
-- `vue.server.configFilePath`: Path to volar.config.js, default: `./volar.config.js`
 - `vue.server.maxFileSize`: Maximum file size for Vue Language Server to load. (default: 20MB), default: `20971520`
-- `vue.server.petiteVue.supportHtmlFile `: Recognize `.html` extension as PetiteVue file format. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, and adding `__PATH_TO_HTML_FILES_/*.html` to config include option, default: `false`
-- `vue.server.vitePress.supportMdFile`: Recognize `.md` extension as VitePress file format. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, and adding `__PATH_TO_MD_FILES_/*.md` to config include option, default: `false`
-- `vue.server.diagnosticModel`: Diagnostic update model, valid option: `["push", "pull"]`, default: `push`
+- `vue.server.diagnosticModel`: Diagnostic update model, valid option: `["push", "pull"]`, default: `pull`
 - `vue.server.maxOldSpaceSize`: Set `--max-old-space-size` option on server process. If you have problem on frequently `"Request textDocument/** failed."` error, try setting higher memory(MB) on it, default: `null`
-- `vue.server.reverseConfigFilePriority`: Reverse priority for tsconfig pickup, default: `false`
 - `vue.server.additionalExtensions`: List any additional file extensions that should be processed as Vue files (requires restart), default: `[]`
-- `vue.server.fullCompletionList`: Enable this option if you want to get complete CompletionList in language client. (Disable for better performance), default: `false`
 - `vue.codeActions.enabled`: Enabled code actions, default: `true`
 - `vue.codeLens.enabled`: Enabled code lens, default: `true`
 - `vue.complete.casing.tags`: Preferred tag name case, valid options: `["autoKebab", "autoPascal", "kebab", "pascal"]`, default: `"autoPascal"`
 - `vue.complete.casing.props`: Preferred attr name case, valid options: `["autoKebab", "autoCamel", "kebab", "camel"]`, default: `"autoKebab"`
-- `vue.complete.normalizeComponentImportName`: Normalize import name for auto import. (\"myCompVue\" -> \"MyComp\"), default: `true`
 - `vue.autoInsert.parentheses`: Auto-wrap `()` to As Expression in interpolations for fix volar-issue #520, default: `true`
 - `vue.autoInsert.dotValue`: Auto-complete Ref value with `.value`, default: `false`
 - `vue.autoInsert.bracketSpacing`: Auto add space between double curly brackets: `{{|}} -> {{ | }}`, default: `true`
@@ -177,18 +111,8 @@ hi link CocSemComponent MoreMsg
 
 ## Commands
 
-- `volar.initializeTakeOverMode`: Enable Take Over Mode in your project
-- `volar.action.doctor`: Show Doctor info
-- `volar.action.restartServer`: Restart Vue server
-- `volar.action.reloadProject`: Reload Project
-- `volar.action.showComponentMeta`: Show Component Meta
-- `volar.action.splitEditors`: Split `<script>`, `<template>`, `<style>` Editors
-  - Please install [coc-volar-tools](https://github.com/yaegassy/coc-volar-tools) separately to use this command
-- `volar.action.vite`: Experimental Features for Vite
-  - Please install [coc-volar-tools](https://github.com/yaegassy/coc-volar-tools) separately to use this command
-- `volar.action.nuxt`: Experimental Features for Nuxt
-  - Please install [coc-volar-tools](https://github.com/yaegassy/coc-volar-tools) separately to use this command
-- `volar.vue.findAllFileReferences`: Vue: Find File References
+- `vue.action.reloadProject`: Reload Project
+- `vue.action.restartServer`: Restart Vue server
 
 ## More features
 
