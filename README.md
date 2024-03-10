@@ -16,7 +16,7 @@
 
 ## Note
 
-- `coc-volar` version `v0.4.0` and later uses `vue-language-server` version `v2.x.x`. If you have `coc-typescript-vue-plugin` installed, please uninstall it as it will cause conflicts and errors.
+- `coc-volar` version `v0.35.0` and later uses `vue-language-server` version `v2.x.x`. If you have `coc-typescript-vue-plugin` installed, please uninstall it as it will cause conflicts and errors.
   - `:CocUninstall @yaegassy/coc-typescript-vue-plugin`
 - To utilize various language features such as `IntelliSense`, `Diagnostics`, and more in the `<script>` blocks of `Vue` files, you need to install either `coc-tsserver` or `coc-tsserver-dev`.
   - `:CocInstall coc-tsserver` or `:CocInstall coc-tsserver-dev`
