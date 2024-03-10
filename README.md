@@ -14,6 +14,26 @@
 
 > scoped packages
 
+## Note
+
+- `coc-volar` version `v0.4.0` and later uses `vue-language-server` version `v2.x.x`. If you have `coc-typescript-vue-plugin` installed, please uninstall it as it will cause conflicts and errors.
+  - `:CocUninstall @yaegassy/coc-typescript-vue-plugin`
+- To utilize various language features such as `IntelliSense`, `Diagnostics`, and more in the `<script>` blocks of `Vue` files, you need to install either `coc-tsserver` or `coc-tsserver-dev`.
+  - `:CocInstall coc-tsserver` or `:CocInstall coc-tsserver-dev`
+  - **Note**: `coc-volar` checks if `coc-tsserver` or `coc-tsserver-dev` are installed in the environment when opening a `Vue` file. If they are installed, `coc-volar` automatically starts `tsserver`.
+- If you have a project that previously enabled `Takeover mode` using the `volar.initializeTakeOverMode` command in `coc-volar`, you need to perform the following steps:
+  - The file `.vim/coc-settings.json` should have been created in the project root directory. In that file, the `tsserver.enable` setting is set to `false`. Please change it to `true`.
+
+    **.vim/coc-settings.json**:
+
+    ```jsonc
+    {
+      // ...snip
+      //"tsserver.enable": false // <-- Before 
+      "tsserver.enable": true // <-- After | Change it to `true`, or delete this line.
+    }
+    ```
+
 ## [RECOMMENDED] Additional installation of "watchman"
 
 In the `@vue/language-server` used by `coc-volar`, it utilizes the `workspace/didChangeWatchedFiles` notification to watch files within the project.
