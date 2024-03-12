@@ -131,9 +131,9 @@ export async function activate(_selectors: DocumentSelector, client: LanguageCli
         },
       };
 
-      const result = await client.sendRequest(AutoInsertRequestType.method, params);
+      const result = await client.sendRequest<TextEdit>(AutoInsertRequestType.method, params);
 
-      if (typeof result === 'string') {
+      if (typeof result === 'string' || typeof result === 'object') {
         return result;
       } else {
         return undefined;
