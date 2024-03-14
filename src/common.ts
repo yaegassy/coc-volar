@@ -93,7 +93,8 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
     if (
       workspace.getConfiguration('volar').get<boolean>('autoCreateQuotes') ||
       workspace.getConfiguration('volar').get<boolean>('autoClosingTags') ||
-      workspace.getConfiguration('vue').get<boolean>('autoInsert.dotValue')
+      workspace.getConfiguration('vue').get<boolean>('autoInsert.dotValue') ||
+      workspace.getConfiguration('vue').get<boolean>('autoInsert.bracketSpacing')
     ) {
       autoInsertion.activate(selectors, client);
     }
