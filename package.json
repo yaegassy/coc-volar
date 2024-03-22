@@ -370,8 +370,8 @@
     ]
   },
   "dependencies": {
-    "@vue/language-server": "2.0.6",
-    "@vue/typescript-plugin": "2.0.6",
+    "@vue/language-server": "2.0.7",
+    "@vue/typescript-plugin": "2.0.7",
     "typescript": "5.3.3"
   },
   "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447"
