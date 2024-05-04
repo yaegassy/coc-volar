@@ -209,19 +209,6 @@
           "default": 20971520,
           "description": "Maximum file size for Vue Language Server to load. (default: 20MB)"
         },
-        "vue.server.diagnosticModel": {
-          "type": "string",
-          "default": "pull",
-          "enum": [
-            "push",
-            "pull"
-          ],
-          "enumDescriptions": [
-            "Diagnostic push by language server.",
-            "Diagnostic pull by language client."
-          ],
-          "description": "Diagnostic update model."
-        },
         "vue.server.maxOldSpaceSize": {
           "type": [
             "number",

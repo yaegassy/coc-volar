@@ -115,7 +115,6 @@ hi link CocSemComponent MoreMsg
 - `vue.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
 - `vue.server.path`: Custom path to volar server module, `~` and `$HOME` can also be used. If there is no setting, the built-in module will be used, default: `null`
 - `vue.server.maxFileSize`: Maximum file size for Vue Language Server to load. (default: 20MB), default: `20971520`
-- `vue.server.diagnosticModel`: Diagnostic update model, valid option: `["push", "pull"]`, default: `pull`
 - `vue.server.maxOldSpaceSize`: Set `--max-old-space-size` option on server process. If you have problem on frequently `"Request textDocument/** failed."` error, try setting higher memory(MB) on it, default: `null`
 - `vue.codeActions.enabled`: Enabled code actions, default: `true`
 - `vue.codeLens.enabled`: Enabled code lens, default: `true`

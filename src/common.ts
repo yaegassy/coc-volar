@@ -9,7 +9,7 @@ import {
   workspace,
 } from 'coc.nvim';
 
-import { DiagnosticModel, VueInitializationOptions } from '@vue/language-server';
+import { VueInitializationOptions } from '@vue/language-server';
 
 import * as doctor from './client/commands/doctor';
 import * as scaffoldSnippets from './client/completions/scaffoldSnippets';
@@ -142,8 +142,6 @@ async function getInitializationOptions(context: ExtensionContext): Promise<VueI
   }
 
   return {
-    // volar
-    diagnosticModel: config.server.diagnosticModel === 'pull' ? DiagnosticModel.Pull : DiagnosticModel.Push,
     typescript: resolveCurrentTsPaths,
     maxFileSize: config.server.maxFileSize,
     semanticTokensLegend: {

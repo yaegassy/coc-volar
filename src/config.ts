@@ -19,7 +19,6 @@ export const config = {
     path: null | string;
     maxOldSpaceSize: number;
     maxFileSize: number;
-    diagnosticModel: 'push' | 'pull';
   }> {
     return _config().get('server')!;
   },
