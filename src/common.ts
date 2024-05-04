@@ -14,7 +14,6 @@ import { DiagnosticModel, VueInitializationOptions } from '@vue/language-server'
 import * as doctor from './client/commands/doctor';
 import * as scaffoldSnippets from './client/completions/scaffoldSnippets';
 import * as autoInsertion from './features/autoInsertion';
-import * as reloadProject from './features/reloadProject';
 import * as tsVersion from './features/tsVersion';
 
 import { config } from './config';
@@ -81,7 +80,6 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
   activateRestartRequest();
   activateClientRequests();
 
-  reloadProject.register('vue.action.reloadProject', context, client);
   /** Custom commands for coc-volar */
   doctor.register(context);
   /** Custom snippets completion for coc-volar */

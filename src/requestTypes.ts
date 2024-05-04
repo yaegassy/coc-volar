@@ -1,4 +1,4 @@
-import { AutoInsertRequest, GetVirtualFileRequest, ReloadProjectNotification } from '@vue/language-server';
+import { AutoInsertRequest, GetVirtualFileRequest } from '@vue/language-server';
 import * as coc from 'coc.nvim';
 
 /**
@@ -10,8 +10,6 @@ export const AutoInsertRequestType = new coc.RequestType<
   AutoInsertRequest.ResponseType,
   AutoInsertRequest.ErrorType
 >(AutoInsertRequest.type.method);
-
-export const ReloadProjectNotificationType = new coc.NotificationType(ReloadProjectNotification.type.method);
 
 export const GetVirtualFileRequestType = new coc.RequestType<
   GetVirtualFileRequest.ParamsType,

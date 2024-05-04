@@ -131,7 +131,6 @@ hi link CocSemComponent MoreMsg
 
 ## Commands
 
-- `vue.action.reloadProject`: Reload Project
 - `vue.action.restartServer`: Restart Vue server
 
 ## More features

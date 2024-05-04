@@ -351,10 +351,6 @@
         "command": "vue.action.restartServer",
         "title": "Restart Vue server",
         "category": "Volar"
-      },
-      {
-        "command": "vue.action.reloadProject",
-        "title": "Reload Project"
       }
     ],
     "typescriptServerPlugins": [
