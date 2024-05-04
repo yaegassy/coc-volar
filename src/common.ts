@@ -9,12 +9,11 @@ import {
   workspace,
 } from 'coc.nvim';
 
-import { DiagnosticModel, VueInitializationOptions } from '@vue/language-server';
+import { VueInitializationOptions } from '@vue/language-server';
 
 import * as doctor from './client/commands/doctor';
 import * as scaffoldSnippets from './client/completions/scaffoldSnippets';
 import * as autoInsertion from './features/autoInsertion';
-import * as reloadProject from './features/reloadProject';
 import * as tsVersion from './features/tsVersion';
 
 import { config } from './config';
@@ -72,16 +71,23 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
   );
 }
 
+export const enabledHybridMode = config.server.hybridMode;
+
 export async function doActivate(context: ExtensionContext, createLc: CreateLanguageClient) {
   initializeWorkspaceState(context);
 
   const outputChannel = window.createOutputChannel('Vue Language Server');
-  client = createLc('vue', 'Vue', getDocumentSelector(), await getInitializationOptions(context), 6009, outputChannel);
+  client = createLc(
+    'vue',
+    'Vue',
+    getDocumentSelector(),
+    await getInitializationOptions(context, enabledHybridMode),
+    6009,
+    outputChannel,
+  );
 
   activateRestartRequest();
-  activateClientRequests();
 
-  reloadProject.register('vue.action.reloadProject', context, client);
   /** Custom commands for coc-volar */
   doctor.register(context);
   /** Custom snippets completion for coc-volar */
@@ -107,17 +113,11 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
 
         outputChannel.clear();
 
-        client.clientOptions.initializationOptions = await getInitializationOptions(context);
+        client.clientOptions.initializationOptions = await getInitializationOptions(context, enabledHybridMode);
 
         await client.start();
-
-        activateClientRequests();
       }),
     );
-  }
-
-  function activateClientRequests() {
-    //nameCasing.activate(context, client);
   }
 }
 
@@ -137,23 +137,20 @@ export function getDocumentSelector(): DocumentFilter[] {
   return selectors;
 }
 
-async function getInitializationOptions(context: ExtensionContext): Promise<VueInitializationOptions> {
+async function getInitializationOptions(
+  context: ExtensionContext,
+  hybridMode: boolean,
+): Promise<VueInitializationOptions> {
   if (!resolveCurrentTsPaths) {
     resolveCurrentTsPaths = tsVersion.getCurrentTsPaths(context);
     context.workspaceState.update('coc-volar-tsdk-path', resolveCurrentTsPaths.tsdk);
   }
 
   return {
-    // volar
-    diagnosticModel: config.server.diagnosticModel === 'pull' ? DiagnosticModel.Pull : DiagnosticModel.Push,
     typescript: resolveCurrentTsPaths,
     maxFileSize: config.server.maxFileSize,
-    semanticTokensLegend: {
-      tokenTypes: ['component'],
-      tokenModifiers: [],
-    },
     vue: {
-      additionalExtensions: [...config.server.additionalExtensions],
+      hybridMode,
     },
   };
 }

@@ -78,28 +78,6 @@ If the completion menu disappears when typing `-`, add the `iskeyword` setting t
 autocmd Filetype vue setlocal iskeyword+=-
 ```
 
-## SemanticTokens (Semantic Highlights)
-
-Set `semanticTokens.enable` to `true` in `coc-settings.json`. See `:h coc-semantic-highlights` for details.
-
-**coc-settings.json**:
-
-```jsonc
-{
-  "semanticTokens.enable": true
-}
-```
-
-The `vue-language-server` also provides semantic tokens for `component`. It can be highlighted by adding the following configuration to `.vimrc` or `init.vim`.
-
-**.vimrc / init.vim**:
-
-> Link `CocSemComponent` to the highlight group of your choice. In this example, we link to `MoreMsg`.
-
-```vim
-hi link CocSemComponent MoreMsg
-```
-
 ## Configuration options
 
 - `volar.enable`: Enable coc-volar extension, default: `true`
@@ -115,9 +93,7 @@ hi link CocSemComponent MoreMsg
 - `vue.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
 - `vue.server.path`: Custom path to volar server module, `~` and `$HOME` can also be used. If there is no setting, the built-in module will be used, default: `null`
 - `vue.server.maxFileSize`: Maximum file size for Vue Language Server to load. (default: 20MB), default: `20971520`
-- `vue.server.diagnosticModel`: Diagnostic update model, valid option: `["push", "pull"]`, default: `pull`
 - `vue.server.maxOldSpaceSize`: Set `--max-old-space-size` option on server process. If you have problem on frequently `"Request textDocument/** failed."` error, try setting higher memory(MB) on it, default: `null`
-- `vue.server.additionalExtensions`: List any additional file extensions that should be processed as Vue files (requires restart), default: `[]`
 - `vue.codeActions.enabled`: Enabled code actions, default: `true`
 - `vue.codeLens.enabled`: Enabled code lens, default: `true`
 - `vue.complete.casing.tags`: Preferred tag name case, valid options: `["autoKebab", "autoPascal", "kebab", "pascal"]`, default: `"autoPascal"`
@@ -131,7 +107,6 @@ hi link CocSemComponent MoreMsg
 
 ## Commands
 
-- `vue.action.reloadProject`: Reload Project
 - `vue.action.restartServer`: Restart Vue server
 
 ## More features

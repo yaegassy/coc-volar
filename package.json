@@ -204,33 +204,32 @@
           "default": null,
           "description": "Custom path to volar server module, ~ and $HOME can also be used. If there is no setting, the built-in module will be used."
         },
+        "vue.server.hybridMode": {
+          "type": "boolean",
+          "default": true,
+          "enum": [
+            true,
+            false
+          ],
+          "enumDescriptions": [
+            "Enable TypeScript Plugin/Hybrid Mode.",
+            "Disable TypeScript Plugin/Hybrid Mode."
+          ],
+          "description": "Vue language server only handles CSS and HTML language support, and tsserver takes over TS language support via TS plugin."
+        },
+        "vue.server.includeLanguages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "vue"
+          ]
+        },
         "vue.server.maxFileSize": {
           "type": "number",
           "default": 20971520,
           "description": "Maximum file size for Vue Language Server to load. (default: 20MB)"
-        },
-        "vue.server.petiteVue.supportHtmlFile": {
-          "type": "boolean",
-          "default": false,
-          "description": "Recognize `.html` extension as PetiteVue file format. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, and adding `__PATH_TO_HTML_FILES_/*.html` to config include option"
-        },
-        "vue.server.vitePress.supportMdFile": {
-          "type": "boolean",
-          "default": false,
-          "description": "Recognize `.md` extension as VitePress file format. If you use this setting, it is recommended to enable it at the workspace (project) level. You must also place `tsconfig.json` or `jsconfig.json` in your project, and adding `__PATH_TO_MD_FILES_/*.md` to config include option"
-        },
-        "vue.server.diagnosticModel": {
-          "type": "string",
-          "default": "pull",
-          "enum": [
-            "push",
-            "pull"
-          ],
-          "enumDescriptions": [
-            "Diagnostic push by language server.",
-            "Diagnostic pull by language client."
-          ],
-          "description": "Diagnostic update model."
         },
         "vue.server.maxOldSpaceSize": {
           "type": [
@@ -239,14 +238,6 @@
           ],
           "default": null,
           "description": "Set --max-old-space-size option on server process. If you have problem on frequently \"Request textDocument/** failed.\" error, try setting higher memory(MB) on it."
-        },
-        "vue.server.additionalExtensions": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "default": [],
-          "description": "List any additional file extensions that should be processed as Vue files (requires restart)."
         },
         "vue.codeActions.enabled": {
           "type": "boolean",
@@ -351,10 +342,6 @@
         "command": "vue.action.restartServer",
         "title": "Restart Vue server",
         "category": "Volar"
-      },
-      {
-        "command": "vue.action.reloadProject",
-        "title": "Reload Project"
       }
     ],
     "typescriptServerPlugins": [
@@ -370,8 +357,8 @@
     ]
   },
   "dependencies": {
-    "@vue/language-server": "2.0.13",
-    "@vue/typescript-plugin": "2.0.13",
+    "@vue/language-server": "2.0.16",
+    "@vue/typescript-plugin": "2.0.16",
     "typescript": "5.3.3"
   },
   "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447"
