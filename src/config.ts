@@ -20,15 +20,9 @@ export const config = {
     maxOldSpaceSize: number;
     maxFileSize: number;
     diagnosticModel: 'push' | 'pull';
-    additionalExtensions: string[];
   }> {
     return _config().get('server')!;
   },
-  //get updateImportsOnFileMove(): Readonly<{
-  //  enabled: boolean;
-  //}> {
-  //  return _config().get('updateImportsOnFileMove')!;
-  //},
   get codeActions(): Readonly<{
     enabled: boolean;
     savingTimeLimit: number;

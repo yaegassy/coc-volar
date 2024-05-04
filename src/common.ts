@@ -150,9 +150,7 @@ async function getInitializationOptions(context: ExtensionContext): Promise<VueI
       tokenTypes: ['component'],
       tokenModifiers: [],
     },
-    vue: {
-      additionalExtensions: [...config.server.additionalExtensions],
-    },
+    vue: {},
   };
 }
 

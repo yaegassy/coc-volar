@@ -117,7 +117,6 @@ hi link CocSemComponent MoreMsg
 - `vue.server.maxFileSize`: Maximum file size for Vue Language Server to load. (default: 20MB), default: `20971520`
 - `vue.server.diagnosticModel`: Diagnostic update model, valid option: `["push", "pull"]`, default: `pull`
 - `vue.server.maxOldSpaceSize`: Set `--max-old-space-size` option on server process. If you have problem on frequently `"Request textDocument/** failed."` error, try setting higher memory(MB) on it, default: `null`
-- `vue.server.additionalExtensions`: List any additional file extensions that should be processed as Vue files (requires restart), default: `[]`
 - `vue.codeActions.enabled`: Enabled code actions, default: `true`
 - `vue.codeLens.enabled`: Enabled code lens, default: `true`
 - `vue.complete.casing.tags`: Preferred tag name case, valid options: `["autoKebab", "autoPascal", "kebab", "pascal"]`, default: `"autoPascal"`
