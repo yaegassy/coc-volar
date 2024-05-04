@@ -144,10 +144,6 @@ async function getInitializationOptions(context: ExtensionContext): Promise<VueI
   return {
     typescript: resolveCurrentTsPaths,
     maxFileSize: config.server.maxFileSize,
-    semanticTokensLegend: {
-      tokenTypes: ['component'],
-      tokenModifiers: [],
-    },
     vue: {},
   };
 }
