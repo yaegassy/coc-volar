@@ -78,28 +78,6 @@ If the completion menu disappears when typing `-`, add the `iskeyword` setting t
 autocmd Filetype vue setlocal iskeyword+=-
 ```
 
-## SemanticTokens (Semantic Highlights)
-
-Set `semanticTokens.enable` to `true` in `coc-settings.json`. See `:h coc-semantic-highlights` for details.
-
-**coc-settings.json**:
-
-```jsonc
-{
-  "semanticTokens.enable": true
-}
-```
-
-The `vue-language-server` also provides semantic tokens for `component`. It can be highlighted by adding the following configuration to `.vimrc` or `init.vim`.
-
-**.vimrc / init.vim**:
-
-> Link `CocSemComponent` to the highlight group of your choice. In this example, we link to `MoreMsg`.
-
-```vim
-hi link CocSemComponent MoreMsg
-```
-
 ## Configuration options
 
 - `volar.enable`: Enable coc-volar extension, default: `true`
