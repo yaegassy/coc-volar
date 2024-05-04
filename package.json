@@ -204,6 +204,15 @@
           "default": null,
           "description": "Custom path to volar server module, ~ and $HOME can also be used. If there is no setting, the built-in module will be used."
         },
+        "vue.server.includeLanguages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "vue"
+          ]
+        },
         "vue.server.maxFileSize": {
           "type": "number",
           "default": 20971520,
