@@ -204,6 +204,19 @@
           "default": null,
           "description": "Custom path to volar server module, ~ and $HOME can also be used. If there is no setting, the built-in module will be used."
         },
+        "vue.server.hybridMode": {
+          "type": "boolean",
+          "default": true,
+          "enum": [
+            true,
+            false
+          ],
+          "enumDescriptions": [
+            "Enable TypeScript Plugin/Hybrid Mode.",
+            "Disable TypeScript Plugin/Hybrid Mode."
+          ],
+          "description": "Vue language server only handles CSS and HTML language support, and tsserver takes over TS language support via TS plugin."
+        },
         "vue.server.includeLanguages": {
           "type": "array",
           "items": {

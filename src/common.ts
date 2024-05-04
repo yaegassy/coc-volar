@@ -71,14 +71,22 @@ export async function activate(context: ExtensionContext, createLc: CreateLangua
   );
 }
 
+export const enabledHybridMode = config.server.hybridMode;
+
 export async function doActivate(context: ExtensionContext, createLc: CreateLanguageClient) {
   initializeWorkspaceState(context);
 
   const outputChannel = window.createOutputChannel('Vue Language Server');
-  client = createLc('vue', 'Vue', getDocumentSelector(), await getInitializationOptions(context), 6009, outputChannel);
+  client = createLc(
+    'vue',
+    'Vue',
+    getDocumentSelector(),
+    await getInitializationOptions(context, enabledHybridMode),
+    6009,
+    outputChannel,
+  );
 
   activateRestartRequest();
-  activateClientRequests();
 
   /** Custom commands for coc-volar */
   doctor.register(context);
@@ -105,17 +113,11 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
 
         outputChannel.clear();
 
-        client.clientOptions.initializationOptions = await getInitializationOptions(context);
+        client.clientOptions.initializationOptions = await getInitializationOptions(context, enabledHybridMode);
 
         await client.start();
-
-        activateClientRequests();
       }),
     );
-  }
-
-  function activateClientRequests() {
-    //nameCasing.activate(context, client);
   }
 }
 
@@ -135,7 +137,10 @@ export function getDocumentSelector(): DocumentFilter[] {
   return selectors;
 }
 
-async function getInitializationOptions(context: ExtensionContext): Promise<VueInitializationOptions> {
+async function getInitializationOptions(
+  context: ExtensionContext,
+  hybridMode: boolean,
+): Promise<VueInitializationOptions> {
   if (!resolveCurrentTsPaths) {
     resolveCurrentTsPaths = tsVersion.getCurrentTsPaths(context);
     context.workspaceState.update('coc-volar-tsdk-path', resolveCurrentTsPaths.tsdk);
@@ -144,7 +149,9 @@ async function getInitializationOptions(context: ExtensionContext): Promise<VueI
   return {
     typescript: resolveCurrentTsPaths,
     maxFileSize: config.server.maxFileSize,
-    vue: {},
+    vue: {
+      hybridMode,
+    },
   };
 }
 
