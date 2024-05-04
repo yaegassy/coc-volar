@@ -3,20 +3,11 @@ import { workspace } from 'coc.nvim';
 const _config = () => workspace.getConfiguration('vue');
 
 export const config = {
-  //update: (section: string, value: any) => _config().update(section, value),
-  //get splitEditors(): Readonly<{
-  //  icon: boolean;
-  //  layout: { left: string[]; right: string[] };
-  //}> {
-  //  return _config().get('splitEditors')!;
-  //},
-  //get doctor(): Readonly<{
-  //  status: boolean;
-  //}> {
-  //  return _config().get('doctor')!;
-  //},
   get server(): Readonly<{
     path: null | string;
+    includeLanguages: string[];
+    //hybridMode: 'auto' | 'typeScriptPluginOnly' | boolean;
+    hybridMode: boolean;
     maxOldSpaceSize: number;
     maxFileSize: number;
   }> {
