@@ -21,12 +21,6 @@ export const config = {
     maxFileSize: number;
     diagnosticModel: 'push' | 'pull';
     additionalExtensions: string[];
-    vitePress: {
-      supportMdFile: boolean;
-    };
-    petiteVue: {
-      supportHtmlFile: boolean;
-    };
   }> {
     return _config().get('server')!;
   },
