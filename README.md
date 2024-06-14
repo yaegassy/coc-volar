@@ -71,8 +71,6 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `volar.enable`: Enable coc-volar extension, default: `true`
 - `volar.useWorkspaceTsdk`: Use workspace (project) detected tsLibs in volar. if false, use coc-volar's built-in tsLibs, default: `false`
 - `volar.tsLocale`: Sets the locale used to report diagnostics message from typescript, valid option: `["cs", "de", "es", "fr", "it", "ja", "ko", "en", "pl", "pt-br", "ru", "tr", "zh-cn", "zh-tw"]`, default: `"en"`
-- `volar.autoCreateQuotes`: Enable/disable auto creation of quotes for HTML attribute assignment, default: `false`
-- `volar.autoClosingTags`: Enable/disable autoClosing of HTML tags, default: `false`
 - `volar.scaffoldSnippets.enable`: Enable/disable scaffold snippets completion. Typing `vue` or `vuedc` will output completion suggestions. This snippets completion feature will only work on the first line of the file, default: `true`
 - `volar.disableCompletion`: Disable completion from Volar, default: `false`
 - `volar.disableDiagnostics`: Disable diagnostics from Volar, default: `false`
@@ -80,18 +78,15 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `volar.disableProgressNotifications`: Disable the initialization and workdone progress notifications, default: `false`
 - `vue.trace.server`: Traces the communication between coc.nvim and the language server, valid option: `["off", "messages", "verbose"]`, default: `"off"`
 - `vue.server.path`: Custom path to volar server module, `~` and `$HOME` can also be used. If there is no setting, the built-in module will be used, default: `null`
-- `vue.server.maxFileSize`: Maximum file size for Vue Language Server to load. (default: 20MB), default: `20971520`
 - `vue.server.maxOldSpaceSize`: Set `--max-old-space-size` option on server process. If you have problem on frequently `"Request textDocument/** failed."` error, try setting higher memory(MB) on it, default: `null`
 - `vue.codeActions.enabled`: Enabled code actions, default: `true`
 - `vue.codeLens.enabled`: Enabled code lens, default: `true`
 - `vue.complete.casing.tags`: Preferred tag name case, valid options: `["autoKebab", "autoPascal", "kebab", "pascal"]`, default: `"autoPascal"`
 - `vue.complete.casing.props`: Preferred attr name case, valid options: `["autoKebab", "autoCamel", "kebab", "camel"]`, default: `"autoKebab"`
-- `vue.autoInsert.parentheses`: Auto-wrap `()` to As Expression in interpolations for fix volar-issue #520, default: `true`
-- `vue.autoInsert.dotValue`: Auto-complete Ref value with `.value`, default: `false`
-- `vue.autoInsert.bracketSpacing`: Auto add space between double curly brackets: `{{|}} -> {{ | }}`, default: `true`
 - `vue.inlayHints.missingProps`: Show inlay hints for missing required props, `false`
 - `vue.inlayHints.inlineHandlerLeading`: Show inlay hints for event argument in inline handlers, default: `false`
 - `vue.inlayHints.optionsWrapper`: Show inlay hints for component options wrapper for type support, default: `false`
+- `vue.inlayHints.vBindShorthand`: Show inlay hints for v-bind shorthand, default: `false`
 
 ## Commands
 

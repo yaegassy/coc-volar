@@ -145,16 +145,6 @@
           "default": "en",
           "description": "Sets the locale used to report diagnostics message from typescript."
         },
-        "volar.autoCreateQuotes": {
-          "type": "boolean",
-          "default": false,
-          "description": "Enable/disable auto creation of quotes for HTML attribute assignment."
-        },
-        "volar.autoClosingTags": {
-          "type": "boolean",
-          "default": false,
-          "description": "Enable/disable autoClosing of HTML tags."
-        },
         "volar.scaffoldSnippets.enable": {
           "type": "boolean",
           "default": true,
@@ -226,11 +216,6 @@
             "vue"
           ]
         },
-        "vue.server.maxFileSize": {
-          "type": "number",
-          "default": 20971520,
-          "description": "Maximum file size for Vue Language Server to load. (default: 20MB)"
-        },
         "vue.server.maxOldSpaceSize": {
           "type": [
             "number",
@@ -283,21 +268,6 @@
           "default": "autoKebab",
           "description": "Preferred attr name case."
         },
-        "vue.autoInsert.parentheses": {
-          "type": "boolean",
-          "default": true,
-          "description": "Auto-wrap `()` to As Expression in interpolations for fix volar-issue #520."
-        },
-        "vue.autoInsert.dotValue": {
-          "type": "boolean",
-          "default": false,
-          "description": "Auto-complete Ref value with `.value`."
-        },
-        "vue.autoInsert.bracketSpacing": {
-          "type": "boolean",
-          "default": true,
-          "description": "Auto add space between double curly brackets: `{{|}} -> {{ | }}`"
-        },
         "vue.inlayHints.missingProps": {
           "type": "boolean",
           "default": false,
@@ -312,6 +282,11 @@
           "type": "boolean",
           "default": false,
           "description": "Show inlay hints for component options wrapper for type support."
+        },
+        "vue.inlayHints.vBindShorthand": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show inlay hints for v-bind shorthand."
         },
         "vue.format.template.initialIndent": {
           "type": "boolean",
@@ -357,8 +332,8 @@
     ]
   },
   "dependencies": {
-    "@vue/language-server": "2.0.19",
-    "@vue/typescript-plugin": "2.0.19",
+    "@vue/language-server": "2.0.21",
+    "@vue/typescript-plugin": "2.0.21",
     "typescript": "5.3.3"
   },
   "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447"

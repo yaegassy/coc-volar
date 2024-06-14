@@ -9,7 +9,6 @@ export const config = {
     //hybridMode: 'auto' | 'typeScriptPluginOnly' | boolean;
     hybridMode: boolean;
     maxOldSpaceSize: number;
-    maxFileSize: number;
   }> {
     return _config().get('server')!;
   },

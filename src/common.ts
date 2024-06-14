@@ -13,7 +13,6 @@ import { VueInitializationOptions } from '@vue/language-server';
 
 import * as doctor from './client/commands/doctor';
 import * as scaffoldSnippets from './client/completions/scaffoldSnippets';
-import * as autoInsertion from './features/autoInsertion';
 import * as tsVersion from './features/tsVersion';
 
 import { config } from './config';
@@ -93,19 +92,6 @@ export async function doActivate(context: ExtensionContext, createLc: CreateLang
   /** Custom snippets completion for coc-volar */
   scaffoldSnippets.register(context);
 
-  const selectors: DocumentFilter[] = [{ language: 'vue' }];
-
-  if (client) {
-    if (
-      workspace.getConfiguration('volar').get<boolean>('autoCreateQuotes') ||
-      workspace.getConfiguration('volar').get<boolean>('autoClosingTags') ||
-      workspace.getConfiguration('vue').get<boolean>('autoInsert.dotValue') ||
-      workspace.getConfiguration('vue').get<boolean>('autoInsert.bracketSpacing')
-    ) {
-      autoInsertion.activate(selectors, client);
-    }
-  }
-
   async function activateRestartRequest() {
     context.subscriptions.push(
       commands.registerCommand('vue.action.restartServer', async () => {
@@ -148,7 +134,6 @@ async function getInitializationOptions(
 
   return {
     typescript: resolveCurrentTsPaths,
-    maxFileSize: config.server.maxFileSize,
     vue: {
       hybridMode,
     },
