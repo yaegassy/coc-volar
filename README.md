@@ -91,6 +91,7 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `vue.inlayHints.missingProps`: Show inlay hints for missing required props, `false`
 - `vue.inlayHints.inlineHandlerLeading`: Show inlay hints for event argument in inline handlers, default: `false`
 - `vue.inlayHints.optionsWrapper`: Show inlay hints for component options wrapper for type support, default: `false`
+- `vue.inlayHints.vBindShorthand`: Show inlay hints for v-bind shorthand, default: `false`
 
 ## Commands
 
