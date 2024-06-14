@@ -145,16 +145,6 @@
           "default": "en",
           "description": "Sets the locale used to report diagnostics message from typescript."
         },
-        "volar.autoCreateQuotes": {
-          "type": "boolean",
-          "default": false,
-          "description": "Enable/disable auto creation of quotes for HTML attribute assignment."
-        },
-        "volar.autoClosingTags": {
-          "type": "boolean",
-          "default": false,
-          "description": "Enable/disable autoClosing of HTML tags."
-        },
         "volar.scaffoldSnippets.enable": {
           "type": "boolean",
           "default": true,
@@ -277,21 +267,6 @@
           ],
           "default": "autoKebab",
           "description": "Preferred attr name case."
-        },
-        "vue.autoInsert.parentheses": {
-          "type": "boolean",
-          "default": true,
-          "description": "Auto-wrap `()` to As Expression in interpolations for fix volar-issue #520."
-        },
-        "vue.autoInsert.dotValue": {
-          "type": "boolean",
-          "default": false,
-          "description": "Auto-complete Ref value with `.value`."
-        },
-        "vue.autoInsert.bracketSpacing": {
-          "type": "boolean",
-          "default": true,
-          "description": "Auto add space between double curly brackets: `{{|}} -> {{ | }}`"
         },
         "vue.inlayHints.missingProps": {
           "type": "boolean",

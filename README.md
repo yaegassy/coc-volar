@@ -71,8 +71,6 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `volar.enable`: Enable coc-volar extension, default: `true`
 - `volar.useWorkspaceTsdk`: Use workspace (project) detected tsLibs in volar. if false, use coc-volar's built-in tsLibs, default: `false`
 - `volar.tsLocale`: Sets the locale used to report diagnostics message from typescript, valid option: `["cs", "de", "es", "fr", "it", "ja", "ko", "en", "pl", "pt-br", "ru", "tr", "zh-cn", "zh-tw"]`, default: `"en"`
-- `volar.autoCreateQuotes`: Enable/disable auto creation of quotes for HTML attribute assignment, default: `false`
-- `volar.autoClosingTags`: Enable/disable autoClosing of HTML tags, default: `false`
 - `volar.scaffoldSnippets.enable`: Enable/disable scaffold snippets completion. Typing `vue` or `vuedc` will output completion suggestions. This snippets completion feature will only work on the first line of the file, default: `true`
 - `volar.disableCompletion`: Disable completion from Volar, default: `false`
 - `volar.disableDiagnostics`: Disable diagnostics from Volar, default: `false`
@@ -85,9 +83,6 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `vue.codeLens.enabled`: Enabled code lens, default: `true`
 - `vue.complete.casing.tags`: Preferred tag name case, valid options: `["autoKebab", "autoPascal", "kebab", "pascal"]`, default: `"autoPascal"`
 - `vue.complete.casing.props`: Preferred attr name case, valid options: `["autoKebab", "autoCamel", "kebab", "camel"]`, default: `"autoKebab"`
-- `vue.autoInsert.parentheses`: Auto-wrap `()` to As Expression in interpolations for fix volar-issue #520, default: `true`
-- `vue.autoInsert.dotValue`: Auto-complete Ref value with `.value`, default: `false`
-- `vue.autoInsert.bracketSpacing`: Auto add space between double curly brackets: `{{|}} -> {{ | }}`, default: `true`
 - `vue.inlayHints.missingProps`: Show inlay hints for missing required props, `false`
 - `vue.inlayHints.inlineHandlerLeading`: Show inlay hints for event argument in inline handlers, default: `false`
 - `vue.inlayHints.optionsWrapper`: Show inlay hints for component options wrapper for type support, default: `false`
