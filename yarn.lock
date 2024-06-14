@@ -18,9 +18,9 @@
   integrity sha512-Y4OZ+ytlatR8AI+8KZfKuL5urKp7qey08ha31L8b3BwewJAoJamTzyvxPR/5D+KkdJCGPq/+8TukHBlY10FX9A==
 
 "@babel/parser@^7.24.4":
-  version "7.24.5"
-  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.24.5.tgz#4a4d5ab4315579e5398a82dcf636ca80c3392790"
-  integrity sha512-EOv5IK8arwh3LI47dz1b0tKUb/1uhHAnHJOrjgtQMIpu1uXd9mlFrJg9IUgGUgZ41Ch0K8REPTYpO7B76b4vJg==
+  version "7.24.7"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.24.7.tgz#9a5226f92f0c5c8ead550b750f5608e766c8ce85"
+  integrity sha512-9uUYRm6OqQrCqQdG1iCBwBPZgN8ciDBro2nIOFaiRz1/BCxaI7CNvQbDHvsArAC7Tw9Hda/B3U+6ui9u4HWXPw==
 
 "@babel/types@^7.21.4":
   version "7.24.0"
@@ -392,13 +392,6 @@
   resolved "https://registry.yarnpkg.com/@ungap/structured-clone/-/structured-clone-1.2.0.tgz#756641adb587851b5ccb3e095daf27ae581c8406"
   integrity sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==
 
-"@volar/language-core@2.2.4", "@volar/language-core@~2.2.4":
-  version "2.2.4"
-  resolved "https://registry.yarnpkg.com/@volar/language-core/-/language-core-2.2.4.tgz#50a9194732988610d6b0d8d8732a07235e6464c8"
-  integrity sha512-7As47GndxGxsqqYnbreLrfB5NDUeQioPM2LJKUuB4/34c0NpEJ2byVl3c9KYdjIdiEstWZ9JLtLKNTaPWb5jtA==
-  dependencies:
-    "@volar/source-map" "2.2.4"
-
 "@volar/language-core@2.3.0", "@volar/language-core@~2.3.0-alpha.15":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@volar/language-core/-/language-core-2.3.0.tgz#ffb9b64c8b19d7f45b1fdcd9ae9d98d94bad7179"
@@ -440,13 +433,6 @@
     vscode-languageserver-protocol "^3.17.5"
     vscode-languageserver-textdocument "^1.0.11"
 
-"@volar/source-map@2.2.4":
-  version "2.2.4"
-  resolved "https://registry.yarnpkg.com/@volar/source-map/-/source-map-2.2.4.tgz#15e50e2fc98e76e61711b6cc5d45872814a3e482"
-  integrity sha512-m92FLpR9vB1YEZfiZ+bfgpLrToL/DNkOrorWVep3pffHrwwI4Tx2oIQN+sqHJfKkiT5N3J1owC+8crhAEinfjg==
-  dependencies:
-    muggle-string "^0.4.0"
-
 "@volar/source-map@2.3.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@volar/source-map/-/source-map-2.3.0.tgz#faf4df8f10ca40788f03c35eed3e2b7848110cc9"
@@ -462,14 +448,6 @@
     "@volar/language-core" "2.3.0"
     path-browserify "^1.0.1"
     vscode-uri "^3.0.8"
-
-"@volar/typescript@~2.2.4":
-  version "2.2.4"
-  resolved "https://registry.yarnpkg.com/@volar/typescript/-/typescript-2.2.4.tgz#8f283d8e9769fed03d9e632a159152e2b3295af0"
-  integrity sha512-uAQC53tgEbHO62G8NXMfmBrJAlP2QJ9WxVEEQqqK3I6VSy8frL5LbH3hAWODxiwMWixv74wJLWlKbWXOgdIoRQ==
-  dependencies:
-    "@volar/language-core" "2.2.4"
-    path-browserify "^1.0.1"
 
 "@vscode/emmet-helper@^2.9.2":
   version "2.9.2"
@@ -505,19 +483,6 @@
   dependencies:
     "@vue/compiler-core" "3.4.27"
     "@vue/shared" "3.4.27"
-
-"@vue/language-core@2.0.19":
-  version "2.0.19"
-  resolved "https://registry.yarnpkg.com/@vue/language-core/-/language-core-2.0.19.tgz#d55f9c1e92690c77ffd599688ba36c2b50c4303b"
-  integrity sha512-A9EGOnvb51jOvnCYoRLnMP+CcoPlbZVxI9gZXE/y2GksRWM6j/PrLEIC++pnosWTN08tFpJgxhSS//E9v/Sg+Q==
-  dependencies:
-    "@volar/language-core" "~2.2.4"
-    "@vue/compiler-dom" "^3.4.0"
-    "@vue/shared" "^3.4.0"
-    computeds "^0.0.1"
-    minimatch "^9.0.3"
-    path-browserify "^1.0.1"
-    vue-template-compiler "^2.7.14"
 
 "@vue/language-core@2.0.21":
   version "2.0.21"
@@ -575,15 +540,6 @@
   version "3.4.27"
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.4.27.tgz#f05e3cd107d157354bb4ae7a7b5fc9cf73c63b50"
   integrity sha512-DL3NmY2OFlqmYYrzp39yi3LDkKxa5vZVwxWdQ3rG0ekuWscHraeIbnI8t+aZK7qhYqEqWKTUdijadunb9pnrgA==
-
-"@vue/typescript-plugin@2.0.19":
-  version "2.0.19"
-  resolved "https://registry.yarnpkg.com/@vue/typescript-plugin/-/typescript-plugin-2.0.19.tgz#91159f2096937a58ab6630299bf64213bdf213e0"
-  integrity sha512-Bigm8r8A+z9oY+QcVDAp9Kvan9w9pXfousmzwwnHH5T90w66Vy0/BvNe3D14d7vBCvWgQgFxpuKP67lIA5xySg==
-  dependencies:
-    "@volar/typescript" "~2.2.4"
-    "@vue/language-core" "2.0.19"
-    "@vue/shared" "^3.4.0"
 
 "@vue/typescript-plugin@2.0.21":
   version "2.0.21"
