@@ -226,11 +226,6 @@
             "vue"
           ]
         },
-        "vue.server.maxFileSize": {
-          "type": "number",
-          "default": 20971520,
-          "description": "Maximum file size for Vue Language Server to load. (default: 20MB)"
-        },
         "vue.server.maxOldSpaceSize": {
           "type": [
             "number",

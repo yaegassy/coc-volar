@@ -148,7 +148,6 @@ async function getInitializationOptions(
 
   return {
     typescript: resolveCurrentTsPaths,
-    maxFileSize: config.server.maxFileSize,
     vue: {
       hybridMode,
     },
