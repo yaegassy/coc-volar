@@ -332,7 +332,7 @@
     ]
   },
   "dependencies": {
-    "@vue/language-server": "2.0.21",
+    "@vue/language-server": "2.0.22",
     "@vue/typescript-plugin": "2.0.21",
     "typescript": "5.3.3"
   },
