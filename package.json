@@ -324,8 +324,6 @@
         "name": "@vue/typescript-plugin",
         "enableForWorkspaceTypeScriptVersions": true,
         "languages": [
-          "javascript",
-          "typescript",
           "vue"
         ]
       }
