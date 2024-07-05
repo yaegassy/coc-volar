@@ -1,4 +1,4 @@
-import { AutoInsertRequest, GetVirtualFileRequest } from '@vue/language-server';
+import { AutoInsertRequest, GetVirtualFileRequest } from '@vue/language-server/protocol';
 import * as coc from 'coc.nvim';
 
 /**
