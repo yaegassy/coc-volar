@@ -268,6 +268,11 @@
           "default": "autoKebab",
           "description": "Preferred attr name case."
         },
+        "vue.inlayHints.destructuredProps": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show inlay hints for destructured prop."
+        },
         "vue.inlayHints.missingProps": {
           "type": "boolean",
           "default": false,
@@ -330,8 +335,8 @@
     ]
   },
   "dependencies": {
-    "@vue/language-server": "2.0.28",
-    "@vue/typescript-plugin": "2.0.28",
+    "@vue/language-server": "2.1.6",
+    "@vue/typescript-plugin": "2.1.6",
     "typescript": "5.3.3"
   },
   "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447"
