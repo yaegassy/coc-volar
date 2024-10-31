@@ -268,6 +268,11 @@
           "default": "autoKebab",
           "description": "Preferred attr name case."
         },
+        "vue.complete.defineAssignment": {
+          "type": "boolean",
+          "default": true,
+          "description": "Auto add `const props = ` before `defineProps` when selecting the completion item `props`. (also `emit` and `slots`)"
+        },
         "vue.inlayHints.destructuredProps": {
           "type": "boolean",
           "default": false,
@@ -335,8 +340,8 @@
     ]
   },
   "dependencies": {
-    "@vue/language-server": "2.1.8",
-    "@vue/typescript-plugin": "2.1.8",
+    "@vue/language-server": "2.1.10",
+    "@vue/typescript-plugin": "2.1.10",
     "typescript": "5.3.3"
   },
   "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447"

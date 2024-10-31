@@ -83,6 +83,7 @@ autocmd Filetype vue setlocal iskeyword+=-
 - `vue.codeLens.enabled`: Enabled code lens, default: `true`
 - `vue.complete.casing.tags`: Preferred tag name case, valid options: `["autoKebab", "autoPascal", "kebab", "pascal"]`, default: `"autoPascal"`
 - `vue.complete.casing.props`: Preferred attr name case, valid options: `["autoKebab", "autoCamel", "kebab", "camel"]`, default: `"autoKebab"`
+- `vue.complete.defineAssignment`: Auto add `const props = ` before `defineProps` when selecting the completion item `props`. (also `emit` and `slots`), default: `true`
 - `vue.inlayHints.destructuredProps`: Show inlay hints for destructured props, default: `false`
 - `vue.inlayHints.missingProps`: Show inlay hints for missing required props, `false`
 - `vue.inlayHints.inlineHandlerLeading`: Show inlay hints for event argument in inline handlers, default: `false`
