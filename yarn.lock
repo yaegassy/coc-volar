@@ -28,11 +28,11 @@
   integrity sha512-Ed61U6XJc3CVRfkERJWDz4dJwKe7iLmmJsbOGu9wSloNSFttHV0I8g6UAgb7qnK5ly5bGLPd4oXZlxCdANBOWQ==
 
 "@babel/parser@^7.25.3":
-  version "7.26.3"
-  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.26.3.tgz#8c51c5db6ddf08134af1ddbacf16aaab48bac234"
-  integrity sha512-WJ/CvmY8Mea8iDXo6a7RK2wbmJITT5fN3BEkRuFlxVyNx8jOKIIhmC4fSkTcPcf8JyavbBwIe6OpiCOBXt/IcA==
+  version "7.26.9"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.26.9.tgz#d9e78bee6dc80f9efd8f2349dcfbbcdace280fd5"
+  integrity sha512-81NWa1njQblgZbQHxWHpxxCzNsa3ZwvFqpUg7P+NNUU6f3UU2jBEg4OlF/J6rl8+PQGh1q6/zWScd001YwcA5A==
   dependencies:
-    "@babel/types" "^7.26.3"
+    "@babel/types" "^7.26.9"
 
 "@babel/types@^7.21.4":
   version "7.24.0"
@@ -43,10 +43,10 @@
     "@babel/helper-validator-identifier" "^7.22.20"
     to-fast-properties "^2.0.0"
 
-"@babel/types@^7.26.3":
-  version "7.26.3"
-  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.26.3.tgz#37e79830f04c2b5687acc77db97fbc75fb81f3c0"
-  integrity sha512-vN5p+1kl59GVKMvTHt55NzzmYVxprfJD+ql7U9NFIfKCBkYE55LYtS+WtPlaYOyzydrKI8Nezd+aZextrd+FMA==
+"@babel/types@^7.26.9":
+  version "7.26.9"
+  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.26.9.tgz#08b43dec79ee8e682c2ac631c010bdcac54a21ce"
+  integrity sha512-Y3IR1cRnOxOCDvMmNiym7XpXQ93iGDDPHx+Zj+NM+rg0fBaShfQLkg+hKPaZCEvg5N/LeCo4+Rj/i3FuJsIQaw==
   dependencies:
     "@babel/helper-string-parser" "^7.25.9"
     "@babel/helper-validator-identifier" "^7.25.9"
@@ -533,20 +533,6 @@
     de-indent "^1.0.2"
     he "^1.2.0"
 
-"@vue/language-core@2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@vue/language-core/-/language-core-2.2.0.tgz#e48c54584f889f78b120ce10a050dfb316c7fcdf"
-  integrity sha512-O1ZZFaaBGkKbsRfnVH1ifOK1/1BUkyK+3SQsfnh6PmMmD4qJcTU8godCeA96jjDRTL6zgnK7YzCHfaUlH2r0Mw==
-  dependencies:
-    "@volar/language-core" "~2.4.11"
-    "@vue/compiler-dom" "^3.5.0"
-    "@vue/compiler-vue2" "^2.7.16"
-    "@vue/shared" "^3.5.0"
-    alien-signals "^0.4.9"
-    minimatch "^9.0.3"
-    muggle-string "^0.4.1"
-    path-browserify "^1.0.1"
-
 "@vue/language-core@2.2.2":
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/@vue/language-core/-/language-core-2.2.2.tgz#aa0e916bf18434077887e8ba269729b45564f625"
@@ -606,15 +592,6 @@
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.5.13.tgz#87b309a6379c22b926e696893237826f64339b6f"
   integrity sha512-/hnE/qP5ZoGpol0a5mDi45bOd7t3tjYJBjsgCsivow7D48cJeV5l05RD82lPqi7gRiphZM37rnhW1l6ZoCNNnQ==
 
-"@vue/typescript-plugin@2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@vue/typescript-plugin/-/typescript-plugin-2.2.0.tgz#7b7d863af712ebc012398103f1af5c622d98b6b3"
-  integrity sha512-7okpTvJ8blQApgUtfPvkO1tOkxxWt8oScXwsjQRB46QAgZ/0LwWpWG0yB8mvBLkw4mZpSXsp6e3ntnUwRagURA==
-  dependencies:
-    "@volar/typescript" "~2.4.11"
-    "@vue/language-core" "2.2.0"
-    "@vue/shared" "^3.5.0"
-
 "@vue/typescript-plugin@2.2.2":
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/@vue/typescript-plugin/-/typescript-plugin-2.2.2.tgz#45480d8a9f725f935541b41e2035ef45cc116d75"
@@ -648,11 +625,6 @@ ajv@^6.12.4:
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
-
-alien-signals@^0.4.9:
-  version "0.4.9"
-  resolved "https://registry.yarnpkg.com/alien-signals/-/alien-signals-0.4.9.tgz#19b491645c8dd6141aee0e789330adf16f1703b9"
-  integrity sha512-piRGlMgQ65uRiY06mGU7I432AwPwAGf64TK1RXtM1Px4pPfLMTGI9TmsHTfioW1GukZRsNzkVQ/uHjhhd231Ow==
 
 alien-signals@^1.0.3:
   version "1.0.3"
@@ -1913,9 +1885,9 @@ vscode-uri@^2.1.2:
   integrity sha512-8TEXQxlldWAuIODdukIb+TR5s+9Ds40eSJrw+1iDDA9IFORPjMELarNQE3myz5XIkWWpdprmJjm1/SxMlWOC8A==
 
 vscode-uri@^3.0.8:
-  version "3.0.8"
-  resolved "https://registry.yarnpkg.com/vscode-uri/-/vscode-uri-3.0.8.tgz#1770938d3e72588659a172d0fd4642780083ff9f"
-  integrity sha512-AyFQ0EVmsOZOlAnxoFOGOq1SQDWAB7C6aqMGS23svWAllfOaxbuFvcT8D1i8z3Gyn8fraVeZNNmN6e9bxxXkKw==
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/vscode-uri/-/vscode-uri-3.1.0.tgz#dd09ec5a66a38b5c3fffc774015713496d14e09c"
+  integrity sha512-/BpdSx+yCQGnCvecbyXdxHDkuk55/G3xwnC0GqY4gmQ3j+A+g8kzzgB4Nk/SINjqn6+waqw3EgbVF2QKExkRxQ==
 
 which@^2.0.1:
   version "2.0.2"
