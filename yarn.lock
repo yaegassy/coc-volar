@@ -533,20 +533,6 @@
     de-indent "^1.0.2"
     he "^1.2.0"
 
-"@vue/language-core@2.2.2":
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/@vue/language-core/-/language-core-2.2.2.tgz#aa0e916bf18434077887e8ba269729b45564f625"
-  integrity sha512-QotO41kurE5PLf3vrNgGTk3QswO2PdUFjBwNiOi7zMmGhwb25PSTh9hD1MCgKC06AVv+8sZQvlL3Do4TTVHSiQ==
-  dependencies:
-    "@volar/language-core" "~2.4.11"
-    "@vue/compiler-dom" "^3.5.0"
-    "@vue/compiler-vue2" "^2.7.16"
-    "@vue/shared" "^3.5.0"
-    alien-signals "^1.0.3"
-    minimatch "^9.0.3"
-    muggle-string "^0.4.1"
-    path-browserify "^1.0.1"
-
 "@vue/language-core@2.2.4":
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/@vue/language-core/-/language-core-2.2.4.tgz#5cad43a4cd6f388bebc3e8c6f303df489f5e8829"
@@ -607,15 +593,6 @@
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.5.13.tgz#87b309a6379c22b926e696893237826f64339b6f"
   integrity sha512-/hnE/qP5ZoGpol0a5mDi45bOd7t3tjYJBjsgCsivow7D48cJeV5l05RD82lPqi7gRiphZM37rnhW1l6ZoCNNnQ==
 
-"@vue/typescript-plugin@2.2.2":
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/@vue/typescript-plugin/-/typescript-plugin-2.2.2.tgz#45480d8a9f725f935541b41e2035ef45cc116d75"
-  integrity sha512-M/fNR/M4Rt+jm7Vmv21sPoHNM7MLYC7QjW5gqmP9y6HGmIlxOubqXYIqddeEnikmEsOc3linykEAxAIVxfIvbA==
-  dependencies:
-    "@volar/typescript" "~2.4.11"
-    "@vue/language-core" "2.2.2"
-    "@vue/shared" "^3.5.0"
-
 "@vue/typescript-plugin@2.2.4":
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/@vue/typescript-plugin/-/typescript-plugin-2.2.4.tgz#4f4511bece33d3d45db910f9b49a6885bc51620e"
@@ -651,9 +628,9 @@ ajv@^6.12.4:
     uri-js "^4.2.2"
 
 alien-signals@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/alien-signals/-/alien-signals-1.0.3.tgz#c9bee367ccbd3801cfde8ad3cbedaa2a6ad343b1"
-  integrity sha512-zQOh3wAYK5ujENxvBBR3CFGF/b6afaSzZ/c9yNhJ1ENrGHETvpUuKQsa93Qrclp0+PzTF93MaZ7scVp1uUozhA==
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/alien-signals/-/alien-signals-1.0.4.tgz#c696a5dc9963fc648ae97093411d7e74b0a81ac0"
+  integrity sha512-DJqqQD3XcsaQcQ1s+iE2jDUZmmQpXwHiR6fCAim/w87luaW+vmLY8fMlrdkmRwzaFXhkxf3rqPCR59tKVv1MDw==
 
 ansi-regex@^5.0.1:
   version "5.0.1"
